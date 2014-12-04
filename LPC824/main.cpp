@@ -9,14 +9,16 @@ I2C dev2(P0_6, P0_14);//6,14
 I2C dev3(P0_23, P0_22);//23,22
 I2C dev4(P0_21, P0_20);//21,20
 
-//DigitalInOut _GPIO0(D0);
-//DigitalInOut _GPIO1(D1);
-//DigitalInOut _GPIO2(D2);
-//DigitalInOut _GPIO3(D3);
-//DigitalInOut _GPIO4(D4);
-//DigitalInOut _GPIO5(D5);
-//DigitalInOut _GPIO6(D6);
-//DigitalInOut _GPIO7(D7);
+/*
+DigitalInOut _GPIO0(D0);
+DigitalInOut _GPIO1(D1);
+DigitalInOut _GPIO2(D2);
+DigitalInOut _GPIO3(D3);
+DigitalInOut _GPIO4(D4);
+DigitalInOut _GPIO5(D5);
+DigitalInOut _GPIO6(D6);
+DigitalInOut _GPIO7(D7);
+*/
 
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
@@ -30,6 +32,20 @@ I2C dev4(P0_21, P0_20);//21,20
 //[X] C 0x43 change channel
 //[_] E 0x45 enable chip
 //[_] V 0x__ enable VDDIO output to chip
+
+//"C0P"
+//"C1P"
+//"C2P"
+//"C3P"
+//"S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P"
+//"S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| S| 0x_8 _1| 0x_0 _4| P"
+//"S| 0x_8 _1| 0x_0 _4| P"
+//"R| '0'| P"
+//"R| '0'| '1'| ...| P"
+//"W| '0' 0x_a _a| P"
+//"W| '0' 0x_a _a| '1' 0x_b _b| ...| P"
+//"I| P"
+//"O| 0x_a _a| P"
 
 int main()
 {
@@ -46,13 +62,26 @@ int main()
     dev2.frequency(400000);//400k
     dev3.frequency(400000);//400k
     dev4.frequency(400000);//400k
-
+/*
+    DigitalInOut* gpio[]={
+        &_GPIO0,
+        &_GPIO1,
+        &_GPIO2,
+        &_GPIO3,
+        &_GPIO4,
+        &_GPIO5,
+        &_GPIO6,
+        &_GPIO7,
+        };
+*/
     int ack=0;
     int plength=0;
     char recieve[256];
     char send[256];
     char read=0;
     int address=0;
+    int data=0;
+    int _data=0;
     int length=0;
     int channel=0;
     bool CE=false;
@@ -78,20 +107,6 @@ int main()
         0b00000000,
         0b00000000,
     };
-
-//"C0P"
-//"C1P"
-//"C2P"
-//"C3P"
-//"S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P"
-//"S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| S| 0x_8 _1| 0x_0 _4| P"
-//"S| 0x_8 _1| 0x_0 _4| P"
-//"R| '0'| P"
-//"R| '0'| '1'| P"
-//"W| '0' 0x_a _a| P"
-//"W| '0' 0x_a _a| '1' 0x_b _b| P"
-//"I| P"
-//"O| 0x_a _a| P"
 
     int i=0;
     while(1) {
@@ -152,32 +167,31 @@ int main()
                     if( ack >= 4){ //valid packet
                         address = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
                         length = 0xff & (recieve[i+3] << 4 | (recieve[i+4] & 0x0F));
+/* hidden
+                        dev->start();
+                        ack=dev->write(address);
+*/
+                        if( (address&0x01)) {//read
+                            dev->read(address, send, length, false); //added
+                            s=false; //added
+/* hidden
+                            for(int j=0; j<length; j++) {
+                                send[j] = dev->read(1);
+                            }
+*/
+                            i+=(5);
+                        } else {//write
+                            for(int j=0; j < (length * 2); j+=2) {
+                                ack = dev->write( 0xff&(recieve[5+j] << 4 | (recieve[6+j] & 0x0F)) );
+                                *(send+(j/2)) = ack; //added
+                            }
+                            dev->write(address, send, length, true); //added
+                            i+=(5 + length * 2);
+                            length=0;
+                        }
                     }else{
                         pc.printf("bad packet! %d, %d, %02X, %d\n\r",plength,i,recieve[(i+2)]&0x0F,ack);
-                        i = plength + 1;
-                        break;
-                    }
-/* hidden
-                    dev->start();
-                    ack=dev->write(address);
-*/
-                    if( (address&0x01)) {//read
-                        dev->read(address, send, length, false); //added
-                        s=false; //added
-/* hidden
-                        for(int j=0; j<length; j++) {
-                            send[j] = dev->read(1);
-                        }
-*/
-                        i+=(5);
-                    } else {//write
-                        for(int j=0; j < (length * 2); j+=2) {
-                            ack = dev->write( 0xff&(recieve[5+j] << 4 | (recieve[6+j] & 0x0F)) );
-                            *(send+(j/2)) = ack; //added
-                        }
-                        dev->write(address, send, length, true); //added
-                        i+=(5 + length * 2);
-                        length=0;
+                        i = plength;
                     }
                     break;
                 }
@@ -185,9 +199,9 @@ int main()
                 {
                     if(s){
                         dev->stop();
-                        s=false;
+                        s = false;
                     }
-                    i=plength;
+                    i = plength;
                     for(int j=0; j<length; j++) {
                         pc.printf("%02X,",send[j]);
                     }
@@ -196,14 +210,80 @@ int main()
                 }
                 case 'R':
                 {
+                    length = plength - 2;
+                    for(int j=0; j<length; j++){
+                        address = recieve[1+j];
+                        switch(address){
+                            case CHIP_ID:
+                            {
+                                *(send+j) = registers[CHIP_ID];
+                                break;
+                            }
+                            case GPIO_STAT:
+                            {
+                                *(send+j) = registers[GPIO_STAT];
+                                break;
+                            }
+                            case GPIO_CONF:
+                            {
+                                *(send+j) = registers[GPIO_CONF];
+                                break;
+                            }
+                            default:
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    i += length;
                     pc.printf("command R is not implemented\n\r");
-                    i=plength;
                     break;
                 }
                 case 'W':
                 {
+                    length = plength - 2;
+                    if(length < 3){
+                        pc.printf("bad packet! %d\n\r",length);
+                        i = plength + 1;
+                    }else{
+                        for(int j=0; j<length; j+=3){
+                            address = recieve[i+1+j];
+                            data = 0xff & (recieve[i+1+j] << 4 | (recieve[i+2+j] & 0x0F));
+                            switch(address){
+                                case CHIP_ID:
+                                {
+                                    //READ ONLY: do nothing
+                                    *(send+j) = registers[CHIP_ID];
+                                    break;
+                                }
+                                case GPIO_STAT:
+                                {
+                                    for(int k=1; k<256; k<<=1){
+                                        if(registers[GPIO_CONF] & k){ //output
+                                            (data&k) ? _data|=k : _data&=~k;
+                                        }else{
+                                            ;
+                                        }
+                                    }
+                                    registers[GPIO_STAT] = _data;
+                                    *(send+j) = registers[GPIO_STAT];
+                                    break;
+                                }
+                                case GPIO_CONF:
+                                {
+                                    registers[GPIO_CONF] = data;
+                                    *(send+j) = registers[GPIO_CONF];
+                                    break;
+                                }
+                                default:
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    i += length;
                     pc.printf("command W is not implemented\n\r");
-                    i=plength;
                     break;
                 }
                 case 'I':
