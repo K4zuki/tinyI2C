@@ -1,154 +1,142 @@
+/** uart_i2c_conv for LPC824
+*/
+
 #include "mbed.h"
 
 Serial pc(USBTX,USBRX);
-//Serial mon(D1,NC);
-/*
-    D5 = P0_28,
-    D6 = P0_16, // LED_GREEN
-    D7 = P0_17,
-    D8 = P0_13,
-    D9 = P0_27, // LED_BLUE
-    D10 = P0_15,
-    D11 = P0_26,
-    D12 = P0_25,
-    D13 = P0_24,
-*/
-I2C dev1(I2C_SDA,I2C_SCL);//11,10 hard coded
-I2C dev2(A0,A1);//6,14
-I2C dev3(A2,A3);//23,22
-I2C dev4(A4,A5);//21,20
-BusOut bus(LED1,LED2,LED3,LED4);
-//DigitalOut led1(LED1);
-//DigitalOut led2(LED2);
-//DigitalOut led3(LED3);
-//DigitalOut led4(LED4);
+I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded
+I2C dev2(P0_6, P0_14);//6,14
+I2C dev3(P0_23, P0_22);//23,22
+I2C dev4(P0_21, P0_20);//21,20
+
+//DigitalInOut _GPIO0(D0);
+//DigitalInOut _GPIO1(D1);
+//DigitalInOut _GPIO2(D2);
+//DigitalInOut _GPIO3(D3);
+//DigitalInOut _GPIO4(D4);
+//DigitalInOut _GPIO5(D5);
+//DigitalInOut _GPIO6(D6);
+//DigitalInOut _GPIO7(D7);
 
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
 //[X] S 0x53 I2C-bus START
 //[X] P 0x50 I2C-bus STOP
-//[_] R 0x52 read SC18IM700 internal register
-//[_] W 0x57 write to SC18IM700 internal register
-//[_] I 0x49 read GPIO port
-//[_] O 0x4F write to GPIO port
+//[?] R 0x52 read SC18IM700 internal register
+//[?] W 0x57 write to SC18IM700 internal register
+//[?] I 0x49 read GPIO port
+//[?] O 0x4F write to GPIO port
 //[_] Z 0x5A power down
 //[X] C 0x43 change channel
+//[_] E 0x45 enable chip
+//[_] V 0x__ enable VDDIO output to chip
 
 int main()
 {
     I2C* dev=&dev1;
     pc.baud(115200);
-//mon.baud(115200);
-//pc.printf("%08X\n\r",LPC_IOCON->PIO0_11 );
-//pc.printf("%08X\n\r",LPC_IOCON->PIO0_10 );
-LPC_IOCON->PIO0_11 &= ~(0x02<<8);
-LPC_IOCON->PIO0_11 |= (0x02<<8);
-LPC_IOCON->PIO0_10 &= ~(0x02<<8);
-LPC_IOCON->PIO0_10 |= (0x02<<8);
-//pc.printf("%08X\n\r",LPC_IOCON->PIO0_11 );
-//pc.printf("%08X\n\r",LPC_IOCON->PIO0_10 );
 
-    bool s=false;
-    dev1.frequency(800000);//100k
-    dev2.frequency(400000);//100k
-    dev3.frequency(400000);//100k
-    dev4.frequency(400000);//100k
+    LPC_IOCON->PIO0_11 &= ~(0x02<<8);
+    LPC_IOCON->PIO0_11 |= (0x02<<8);
+    LPC_IOCON->PIO0_10 &= ~(0x02<<8);
+    LPC_IOCON->PIO0_10 |= (0x02<<8);
 
-pc.printf("%08X\n\r",LPC_IOCON->PIO0_11 );
-pc.printf("%08X\n\r",LPC_IOCON->PIO0_10 );
-//LPC_I2C0->CLKDIV &= 0xFFFFFF00;
-//LPC_I2C0->CLKDIV |= 0x05;
-//LPC_I2C0->MSTTIME &= 0xFFFFFF00;
-//LPC_I2C0->MSTTIME |= 0x11;
-//pc.printf("%08X\n\r",LPC_SYSCON->SYSAHBCLKDIV );
-pc.printf("%08X\n\r",LPC_I2C0->CLKDIV );
-pc.printf("%08X\n\r",LPC_I2C0->MSTTIME );
-//    int data=0x50;
+    bool s = false;
+    dev1.frequency(800000);//800k not work at 1M? too large pullup?
+    dev2.frequency(400000);//400k
+    dev3.frequency(400000);//400k
+    dev4.frequency(400000);//400k
+
     int ack=0;
     int plength=0;
     char recieve[256];
-char send[256];
+    char send[256];
     char read=0;
-    int address=0,length=0,channel=0;
-    enum reg {
-        I2C0adr='0',
-        I2C1adr='1',
-        I2C2adr='2',
-        I2C3adr='3',
+    int address=0;
+    int length=0;
+    int channel=0;
+    bool CE=false;
+    enum channel_e {
+        CH0 = '0',
+        CH1 = '1',
+        CH2 = '2',
+        CH3 = '3',
     };
+    enum register_e {
+        CHIP_ID = '0'
+        GPIO_STAT = '1',
+        GPIO_CONF = '2',
+    };
+    enum chipID_e {
+        ID_LPC824 = '0',
+        ID_LPC1768 = '1',
+        ID_LPC11UXX = '2',
+    };
+    uint8_t chip_id=ID_LPC824;
+    uint8_t registers[]={
+        chip_id,
+        0b00000000,
+        0b00000000,
+    };
+
 //"C0P"
-//"S| 0x08 0x00| 0x00 0x04| 0xD0E0A0D0B0E0A0F|P"
 //"C1P"
-//"S(0x80)(4)(0xDEADBEAF)P"
 //"C2P"
-//"S(0x80)(4)(0xDEADBEAF)P"
 //"C3P"
-//"S(0x80)(4)(0xDEADBEAF)P"
-//dev1.start();
-//dev1.write(address);
-//dev1.stop();
+//"S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P"
+//"S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| S| 0x_8 _1| 0x_0 _4| P"
+//"S| 0x_8 _1| 0x_0 _4| P"
+//"R| '0'| P"
+//"R| '0'| '1'| P"
+//"W| '0' 0x_a _a| P"
+//"W| '0' 0x_a _a| '1' 0x_b _b| P"
+//"I| P"
+//"O| 0x_a _a| P"
 
     int i=0;
     while(1) {
         while(true) {
-////            led1=0;
             read=pc.getc();
             recieve[i]=read;
-//pc.printf("%02X,",read); //debug
             i++;
             if(read == 'P') {
                 plength=i;
-////                led1=1;
-//pc.printf("P\n\r");
                 break;
             }
         }
-for(i=0;i<plength;i++){
-//mon.printf("%02X,",recieve[i]); //debug
-}
         i=0;
-        while(i<plength) {
-//mon.printf("%c,",recieve[i]);
+        while(i < plength) {
             switch(recieve[i]) {
                 case 'C':
                 {
                     channel=recieve[i+1];
                     switch(channel) {
-                        case I2C0adr:
+                        case CH0:
                         {
-                            bus=~0x01;
-//pc.printf("ch0 is selected,");
                             channel='0';
                             dev=&dev1;
                             break;
                         }
-                        case I2C1adr:
+                        case CH1:
                         {
-                            bus=~0x02;
-//pc.printf("ch1 is selected,");
                             channel='1';
                             dev=&dev2;
                             break;
                         }
-                        case I2C2adr:
+                        case CH2:
                         {
-                            bus=~0x04;
-//pc.printf("ch2 is selected,");
                             channel='2';
                             dev=&dev3;
                             break;
                         }
-                        case I2C3adr:
+                        case CH3:
                         {
-                            bus=~0x08;
-//pc.printf("ch3 is selected,");
                             channel='3';
                             dev=&dev4;
                             break;
                         }
                         default:
                         {
-//pc.printf("ch? is not implemented,");
                             channel='0';
                             dev=&dev1;
                             break;
@@ -157,57 +145,44 @@ for(i=0;i<plength;i++){
                     i+=(2);
                     break;
                 }
-// S|0xD0|0x01|0xAA|S|0xD1|0x01|P
                 case 'S':
                 {
-                    s=true;
-//ack=((plength-i)>>1)+(0x01&recieve[(i+2)]);
-ack=plength-2-(i+1)+(0x01&recieve[(i+2)]);
-if( ack >=4){
-//if(plength>=4){
-                        address=0xff&(recieve[i+1]<<4|(recieve[i+2]&0x0F));
-                        length=0xff&(recieve[i+3]<<4|(recieve[i+4]&0x0F));
-}else{
-    pc.printf("bad packet! %d, %d, %02X, %d\n\r",plength,i,recieve[(i+2)]&0x0F,ack);
-//mon.printf("bad packet! %d, %d, %02X, %d\n\r",plength,i,recieve[(i+2)]&0x0F,ack);
-    i=plength+1;
-    break;
-}
-//pc.printf("addr=%02X, length=%d,",address,length);
-//dev1.start();
-//dev1.write(address);
+                    s = true;
+                    ack = plength - 2 - (i+1) + (recieve[i+2] & 0x01);
+                    if( ack >= 4){ //valid packet
+                        address = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
+                        length = 0xff & (recieve[i+3] << 4 | (recieve[i+4] & 0x0F));
+                    }else{
+                        pc.printf("bad packet! %d, %d, %02X, %d\n\r",plength,i,recieve[(i+2)]&0x0F,ack);
+                        i = plength + 1;
+                        break;
+                    }
+/* hidden
                     dev->start();
-ack=dev->write(address);
-//if(ack==0){
-//    dev->stop();
-//    pc.printf("0x%02X returned %d\n\r",address,ack);
-//    i=plength+1;
-//    break;
-//}
-////                    dev->write(address);
+                    ack=dev->write(address);
+*/
                     if( (address&0x01)) {//read
-//pc.printf("read from ch%c,",channel);
+                        dev->read(address, send, length, false); //added
+                        s=false; //added
+/* hidden
                         for(int j=0; j<length; j++) {
-send[j]=dev->read(1);
-////                            pc.printf("%02X,",dev->read(1));
-//pc.printf("%02X,",dev1.read(0));
+                            send[j] = dev->read(1);
                         }
+*/
                         i+=(5);
                     } else {//write
-//pc.printf("write to ch%c, ",channel);
-                        for(int j=0; j<(length*2); j+=2) {
-//pc.printf("%02X,",recieve[3+j]);
-//dev1.write(recieve[3+j]);
-                            ack=dev->write( 0xff&(recieve[5+j] << 4 | (recieve[6+j] & 0x0F)) );
-//pc.printf("ack=%d\n\r",ack);
+                        for(int j=0; j < (length * 2); j+=2) {
+                            ack = dev->write( 0xff&(recieve[5+j] << 4 | (recieve[6+j] & 0x0F)) );
+                            *(send+(j/2)) = ack; //added
                         }
-                        i+=(5+length*2);
+                        dev->write(address, send, length, true); //added
+                        i+=(5 + length * 2);
                         length=0;
                     }
                     break;
                 }
                 case 'P':
-//dev1.stop();
+                {
                     if(s){
                         dev->stop();
                         s=false;
@@ -215,41 +190,58 @@ send[j]=dev->read(1);
                     i=plength;
                     for(int j=0; j<length; j++) {
                         pc.printf("%02X,",send[j]);
-//mon.printf("%02X,",send[j]);
                     }
                     pc.printf("ok\n\r");
-//mon.printf("ok\n\r");
                     break;
+                }
                 case 'R':
+                {
                     pc.printf("command R is not implemented\n\r");
-//mon.printf("command R is not implemented\n\r");
                     i=plength;
                     break;
+                }
                 case 'W':
+                {
                     pc.printf("command W is not implemented\n\r");
-//mon.printf("command W is not implemented\n\r");
                     i=plength;
                     break;
+                }
                 case 'I':
+                {
                     pc.printf("command I is not implemented\n\r");
-//mon.printf("command I is not implemented\n\r");
                     i=plength;
                     break;
+                }
                 case 'O':
+                {
                     pc.printf("command O is not implemented\n\r");
-//mon.printf("command O is not implemented\n\r");
                     i=plength;
                     break;
+                }
                 case 'Z':
+                {
                     pc.printf("command Z is not implemented\n\r");
-//mon.printf("command Z is not implemented\n\r");
                     i=plength;
                     break;
+                }
+                case 'E':
+                {
+                    pc.printf("command E is not implemented\n\r");
+                    i=plength;
+                    break;
+                }
+                case 'V':
+                {
+                    pc.printf("command V is not implemented\n\r");
+                    i=plength;
+                    break;
+                }
                 default:
+                {
                     pc.printf("command ? is not implemented\n\r");
-//mon.printf("command %02X is not implemented\n\r",recieve[i]);
                     i=plength;
                     break;
+                }
             }
         }
         i=0;
