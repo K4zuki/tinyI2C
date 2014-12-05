@@ -121,6 +121,15 @@ int main()
     int length = 0;
     int channel = 0;
     bool CE = false;
+    enum command_e {
+        CMD_S='S',
+        CMD_P='P',
+        CMD_C='C',
+        CMD_R='R',
+        CMD_W='W',
+        CMD_I='I',
+        CMD_O='O',
+    };
     enum channel_e {
         CH0 = '0',
         CH1 = '1',
@@ -137,11 +146,11 @@ int main()
         ID_LPC1768 = '1',
         ID_LPC11UXX = '2',
     };
-    uint8_t chip_id=ID_LPC824;
-    uint8_t registers[]={
-        chip_id,
-        0x00,
-        0x00,
+    char chip_id=ID_LPC824;
+    char registers[]={
+        (char)chip_id,
+        0xAA,
+        0xBB,
 //        0b00000000, // all 0
 //        0b00000000, // all input
     };
@@ -162,7 +171,7 @@ int main()
         i=0;
         while(i < plength) {
             switch(recieve[i]) {
-                case 'C':
+                case CMD_C:
                 {
                     channel=recieve[i+1];
                     switch(channel) {
@@ -200,7 +209,7 @@ int main()
                     i+=(2);
                     break;
                 }
-                case 'S':
+                case CMD_S:
                 {
                     s = true;
                     ack = plength - 2 - (i+1) + (recieve[i+2] & 0x01);
@@ -235,7 +244,7 @@ int main()
                     }
                     break;
                 }
-                case 'P':
+                case CMD_P:
                 {
                     if(s){
                         dev->stop();
@@ -248,7 +257,7 @@ int main()
                     pc.printf("ok\n\r");
                     break;
                 }
-                case 'R':
+                case CMD_R:
                 {
                     length = plength - 2;
                     for(int j=0; j<length; j++){
@@ -280,7 +289,7 @@ int main()
 //                    pc.printf("command R is not implemented, ");
                     break;
                 }
-                case 'W':
+                case CMD_W:
                 {
                     length = plength - 2;
                     if(length < 3){
@@ -320,13 +329,13 @@ int main()
                     pc.printf("command W is not implemented, ");
                     break;
                 }
-                case 'I':
+                case CMD_I:
                 {
                     pc.printf("command I is not implemented\n\r");
                     i=plength;
                     break;
                 }
-                case 'O':
+                case CMD_O:
                 {
                     pc.printf("command O is not implemented\n\r");
                     i=plength;
