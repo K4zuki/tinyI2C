@@ -139,18 +139,18 @@ int main()
     enum register_e {
         CHIP_ID = '0',
         GPIO_STAT = '1',
-        GPIO_CONF = '2',
+        GPIO_CONF ='2' ,
     };
     enum chipID_e {
         ID_LPC824 = '0',
         ID_LPC1768 = '1',
         ID_LPC11UXX = '2',
     };
-    char chip_id=ID_LPC824;
-    char registers[]={
-        (char)chip_id,
-        0xAA,
+    static const uint8_t chip_id=ID_LPC824;
+    static uint8_t registers[]={
+        chip_id,
         0xBB,
+        0xCC,
 //        0b00000000, // all 0
 //        0b00000000, // all input
     };
@@ -265,27 +265,29 @@ int main()
                         switch(address){
                             case CHIP_ID:
                             {
-                                *(send+j) = registers[CHIP_ID];
+                                send[j] = chip_id;
                                 break;
                             }
                             case GPIO_STAT:
                             {
-                                *(send+j) = registers[GPIO_STAT];
+                                data=registers[GPIO_STAT-'0'];
+                                send[j] = (char)data;
                                 break;
                             }
                             case GPIO_CONF:
                             {
-                                *(send+j) = registers[GPIO_CONF];
+                                data=registers[GPIO_CONF-'0'];
+                                send[j] = (char)data;
                                 break;
                             }
                             default:
                             {
-                                *(send+j) = 0xAA;
+                                send[j] = 0xAA;
                                 break;
                             }
                         }
                     }
-                    i += length+1;
+                    i += (length+1);
 //                    pc.printf("command R is not implemented, ");
                     break;
                 }
