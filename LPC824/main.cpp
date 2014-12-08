@@ -222,7 +222,7 @@ int main()
 */
                         if( (address&0x01)) {//read
                             dev->read(address, send, length, false); //added
-                            s=false; //added
+//                            s=false; //added
 /* hidden
                             for(int j=0; j<length; j++) {
                                 send[j] = dev->read(1);
@@ -231,7 +231,7 @@ int main()
                             i+=(5);
                         } else {//write
                             for(int j=0; j < (length * 2); j+=2) {
-                                ack = dev->write( 0xff&(recieve[5+j] << 4 | (recieve[6+j] & 0x0F)) );
+                                ack = 0xff&((recieve[5+j] << 4) | (recieve[6+j] & 0x0F));
                                 *(send+(j/2)) = ack; //added
                             }
                             dev->write(address, send, length, true); //added
@@ -300,24 +300,24 @@ int main()
                     }else{
                         for(int j=0; j<length; j+=3){
                             address = recieve[i+1+j];
-                            data = 0xff & (recieve[i+1+j] << 4 | (recieve[i+2+j] & 0x0F));
+                            data = 0xff & (recieve[i+2+j] << 4 | (recieve[i+3+j] & 0x0F));
                             switch(address){
                                 case CHIP_ID:
                                 {
                                     //READ ONLY: do nothing
-                                    *(send+j) = registers[CHIP_ID];
+                                    *(send+j) = registers[CHIP_ID-'0'];
                                     break;
                                 }
                                 case GPIO_STAT:
                                 {
                                     //READ ONLY from this command: do nothing
-                                    *(send+j) = registers[GPIO_STAT];
+                                    *(send+j) = registers[GPIO_STAT-'0'];
                                     break;
                                 }
                                 case GPIO_CONF:
                                 {
-                                    registers[GPIO_CONF] = data;
-                                    *(send+j) = registers[GPIO_CONF];
+                                    registers[GPIO_CONF-'0'] = data;
+                                    *(send+j) = registers[GPIO_CONF-'0'];
                                     break;
                                 }
                                 default:
@@ -328,7 +328,7 @@ int main()
                         }
                     }
                     i += length+1;
-                    pc.printf("command W is not implemented, ");
+//                    pc.printf("command W is not implemented, ");
                     break;
                 }
                 case CMD_I:
