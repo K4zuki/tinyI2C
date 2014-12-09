@@ -9,7 +9,6 @@ I2C dev2(P0_6, P0_14);//6,14
 I2C dev3(P0_23, P0_22);//23,22
 I2C dev4(P0_21, P0_20);//21,20
 
-/*
 DigitalInOut _GPIO0(D0);
 DigitalInOut _GPIO1(D1);
 DigitalInOut _GPIO2(D2);
@@ -18,7 +17,6 @@ DigitalInOut _GPIO4(D4);
 DigitalInOut _GPIO5(D5);
 DigitalInOut _GPIO6(D6);
 DigitalInOut _GPIO7(D7);
-*/
 
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
@@ -63,7 +61,7 @@ int main()
     dev2.frequency(400000);//400k
     dev3.frequency(400000);//400k
     dev4.frequency(400000);//400k
-/*
+
     DigitalInOut* gpio[]={
         &_GPIO0,
         &_GPIO1,
@@ -74,7 +72,11 @@ int main()
         &_GPIO6,
         &_GPIO7,
         };
-*/
+    for(int k=0; k<8; k++){
+        gpio[k]->input();
+        gpio[k]->mode(PullNone);
+    }
+
     int ack = 0;
     int plength = 0;
     char recieve[] = {
@@ -260,35 +262,44 @@ int main()
                 case CMD_R:
                 {
                     length = plength - 2;
-                    for(int j=0; j<length; j++){
-                        address = recieve[i+1+j];
-                        switch(address){
-                            case CHIP_ID:
-                            {
-                                send[j] = chip_id;
-                                break;
+                    if(length<1){
+                        pc.printf("bad packet! %d\n\r",length);
+                        i = plength + 1;
+                        length = 0;
+                    }else{
+                        for(int j=0; j<length; j++){
+                            address = recieve[i+1+j];
+                            switch(address){
+                                case CHIP_ID:
+                                {
+                                    data = chip_id;
+//                                    send[j] = chip_id;
+                                    break;
+                                }
+                                case GPIO_STAT:
+                                {
+                                    data = registers[GPIO_STAT-'0'];
+//                                    send[j] = (char)data;
+                                    break;
+                                }
+                                case GPIO_CONF:
+                                {
+                                    data = registers[GPIO_CONF-'0'];
+//                                    send[j] = (char)data;
+                                    break;
+                                }
+                                default:
+                                {
+                                    data = 0xAA;
+//                                    send[j] = 0xAA;
+                                    break;
+                                }
                             }
-                            case GPIO_STAT:
-                            {
-                                data=registers[GPIO_STAT-'0'];
-                                send[j] = (char)data;
-                                break;
-                            }
-                            case GPIO_CONF:
-                            {
-                                data=registers[GPIO_CONF-'0'];
-                                send[j] = (char)data;
-                                break;
-                            }
-                            default:
-                            {
-                                send[j] = 0xAA;
-                                break;
-                            }
+                            send[j] = (char)data;
                         }
+                        i += (length+1);
+//                        pc.printf("command R is not implemented, ");
                     }
-                    i += (length+1);
-//                    pc.printf("command R is not implemented, ");
                     break;
                 }
                 case CMD_W:
@@ -297,6 +308,7 @@ int main()
                     if(length < 3){
                         pc.printf("bad packet! %d\n\r",length);
                         i = plength + 1;
+                        length = 0;
                     }else{
                         for(int j=0; j<length; j+=3){
                             address = recieve[i+1+j];
@@ -305,19 +317,32 @@ int main()
                                 case CHIP_ID:
                                 {
                                     //READ ONLY: do nothing
-                                    *(send+j) = registers[CHIP_ID-'0'];
+                                    data = registers[CHIP_ID-'0'];
+//                                    *(send+j) = registers[CHIP_ID-'0'];
                                     break;
                                 }
                                 case GPIO_STAT:
                                 {
                                     //READ ONLY from this command: do nothing
-                                    *(send+j) = registers[GPIO_STAT-'0'];
+                                    data = registers[GPIO_STAT-'0'];
+//                                    *(send+j) = registers[GPIO_STAT-'0'];
                                     break;
                                 }
                                 case GPIO_CONF:
                                 {
                                     registers[GPIO_CONF-'0'] = data;
-                                    *(send+j) = registers[GPIO_CONF-'0'];
+//                                    data = 0;
+                                    for(int k=0; k<8; k++){
+                                        if(data&0x01){//output
+                                            gpio[k]->output();
+                                        }else{//input
+                                            gpio[k]->input();
+                                            gpio[k]->mode(PullNone);
+                                        }
+                                        data >>= 1;
+                                    }
+                                    data = registers[GPIO_CONF-'0'];
+//                                    *(send+j) = registers[GPIO_CONF-'0'];
                                     break;
                                 }
                                 default:
@@ -325,9 +350,11 @@ int main()
                                     break;
                                 }
                             }
+                            send[j/3] = (char)data;
                         }
+                        i += length+1;
+                        length /= 3;
                     }
-                    i += length+1;
 //                    pc.printf("command W is not implemented, ");
                     break;
                 }
@@ -363,7 +390,7 @@ int main()
                 }
                 default:
                 {
-                    pc.printf("command %s is not implemented\n\r", recieve[i]);
+                    pc.printf("command %c is not implemented\n\r", recieve[i]);
                     i=plength;
                     break;
                 }
