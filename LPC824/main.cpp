@@ -5,19 +5,39 @@
 
 Serial pc(USBTX,USBRX);
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded
-I2C dev2(P0_6, P0_14);//6,14
-I2C dev3(P0_23, P0_22);//23,22
-I2C dev4(P0_21, P0_20);//21,20
 
-DigitalInOut _GPIO0(D0);
-DigitalInOut _GPIO1(D1);
-DigitalInOut _GPIO2(D2);
-DigitalInOut _GPIO3(D3);
-DigitalInOut _GPIO4(D4);
-DigitalInOut _GPIO5(D5);
-DigitalInOut _GPIO6(D6);
-DigitalInOut _GPIO7(D7);
+I2C dev2(P0_6, P0_14);//6,14 | A0, A1
+I2C dev3(P0_23, P0_22);//23,22 | A2, A3
+I2C dev4(P0_21, P0_20);//21,20 | A4, A5
+/*
+I2C dev2(P0_16, P0_27);
+I2C dev3(P0_26, P0_25);
+I2C dev4(P0_24, P0_15);
+*/
+DigitalInOut _GPIO0(LED1); // D0
+DigitalInOut _GPIO1(LED2); // D1
+DigitalInOut _GPIO2(LED3); // D2
+DigitalInOut _GPIO3(D3); // D3
+DigitalInOut _GPIO4(D4); // D4
+DigitalInOut _GPIO5(D5); // D5
+DigitalInOut _GPIO6(D6); // D6
+DigitalInOut _GPIO7(D7); // D7
+/*
+DigitalInOut _GPIO0(P0_17);
+DigitalInOut _GPIO1(P0_18);
+DigitalInOut _GPIO2(P0_19);
+DigitalInOut _GPIO3(P0_20);
+DigitalInOut _GPIO4(P0_21);
+DigitalInOut _GPIO5(P0_22);
+DigitalInOut _GPIO6(P0_23);
+DigitalInOut _GPIO7(P0_14);
+*/
 
+SPI _spi(D11, D12, D13); // mosi, miso, sclk
+/*
+SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
+DigitalOut _cs(P0_9) // CS
+*/
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
 //[X] S 0x53 I2C-bus START
@@ -62,7 +82,7 @@ int main()
     dev3.frequency(400000);//400k
     dev4.frequency(400000);//400k
 
-    DigitalInOut* gpio[]={
+    DigitalInOut* gpio0[]={
         &_GPIO0,
         &_GPIO1,
         &_GPIO2,
@@ -71,10 +91,10 @@ int main()
         &_GPIO5,
         &_GPIO6,
         &_GPIO7,
-        };
+    };
     for(int k=0; k<8; k++){
-        gpio[k]->input();
-        gpio[k]->mode(PullNone);
+        gpio0[k]->input();
+        gpio0[k]->mode(PullUp);
     }
 
     int ack = 0;
@@ -141,7 +161,7 @@ int main()
     enum register_e {
         CHIP_ID = '0',
         GPIO_STAT = '1',
-        GPIO_CONF ='2' ,
+        GPIO_CONF = '2',
     };
     enum chipID_e {
         ID_LPC824 = '0',
@@ -179,31 +199,31 @@ int main()
                     switch(channel) {
                         case CH0:
                         {
-                            channel='0';
+                            channel = CH0;
                             dev=&dev1;
                             break;
                         }
                         case CH1:
                         {
-                            channel='1';
+                            channel = CH1;
                             dev=&dev2;
                             break;
                         }
                         case CH2:
                         {
-                            channel='2';
+                            channel = CH2;
                             dev=&dev3;
                             break;
                         }
                         case CH3:
                         {
-                            channel='3';
+                            channel = CH3;
                             dev=&dev4;
                             break;
                         }
                         default:
                         {
-                            channel='0';
+                            channel = CH0;
                             dev=&dev1;
                             break;
                         }
@@ -215,23 +235,14 @@ int main()
                 {
                     s = true;
                     ack = plength - 2 - (i+1) + (recieve[i+2] & 0x01);
-                    if( ack >= 4){ //valid packet
+                    if(ack >= 4){ //valid packet
                         address = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
                         length = 0xff & (recieve[i+3] << 4 | (recieve[i+4] & 0x0F));
-/* hidden
-                        dev->start();
-                        ack=dev->write(address);
-*/
-                        if( (address&0x01)) {//read
+
+                        if( (address&0x01)) { //read
                             dev->read(address, send, length, false); //added
-//                            s=false; //added
-/* hidden
-                            for(int j=0; j<length; j++) {
-                                send[j] = dev->read(1);
-                            }
-*/
                             i+=(5);
-                        } else {//write
+                        } else { // write
                             for(int j=0; j < (length * 2); j+=2) {
                                 ack = 0xff&((recieve[5+j] << 4) | (recieve[6+j] & 0x0F));
                                 *(send+(j/2)) = ack; //added
@@ -334,10 +345,10 @@ int main()
 //                                    data = 0;
                                     for(int k=0; k<8; k++){
                                         if(data&0x01){//output
-                                            gpio[k]->output();
+                                            gpio0[k]->output();
                                         }else{//input
-                                            gpio[k]->input();
-                                            gpio[k]->mode(PullNone);
+                                            gpio0[k]->input();
+                                            gpio0[k]->mode(PullUp);
                                         }
                                         data >>= 1;
                                     }
@@ -360,14 +371,49 @@ int main()
                 }
                 case CMD_I:
                 {
-                    pc.printf("command I is not implemented\n\r");
-                    i=plength;
+                    length = plength - 2;
+                    data = 0;
+                    if(length != 0){
+                        pc.printf("bad packet! %d\n\r",length);
+                        i = plength + 1;
+                        length = 0;
+                    }else{
+                        for(int j=0; j<8; j++){
+                            _data = gpio0[j]->read();
+                            data |= (_data << j);
+                        }
+                        registers[GPIO_STAT-'0'] = data;
+                        send[0] = data;
+                        length = 1;
+                    }
+//                    pc.printf("command I is not implemented, ");
+                    i+=length;
                     break;
                 }
                 case CMD_O:
                 {
-                    pc.printf("command O is not implemented\n\r");
-                    i=plength;
+                    length = plength - 2;
+                    if(length != 2){
+                        pc.printf("bad packet! %d\n\r",length);
+                        i = plength + 1;
+                        length = 0;
+                    }else{
+                        data = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
+                        _data = registers[GPIO_CONF-'0'];
+                        send[0] = (char)data;
+                        for(int j=0; j<8; j++){
+                            if(_data&0x01){ // output
+                                gpio0[j]->write(data&0x01);
+                            }else{ // input
+                                ; // do nothing
+                            }
+                            data >>= 1;
+                            _data >>= 1;
+                        }
+                        i += length+1;
+                        length = 1;
+                    }
+//                    pc.printf("command O is not implemented, ");
                     break;
                 }
                 case 'Z':
