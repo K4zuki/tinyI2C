@@ -2,21 +2,35 @@
 */
 
 #include "mbed.h"
+#define QUAD_I2C
 
 Serial pc(USBTX,USBRX);
-/*
+/** replace
 Serial pc(P0_4, P0_0);
 */
+
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded
 
+#ifdef QUAD_I2C
 I2C dev2(P0_6, P0_14);//6,14 | A0, A1
 I2C dev3(P0_23, P0_22);//23,22 | A2, A3
 I2C dev4(P0_21, P0_20);//21,20 | A4, A5
-/*
+/** replace
 I2C dev2(P0_16, P0_27);
 I2C dev3(P0_26, P0_25);
 I2C dev4(P0_24, P0_15);
 */
+#else
+DigitalInOut _GPIO10(P0_15);
+DigitalInOut _GPIO11(P0_24);
+DigitalInOut _GPIO12(P0_25);
+DigitalInOut _GPIO13(P0_26);
+DigitalInOut _GPIO14(P0_27);
+DigitalInOut _GPIO15(P0_16);
+DigitalInOut _GPIO16(P0_28);
+DigitalInOut _GPIO17(P0_12);
+#endif
+
 DigitalInOut _GPIO0(D0); // P0_0
 DigitalInOut _GPIO1(D1); // P0_4
 DigitalInOut _GPIO2(D2); // P0_19
@@ -25,22 +39,15 @@ DigitalInOut _GPIO4(D5); // P0_28
 DigitalInOut _GPIO5(D7); // P0_17
 DigitalInOut _GPIO6(D8); // P0_13
 DigitalInOut _GPIO7(D10); // P0_15
-/*
-DigitalInOut _GPIO00(P0_13);
-DigitalInOut _GPIO01(P0_17);
-DigitalInOut _GPIO02(P0_18);
-DigitalInOut _GPIO03(P0_19);
-DigitalInOut _GPIO04(P0_20);
-DigitalInOut _GPIO05(P0_21);
-DigitalInOut _GPIO06(P0_22);
-DigitalInOut _GPIO07(P0_23);
-
-DigitalInOut _GPIO10(P0_14);
-DigitalInOut _GPIO11(P0_1);
-//DigitalInOut _GPIO12( );
-//DigitalInOut _GPIO13( );
-//DigitalInOut _GPIO14( );
-//DigitalInOut _GPIO15( );
+/** replace
+DigitalInOut _GPIO00(P0_17);
+DigitalInOut _GPIO01(P0_18);
+DigitalInOut _GPIO02(P0_19);
+DigitalInOut _GPIO03(P0_20);
+DigitalInOut _GPIO04(P0_21);
+DigitalInOut _GPIO05(P0_22);
+DigitalInOut _GPIO06(P0_23);
+DigitalInOut _GPIO07(P0_14);
 */
 
 SPI _spi(D11, D12, D13); // mosi, miso, sclk
@@ -49,8 +56,6 @@ SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
 DigitalOut _cs(P0_9) // CS
 */
 
-/**
-*/
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
 //[X] S 0x53 I2C-bus START
@@ -76,8 +81,8 @@ DigitalOut _cs(P0_9) // CS
 "R| '0'| '1'| ...| P"
 "W| '0' 0x_a _a| P"
 "W| '0' 0x_a _a| '1' 0x_b _b| ...| P"
-"I| P"
-"O| 0x_a _a| P"
+"I| '0'| P"
+"O| '0'| 0x_a _a| P"
 */
 int main()
 {
@@ -91,10 +96,26 @@ int main()
 
     bool s = false;
     dev1.frequency(800000);//800k not work at 1M? too large pullup?
+#ifdef QUAD_I2C
     dev2.frequency(400000);//400k
     dev3.frequency(400000);//400k
     dev4.frequency(400000);//400k
-
+#else
+    DigitalInOut* gpio1[]={
+        &_GPI10,
+        &_GPI11,
+        &_GPI12,
+        &_GPI13,
+        &_GPI14,
+        &_GPI15,
+        &_GPI16,
+        &_GPI17,
+    };
+    for(int k=0; k<8; k++){
+        gpio1[k]->input();
+        gpio1[k]->mode(PullUp);
+    }
+#endif
     DigitalInOut* gpio0[]={
         &_GPIO0,
         &_GPIO1,
@@ -173,8 +194,15 @@ int main()
     };
     enum register_e {
         CHIP_ID = '0',
-        GPIO_STAT = '1',
-        GPIO_CONF = '2',
+        GPIO0_STAT = '1',
+        GPIO1_STAT = '2',
+        GPIO0_CONF = '3',
+        GPIO1_CONF = '4',
+        REG5,
+        REG6,
+        REG7,
+        REG8,
+        REG9,
     };
     enum chipID_e {
         ID_LPC824 = '0',
@@ -186,8 +214,8 @@ int main()
         chip_id,
         0xBB,
         0xCC,
-//        0b00000000, // all 0
-//        0b00000000, // all input
+        0xDD,
+        0xEE,
     };
 
     int i=0;
@@ -216,6 +244,7 @@ int main()
                             dev=&dev1;
                             break;
                         }
+#ifdef QUAD_I2C
                         case CH1:
                         {
                             channel = CH1;
@@ -234,6 +263,7 @@ int main()
                             dev=&dev4;
                             break;
                         }
+#endif
                         default:
                         {
                             channel = CH0;
@@ -252,7 +282,7 @@ int main()
                         address = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
                         length = 0xff & (recieve[i+3] << 4 | (recieve[i+4] & 0x0F));
 
-                        if( (address&0x01)) { //read
+                        if(address & 0x01) { //read
                             dev->read(address, send, length, false); //added
                             i+=(5);
                         } else { // write
@@ -297,32 +327,37 @@ int main()
                                 case CHIP_ID:
                                 {
                                     data = chip_id;
-//                                    send[j] = chip_id;
                                     break;
                                 }
-                                case GPIO_STAT:
+                                case GPIO0_STAT:
                                 {
-                                    data = registers[GPIO_STAT-'0'];
-//                                    send[j] = (char)data;
+                                    data = registers[GPIO0_STAT-'0'];
                                     break;
                                 }
-                                case GPIO_CONF:
+                                case GPIO0_CONF:
                                 {
-                                    data = registers[GPIO_CONF-'0'];
-//                                    send[j] = (char)data;
+                                    data = registers[GPIO0_CONF-'0'];
+                                    break;
+                                }
+                                case GPIO1_STAT:
+                                {
+                                    data = registers[GPIO1_STAT-'0'];
+                                    break;
+                                }
+                                case GPIO1_CONF:
+                                {
+                                    data = registers[GPIO1_CONF-'0'];
                                     break;
                                 }
                                 default:
                                 {
                                     data = 0xAA;
-//                                    send[j] = 0xAA;
                                     break;
                                 }
                             }
                             send[j] = (char)data;
                         }
                         i += (length+1);
-//                        pc.printf("command R is not implemented, ");
                     }
                     break;
                 }
@@ -342,20 +377,17 @@ int main()
                                 {
                                     //READ ONLY: do nothing
                                     data = registers[CHIP_ID-'0'];
-//                                    *(send+j) = registers[CHIP_ID-'0'];
                                     break;
                                 }
-                                case GPIO_STAT:
+                                case GPIO0_STAT:
                                 {
                                     //READ ONLY from this command: do nothing
-                                    data = registers[GPIO_STAT-'0'];
-//                                    *(send+j) = registers[GPIO_STAT-'0'];
+                                    data = registers[GPIO0_STAT-'0'];
                                     break;
                                 }
-                                case GPIO_CONF:
+                                case GPIO0_CONF:
                                 {
-                                    registers[GPIO_CONF-'0'] = data;
-//                                    data = 0;
+                                    registers[GPIO0_CONF-'0'] = data;
                                     for(int k=0; k<8; k++){
                                         if(data&0x01){//output
                                             gpio0[k]->output();
@@ -365,8 +397,30 @@ int main()
                                         }
                                         data >>= 1;
                                     }
-                                    data = registers[GPIO_CONF-'0'];
-//                                    *(send+j) = registers[GPIO_CONF-'0'];
+                                    data = registers[GPIO0_CONF-'0'];
+                                    break;
+                                }
+                                case GPIO1_STAT:
+                                {
+                                    //READ ONLY from this command: do nothing
+                                    data = registers[GPIO1_STAT-'0'];
+                                    break;
+                                }
+                                case GPIO1_CONF:
+                                {
+                                    registers[GPIO1_CONF-'0'] = data;
+#ifndef QUAD_I2C
+                                    for(int k=0; k<6; k++){
+                                        if(data&0x01){//output
+                                            gpio1[k]->output();
+                                        }else{//input
+                                            gpio1[k]->input();
+                                            gpio1[k]->mode(PullUp);
+                                        }
+                                        data >>= 1;
+                                    }
+#endif
+                                    data = registers[GPIO1_CONF-'0'];
                                     break;
                                 }
                                 default:
@@ -379,7 +433,6 @@ int main()
                         i += length+1;
                         length /= 3;
                     }
-//                    pc.printf("command W is not implemented, ");
                     break;
                 }
                 case CMD_I:
@@ -395,7 +448,7 @@ int main()
                             _data = gpio0[j]->read();
                             data |= (_data << j);
                         }
-                        registers[GPIO_STAT-'0'] = data;
+                        registers[GPIO0_STAT-'0'] = data;
                         send[0] = data;
                         length = 1;
                     }
@@ -412,7 +465,7 @@ int main()
                         length = 0;
                     }else{
                         data = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
-                        _data = registers[GPIO_CONF-'0'];
+                        _data = registers[GPIO0_CONF-'0'];
                         send[0] = (char)data;
                         for(int j=0; j<8; j++){
                             if(_data&0x01){ // output
