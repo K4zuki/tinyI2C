@@ -4,6 +4,9 @@
 #include "mbed.h"
 
 Serial pc(USBTX,USBRX);
+/*
+Serial pc(P0_4, P0_0);
+*/
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded
 
 I2C dev2(P0_6, P0_14);//6,14 | A0, A1
@@ -14,29 +17,39 @@ I2C dev2(P0_16, P0_27);
 I2C dev3(P0_26, P0_25);
 I2C dev4(P0_24, P0_15);
 */
-DigitalInOut _GPIO0(LED1); // D0
-DigitalInOut _GPIO1(LED2); // D1
-DigitalInOut _GPIO2(LED3); // D2
-DigitalInOut _GPIO3(D3); // D3
-DigitalInOut _GPIO4(D4); // D4
-DigitalInOut _GPIO5(D5); // D5
-DigitalInOut _GPIO6(D6); // D6
-DigitalInOut _GPIO7(D7); // D7
+DigitalInOut _GPIO0(D0); // P0_0
+DigitalInOut _GPIO1(D1); // P0_4
+DigitalInOut _GPIO2(D2); // P0_19
+DigitalInOut _GPIO3(D4); // P0_18
+DigitalInOut _GPIO4(D5); // P0_28
+DigitalInOut _GPIO5(D7); // P0_17
+DigitalInOut _GPIO6(D8); // P0_13
+DigitalInOut _GPIO7(D10); // P0_15
 /*
-DigitalInOut _GPIO0(P0_17);
-DigitalInOut _GPIO1(P0_18);
-DigitalInOut _GPIO2(P0_19);
-DigitalInOut _GPIO3(P0_20);
-DigitalInOut _GPIO4(P0_21);
-DigitalInOut _GPIO5(P0_22);
-DigitalInOut _GPIO6(P0_23);
-DigitalInOut _GPIO7(P0_14);
+DigitalInOut _GPIO00(P0_13);
+DigitalInOut _GPIO01(P0_17);
+DigitalInOut _GPIO02(P0_18);
+DigitalInOut _GPIO03(P0_19);
+DigitalInOut _GPIO04(P0_20);
+DigitalInOut _GPIO05(P0_21);
+DigitalInOut _GPIO06(P0_22);
+DigitalInOut _GPIO07(P0_23);
+
+DigitalInOut _GPIO10(P0_14);
+DigitalInOut _GPIO11(P0_1);
+//DigitalInOut _GPIO12( );
+//DigitalInOut _GPIO13( );
+//DigitalInOut _GPIO14( );
+//DigitalInOut _GPIO15( );
 */
 
 SPI _spi(D11, D12, D13); // mosi, miso, sclk
 /*
 SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
 DigitalOut _cs(P0_9) // CS
+*/
+
+/**
 */
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
