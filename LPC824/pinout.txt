@@ -1,9 +1,9 @@
 pin IO      func
 1   P0_13   UART_RTS
-2   P0_12   !ISP
+2   P0_12   !ISP        _GPIO17
 3   P0_5    !RESET
 4   P0_4    UART_TX
-5   P0_28   LED?
+5   P0_28   LED         _GPIO16
 6   P0_3    SWCLK
 7   P0_2    SWDIO
 8   P0_11   I2C0_SDA
