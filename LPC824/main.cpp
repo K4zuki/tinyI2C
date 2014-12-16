@@ -90,16 +90,16 @@ int main()
     I2C* dev=&dev1;
     pc.baud(115200);
 
+    bool s = false;
+    dev1.frequency(900000);//900k; works around 940kHz with 200ohm pullups/ not work at 1M? 
     LPC_IOCON->PIO0_11 &= ~(0x03<<8);
     LPC_IOCON->PIO0_11 |= (0x02<<8);
     LPC_IOCON->PIO0_10 &= ~(0x03<<8);
     LPC_IOCON->PIO0_10 |= (0x02<<8);
-    LPC_I2C0->CLKDIV &= 0xFFFFFF00;
-    LPC_I2C0->CLKDIV |= 0x05;
-    LPC_I2C0->MSTTIME &= 0xFFFFFF00;
-    LPC_I2C0->MSTTIME |= 0x10;
-    bool s = false;
-    dev1.frequency(800000);//800k not work at 1M? too large pullup?
+//    LPC_I2C0->CLKDIV &= 0xFFFFFF00;
+//    LPC_I2C0->CLKDIV |= 0x05;
+//    LPC_I2C0->MSTTIME &= 0xFFFFFF00;
+//    LPC_I2C0->MSTTIME |= 0x00;
 #ifdef QUAD_I2C
     dev2.frequency(400000);//400k
     dev3.frequency(400000);//400k
