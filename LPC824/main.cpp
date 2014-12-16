@@ -34,7 +34,7 @@ DigitalInOut _GPIO17(P0_12);
 DigitalInOut _GPIO0(D0); // P0_0
 DigitalInOut _GPIO1(D1); // P0_4
 DigitalInOut _GPIO2(D2); // P0_19
-DigitalInOut _GPIO3(D4); // P0_18
+DigitalInOut _GPIO3(P0_1); // 
 DigitalInOut _GPIO4(D5); // P0_28
 DigitalInOut _GPIO5(D7); // P0_17
 DigitalInOut _GPIO6(D8); // P0_13
@@ -51,7 +51,8 @@ DigitalInOut _GPIO07(P0_14);
 */
 
 SPI _spi(D11, D12, D13); // mosi, miso, sclk
-/*
+DigitalOut _cs(D9); // CS
+/** replace
 SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
 DigitalOut _cs(P0_9) // CS
 */
@@ -89,11 +90,14 @@ int main()
     I2C* dev=&dev1;
     pc.baud(115200);
 
-    LPC_IOCON->PIO0_11 &= ~(0x02<<8);
+    LPC_IOCON->PIO0_11 &= ~(0x03<<8);
     LPC_IOCON->PIO0_11 |= (0x02<<8);
-    LPC_IOCON->PIO0_10 &= ~(0x02<<8);
+    LPC_IOCON->PIO0_10 &= ~(0x03<<8);
     LPC_IOCON->PIO0_10 |= (0x02<<8);
-
+    LPC_I2C0->CLKDIV &= 0xFFFFFF00;
+    LPC_I2C0->CLKDIV |= 0x05;
+    LPC_I2C0->MSTTIME &= 0xFFFFFF00;
+    LPC_I2C0->MSTTIME |= 0x10;
     bool s = false;
     dev1.frequency(800000);//800k not work at 1M? too large pullup?
 #ifdef QUAD_I2C
@@ -113,7 +117,7 @@ int main()
     };
     for(int k=0; k<8; k++){
         gpio1[k]->input();
-        gpio1[k]->mode(PullUp);
+        gpio1[k]->mode(PullDown);
     }
 #endif
     DigitalInOut* gpio0[]={
@@ -128,7 +132,7 @@ int main()
     };
     for(int k=0; k<8; k++){
         gpio0[k]->input();
-        gpio0[k]->mode(PullUp);
+        gpio0[k]->mode(PullDown);
     }
 
     int ack = 0;
@@ -216,6 +220,11 @@ int main()
         0xCC,
         0xDD,
         0xEE,
+        REG5,
+        REG6,
+        REG7,
+        REG8,
+        REG9,
     };
 
     int i=0;
@@ -446,13 +455,14 @@ int main()
                     }else{
                         for(int j=0; j<8; j++){
                             _data = gpio0[j]->read();
+                            pc.printf("_%02X, ",_data);
                             data |= (_data << j);
                         }
                         registers[GPIO0_STAT-'0'] = data;
                         send[0] = data;
                         length = 1;
                     }
-//                    pc.printf("command I is not implemented, ");
+                    pc.printf("%02X, ",data);
                     i+=length;
                     break;
                 }
