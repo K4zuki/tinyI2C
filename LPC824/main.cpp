@@ -31,14 +31,14 @@ DigitalInOut _GPIO16(P0_28);
 DigitalInOut _GPIO17(P0_12);
 #endif
 
-DigitalInOut _GPIO0(D0); // P0_0
-DigitalInOut _GPIO1(D1); // P0_4
-DigitalInOut _GPIO2(D2); // P0_19
-DigitalInOut _GPIO3(P0_1); // 
-DigitalInOut _GPIO4(D5); // P0_28
-DigitalInOut _GPIO5(D7); // P0_17
-DigitalInOut _GPIO6(D8); // P0_13
-DigitalInOut _GPIO7(D10); // P0_15
+DigitalInOut _GPIO00(D0); // P0_0
+DigitalInOut _GPIO01(D1); // P0_4
+DigitalInOut _GPIO02(D2); // P0_19
+DigitalInOut _GPIO03(D3); // P0_12
+DigitalInOut _GPIO04(P0_1); // 
+DigitalInOut _GPIO05(D5); // P0_28
+DigitalInOut _GPIO06(D6); // P0_16
+DigitalInOut _GPIO07(D7); // P0_17
 /** replace
 DigitalInOut _GPIO00(P0_17);
 DigitalInOut _GPIO01(P0_18);
@@ -51,7 +51,7 @@ DigitalInOut _GPIO07(P0_14);
 */
 
 SPI _spi(D11, D12, D13); // mosi, miso, sclk
-DigitalOut _cs(D9); // CS
+DigitalOut _cs(D10); // CS
 /** replace
 SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
 DigitalOut _cs(P0_9) // CS
@@ -106,14 +106,14 @@ int main()
     dev4.frequency(400000);//400k
 #else
     DigitalInOut* gpio1[]={
-        &_GPI10,
-        &_GPI11,
-        &_GPI12,
-        &_GPI13,
-        &_GPI14,
-        &_GPI15,
-        &_GPI16,
-        &_GPI17,
+        &_GPIO10,
+        &_GPIO11,
+        &_GPIO12,
+        &_GPIO13,
+        &_GPIO14,
+        &_GPIO15,
+        &_GPIO16,
+        &_GPIO17,
     };
     for(int k=0; k<8; k++){
         gpio1[k]->input();
@@ -121,14 +121,14 @@ int main()
     }
 #endif
     DigitalInOut* gpio0[]={
-        &_GPIO0,
-        &_GPIO1,
-        &_GPIO2,
-        &_GPIO3,
-        &_GPIO4,
-        &_GPIO5,
-        &_GPIO6,
-        &_GPIO7,
+        &_GPIO00,
+        &_GPIO01,
+        &_GPIO02,
+        &_GPIO03,
+        &_GPIO04,
+        &_GPIO05,
+        &_GPIO06,
+        &_GPIO07,
     };
     for(int k=0; k<8; k++){
         gpio0[k]->input();
