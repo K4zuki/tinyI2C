@@ -7,9 +7,10 @@
 Serial pc(USBTX,USBRX);
 /** replace
 Serial pc(P0_4, P0_0);
+//P0_13, P0_1
 */
 
-I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded
+I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 
 #ifdef QUAD_I2C
 I2C dev2(P0_6, P0_14);//6,14 | A0, A1
