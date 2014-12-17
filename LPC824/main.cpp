@@ -4,7 +4,7 @@
 #include "mbed.h"
 #define QUAD_I2C
 
-Serial pc(USBTX,USBRX);
+Serial pc(USBTX,USBRX); // P0_7, P0_18
 /** replace
 Serial pc(P0_4, P0_0);
 //P0_13, P0_1
