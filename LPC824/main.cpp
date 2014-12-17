@@ -325,7 +325,7 @@ int main()
                 case CMD_R:
                 {
                     length = plength - 2;
-                    if(length<1){
+                    if(length < 1){
                         pc.printf("bad packet! %d\n\r",length);
                         i = plength + 1;
                         length = 0;
@@ -340,7 +340,11 @@ int main()
                                 }
                                 case GPIO0_STAT:
                                 {
-                                    data = registers[GPIO0_STAT-'0'];
+                                    for(int k=0; k<8; k++){
+                                        _data = gpio0[k]->read();
+                                        data |= (_data << k);
+                                    }
+                                    registers[GPIO0_STAT-'0'] = data;
                                     break;
                                 }
                                 case GPIO0_CONF:
@@ -348,9 +352,14 @@ int main()
                                     data = registers[GPIO0_CONF-'0'];
                                     break;
                                 }
+#ifndef QUAD_I2C
                                 case GPIO1_STAT:
                                 {
-                                    data = registers[GPIO1_STAT-'0'];
+                                    for(int k=0; k<8; k++){
+                                        _data = gpio1[k]->read();
+                                        data |= (_data << k);
+                                    }
+                                    registers[GPIO1_STAT-'0'] = data;
                                     break;
                                 }
                                 case GPIO1_CONF:
@@ -358,6 +367,7 @@ int main()
                                     data = registers[GPIO1_CONF-'0'];
                                     break;
                                 }
+#endif
                                 default:
                                 {
                                     data = 0xAA;
@@ -365,6 +375,7 @@ int main()
                                 }
                             }
                             send[j] = (char)data;
+                            data=0;
                         }
                         i += (length+1);
                     }
@@ -381,6 +392,7 @@ int main()
                         for(int j=0; j<length; j+=3){
                             address = recieve[i+1+j];
                             data = 0xff & (recieve[i+2+j] << 4 | (recieve[i+3+j] & 0x0F));
+                            _data = 0;
                             switch(address){
                                 case CHIP_ID:
                                 {
@@ -390,8 +402,15 @@ int main()
                                 }
                                 case GPIO0_STAT:
                                 {
-                                    //READ ONLY from this command: do nothing
-                                    data = registers[GPIO0_STAT-'0'];
+                                    _data = registers[GPIO0_CONF-'0'];
+                                    for(int k=0; k<8; k++){
+                                        if(_data&0x01){ // output
+                                            gpio0[k]->write((data>>k)&0x01);
+                                        }else{ // input
+                                            ; // do nothing
+                                        }
+                                        _data >>= 1;
+                                    }
                                     break;
                                 }
                                 case GPIO0_CONF:
@@ -409,16 +428,23 @@ int main()
                                     data = registers[GPIO0_CONF-'0'];
                                     break;
                                 }
+#ifndef QUAD_I2C
                                 case GPIO1_STAT:
                                 {
-                                    //READ ONLY from this command: do nothing
-                                    data = registers[GPIO1_STAT-'0'];
+                                    _data = registers[GPIO1_CONF-'0'];
+                                    for(int k=0; k<8; k++){
+                                        if(_data&0x01){ // output
+                                            gpio1[k]->write((data>>k)&0x01);
+                                        }else{ // input
+                                            ; // do nothing
+                                        }
+                                        _data >>= 1;
+                                    }
                                     break;
                                 }
                                 case GPIO1_CONF:
                                 {
                                     registers[GPIO1_CONF-'0'] = data;
-#ifndef QUAD_I2C
                                     for(int k=0; k<6; k++){
                                         if(data&0x01){//output
                                             gpio1[k]->output();
@@ -428,18 +454,18 @@ int main()
                                         }
                                         data >>= 1;
                                     }
-#endif
                                     data = registers[GPIO1_CONF-'0'];
                                     break;
                                 }
+#endif
                                 default:
                                 {
                                     break;
                                 }
                             }
-                            send[j/3] = (char)data;
+                            send[j/3] = data;
                         }
-                        i += length+1;
+                        i += (length+1);
                         length /= 3;
                     }
                     break;
@@ -447,48 +473,100 @@ int main()
                 case CMD_I:
                 {
                     length = plength - 2;
-                    data = 0;
-                    if(length != 0){
+                    if(length < 1){
                         pc.printf("bad packet! %d\n\r",length);
                         i = plength + 1;
                         length = 0;
                     }else{
-                        for(int j=0; j<8; j++){
-                            _data = gpio0[j]->read();
-                            pc.printf("_%02X, ",_data);
-                            data |= (_data << j);
+                        for(int j=0; j<length; j++){
+                            address = recieve[i+1+j];
+                            _data=0;
+                            switch(address){
+                                case GPIO0_STAT:
+                                {
+                                    for(int k=0; k<8; k++){
+                                        _data = gpio0[k]->read();
+                                        data |= (_data << k);
+                                    }
+                                    registers[GPIO0_STAT-'0'] = data;
+                                    break;
+                                }
+#ifndef QUAD_I2C
+                                case GPIO1_STAT:
+                                {
+                                    for(int k=0; k<8; k++){
+                                        _data = gpio1[k]->read();
+                                        data |= (_data << k);
+                                    }
+                                    registers[GPIO1_STAT-'0'] = data;
+                                    break;
+                                }
+#endif
+                                default:
+                                {
+                                    data = 0xAA;
+                                    break;
+                                }
+                            }
+                            send[j] = (char)data;
+                            data = 0;
                         }
-                        registers[GPIO0_STAT-'0'] = data;
-                        send[0] = data;
-                        length = 1;
+                        i += (length+1);
                     }
-                    pc.printf("%02X, ",data);
-                    i+=length;
                     break;
                 }
                 case CMD_O:
                 {
                     length = plength - 2;
-                    if(length != 2){
+                    if(length < 3){
                         pc.printf("bad packet! %d\n\r",length);
                         i = plength + 1;
                         length = 0;
                     }else{
-                        data = 0xff & (recieve[i+1] << 4 | (recieve[i+2] & 0x0F));
-                        _data = registers[GPIO0_CONF-'0'];
-                        send[0] = (char)data;
-                        for(int j=0; j<8; j++){
-                            if(_data&0x01){ // output
-                                gpio0[j]->write(data&0x01);
-                            }else{ // input
-                                ; // do nothing
+                        for(int j=0; j<length; j+=3){
+                            address = recieve[i+1+j];
+                            data = 0xff & (recieve[i+2+j] << 4 | (recieve[i+3+j] & 0x0F));
+                            switch(address){
+                                case GPIO0_STAT:
+                                {
+                                    _data = registers[GPIO0_CONF-'0'];
+                                    for(int k=0; k<8; k++){
+                                        if(_data&0x01){ // output
+                                            gpio0[k]->write(data&0x01);
+                                        }else{ // input
+                                            ; // do nothing
+                                        }
+                                        data >>= 1;
+                                        _data >>= 1;
+                                    }
+                                    break;
+                                }
+#ifndef QUAD_I2C
+                                case GPIO1_STAT:
+                                {
+                                    _data = registers[GPIO1_CONF-'0'];
+                                    for(int k=0; k<8; k++){
+                                        if(_data&0x01){ // output
+                                            gpio1[k]->write(data&0x01);
+                                        }else{ // input
+                                            ; // do nothing
+                                        }
+                                        data >>= 1;
+                                        _data >>= 1;
+                                    }
+                                    break;
+                                }
+#endif
+                                default:
+                                {
+                                    break;
+                                }
                             }
-                            data >>= 1;
-                            _data >>= 1;
+                            send[j/3] = data;
                         }
-                        i += length+1;
-                        length = 1;
                     }
+                    i += (length+1);
+                    length /= 3;
 //                    pc.printf("command O is not implemented, ");
                     break;
                 }
