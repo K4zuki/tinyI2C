@@ -3,12 +3,11 @@
 
 #include "mbed.h"
 #define QUAD_I2C
-
-Serial pc(USBTX,USBRX); // P0_7, P0_18
-/** replace
+/** replaceD
+//Serial pc(USBTX,USBRX); // P0_7, P0_18
+*/
 Serial pc(P0_4, P0_0);
 //P0_13, P0_1
-*/
 
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 
@@ -32,14 +31,14 @@ DigitalInOut _GPIO16(P0_28);
 DigitalInOut _GPIO17(P0_12);
 #endif
 
-DigitalInOut _GPIO00(D0); // P0_0
-DigitalInOut _GPIO01(D1); // P0_4
-DigitalInOut _GPIO02(D2); // P0_19
-DigitalInOut _GPIO03(D3); // P0_12
-DigitalInOut _GPIO04(P0_1); // 
-DigitalInOut _GPIO05(D5); // P0_28
-DigitalInOut _GPIO06(D6); // P0_16
-DigitalInOut _GPIO07(D7); // P0_17
+DigitalInOut _GPIO00(D2); // P0_19
+DigitalInOut _GPIO01(D3); // P0_12
+DigitalInOut _GPIO02(D4); // P0_18
+DigitalInOut _GPIO03(D5); // P0_28
+DigitalInOut _GPIO04(D6); // P0_16
+DigitalInOut _GPIO05(D7); // P0_17
+DigitalInOut _GPIO06(D8); // P0_13
+DigitalInOut _GPIO07(D9); // P0_27
 /** replace
 DigitalInOut _GPIO00(P0_17);
 DigitalInOut _GPIO01(P0_18);
