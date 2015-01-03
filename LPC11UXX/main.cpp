@@ -5,7 +5,7 @@
 #include "I2C_FmPlus.h"
 #define isuse_USB_SERIAL
 
-#if defined(TARGET_LPC11U35_401) || defined(TARGET_LPC11U35_501) 
+#if defined(TARGET_LPC11U35_401) || defined(TARGET_LPC11U35_501) || defined(TARGET_LPC11U24) 
 #include "USBSerial.h"
 USBSerial pc;
 #else
