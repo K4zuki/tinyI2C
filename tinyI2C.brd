@@ -147,13 +147,13 @@
 <wire x1="60.6" y1="40" x2="60.6" y2="9.6" width="0" layer="20"/>
 <hole x="5" y="75" drill="4"/>
 <hole x="75.8" y="5" drill="4"/>
-<polygon width="0.2" layer="29">
+<polygon width="0" layer="29">
 <vertex x="69.8" y="4"/>
 <vertex x="69.8" y="6"/>
 <vertex x="71.8" y="6"/>
 <vertex x="71.8" y="4"/>
 </polygon>
-<polygon width="0.2" layer="29">
+<polygon width="0" layer="29">
 <vertex x="14" y="74"/>
 <vertex x="14" y="76"/>
 <vertex x="16" y="76"/>
@@ -1419,6 +1419,13 @@ Cream on SMD OFF.&lt;br&gt;
 new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
+<package name="TP10R">
+<description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
+<smd name="TP" x="0" y="0" dx="1" dy="1" layer="1" roundness="100" cream="no"/>
+<text x="-0.5001" y="0.5499" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.381" y="-0.508" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="0" y="-1.905" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+</package>
 <package name="TP07R">
 <description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
 <smd name="TP" x="0" y="0" dx="0.7" dy="0.7" layer="1" roundness="100" cream="no"/>
@@ -1880,6 +1887,14 @@ design rules under a new name.</description>
 <attribute name="MF" value="" x="16.45" y="15.91" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_FARNELL" value="unknown" x="16.45" y="15.91" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="17.72" y="20.355" size="1.27" layer="27" rot="R180"/>
+</element>
+<element name="TP4" library="testpad" package="TP10R" value="TPTP10R" x="15" y="75" smashed="yes">
+<attribute name="TP_SIGNAL_NAME" value="" x="15" y="73.095" size="1" layer="37"/>
+<attribute name="VALUE" x="14.746" y="74.492" size="0.0254" layer="27"/>
+</element>
+<element name="TP5" library="testpad" package="TP10R" value="TPTP10R" x="70.8" y="5" smashed="yes">
+<attribute name="TP_SIGNAL_NAME" value="" x="70.8" y="3.095" size="1" layer="37"/>
+<attribute name="VALUE" x="70.546" y="4.492" size="0.0254" layer="27"/>
 </element>
 </elements>
 <signals>

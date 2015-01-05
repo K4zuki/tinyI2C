@@ -7665,10 +7665,13 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="IC1" library="74xx-eu_local" deviceset="74*125" device="BQ" technology="ABT"/>
 <part name="X4" library="con-samtec.local" deviceset="TSW-102-02-S-S" device=""/>
 <part name="GND12" library="mbed-HDK" deviceset="GND" device=""/>
+<part name="TP4" library="testpad" deviceset="TP" device="TP10R" value="TPTP10R"/>
+<part name="TP5" library="testpad" deviceset="TP" device="TP10R" value="TPTP10R"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<text x="231.14" y="40.64" size="1.778" layer="91">FIDUCIALS</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -7781,6 +7784,14 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <instance part="X4" gate="-1" x="83.82" y="124.46" rot="MR0"/>
 <instance part="X4" gate="-2" x="83.82" y="122.428" rot="MR0"/>
 <instance part="GND12" gate="1" x="86.36" y="122.428"/>
+<instance part="TP4" gate="G$1" x="238.76" y="48.26" smashed="yes" rot="R90">
+<attribute name="NAME" x="238.252" y="47.244" size="1.778" layer="95" rot="MR0"/>
+<attribute name="TP_SIGNAL_NAME" x="240.03" y="49.53" size="1.778" layer="97" rot="R90"/>
+</instance>
+<instance part="TP5" gate="G$1" x="238.76" y="45.72" smashed="yes" rot="R90">
+<attribute name="NAME" x="238.252" y="44.704" size="1.778" layer="95" rot="MR0"/>
+<attribute name="TP_SIGNAL_NAME" x="240.03" y="46.99" size="1.778" layer="97" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8396,6 +8407,14 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <pinref part="IC2" gate="G$1" pin="NC/FB"/>
 <wire x1="236.22" y1="78.74" x2="238.76" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<wire x1="228.6" y1="53.34" x2="246.38" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="53.34" x2="246.38" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="38.1" x2="228.6" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="38.1" x2="228.6" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
