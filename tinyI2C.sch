@@ -6909,7 +6909,6 @@ Source: Samtec TSW.pdf</description>
 <pad name="6" x="-6.35" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <text x="-8.255" y="-7.62" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 <text x="9.525" y="-7.62" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<text x="7.632" y="1.152" size="1.1" layer="21" font="vector" rot="SR0">1</text>
 <rectangle x1="-6.604" y1="0" x2="-6.096" y2="1.778" layer="51"/>
 <rectangle x1="-4.064" y1="0" x2="-3.556" y2="1.778" layer="51"/>
 <rectangle x1="-1.524" y1="0" x2="-1.016" y2="1.778" layer="51"/>
@@ -6922,6 +6921,11 @@ Source: Samtec TSW.pdf</description>
 <rectangle x1="1.016" y1="-7.89" x2="1.524" y2="-2.04" layer="51"/>
 <rectangle x1="3.556" y1="-7.89" x2="4.064" y2="-2.04" layer="51"/>
 <rectangle x1="6.096" y1="-7.89" x2="6.604" y2="-2.04" layer="51"/>
+<polygon width="0.127" layer="21">
+<vertex x="7.7" y="-0.7"/>
+<vertex x="7.1" y="-0.1"/>
+<vertex x="7.7" y="-0.1"/>
+</polygon>
 </package>
 <package name="TSW-106-02-S-S">
 <description>&lt;b&gt;THROUGH-HOLE .025" SQ POST HEADER&lt;/b&gt;&lt;p&gt;
@@ -6965,7 +6969,6 @@ Source: Samtec TSW.pdf</description>
 <pad name="10" x="-8.89" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="11" x="-11.43" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="12" x="-13.97" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
-<text x="13.712" y="-2.498" size="1.1" layer="21" font="vector" rot="SR0">1</text>
 <text x="-15.875" y="-1.27" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 <text x="17.145" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
 <rectangle x1="-14.32" y1="-0.35" x2="-13.62" y2="0.35" layer="51"/>
@@ -6980,6 +6983,11 @@ Source: Samtec TSW.pdf</description>
 <rectangle x1="8.54" y1="-0.35" x2="9.24" y2="0.35" layer="51"/>
 <rectangle x1="11.08" y1="-0.35" x2="11.78" y2="0.35" layer="51"/>
 <rectangle x1="13.62" y1="-0.35" x2="14.32" y2="0.35" layer="51"/>
+<polygon width="0.127" layer="21">
+<vertex x="15.3" y="0.5"/>
+<vertex x="14.7" y="1.1"/>
+<vertex x="15.3" y="1.1"/>
+</polygon>
 </package>
 <package name="TSW-112-02-S-S-RA">
 <description>&lt;b&gt;THROUGH-HOLE .025" SQ POST HEADER&lt;/b&gt;&lt;p&gt;
@@ -7037,11 +7045,15 @@ Source: Samtec TSW.pdf</description>
 <wire x1="-2.669" y1="-1.155" x2="-2.669" y2="1.155" width="0.2032" layer="21"/>
 <pad name="1" x="1.27" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="2" x="-1.27" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
-<text x="1.012" y="-2.498" size="1.1" layer="21" font="vector" rot="SR0">1</text>
 <text x="-3.175" y="-1.27" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 <text x="4.445" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
 <rectangle x1="-1.62" y1="-0.35" x2="-0.92" y2="0.35" layer="51"/>
 <rectangle x1="0.92" y1="-0.35" x2="1.62" y2="0.35" layer="51"/>
+<polygon width="0.127" layer="21">
+<vertex x="2.6" y="0.5"/>
+<vertex x="2" y="1.1"/>
+<vertex x="2.6" y="1.1"/>
+</polygon>
 </package>
 <package name="TSW-102-02-S-S-RA">
 <description>&lt;b&gt;THROUGH-HOLE .025" SQ POST HEADER&lt;/b&gt;&lt;p&gt;
@@ -7675,7 +7687,10 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
-<instance part="X2" gate="-1" x="30.48" y="40.64" rot="R180"/>
+<instance part="X2" gate="-1" x="30.48" y="40.64" smashed="yes" rot="R180">
+<attribute name="VALUE" x="31.75" y="44.45" size="1.778" layer="96" rot="R180"/>
+<attribute name="NAME" x="27.94" y="41.402" size="1.524" layer="95" rot="R180"/>
+</instance>
 <instance part="X2" gate="-2" x="30.48" y="38.1" rot="R180"/>
 <instance part="X2" gate="-3" x="30.48" y="35.56" rot="R180"/>
 <instance part="X2" gate="-4" x="30.48" y="33.02" rot="R180"/>
@@ -7762,18 +7777,18 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <instance part="X1" gate="-10" x="71.12" y="17.78"/>
 <instance part="X1" gate="-11" x="71.12" y="15.24"/>
 <instance part="X1" gate="-12" x="71.12" y="12.7"/>
-<instance part="X3" gate="-1" x="104.14" y="40.64"/>
-<instance part="X3" gate="-2" x="104.14" y="38.1"/>
-<instance part="X3" gate="-3" x="104.14" y="35.56"/>
-<instance part="X3" gate="-4" x="104.14" y="33.02"/>
-<instance part="X3" gate="-5" x="104.14" y="30.48"/>
-<instance part="X3" gate="-6" x="104.14" y="27.94"/>
-<instance part="X3" gate="-7" x="104.14" y="25.4"/>
-<instance part="X3" gate="-8" x="104.14" y="22.86"/>
-<instance part="X3" gate="-9" x="104.14" y="20.32"/>
-<instance part="X3" gate="-10" x="104.14" y="17.78"/>
-<instance part="X3" gate="-11" x="104.14" y="15.24"/>
-<instance part="X3" gate="-12" x="104.14" y="12.7"/>
+<instance part="X3" gate="-1" x="106.68" y="40.64"/>
+<instance part="X3" gate="-2" x="106.68" y="38.1"/>
+<instance part="X3" gate="-3" x="106.68" y="35.56"/>
+<instance part="X3" gate="-4" x="106.68" y="33.02"/>
+<instance part="X3" gate="-5" x="106.68" y="30.48"/>
+<instance part="X3" gate="-6" x="106.68" y="27.94"/>
+<instance part="X3" gate="-7" x="106.68" y="25.4"/>
+<instance part="X3" gate="-8" x="106.68" y="22.86"/>
+<instance part="X3" gate="-9" x="106.68" y="20.32"/>
+<instance part="X3" gate="-10" x="106.68" y="17.78"/>
+<instance part="X3" gate="-11" x="106.68" y="15.24"/>
+<instance part="X3" gate="-12" x="106.68" y="12.7"/>
 <instance part="GND13" gate="1" x="68.58" y="38.1" rot="R270"/>
 <instance part="C6" gate="G$1" x="165.1" y="88.9"/>
 <instance part="IC1" gate="A" x="35.56" y="149.86" rot="MR180"/>
@@ -8102,9 +8117,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <pinref part="R4" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<wire x1="33.02" y1="17.78" x2="35.56" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="17.78" x2="38.1" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="X4" gate="-1" pin="1"/>
-<label x="33.02" y="17.78" size="1.778" layer="95"/>
+<label x="38.1" y="17.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="TGT_CTS" class="0">
@@ -8266,9 +8281,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="165.1" y1="106.68" x2="167.64" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="15.24" x2="101.6" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="15.24" x2="104.14" y2="15.24" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-11" pin="1"/>
-<label x="96.52" y="15.24" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="15.24" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="SPI_CS" class="0">
@@ -8278,9 +8293,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="165.1" y1="104.14" x2="167.64" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="12.7" x2="101.6" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="12.7" x2="104.14" y2="12.7" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-12" pin="1"/>
-<label x="96.52" y="12.7" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="12.7" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="SPI_MISO" class="0">
@@ -8290,9 +8305,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="165.1" y1="116.84" x2="167.64" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="101.6" y1="17.78" x2="96.52" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="17.78" x2="99.06" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-10" pin="1"/>
-<label x="96.52" y="17.78" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="17.78" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="SPI_MOSI" class="0">
@@ -8302,9 +8317,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="165.1" y1="119.38" x2="167.64" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="20.32" x2="101.6" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="20.32" x2="104.14" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-9" pin="1"/>
-<label x="96.52" y="20.32" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="20.32" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="GPIO07" class="0">
@@ -8314,8 +8329,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="147.32" y1="144.78" x2="147.32" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="22.86" x2="101.6" y2="22.86" width="0.1524" layer="91"/>
-<label x="96.52" y="22.86" size="1.778" layer="95" rot="MR0"/>
+<wire x1="99.06" y1="22.86" x2="104.14" y2="22.86" width="0.1524" layer="91"/>
+<label x="99.06" y="22.86" size="1.778" layer="95" rot="MR0"/>
 <pinref part="X3" gate="-8" pin="1"/>
 </segment>
 </net>
@@ -8326,8 +8341,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="144.78" y1="142.24" x2="144.78" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="101.6" y1="25.4" x2="96.52" y2="25.4" width="0.1524" layer="91"/>
-<label x="96.52" y="25.4" size="1.778" layer="95" rot="MR0"/>
+<wire x1="104.14" y1="25.4" x2="99.06" y2="25.4" width="0.1524" layer="91"/>
+<label x="99.06" y="25.4" size="1.778" layer="95" rot="MR0"/>
 <pinref part="X3" gate="-7" pin="1"/>
 </segment>
 </net>
@@ -8338,8 +8353,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="142.24" y1="144.78" x2="142.24" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="27.94" x2="101.6" y2="27.94" width="0.1524" layer="91"/>
-<label x="96.52" y="27.94" size="1.778" layer="95" rot="MR0"/>
+<wire x1="99.06" y1="27.94" x2="104.14" y2="27.94" width="0.1524" layer="91"/>
+<label x="99.06" y="27.94" size="1.778" layer="95" rot="MR0"/>
 <pinref part="X3" gate="-6" pin="1"/>
 </segment>
 </net>
@@ -8350,8 +8365,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="139.7" y1="142.24" x2="139.7" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="101.6" y1="30.48" x2="96.52" y2="30.48" width="0.1524" layer="91"/>
-<label x="96.52" y="30.48" size="1.778" layer="95" rot="MR0"/>
+<wire x1="104.14" y1="30.48" x2="99.06" y2="30.48" width="0.1524" layer="91"/>
+<label x="99.06" y="30.48" size="1.778" layer="95" rot="MR0"/>
 <pinref part="X3" gate="-5" pin="1"/>
 </segment>
 </net>
@@ -8362,8 +8377,8 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="137.16" y1="144.78" x2="137.16" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="33.02" x2="101.6" y2="33.02" width="0.1524" layer="91"/>
-<label x="96.52" y="33.02" size="1.778" layer="95" rot="MR0"/>
+<wire x1="99.06" y1="33.02" x2="104.14" y2="33.02" width="0.1524" layer="91"/>
+<label x="99.06" y="33.02" size="1.778" layer="95" rot="MR0"/>
 <pinref part="X3" gate="-4" pin="1"/>
 </segment>
 </net>
@@ -8374,9 +8389,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="134.62" y1="142.24" x2="134.62" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="101.6" y1="35.56" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="35.56" x2="99.06" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-3" pin="1"/>
-<label x="96.52" y="35.56" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="35.56" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="GPIO01" class="0">
@@ -8386,9 +8401,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="132.08" y1="144.78" x2="132.08" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="96.52" y1="38.1" x2="101.6" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="38.1" x2="104.14" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-2" pin="1"/>
-<label x="96.52" y="38.1" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="38.1" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="GPIO00" class="0">
@@ -8398,9 +8413,9 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <wire x1="129.54" y1="142.24" x2="129.54" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="101.6" y1="40.64" x2="96.52" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="40.64" x2="99.06" y2="40.64" width="0.1524" layer="91"/>
 <pinref part="X3" gate="-1" pin="1"/>
-<label x="96.52" y="40.64" size="1.778" layer="95" rot="MR0"/>
+<label x="99.06" y="40.64" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="N$1" class="0">
