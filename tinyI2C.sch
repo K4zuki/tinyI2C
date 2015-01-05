@@ -7684,6 +7684,13 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <sheet>
 <plain>
 <text x="231.14" y="40.64" size="1.778" layer="91">FIDUCIALS</text>
+<text x="254" y="172.72" size="1.778" layer="94" rot="R180">C1, C2, C3, C6 = 490-3261-1-ND
+C4, C5 = 490-3890-1-ND
+R1, R2 = P220LCT-ND
+R3-R10 = P10.0KLCT-ND
+IC1 = 568-2995-1-ND
+IC2 = 296-25270-1-ND
+U1 = 568-2995-1-ND</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -8438,4 +8445,10 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
