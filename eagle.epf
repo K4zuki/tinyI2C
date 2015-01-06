@@ -352,10 +352,10 @@ UsedLibrary="C:/Users/kyamamot/Documents/eagle/con-samtec.local.lbr"
 [Win_1]
 Type="Library Editor"
 Loc="652 381 1251 780"
-State=3
+State=1
 Number=4
-File="C:/Users/kyamamot/Documents/eagle/74xx-eu_local.lbr"
-View="-4.44626 -3.39889 4.46983 3.38031"
+File="C:/Users/kyamamot/Documents/eagle/con-samtec.local.lbr"
+View="-9.92881 -8.09145 15.0079 5.32038"
 WireWidths=" 0 0.3048 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.127"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
@@ -370,8 +370,8 @@ DimensionWidths=" 0 0.127 0.254 0.1 0.26 0.13"
 DimensionExtWidths=" 0.127 0.254 0.1 0.13 0.26 0"
 DimensionExtLengths=" 1.27 2.54 1 2 3 0"
 DimensionExtOffsets=" 1.27 2.54 1 2 3 0"
-SmdSizes=" 1.27 0.6604 1.4224 0.7112 1.6764 0.8128 1.778 0.9144 1.9304 0.9652 2.1844 1.0668 2.54 1.27 3.81 1.9304 5.08 2.54 1.27 0.635 0.21 0.7 6.4516 3.2512 0.25 0.7 0.31 0.7 0.3 0.7 0.28 0.7"
-WireBend=0
+SmdSizes=" 0.3048 0.1524 0.4064 0.2032 0.6096 0.3048 0.8128 0.4064 1.016 0.508 1.27 0.6604 1.4224 0.7112 1.6764 0.8128 1.778 0.9144 1.9304 0.9652 2.1844 1.0668 2.54 1.27 3.81 1.9304 5.08 2.54 6.4516 3.2512 1.27 0.635"
+WireBend=1
 WireBendSet=0
 WireCap=1
 MiterStyle=0
@@ -394,22 +394,16 @@ ArcDirection=0
 AddLevel=2
 PadsSameType=0
 Layer=21
-Package="DHVQFN14"
+Package="TSW-106-02-S-S-RA"
 
 [Win_2]
-Type="Control Panel"
-Loc="652 381 1540 780"
-State=0
-Number=0
-
-[Win_3]
 Type="Board Editor"
 Loc="642 423 1241 822"
 State=1
 Number=2
 File="tinyI2C_P.brd"
-View="19.6968 39.9159 24.8566 42.985"
-WireWidths=" 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.3048 0.254 0.25 0.8 0"
+View="27.5526 3.2854 109.878 84.9948"
+WireWidths=" 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0 1.27 0.8 0.6 0.4064 0.4 0.3048 0.254 0.25"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
 ViaDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
@@ -448,8 +442,23 @@ AddLevel=2
 PadsSameType=0
 Layer=125
 
+[Win_3]
+Type="CAM Processor"
+Loc="652 381 1251 816"
+State=2
+Number=1
+File="tinyI2C_P.brd"
+Job="C:/Users/kyamamot/Documents/eagle/gerb274x_P.cam"
+
+[Win_4]
+Type="Control Panel"
+Loc="652 381 1540 780"
+State=0
+Number=0
+
 [Desktop]
 Screen="3120 1920"
 Window="Win_1"
 Window="Win_2"
 Window="Win_3"
+Window="Win_4"
