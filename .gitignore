@@ -1,9 +1,9 @@
 /.project
-*.b#?
-*.s#?
-*.zip
-*.dri
-*.gpi
-*.pyc
+pcb/*.b#?
+pcb/*.s#?
+pcb/*.zip
+pcb/*.dri
+pcb/*.gpi
+*/*.pyc
 gui/dist
 gui/build
