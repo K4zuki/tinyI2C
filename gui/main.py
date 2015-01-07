@@ -137,7 +137,7 @@ if __name__=='__main__':
 #        print "read from channel %d, slave= %02X, register= %02X" % (_channel,_slave,_register)
         i2c.setChannel(_channel)
         read=regRead(_slave,_register)
-        _dest.value=read
+        _dest.setValue(int(unicode(read),16))
         
 
     def writeSlot(arg):
@@ -172,13 +172,13 @@ if __name__=='__main__':
         packet.extend(slave)
         packet.extend(length)
         packet.append('P')
-        
-#        print packet
-        read= i2c.raw_read()
-        print read
-        return read
 
-#        return packet
+#        print packet
+        i2c.raw_write("".join(packet))
+        read= i2c.raw_read()
+        read = read.split(",")[0]
+#        print read
+        return read
 
     ## writes data to register address in selected slave address
     # copy and modify from tempcommand/instr_local.serial_i2c
@@ -208,7 +208,7 @@ if __name__=='__main__':
         packet.append('P')
 
         i2c.raw_write("".join(packet))
-
+        _read= i2c.raw_read()
         return packet
 
     i2c=serial2i2c.serial2i2c()
