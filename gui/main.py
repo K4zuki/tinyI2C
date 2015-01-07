@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/python
 
 import sys
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import *
-from PyQt4.QtGui  import *
+#from PyQt4.
+#from QtCore import *
+#from PyQt4.
+#from QtGui  import *
 
 from tinyI2Cgen import Ui_Form, _fromUtf8
 
@@ -14,7 +17,8 @@ import serial2i2c
 class gui_local(object):
     def __init__(self, gui):
         self.gui=gui
-        self.i2c=serial2i2c.serial2i2c()
+        _port = "/dev/ttyS0"
+        self.i2c=serial2i2c.serial2i2c(port=_port)
         self.ports=[]
 
     def read(self):
@@ -43,11 +47,11 @@ class gui_local(object):
         self.i2c=serial2i2c.serial2i2c(port=self.ports[_port])
 
 
-class MyWidget(QWidget):
+class MyWidget(QtGui.QWidget):
 
     #  シグナルの定義
-    readI2C_signal = pyqtSignal(object)
-    writeI2C_signal = pyqtSignal(object)
+    readI2C_signal = QtCore.pyqtSignal(object)
+    writeI2C_signal = QtCore.pyqtSignal(object)
 
     def __init__(self, parent=None):
         super(MyWidget, self).__init__(parent)
@@ -211,10 +215,10 @@ if __name__=='__main__':
         _read= i2c.raw_read()
         return packet
 
-    i2c=serial2i2c.serial2i2c()
+    i2c=serial2i2c.serial2i2c(port="/dev/ttyS0")
     ports=[]
 
-    app=QApplication(sys.argv)
+    app=QtGui.QApplication(sys.argv)
 #    window=QWidget()
     window = MyWidget()
     ui=Ui_Form()
