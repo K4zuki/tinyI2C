@@ -66,7 +66,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -82,7 +82,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -105,7 +105,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -125,7 +125,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -152,7 +152,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -168,7 +168,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -191,7 +191,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -211,7 +211,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -238,7 +238,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -254,7 +254,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -277,7 +277,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -297,7 +297,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -324,7 +324,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -340,7 +340,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -363,7 +363,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
@@ -383,7 +383,7 @@
            <string/>
           </property>
           <property name="prefix">
-           <string>0x</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>255</number>
