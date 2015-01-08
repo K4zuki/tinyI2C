@@ -1,6 +1,6 @@
 # -*- mode: python -*-
-a = Analysis(['C:\\Users\\kyamamot\\Documents\\eagle\\TinyI2C\\gui\\main.py'],
-#             pathex=['C:\\Users\\kyamamot\\Documents\\eagle\\TinyI2C\\gui','W:\\Tokyo\\Home\\kyamamot\\common\\GitHub\\tempcommand\\'],
+a = Analysis(['\\\\tk-filer\\home_windows\\kyamamot\\common\\GitHub\\TinyI2C\\gui\\main.py'],
+             pathex=['\\\\tk-filer\\home_windows\\kyamamot\\common\\GitHub\\TinyI2C\\gui'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None)
@@ -14,4 +14,4 @@ exe = EXE(pyz,
           debug=False,
           strip=None,
           upx=True,
-          console=False )
+          console=True )
