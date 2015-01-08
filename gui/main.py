@@ -4,10 +4,6 @@
 import sys
 import os
 from PyQt4 import QtCore, QtGui
-#from PyQt4.
-#from QtCore import *
-#from PyQt4.
-#from QtGui  import *
 
 from tinyI2Cgen import Ui_Form, _fromUtf8
 
@@ -20,6 +16,8 @@ class gui_local(object):
         self.gui=gui
         if os.name == 'posix':
             _port = "/dev/ttyS0"
+        else:
+            _port = "COM1"
         self.i2c=serial2i2c.serial2i2c(port=_port)
         self.ports=[]
 
@@ -51,7 +49,7 @@ class gui_local(object):
 
 class MyWidget(QtGui.QWidget):
 
-    #  シグナルの定義
+    # SIGNAL definition
     readI2C_signal = QtCore.pyqtSignal(object)
     writeI2C_signal = QtCore.pyqtSignal(object)
 
@@ -224,14 +222,11 @@ if __name__=='__main__':
     ports=[]
 
     app=QtGui.QApplication(sys.argv)
-#    window=QWidget()
     window = MyWidget()
     ui=Ui_Form()
     ui.setupUi(window)
     window.getUI(ui)
-#    gui=gui_local(ui)
 
-#    ui.portList.currentIndexChanged.connect(gui.setup)
     ui.portList.currentIndexChanged.connect(setup)
     ui.getPortBtn.clicked.connect(list)
     ui.readbtn_CH1.clicked.connect(window.readClick)

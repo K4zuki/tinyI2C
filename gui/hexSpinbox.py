@@ -11,8 +11,6 @@
 
 import sys
 from PyQt4 import QtCore, QtGui
-#from PyQt4.QtCore import *
-#from PyQt4.QtGui import *
 
 def _hex2ascii(h, mask = 0xa0):
     chars_in_reverse = []
@@ -32,12 +30,9 @@ class HexSpinBox(QtGui.QSpinBox):
 
     def __init__(self, parent=None):
         super(HexSpinBox, self).__init__(parent)
-#        regex = QRegExp(r"^M?M?M?(?:CM|CD|D?C?C?C?)" r"(?:XC|XL|L?X?X?X?)(?:IX|IV|V?I?I?I?)$")
         regex = QtCore.QRegExp(r"(^[ ]*0[xX][0-9A-Fa-f][0-9A-Fa-f]*)|(^[ ]*-?[0-9][0-9]*)")
-#        regex.setCaseSensitivity(Qt.CaseInsensitive)
         self.validator = QtGui.QRegExpValidator(regex, self)
         self.setMaximum(255)
-#        self.lineEdit.textEdited.connect(self.fixCase)
         self.connect(self.lineEdit(), QtCore.SIGNAL("textEdited(QString)"),
                      self.fixCase)
 

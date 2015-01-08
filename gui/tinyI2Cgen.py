@@ -8,7 +8,6 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-#from hexSpinbox import *
 import hexSpinbox
 
 try:
