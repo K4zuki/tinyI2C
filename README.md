@@ -3,11 +3,11 @@ tinyI2C
 
 tiny UART-I2C converter project using mbed microcontrollers.
 
-* tinyI2C       <-- root
-** |- gui       <-- PyQt4 based GUI source codes
-** |- mbed      <-- mbed source codes
-** |- pcb       <-- PCB design files for eagle
-** |- python    <-- python module code with standalone test program
+tinyI2C       <-- root  
+  |- gui       <-- PyQt4 based GUI source codes  
+  |- mbed      <-- mbed source codes  
+  |- pcb       <-- PCB design files for eagle  
+  |- python    <-- python module code with standalone test program  
 
 ## Demo
   try python/tinyI2C.py
@@ -26,10 +26,10 @@ tiny UART-I2C converter project using mbed microcontrollers.
 ## Install
 1. install python 2.7 on your PC
 2. install PySerial
-3. (Windows only) install [mbed Serial port driver]()
+3. (Windows only) install [mbed Serial port driver](http://developer.mbed.org/handbook/Windows-serial-configuration)
 
 ## Contribution by
-Kazuki Yamamoto [K4zuki](https://github.com/K4zuki)
+Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
 ## Licence
 CC 1.0
@@ -37,5 +37,3 @@ CC 1.0
 ## Author
 
 [K4zuki](https://github.com/K4zuki)
-
-
