@@ -2,6 +2,7 @@
 #!/usr/bin/python
 
 import sys
+import os
 from PyQt4 import QtCore, QtGui
 #from PyQt4.
 #from QtCore import *
@@ -11,13 +12,14 @@ from PyQt4 import QtCore, QtGui
 from tinyI2Cgen import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
-sys.path.append('W:\\Tokyo\\Home\\kyamamot\\common\\GitHub\\tempcommand\\')
+#sys.path.append('W:\\Tokyo\\Home\\kyamamot\\common\\GitHub\\tempcommand\\')
 import serial2i2c
 
 class gui_local(object):
     def __init__(self, gui):
         self.gui=gui
-        _port = "/dev/ttyS0"
+        if os.name == 'posix':
+            _port = "/dev/ttyS0"
         self.i2c=serial2i2c.serial2i2c(port=_port)
         self.ports=[]
 
@@ -215,7 +217,10 @@ if __name__=='__main__':
         _read= i2c.raw_read()
         return packet
 
-    i2c=serial2i2c.serial2i2c(port="/dev/ttyS0")
+    if os.name == 'posix':
+        i2c=serial2i2c.serial2i2c(port="/dev/ttyS0")
+    else:
+        i2c=serial2i2c.serial2i2c()
     ports=[]
 
     app=QtGui.QApplication(sys.argv)
