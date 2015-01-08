@@ -1,9 +1,13 @@
 tinyI2C
 =======
 
-tiny USB-I2C converter project
+tiny UART-I2C converter project using mbed microcontrollers.
 
-## Description
+  tinyI2C
+  |-gui       <-- PyQt4 based GUI source codes
+  |-mbed      <-- mbed source codes
+  |-pcb       <-- PCB design files for eagle
+  |-python    <-- python module code with standalone test program
 
 ## Demo
 
@@ -26,8 +30,3 @@ tiny USB-I2C converter project
 [tcnksm](https://github.com/tcnksm)
 
 
-tinyI2C
-|-gui       <-- PyQt4 based GUI source codes
-|-mbed      <-- mbed source codes
-|-pcb       <-- PCB design files for eagle
-|-python    <-- python module code with standalone test program
