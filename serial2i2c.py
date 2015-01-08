@@ -230,8 +230,6 @@ if __name__=="__main__":
         def __init__(self):
             self._parser = argparse.ArgumentParser(description="hogeeee")
             self._parser.add_argument('--port','-p', help='number or name of serial port', default='com1')
-    #        self._parser.add_argument('--port','-p', help='number or name of serial port', default='/dev/ttyACM0')
-    #        self._parser.add_argument('--mon','-m', help='number or name of serial port', default='/dev/ttyACM0')
             self._parser.add_argument('--baud','-b', help='baudrate of serial port', default='115200')#460800
             self.args=self._parser.parse_args(namespace=self)        
 
