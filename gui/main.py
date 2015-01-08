@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 from tinyI2Cgen import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
-sys.path.append('..\\python')
+sys.path.append('..\\tempcommand')
 import serial2i2c
 
 class gui_local(object):
