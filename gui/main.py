@@ -21,12 +21,6 @@ class gui_local(object):
         self.i2c=serial2i2c.serial2i2c(port=_port)
         self.ports=[]
 
-    def read(self):
-        pass
-    
-    def write(self):
-        pass
-    
     def list(self):
         _ports=[]
         self.gui.portList.clear()
