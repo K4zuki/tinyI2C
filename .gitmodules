@@ -1,6 +1,3 @@
-[submodule "uart_i2c_conv"]
-	path = uart_i2c_conv
-	url = https://github.com/K4zuki/uart_i2c_conv.git
 [submodule "tempcommand"]
 	path = tempcommand
 	url = https://github.com/K4zuki/tempcommand.git
