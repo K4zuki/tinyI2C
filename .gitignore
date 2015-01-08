@@ -1,9 +1,14 @@
 /.project
 pcb/*.b#?
+*.b#?
 pcb/*.s#?
+*.s#?
 pcb/*.zip
+*.zip
 pcb/*.dri
+*.dri
 pcb/*.gpi
+*.gpi
 */*.pyc
 gui/dist
 gui/build
