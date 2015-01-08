@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*- 
 #!/usr/bin/env python
 import serial
-import argparse
 import struct
 import os.path
 import time
@@ -64,7 +63,7 @@ class serial2i2c(object):
     # @param baud baudrate
     def __init__(self, port = 'com1', baud = '115200'):
         try:
-            self._ser = serial.Serial(port, baudrate = baud, timeout = 1)
+            self._ser = serial.Serial(port, baudrate = baud, timeout = 0.1)
         except:
             raise
 
@@ -225,8 +224,8 @@ class serial2i2c(object):
 
         return (chars_in_reverse)
 
-
 if __name__=="__main__":
+    import argparse
     class MyParser(object):
         def __init__(self):
             self._parser = argparse.ArgumentParser(description="hogeeee")
