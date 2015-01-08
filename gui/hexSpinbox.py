@@ -49,8 +49,8 @@ class HexSpinBox(QtGui.QSpinBox):
 
     def valueFromText(self, text):
         text = unicode(text.toLower())
-        chars = text.split("0x")
-        text = "".join(chars[1:])
+        chars = text.split()
+        text = "".join(chars[:1])
         return int(unicode(text),16)
 
     def textFromValue(self, value):
