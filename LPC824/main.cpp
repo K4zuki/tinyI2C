@@ -1,8 +1,6 @@
 /** uart_i2c_conv for LPC824
 */
 
-//hoge
-
 #include "mbed.h"
 #define QUAD_I2C
 /** replaceD
