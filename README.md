@@ -26,7 +26,7 @@ tinyI2C       <-- root
 ## Install
 1. install python 2.7 on your PC
 2. install PySerial
-3. (Windows only) install [mbed Serial port driver](http://developer.mbed.org/handbook/Windows-serial-configuration)
+3. (Windows only) if you use LpcXpresso 824 then install [mbed Serial port driver](http://developer.mbed.org/handbook/Windows-serial-configuration)
 
 ## Contribution by
 Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
