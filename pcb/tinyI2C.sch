@@ -7644,7 +7644,7 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="GND5" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="GND6" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="GND7" library="mbed-HDK" deviceset="GND" device=""/>
-<part name="IC2" library="texas" deviceset="TPS770*" device="" technology="18" value="TPS76318"/>
+<part name="IC2" library="texas" deviceset="TPS770*" device="" technology="18" value="TPS73618(0.4A)"/>
 <part name="GND8" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C1005" value="1005"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C1005" value="1005"/>
@@ -7689,7 +7689,7 @@ C4, C5 = 490-3890-1-ND
 R1, R2 = P220LCT-ND
 R3-R10 = P10.0KLCT-ND
 IC1 = 568-2995-1-ND
-IC2 = 296-25270-1-ND
+IC2 = 296-15816-1-ND
 U1 = 568-2995-1-ND</text>
 </plain>
 <instances>
