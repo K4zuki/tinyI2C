@@ -8,8 +8,9 @@ from PyQt4 import QtCore, QtGui
 from tinyI2Cgen import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
-sys.path.append('..\\tempcommand')
-import serial2i2c
+sys.path.append('..\\python')
+sys.path.append('../python')
+import tinyI2C
 
 class gui_local(object):
     def __init__(self, gui):
@@ -127,7 +128,8 @@ if __name__=='__main__':
     def setup( _port = 0):
         global i2c
         i2c._ser.close()
-        i2c=serial2i2c.serial2i2c(port=ports[_port])
+        i2c=tinyI2C.serial2i2c(port=ports[_port])
+#        print i2c._ser._isOpen
 
     def readSlot(arg):
         global i2c
@@ -135,7 +137,8 @@ if __name__=='__main__':
 #        print "read from channel %d, slave= %02X, register= %02X" % (_channel,_slave,_register)
         i2c.setChannel(_channel)
         read=regRead(_slave,_register)
-        _dest.setValue(int(unicode(read),16))
+#        print read
+        _dest.setValue(int(read,16))
         
 
     def writeSlot(arg):
@@ -210,9 +213,9 @@ if __name__=='__main__':
         return packet
 
     if os.name == 'posix':
-        i2c=serial2i2c.serial2i2c(port="/dev/ttyS0")
+        i2c=tinyI2C.serial2i2c(port="/dev/ttyS0")
     else:
-        i2c=serial2i2c.serial2i2c()
+        i2c=tinyI2C.serial2i2c()
     ports=[]
 
     app=QtGui.QApplication(sys.argv)
