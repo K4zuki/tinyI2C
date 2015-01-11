@@ -210,7 +210,7 @@ class serial2i2c(object):
     
     ## converts hex data to string
     # @param h data in HEX
-    # @param mask mask data in HEX, LSB must be 0, MSB must not be 0 (0x?0, ?>0)
+    # @param mask mask data in HEX, LSB must be 0, MSB must not be 0 (0x?0, ?>8)
     # @return converted format in list
     def _hex2ascii(self, h, mask = 0xa0):
         chars_in_reverse = []
