@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -7019,14 +7019,14 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <smd name="6" x="-2.65" y="-0.75" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="7" x="-2.65" y="-1.25" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="8" x="-2.55" y="-1.75" dx="1" dy="0.3" layer="1" roundness="50" stop="no"/>
-<smd name="9" x="-1.75" y="-2.45" dx="1" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
-<smd name="10" x="-1.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="11" x="-0.75" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="12" x="-0.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="13" x="0.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="14" x="0.75" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="15" x="1.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="16" x="1.75" y="-2.45" dx="1" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
+<smd name="9" x="-1.75" y="-2.55" dx="1" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
+<smd name="10" x="-1.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="11" x="-0.75" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="12" x="-0.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="13" x="0.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="14" x="0.75" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="15" x="1.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="16" x="1.75" y="-2.55" dx="1" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
 <smd name="17" x="2.55" y="-1.75" dx="1" dy="0.3" layer="1" roundness="50" stop="no"/>
 <smd name="18" x="2.65" y="-1.25" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="19" x="2.65" y="-0.75" dx="1.2" dy="0.3" layer="1" stop="no"/>
@@ -7052,8 +7052,8 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-2.725" y1="-2.275" x2="-2.375" y2="-1.225" layer="29" rot="R90"/>
 <rectangle x1="2.375" y1="1.225" x2="2.725" y2="2.275" layer="29" rot="R90"/>
 <rectangle x1="2.375" y1="-2.275" x2="2.725" y2="-1.225" layer="29" rot="R90"/>
-<rectangle x1="-1.925" y1="-2.975" x2="-1.575" y2="-1.925" layer="29" rot="R180"/>
-<rectangle x1="1.575" y1="-2.975" x2="1.925" y2="-1.925" layer="29" rot="R180"/>
+<rectangle x1="-1.925" y1="-3.075" x2="-1.575" y2="-2.025" layer="29" rot="R180"/>
+<rectangle x1="1.575" y1="-3.075" x2="1.925" y2="-2.025" layer="29" rot="R180"/>
 <wire x1="-2.1" y1="2.8" x2="-2.8" y2="2.8" width="0.2" layer="21"/>
 <wire x1="-2.8" y1="2.8" x2="-2.8" y2="2.1" width="0.2" layer="21"/>
 <wire x1="2.8" y1="-2.8" x2="2.1" y2="-2.8" width="0.2" layer="21"/>
@@ -7069,12 +7069,12 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-3.275" y1="-0.425" x2="-2.025" y2="-0.075" layer="29"/>
 <rectangle x1="-3.275" y1="-0.925" x2="-2.025" y2="-0.575" layer="29"/>
 <rectangle x1="-3.275" y1="-1.425" x2="-2.025" y2="-1.075" layer="29"/>
-<rectangle x1="-1.875" y1="-2.725" x2="-0.625" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-1.375" y1="-2.725" x2="-0.125" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-0.875" y1="-2.725" x2="0.375" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-0.375" y1="-2.725" x2="0.875" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="0.125" y1="-2.725" x2="1.375" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="0.625" y1="-2.725" x2="1.875" y2="-2.375" layer="29" rot="R90"/>
+<rectangle x1="-1.875" y1="-2.825" x2="-0.625" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-1.375" y1="-2.825" x2="-0.125" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-0.875" y1="-2.825" x2="0.375" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-0.375" y1="-2.825" x2="0.875" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="0.125" y1="-2.825" x2="1.375" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="0.625" y1="-2.825" x2="1.875" y2="-2.475" layer="29" rot="R90"/>
 <rectangle x1="2.025" y1="-1.425" x2="3.275" y2="-1.075" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="-0.925" x2="3.275" y2="-0.575" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="-0.425" x2="3.275" y2="-0.075" layer="29" rot="R180"/>
