@@ -7655,8 +7655,6 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="GND11" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="TP1" library="testpad" deviceset="TP" device="TP07R"/>
 <part name="TP2" library="testpad" deviceset="TP" device="TP07R"/>
-<part name="TP8" library="testpad" deviceset="TP" device="TP07R"/>
-<part name="TP9" library="testpad" deviceset="TP" device="TP07R"/>
 <part name="TP3" library="testpad" deviceset="TP" device="TP07R"/>
 <part name="R1" library="rcl" deviceset="R-US_" device="R1005" value="220/1005"/>
 <part name="R2" library="rcl" deviceset="R-US_" device="R1005" value="220/1005"/>
@@ -7679,6 +7677,7 @@ Source: http://www.nxp.com/documents/data_sheet/74ABT125.pdf</description>
 <part name="GND12" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="TP4" library="testpad" deviceset="TP" device="TP10R" value="TPTP10R"/>
 <part name="TP5" library="testpad" deviceset="TP" device="TP10R" value="TPTP10R"/>
+<part name="X5" library="con-samtec.local" deviceset="TSW-102-02-S-S" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7721,14 +7720,6 @@ U1 = 568-2995-1-ND</text>
 <instance part="GND11" gate="1" x="170.18" y="81.28"/>
 <instance part="TP1" gate="G$1" x="208.28" y="91.44"/>
 <instance part="TP2" gate="G$1" x="238.76" y="91.44"/>
-<instance part="TP8" gate="G$1" x="88.9" y="109.22" smashed="yes" rot="R90">
-<attribute name="NAME" x="88.392" y="108.204" size="1.778" layer="95" rot="MR0"/>
-<attribute name="TP_SIGNAL_NAME" x="90.17" y="110.49" size="1.778" layer="97" rot="R90"/>
-</instance>
-<instance part="TP9" gate="G$1" x="88.9" y="106.68" smashed="yes" rot="R90">
-<attribute name="NAME" x="88.392" y="105.664" size="1.778" layer="95" rot="MR0"/>
-<attribute name="TP_SIGNAL_NAME" x="90.17" y="107.95" size="1.778" layer="97" rot="R90"/>
-</instance>
 <instance part="TP3" gate="G$1" x="200.66" y="76.2" smashed="yes" rot="R90">
 <attribute name="NAME" x="200.152" y="77.216" size="1.778" layer="95" rot="R180"/>
 <attribute name="TP_SIGNAL_NAME" x="201.93" y="77.47" size="1.778" layer="97" rot="R90"/>
@@ -7814,6 +7805,8 @@ U1 = 568-2995-1-ND</text>
 <attribute name="NAME" x="238.252" y="44.704" size="1.778" layer="95" rot="MR0"/>
 <attribute name="TP_SIGNAL_NAME" x="240.03" y="46.99" size="1.778" layer="97" rot="R90"/>
 </instance>
+<instance part="X5" gate="-1" x="30.48" y="50.8" rot="MR0"/>
+<instance part="X5" gate="-2" x="30.48" y="48.26" rot="MR0"/>
 </instances>
 <busses>
 </busses>
@@ -8158,16 +8151,24 @@ U1 = 568-2995-1-ND</text>
 <segment>
 <pinref part="U1" gate="G$1" pin="P0_3/SWCLK"/>
 <label x="104.14" y="109.22" size="1.778" layer="95" rot="MR0"/>
-<pinref part="TP8" gate="G$1" pin="TP"/>
 <wire x1="91.44" y1="109.22" x2="106.68" y2="109.22" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="33.02" y1="50.8" x2="38.1" y2="50.8" width="0.1524" layer="91"/>
+<pinref part="X5" gate="-1" pin="1"/>
+<label x="38.1" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="P0_2/SWDIO"/>
 <label x="104.14" y="106.68" size="1.778" layer="95" rot="MR0"/>
-<pinref part="TP9" gate="G$1" pin="TP"/>
 <wire x1="106.68" y1="106.68" x2="91.44" y2="106.68" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="38.1" y1="48.26" x2="33.02" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="X5" gate="-2" pin="1"/>
+<label x="38.1" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="I2C_SDA" class="0">
