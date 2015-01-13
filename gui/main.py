@@ -8,9 +8,10 @@ from PyQt4 import QtCore, QtGui
 from tinyI2Cgen import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
-sys.path.append('..\\python')
+#sys.path.append('..\\python')
 sys.path.append('../python')
 import tinyI2C
+import time
 
 class gui_local(object):
     def __init__(self, gui):
@@ -41,18 +42,130 @@ class gui_local(object):
         self.i2c._ser.close()
         self.i2c=serial2i2c.serial2i2c(port=self.ports[_port])
 
-
 class MyWidget(QtGui.QWidget):
 
     # SIGNAL definition
     readI2C_signal = QtCore.pyqtSignal(object)
     writeI2C_signal = QtCore.pyqtSignal(object)
 
+    isUI = False
+    ports=[]
+    i2c=None
     def __init__(self, parent=None):
         super(MyWidget, self).__init__(parent)
     
     def getUI(self, gui):
         self.gui = gui
+        self.isUI = True
+        if os.name == 'posix':
+            self.i2c=tinyI2C.serial2i2c(port="/dev/ttyS0")
+        else:
+            self.i2c=tinyI2C.serial2i2c()
+
+    def _list(self):
+        if(self.isUI):
+            _ports=[]
+            self.ports=[]
+            self.gui.portList.clear()
+            for port in serial_comports():
+                _ports.append( ": ".join(port[:-1]))
+                self.ports.append( port[0])
+        
+#            _ports.sort()
+#            self.ports.sort()
+            self.gui.portList.addItems(_ports)
+#            self._setup(0)
+            print _ports
+            print self.ports
+
+    def _setup(self, _port = 0):
+        if(self.isUI):
+            self.i2c._ser.close()
+            self.i2c=tinyI2C.serial2i2c(port=self.ports[_port])
+    #        print i2c._ser._isOpen
+
+    def _null(self):
+        pass
+
+    def readSlot(self, arg):
+        _slave,_channel,_register,_dest = arg
+#        print "read from channel %d, slave= %02X, register= %02X" % (_channel,_slave,_register)
+        read=self.i2c.setChannel(_channel)
+#        print read
+        read=self.regRead(_slave,_register)
+#        print read
+        _dest.setValue(int(read,16))
+
+    def writeSlot(self, arg):
+        _slave,_channel,_register,_data = arg
+        self.i2c.setChannel(_channel)
+        self.regWrite(_slave,_register,_data)
+#        print "write to %s" % arg
+
+    def regRead(self, slave=0x90, reg=0x00):
+        packet=[]
+        slave=self.i2c._hex2ascii(slave,mask=0xa0)
+        reg=self.i2c._hex2ascii(reg,mask=0xb0)
+        length=self.i2c._hex2ascii(len(reg)/2,mask=0xd0)
+
+        slave.reverse()
+        length.reverse()
+        reg.reverse()
+
+        packet.extend(slave)
+        packet.extend(length)
+        packet.extend(reg)
+        packet.insert(0,'S')
+        packet.append('S')
+
+        slave[1]=chr(ord(slave[1]) | 1)
+        length=self.i2c._hex2ascii(1,mask=0xd0)
+        
+        length.reverse()
+
+        packet.extend(slave)
+        packet.extend(length)
+        packet.append('P')
+
+#        print "".join(packet)
+        self.i2c.raw_write("".join(packet))
+        time.sleep(self.i2c._wait * 2)
+        read= self.i2c.raw_read()
+#        print self.i2c.raw_read()
+        read = read.split(",")[0]
+#        print read
+        return read
+
+    ## writes data to register address in selected slave address
+    # copy and modify from tempcommand/instr_local.serial_i2c
+    # @param slave slave address in HEX
+    # @param reg register address in HEX
+    # @param data data in HEX
+    # @return created packet
+    def regWrite(self, slave=0x90, reg=0x00, data=0x00):
+        packet=[]
+        slave=self.i2c._hex2ascii(slave,mask=0xa0)
+        reg=self.i2c._hex2ascii(reg,mask=0xb0)
+        data=self.i2c._hex2ascii(data,mask=0xc0)
+        length=self.i2c._hex2ascii(len(reg)/2+len(data)/2,mask=0xd0)
+        
+        slave.reverse()
+        length.reverse()
+        reg.reverse()
+        data.reverse()
+
+        packet.extend(slave)
+        packet.extend(length)
+        packet.extend(reg)
+        packet.extend(data)
+
+        packet.insert(0,'S')
+        packet.append('P')
+
+        self.i2c.raw_write("".join(packet))
+        _read= self.i2c.raw_read()
+#        print packet
+        return packet
 
     def readClick(self):
         _sender = self.sender()
@@ -110,122 +223,15 @@ class MyWidget(QtGui.QWidget):
 
 if __name__=='__main__':
 
-    def list():
-        _ports=[]
-        ui.portList.clear()
-        for port in serial_comports():
-            _ports.append( ": ".join(port[:-1]))
-            ports.append( port[0])
-    
-        _ports.sort()
-        ports.sort()
-        ui.portList.addItems(_ports)
-        setup(0)
-    
-    def null():
-        pass
-    
-    def setup( _port = 0):
-        global i2c
-        i2c._ser.close()
-        i2c=tinyI2C.serial2i2c(port=ports[_port])
-#        print i2c._ser._isOpen
-
-    def readSlot(arg):
-        global i2c
-        _slave,_channel,_register,_dest = arg
-#        print "read from channel %d, slave= %02X, register= %02X" % (_channel,_slave,_register)
-        i2c.setChannel(_channel)
-        read=regRead(_slave,_register)
-#        print read
-        _dest.setValue(int(read,16))
-        
-
-    def writeSlot(arg):
-        global i2c
-        _slave,_channel,_register,_data = arg
-        i2c.setChannel(_channel)
-        regWrite(_slave,_register,_data)
-#        print "write to %s" % arg
-
-    def regRead(slave=0x90, reg=0x00):
-        global i2c
-        packet=[]
-        slave=i2c._hex2ascii(slave,mask=0xa0)
-        reg=i2c._hex2ascii(reg,mask=0xb0)
-        length=i2c._hex2ascii(len(reg)/2,mask=0xd0)
-
-        slave.reverse()
-        length.reverse()
-        reg.reverse()
-
-        packet.extend(slave)
-        packet.extend(length)
-        packet.extend(reg)
-        packet.insert(0,'S')
-        packet.append('S')
-
-        slave[1]=chr(ord(slave[1]) | 1)
-        length=i2c._hex2ascii(1,mask=0xd0)
-        
-        length.reverse()
-
-        packet.extend(slave)
-        packet.extend(length)
-        packet.append('P')
-
-#        print packet
-        i2c.raw_write("".join(packet))
-        read= i2c.raw_read()
-        read = read.split(",")[0]
-#        print read
-        return read
-
-    ## writes data to register address in selected slave address
-    # copy and modify from tempcommand/instr_local.serial_i2c
-    # @param slave slave address in HEX
-    # @param reg register address in HEX
-    # @param data data in HEX
-    # @return created packet
-    def regWrite(slave=0x90, reg=0x00, data=0x00):
-        global i2c
-        packet=[]
-        slave=i2c._hex2ascii(slave,mask=0xa0)
-        reg=i2c._hex2ascii(reg,mask=0xb0)
-        data=i2c._hex2ascii(data,mask=0xc0)
-        length=i2c._hex2ascii(len(reg)/2+len(data)/2,mask=0xd0)
-        
-        slave.reverse()
-        length.reverse()
-        reg.reverse()
-        data.reverse()
-
-        packet.extend(slave)
-        packet.extend(length)
-        packet.extend(reg)
-        packet.extend(data)
-
-        packet.insert(0,'S')
-        packet.append('P')
-
-        i2c.raw_write("".join(packet))
-        _read= i2c.raw_read()
-        return packet
-
-    if os.name == 'posix':
-        i2c=tinyI2C.serial2i2c(port="/dev/ttyS0")
-    else:
-        i2c=tinyI2C.serial2i2c()
-    ports=[]
-
     app=QtGui.QApplication(sys.argv)
     window = MyWidget()
     ui=Ui_Form()
     ui.setupUi(window)
     window.getUI(ui)
 
-    ui.portList.currentIndexChanged.connect(setup)
-    ui.getPortBtn.clicked.connect(list)
+    window._list()
+    ui.portList.currentIndexChanged.connect(window._setup)
+    ui.getPortBtn.clicked.connect(window._list)
     ui.readbtn_CH1.clicked.connect(window.readClick)
     ui.readbtn_CH2.clicked.connect(window.readClick)
     ui.readbtn_CH3.clicked.connect(window.readClick)
@@ -234,19 +240,18 @@ if __name__=='__main__':
     ui.writebtn_CH2.clicked.connect(window.writeClick)
     ui.writebtn_CH3.clicked.connect(window.writeClick)
     ui.writebtn_CH4.clicked.connect(window.writeClick)
-    ui.base_CH1.editingFinished.connect(null)
-    ui.base_CH2.editingFinished.connect(null)
-    ui.reg_CH1.editingFinished.connect(null)
-    ui.reg_CH2.editingFinished.connect(null)
-    ui.base_CH3.editingFinished.connect(null)
-    ui.reg_CH3.editingFinished.connect(null)
-    ui.base_CH4.editingFinished.connect(null)
-    ui.reg_CH4.editingFinished.connect(null)
+    ui.base_CH1.editingFinished.connect(window._null)
+    ui.base_CH2.editingFinished.connect(window._null)
+    ui.reg_CH1.editingFinished.connect(window._null)
+    ui.reg_CH2.editingFinished.connect(window._null)
+    ui.base_CH3.editingFinished.connect(window._null)
+    ui.reg_CH3.editingFinished.connect(window._null)
+    ui.base_CH4.editingFinished.connect(window._null)
+    ui.reg_CH4.editingFinished.connect(window._null)
     QtCore.QMetaObject.connectSlotsByName(window)
-    window.readI2C_signal.connect(readSlot)
-    window.writeI2C_signal.connect(writeSlot)
+    window.readI2C_signal.connect(window.readSlot)
+    window.writeI2C_signal.connect(window.writeSlot)
 
-    list()
     
     window.show()
     sys.exit(app.exec_())
