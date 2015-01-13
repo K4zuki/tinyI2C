@@ -154,8 +154,9 @@ class serial2i2c(object):
         for _rl in self._hex2ascii(rlength, 0xd0):
             packet.insert(8 + wlength * 2, _rl)
 
+#        print packet
         self.raw_write("".join(packet))
-            
+
         time.sleep(self._wait * rlength * 2)
         return self.raw_read()
 
@@ -250,7 +251,7 @@ if __name__=="__main__":
 
 #    raw_input("wait, press enter to set channel 0")
     raw_input("wait, press enter to transferring data")
-    print dev.setChannel(0)
+    print dev.setChannel(3)
     dev.write(0xD2,0x4100) 
     dev.write(0xD2,0x42d2) 
     dev.write(0xD2,0x42b0) 
@@ -260,6 +261,8 @@ if __name__=="__main__":
     dev.write(0xD2,0x42a8) 
     dev.write(0xD2,0x42b1) 
     print dev.write(0xD2,0x4701) 
+    print dev.write_and_read(0x90, 0x00, 16)
+    raw_input("wait, press enter to transferring data")
     if False:
         for hoge in range(0x050, 0x300, 0x10):
             print "%03X," %(hoge),
