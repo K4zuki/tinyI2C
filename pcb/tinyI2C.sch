@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.05" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -2114,6 +2114,11 @@ U1 = 568-2995-1-ND</text>
 <pinref part="IC3" gate="G$1" pin="VIN"/>
 <pinref part="IC3" gate="G$1" pin="EN2"/>
 <pinref part="IC3" gate="G$1" pin="EN1"/>
+</segment>
+<segment>
+<wire x1="68.58" y1="35.56" x2="63.5" y2="35.56" width="0.1524" layer="91"/>
+<label x="63.5" y="35.56" size="1.778" layer="95" rot="MR0"/>
+<pinref part="X1" gate="-3" pin="1"/>
 </segment>
 </net>
 <net name="TX-&gt;" class="0">
