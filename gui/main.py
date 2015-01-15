@@ -12,6 +12,7 @@ from serial.tools.list_ports import comports as serial_comports
 sys.path.append('../python')
 import tinyI2C
 import time
+import serial
 
 class gui_local(object):
     def __init__(self, gui):
@@ -64,19 +65,30 @@ class MyWidget(QtGui.QWidget):
 
     def _list(self):
         if(self.isUI):
+            _ser=0
+            _dummy=[0,0,0]
             _ports=[]
             self.ports=[]
             self.gui.portList.clear()
             for port in serial_comports():
-                _ports.append( ": ".join(port[:-1]))
-                self.ports.append( port[0])
+                _dummy[0], _dummy[1], _dummy[2], = port
+#                print _dummy[0]
+                try:
+                    _ser=serial.Serial(port=_dummy[0])
+                except:
+#                    print _ser
+                    pass
+                else:
+                    _ser.close()
+                    _ports.append( ": ".join(_dummy[:-1]))
+                    self.ports.append( port[0])
         
 #            _ports.sort()
 #            self.ports.sort()
             self.gui.portList.addItems(_ports)
 #            self._setup(0)
-            print _ports
-            print self.ports
+#            print _ports
+#            print self.ports
 
     def _setup(self, _port = 0):
         if(self.isUI):
