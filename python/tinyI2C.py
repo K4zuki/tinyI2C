@@ -251,7 +251,7 @@ if __name__=="__main__":
 
 #    raw_input("wait, press enter to set channel 0")
     raw_input("wait, press enter to transferring data")
-    print dev.setChannel(3)
+    print dev.setChannel(0)
     dev.write(0xD2,0x4100) 
     dev.write(0xD2,0x42d2) 
     dev.write(0xD2,0x42b0) 
@@ -261,7 +261,7 @@ if __name__=="__main__":
     dev.write(0xD2,0x42a8) 
     dev.write(0xD2,0x42b1) 
     print dev.write(0xD2,0x4701) 
-    print dev.write_and_read(0x90, 0x00, 16)
+    print dev.write_and_read(0x90, 0x50, 1)
     raw_input("wait, press enter to transferring data")
     if False:
         for hoge in range(0x050, 0x300, 0x10):
@@ -314,8 +314,9 @@ if __name__=="__main__":
     print dev.raw_read()
     try:
         while True:
-            for hoge in range(0,256):
-                print dev.reg_write([[dev.GPIO0_STAT,hoge]])
+            for hoge in range(0,16):
+                print dev.reg_write([[dev.GPIO0_STAT,hoge]]),
+                print dev.write_and_read(0xD0, 0x50, 1)
     except:
         print dev.raw_read()
         print dev.reg_write([[dev.GPIO0_STAT,0x00]])
