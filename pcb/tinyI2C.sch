@@ -1948,13 +1948,21 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/74HC_H
 <sheet>
 <plain>
 <text x="238.76" y="27.94" size="1.778" layer="91">FIDUCIALS</text>
-<text x="254" y="172.72" size="1.778" layer="94" rot="R180">C1, C2, C3, C6 = 490-3261-1-ND
-C4, C5 = 490-3890-1-ND
-R1, R2 = P220LCT-ND
-R3-R10 = P10.0KLCT-ND
-IC1 = 568-2995-1-ND
-IC2 = 296-15816-1-ND
-U1 = 568-2995-1-ND</text>
+<text x="198.12" y="160.02" size="1.778" layer="94">C1 +
+C2 +--- 0.1uF GRM155R71C104KA88D
+C6 +
+C7 +</text>
+<wire x1="195.58" y1="172.72" x2="254" y2="172.72" width="0.1524" layer="94"/>
+<wire x1="254" y1="172.72" x2="254" y2="127" width="0.1524" layer="94"/>
+<wire x1="254" y1="127" x2="195.58" y2="127" width="0.1524" layer="94"/>
+<wire x1="195.58" y1="127" x2="195.58" y2="172.72" width="0.1524" layer="94"/>
+<text x="198.12" y="147.32" size="1.778" layer="94">C3 +
+C4 +--- 10uF GRM155R60J106ME44D</text>
+<text x="198.12" y="139.7" size="1.778" layer="94">IC1 +
+IC2 +-- SN74LVC1G125DCKR</text>
+<text x="198.12" y="134.62" size="1.778" layer="94">IC3 +-- MIC5355-SGYMME</text>
+<text x="198.12" y="154.94" size="1.778" layer="94">C5 +--- 1.0uF GRM155R61A105KE15</text>
+<text x="198.12" y="129.54" size="1.778" layer="94">U1 +-- LPC824201JHI33</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
