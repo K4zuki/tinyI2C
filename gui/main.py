@@ -71,6 +71,7 @@ class MyWidget(QtGui.QWidget):
             _ports=[]
             self.ports=[]
             self.gui.portList.clear()
+            self.i2c._ser.close()
             for port in serial_comports():
                 _dummy[0], _dummy[1], _dummy[2], = port
 #                print _dummy[0]
@@ -87,13 +88,14 @@ class MyWidget(QtGui.QWidget):
 #            _ports.sort()
 #            self.ports.sort()
             self.gui.portList.addItems(_ports)
-#            self._setup(0)
+            self._setup(0)
 #            print _ports
 #            print self.ports
 
     def _setup(self, _port = 0):
         if(self.isUI):
-            self.i2c._ser.close()
+            if(self.i2c._ser.isOpen()):
+                self.i2c._ser.close()
             self.i2c=tinyI2C.serial2i2c(port=self.ports[_port])
     #        print i2c._ser._isOpen
 
