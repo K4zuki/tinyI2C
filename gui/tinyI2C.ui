@@ -6,15 +6,390 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>320</height>
+    <width>753</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>TinyI2C</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="title">
+      <string>I2C</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="title">
+         <string>CH1</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QSpinBox" name="base_CH1">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>208</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="reg_CH1">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="readbtn_CH1">
+           <property name="text">
+            <string>Read</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="read_CH1">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="writebtn_CH1">
+           <property name="text">
+            <string>Write</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="write_CH1">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="title">
+         <string>CH2</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QSpinBox" name="base_CH2">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>208</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="reg_CH2">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="readbtn_CH2">
+           <property name="text">
+            <string>Read</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="read_CH2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="writebtn_CH2">
+           <property name="text">
+            <string>Write</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="write_CH2">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="title">
+         <string>CH3</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QSpinBox" name="base_CH3">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>208</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="reg_CH3">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="readbtn_CH3">
+           <property name="text">
+            <string>Read</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="read_CH3">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="writebtn_CH3">
+           <property name="text">
+            <string>Write</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="write_CH3">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="title">
+         <string>CH4</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QSpinBox" name="base_CH4">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+           <property name="value">
+            <number>208</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="reg_CH4">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="readbtn_CH4">
+           <property name="text">
+            <string>Read</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="read_CH4">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="writebtn_CH4">
+           <property name="text">
+            <string>Write</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="write_CH4">
+           <property name="suffix">
+            <string/>
+           </property>
+           <property name="prefix">
+            <string/>
+           </property>
+           <property name="maximum">
+            <number>255</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="title">
+      <string>Log message</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="plainText">
+         <string>This is 
+a
+log message
+window</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
     <widget class="QGroupBox" name="groupBox">
      <property name="font">
       <font>
@@ -22,7 +397,13 @@
       </font>
      </property>
      <property name="title">
-      <string>tinyI2C port</string>
+      <string>COM port</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -47,353 +428,166 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="title">
-        <string>CH1</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QSpinBox" name="base_CH1">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>208</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="reg_CH1">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="readbtn_CH1">
-          <property name="text">
-           <string>Read</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="read_CH1">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="writebtn_CH1">
-          <property name="text">
-           <string>Write</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="write_CH1">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_3">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="title">
-        <string>CH2</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <item>
-         <widget class="QSpinBox" name="base_CH2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>208</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="reg_CH2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="readbtn_CH2">
-          <property name="text">
-           <string>Read</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="read_CH2">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="writebtn_CH2">
-          <property name="text">
-           <string>Write</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="write_CH2">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_4">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="title">
-        <string>CH3</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
-        <item>
-         <widget class="QSpinBox" name="base_CH3">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>208</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="reg_CH3">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="readbtn_CH3">
-          <property name="text">
-           <string>Read</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="read_CH3">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="writebtn_CH3">
-          <property name="text">
-           <string>Write</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="write_CH3">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_5">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="title">
-        <string>CH4</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_7">
-        <item>
-         <widget class="QSpinBox" name="base_CH4">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-          <property name="value">
-           <number>208</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="reg_CH4">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="readbtn_CH4">
-          <property name="text">
-           <string>Read</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="read_CH4">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="writebtn_CH4">
-          <property name="text">
-           <string>Write</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="write_CH4">
-          <property name="suffix">
-           <string/>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="maximum">
-           <number>255</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
+   <item row="1" column="3">
+    <widget class="QGroupBox" name="groupBox_10">
+     <property name="title">
+      <string>GPIO0</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="text">
+         <string>GPIO00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_3">
+        <property name="text">
+         <string>GPIO01</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_5">
+        <property name="text">
+         <string>GPIO02</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_4">
+        <property name="text">
+         <string>GPIO03</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="text">
+         <string>GPIO04</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_6">
+        <property name="text">
+         <string>GPIO05</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_7">
+        <property name="text">
+         <string>GPIO06</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_8">
+        <property name="text">
+         <string>GPIO07</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>PushButton</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="title">
+      <string>SPI</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_10">
+      <item>
+       <widget class="QSpinBox" name="base_SPI">
+        <property name="suffix">
+         <string/>
+        </property>
+        <property name="prefix">
+         <string/>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+        <property name="value">
+         <number>208</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="reg_SPI">
+        <property name="suffix">
+         <string/>
+        </property>
+        <property name="prefix">
+         <string/>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="readbtn_SPI">
+        <property name="text">
+         <string>Read</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="read_SPI">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="suffix">
+         <string/>
+        </property>
+        <property name="prefix">
+         <string/>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="writebtn_SPI">
+        <property name="text">
+         <string>Write</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="write_SPI">
+        <property name="suffix">
+         <string/>
+        </property>
+        <property name="prefix">
+         <string/>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -410,24 +604,8 @@
      <y>51</y>
     </hint>
     <hint type="destinationlabel">
-     <x>255</x>
-     <y>56</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>readbtn_CH1</sender>
-   <signal>clicked()</signal>
-   <receiver>read_CH1</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>69</x>
-     <y>187</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>66</x>
-     <y>216</y>
+     <x>493</x>
+     <y>62</y>
     </hint>
    </hints>
   </connection>
@@ -448,18 +626,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>readbtn_CH3</sender>
-   <signal>clicked()</signal>
-   <receiver>read_CH3</receiver>
+   <sender>base_CH3</sender>
+   <signal>editingFinished()</signal>
+   <receiver>base_CH3</receiver>
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>314</x>
-     <y>192</y>
+     <x>368</x>
+     <y>134</y>
     </hint>
     <hint type="destinationlabel">
-     <x>310</x>
-     <y>213</y>
+     <x>368</x>
+     <y>134</y>
     </hint>
    </hints>
   </connection>
@@ -480,6 +658,86 @@
    </hints>
   </connection>
   <connection>
+   <sender>base_CH2</sender>
+   <signal>editingFinished()</signal>
+   <receiver>base_CH2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>134</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reg_CH1</sender>
+   <signal>editingFinished()</signal>
+   <receiver>reg_CH1</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>169</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>47</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>readbtn_CH3</sender>
+   <signal>clicked()</signal>
+   <receiver>read_CH3</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>314</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>310</x>
+     <y>213</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reg_CH2</sender>
+   <signal>editingFinished()</signal>
+   <receiver>reg_CH2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>154</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>readbtn_CH1</sender>
+   <signal>clicked()</signal>
+   <receiver>read_CH1</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>66</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>writebtn_CH1</sender>
    <signal>clicked()</signal>
    <receiver>write_CH1</receiver>
@@ -490,24 +748,8 @@
      <y>263</y>
     </hint>
     <hint type="destinationlabel">
-     <x>69</x>
-     <y>280</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>writebtn_CH2</sender>
-   <signal>clicked()</signal>
-   <receiver>write_CH2</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>187</x>
-     <y>258</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>190</x>
-     <y>277</y>
+     <x>96</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
@@ -528,6 +770,22 @@
    </hints>
   </connection>
   <connection>
+   <sender>writebtn_CH2</sender>
+   <signal>clicked()</signal>
+   <receiver>write_CH2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>187</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>writebtn_CH4</sender>
    <signal>clicked()</signal>
    <receiver>write_CH4</receiver>
@@ -538,8 +796,8 @@
      <y>264</y>
     </hint>
     <hint type="destinationlabel">
-     <x>416</x>
-     <y>278</y>
+     <x>492</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
@@ -554,72 +812,8 @@
      <y>130</y>
     </hint>
     <hint type="destinationlabel">
-     <x>25</x>
-     <y>126</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>base_CH2</sender>
-   <signal>editingFinished()</signal>
-   <receiver>base_CH2</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>159</x>
-     <y>131</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>139</x>
-     <y>131</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>reg_CH1</sender>
-   <signal>editingFinished()</signal>
-   <receiver>reg_CH1</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>26</x>
-     <y>159</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>159</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>reg_CH2</sender>
-   <signal>editingFinished()</signal>
-   <receiver>reg_CH2</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>153</x>
-     <y>154</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>140</x>
-     <y>154</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>base_CH3</sender>
-   <signal>editingFinished()</signal>
-   <receiver>base_CH3</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>275</x>
-     <y>132</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>258</x>
-     <y>132</y>
+     <x>52</x>
+     <y>134</y>
     </hint>
    </hints>
   </connection>
@@ -634,8 +828,8 @@
      <y>152</y>
     </hint>
     <hint type="destinationlabel">
-     <x>257</x>
-     <y>155</y>
+     <x>368</x>
+     <y>169</y>
     </hint>
    </hints>
   </connection>
@@ -650,8 +844,8 @@
      <y>131</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
-     <y>132</y>
+     <x>492</x>
+     <y>134</y>
     </hint>
    </hints>
   </connection>
@@ -666,8 +860,8 @@
      <y>156</y>
     </hint>
     <hint type="destinationlabel">
-     <x>373</x>
-     <y>156</y>
+     <x>492</x>
+     <y>169</y>
     </hint>
    </hints>
   </connection>
