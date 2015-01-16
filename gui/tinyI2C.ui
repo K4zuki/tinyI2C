@@ -652,6 +652,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -668,6 +671,9 @@ window</string>
               <widget class="QSpinBox" name="spinBox">
                <property name="enabled">
                 <bool>false</bool>
+               </property>
+               <property name="maximum">
+                <number>255</number>
                </property>
               </widget>
              </item>
@@ -755,6 +761,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -765,7 +774,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="write_reg1"/>
+              <widget class="QSpinBox" name="write_reg1">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -854,6 +867,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -864,7 +880,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_11"/>
+              <widget class="QSpinBox" name="spinBox_11">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -950,6 +970,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -960,7 +983,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="write_reg3"/>
+              <widget class="QSpinBox" name="write_reg3">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -1049,6 +1076,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -1059,7 +1089,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_13"/>
+              <widget class="QSpinBox" name="spinBox_13">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -1148,6 +1182,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -1158,7 +1195,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_14"/>
+              <widget class="QSpinBox" name="spinBox_14">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -1247,6 +1288,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -1257,7 +1301,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_15"/>
+              <widget class="QSpinBox" name="spinBox_15">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -1346,6 +1394,9 @@ window</string>
                <property name="enabled">
                 <bool>false</bool>
                </property>
+               <property name="maximum">
+                <number>255</number>
+               </property>
               </widget>
              </item>
              <item>
@@ -1356,7 +1407,11 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_16"/>
+              <widget class="QSpinBox" name="spinBox_16">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
