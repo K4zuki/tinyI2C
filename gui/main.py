@@ -5,7 +5,8 @@ import sys
 import os
 from PyQt4 import QtCore, QtGui
 
-from tinyI2Cgen import Ui_Form, _fromUtf8
+#from tinyI2Cgen import Ui_Form, _fromUtf8
+from tinyI2Cgui import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
 #sys.path.append('..\\python')
@@ -22,7 +23,7 @@ class gui_local(object):
         else:
             _port = "COM1"
         self.i2c=serial2i2c.serial2i2c(port=_port)
-        self.ports=[]
+        self.ports=[_port,]
 
     def list(self):
         _ports=[]
@@ -104,7 +105,7 @@ class MyWidget(QtGui.QWidget):
 #        print "read from channel %d, slave= %02X, register= %02X" % (_channel,_slave,_register)
         read=self.i2c.setChannel(_channel)
 #        print read
-        read=self.regRead(_slave,_register)
+        read=self.I2CregRead(_slave,_register)
 #        print read
         _dest.setValue(int(read,16))
 
@@ -114,7 +115,7 @@ class MyWidget(QtGui.QWidget):
         self.regWrite(_slave,_register,_data)
 #        print "write to %s" % arg
 
-    def regRead(self, slave=0x90, reg=0x00):
+    def I2CregRead(self, slave=0x90, reg=0x00):
         packet=[]
         slave=self.i2c._hex2ascii(slave,mask=0xa0)
         reg=self.i2c._hex2ascii(reg,mask=0xb0)
@@ -264,6 +265,5 @@ if __name__=='__main__':
     window.readI2C_signal.connect(window.readSlot)
     window.writeI2C_signal.connect(window.writeSlot)
 
-    
     window.show()
     sys.exit(app.exec_())
