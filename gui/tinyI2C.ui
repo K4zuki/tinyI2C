@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>662</width>
-    <height>630</height>
+    <width>778</width>
+    <height>646</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -125,7 +125,7 @@ window</string>
             <number>255</number>
            </property>
            <property name="value">
-            <number>208</number>
+            <number>144</number>
            </property>
           </widget>
          </item>
@@ -211,7 +211,7 @@ window</string>
             <number>255</number>
            </property>
            <property name="value">
-            <number>208</number>
+            <number>144</number>
            </property>
           </widget>
          </item>
@@ -297,7 +297,7 @@ window</string>
             <number>255</number>
            </property>
            <property name="value">
-            <number>208</number>
+            <number>144</number>
            </property>
           </widget>
          </item>
@@ -383,7 +383,7 @@ window</string>
             <number>255</number>
            </property>
            <property name="value">
-            <number>208</number>
+            <number>144</number>
            </property>
           </widget>
          </item>
@@ -469,7 +469,7 @@ window</string>
             <number>255</number>
            </property>
            <property name="value">
-            <number>208</number>
+            <number>144</number>
            </property>
           </widget>
          </item>
