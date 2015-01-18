@@ -15,34 +15,6 @@ import tinyI2C
 import time
 import serial
 
-class gui_local(object):
-    def __init__(self, gui):
-        self.gui=gui
-        if os.name == 'posix':
-            _port = "/dev/ttyS0"
-        else:
-            _port = "COM1"
-        self.i2c=serial2i2c.serial2i2c(port=_port)
-        self.ports=[_port,]
-
-    def list(self):
-        _ports=[]
-        self.gui.portList.clear()
-        for port in serial_comports():
-            _ports.append( ": ".join(port[:-1]))
-            self.ports.append( port[0])
-    
-        _ports.sort()
-        self.ports.sort()
-        self.gui.portList.addItems(_ports)
-        self.setup(0)
-    
-    def null(self):
-        pass
-    
-    def setup(self, _port = 0):
-        self.i2c._ser.close()
-        self.i2c=serial2i2c.serial2i2c(port=self.ports[_port])
 
 class MyWidget(QtGui.QWidget):
 
@@ -64,58 +36,56 @@ class MyWidget(QtGui.QWidget):
         else:
             self.i2c=tinyI2C.serial2i2c()
 
+    def _search(self):
+        self._list()
+
     def _list(self):
+        _ser=0
+        _dummy=[0,0,0]
+        _ports=[]
+        _idx=len(self.ports)
+
         if(self.isUI):
-            _ser=0
-            _dummy=[0,0,0]
-            _ports=[]
-            self.ports=[]
             self.gui.portList.clear()
             self.i2c._ser.close()
             for port in serial_comports():
                 _dummy[0], _dummy[1], _dummy[2], = port
-#                print _dummy[0]
+                print "_list()",_dummy[0]
                 try:
                     _ser=serial.Serial(port=_dummy[0])
                 except:
-#                    print _ser
                     pass
                 else:
                     _ser.close()
                     _ports.append( ": ".join(_dummy[:-1]))
                     self.ports.append( port[0])
+                    print "_list()",self.ports
+                    
+            self.ports=self.ports[_idx:]
         
-#            _ports.sort()
-#            self.ports.sort()
             self.gui.portList.addItems(_ports)
             self._setup(0)
-#            print _ports
-#            print self.ports
 
     def _setup(self, _port = 0):
         if(self.isUI):
             if(self.i2c._ser.isOpen()):
                 self.i2c._ser.close()
+            print "_setup()",self.ports
             self.i2c=tinyI2C.serial2i2c(port=self.ports[_port])
-    #        print i2c._ser._isOpen
 
     def _null(self):
         pass
 
     def readSlot(self, arg):
         _slave,_channel,_register,_dest = arg
-#        print "read from channel %d, slave= %02X, register= %02X" % (_channel,_slave,_register)
         read=self.i2c.setChannel(_channel)
-#        print read
         read=self.I2CregRead(_slave,_register)
-#        print read
         _dest.setValue(int(read,16))
 
     def writeSlot(self, arg):
         _slave,_channel,_register,_data = arg
         self.i2c.setChannel(_channel)
         self.regWrite(_slave,_register,_data)
-#        print "write to %s" % arg
 
     def I2CregRead(self, slave=0x90, reg=0x00):
         packet=[]
@@ -142,13 +112,10 @@ class MyWidget(QtGui.QWidget):
         packet.extend(length)
         packet.append('P')
 
-#        print "".join(packet)
         self.i2c.raw_write("".join(packet))
         time.sleep(self.i2c._wait * 2)
         read= self.i2c.raw_read()
-#        print self.i2c.raw_read()
         read = read.split(",")[0]
-#        print read
         return read
 
     ## writes data to register address in selected slave address
@@ -246,7 +213,7 @@ if __name__=='__main__':
 
     window._list()
     ui.portList.currentIndexChanged.connect(window._setup)
-    ui.getPortBtn.clicked.connect(window._list)
+    ui.getPortBtn.clicked.connect(window._search)
     ui.readbtn_CH1.clicked.connect(window.readClick)
     ui.readbtn_CH2.clicked.connect(window.readClick)
     ui.readbtn_CH3.clicked.connect(window.readClick)
