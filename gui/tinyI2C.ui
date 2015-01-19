@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>778</width>
-    <height>646</height>
+    <width>726</width>
+    <height>786</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -64,7 +64,7 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QGroupBox" name="log_box">
      <property name="font">
       <font>
@@ -79,6 +79,9 @@
        <widget class="QPlainTextEdit" name="log_text">
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOn</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
         <property name="plainText">
          <string>This is 
@@ -123,6 +126,9 @@ window</string>
            </property>
            <property name="maximum">
             <number>255</number>
+           </property>
+           <property name="singleStep">
+            <number>2</number>
            </property>
            <property name="value">
             <number>144</number>
@@ -210,6 +216,9 @@ window</string>
            <property name="maximum">
             <number>255</number>
            </property>
+           <property name="singleStep">
+            <number>2</number>
+           </property>
            <property name="value">
             <number>144</number>
            </property>
@@ -296,6 +305,9 @@ window</string>
            <property name="maximum">
             <number>255</number>
            </property>
+           <property name="singleStep">
+            <number>2</number>
+           </property>
            <property name="value">
             <number>144</number>
            </property>
@@ -381,6 +393,9 @@ window</string>
            </property>
            <property name="maximum">
             <number>255</number>
+           </property>
+           <property name="singleStep">
+            <number>2</number>
            </property>
            <property name="value">
             <number>144</number>
@@ -535,7 +550,7 @@ window</string>
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="0">
     <widget class="QGroupBox" name="regixters_box">
      <property name="title">
       <string>Registers</string>
@@ -543,111 +558,25 @@ window</string>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QTabWidget" name="registers_tab">
-        <property name="currentIndex">
-         <number>4</number>
-        </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
-          <string>0</string>
+          <string>CHIP_ID</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
            <widget class="QGroupBox" name="reg0_box">
             <property name="title">
-             <string>Register 0</string>
+             <string>CHIP_ID</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QCheckBox" name="reg07">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
-               </property>
-               <property name="text">
-                <string>7</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg06">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg05">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>5</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg04">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg03">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg02">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg01">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg00">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="1" column="8">
               <widget class="QPushButton" name="readbtn_reg0">
                <property name="text">
                 <string>Read</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="1" column="9">
               <widget class="QSpinBox" name="read_reg0">
                <property name="enabled">
                 <bool>false</bool>
@@ -657,8 +586,8 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButton">
+             <item row="1" column="10">
+              <widget class="QPushButton" name="writebtn_reg0">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -667,8 +596,8 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QSpinBox" name="spinBox">
+             <item row="1" column="11">
+              <widget class="QSpinBox" name="write_reg0">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -677,86 +606,483 @@ window</string>
                </property>
               </widget>
              </item>
+             <item row="0" column="7">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QPushButton" name="reg00">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QPushButton" name="reg01">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QPushButton" name="reg02">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QPushButton" name="reg03">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QPushButton" name="reg04">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="reg05">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QPushButton" name="reg06">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QPushButton" name="reg07">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2"/>
            </widget>
           </item>
          </layout>
         </widget>
         <widget class="QWidget" name="tab_2">
          <attribute name="title">
-          <string>1</string>
+          <string>GPIO0</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
            <widget class="QGroupBox" name="groupBox_12">
             <property name="title">
-             <string>Register 1</string>
+             <string>STATUS</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QCheckBox" name="reg17">
-               <property name="text">
-                <string>7</string>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="2" column="4">
+              <widget class="QPushButton" name="reg14">
+               <property name="enabled">
+                <bool>true</bool>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg16">
-               <property name="text">
-                <string>6</string>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg15">
-               <property name="text">
-                <string>5</string>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg14">
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg13">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg12">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg11">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg10">
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="12" rowspan="2">
+              <widget class="QPushButton" name="writebtn_reg1">
+               <property name="text">
+                <string>Write</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="10" rowspan="2">
               <widget class="QPushButton" name="readbtn_reg1">
                <property name="text">
                 <string>Read</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="5">
+              <widget class="QPushButton" name="reg13">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QPushButton" name="reg16">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QPushButton" name="reg12">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="13" rowspan="2">
+              <widget class="QSpinBox" name="write_reg1">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QPushButton" name="reg17">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="11" rowspan="2">
               <widget class="QSpinBox" name="read_reg1">
                <property name="enabled">
                 <bool>false</bool>
@@ -766,17 +1092,476 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="writebtn_reg1">
+             <item row="2" column="3">
+              <widget class="QPushButton" name="reg15">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QPushButton" name="reg11">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="8">
+              <widget class="QPushButton" name="reg10">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="8">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_13">
+            <property name="title">
+             <string>CONFIG</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_47">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_48">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QLabel" name="label_46">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QPushButton" name="reg36">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="reg35">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QPushButton" name="reg34">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QLabel" name="label_41">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_45">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="17">
+              <widget class="QSpinBox" name="write_reg3">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="16">
+              <widget class="QPushButton" name="writebtn_reg3">
                <property name="text">
                 <string>Write</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QSpinBox" name="write_reg1">
+             <item row="2" column="14">
+              <widget class="QPushButton" name="readbtn_reg3">
+               <property name="text">
+                <string>Read</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="15">
+              <widget class="QSpinBox" name="read_reg3">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="maximum">
                 <number>255</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_44">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QPushButton" name="reg30">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="4">
+              <widget class="QPushButton" name="reg33">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="7">
+              <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QLabel" name="label_43">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="5">
+              <widget class="QPushButton" name="reg32">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QPushButton" name="reg31">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QPushButton" name="reg37">
+               <property name="minimumSize">
+                <size>
+                 <width>40</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -787,7 +1572,7 @@ window</string>
         </widget>
         <widget class="QWidget" name="tab_3">
          <attribute name="title">
-          <string>2</string>
+          <string>GPIO1</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
@@ -796,73 +1581,53 @@ window</string>
              <bool>false</bool>
             </property>
             <property name="title">
-             <string>Register 2</string>
+             <string>STATUS</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QCheckBox" name="reg27">
-               <property name="text">
-                <string>7</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg26">
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg25">
-               <property name="text">
-                <string>5</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="2" column="3">
               <widget class="QCheckBox" name="reg24">
-               <property name="text">
-                <string>4</string>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg23">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg22">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg21">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg20">
                <property name="text">
                 <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="reg27">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QCheckBox" name="reg20">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="8">
               <widget class="QPushButton" name="readbtn_reg2">
                <property name="text">
                 <string>Read</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="9">
               <widget class="QSpinBox" name="read_reg2">
                <property name="enabled">
                 <bool>false</bool>
@@ -872,206 +1637,252 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="writebtn_reg2">
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="reg26">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Write</string>
+                <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="11">
               <widget class="QSpinBox" name="spinBox_11">
                <property name="maximum">
                 <number>255</number>
                </property>
               </widget>
              </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_4">
-         <attribute name="title">
-          <string>3</string>
-         </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
-          <item>
-           <widget class="QGroupBox" name="groupBox_13">
-            <property name="title">
-             <string>Register 3</string>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QCheckBox" name="reg37">
-               <property name="text">
-                <string>7</string>
+             <item row="2" column="4">
+              <widget class="QCheckBox" name="reg23">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg36">
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg35">
-               <property name="text">
-                <string>5</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg34">
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg33">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg32">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg31">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg30">
                <property name="text">
                 <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="readbtn_reg3">
+             <item row="2" column="6">
+              <widget class="QCheckBox" name="reg21">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Read</string>
+                <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QSpinBox" name="read_reg3">
-               <property name="enabled">
-                <bool>false</bool>
+             <item row="2" column="2">
+              <widget class="QCheckBox" name="reg25">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-               <property name="maximum">
-                <number>255</number>
+               <property name="text">
+                <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="writebtn_reg3">
+             <item row="2" column="10">
+              <widget class="QPushButton" name="writebtn_reg2">
                <property name="text">
                 <string>Write</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QSpinBox" name="write_reg3">
-               <property name="maximum">
-                <number>255</number>
+             <item row="2" column="5">
+              <widget class="QCheckBox" name="reg22">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_39">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_37">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_40">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_36">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_38">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_35">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
             </layout>
            </widget>
           </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_5">
-         <attribute name="title">
-          <string>4</string>
-         </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
           <item>
            <widget class="QGroupBox" name="groupBox_18">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="title">
-             <string>Register 4</string>
+             <string>CONFIG</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
-             <item>
-              <widget class="QCheckBox" name="reg47">
-               <property name="text">
-                <string>7</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg46">
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="2" column="2">
               <widget class="QCheckBox" name="reg45">
-               <property name="text">
-                <string>5</string>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg44">
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg43">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg42">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg41">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="reg40">
                <property name="text">
                 <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="readbtn_reg4">
+             <item row="2" column="3">
+              <widget class="QCheckBox" name="reg44">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Read</string>
+                <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="10">
+              <widget class="QPushButton" name="writebtn_reg4">
+               <property name="text">
+                <string>Write</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QCheckBox" name="reg40">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="5">
+              <widget class="QCheckBox" name="reg42">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="reg47">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="4">
+              <widget class="QCheckBox" name="reg43">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="9">
               <widget class="QSpinBox" name="read_reg4">
                <property name="enabled">
                 <bool>false</bool>
@@ -1081,17 +1892,121 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="writebtn_reg4">
+             <item row="2" column="6">
+              <widget class="QCheckBox" name="reg41">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Write</string>
+                <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="11">
               <widget class="QSpinBox" name="write_reg4">
                <property name="maximum">
                 <number>255</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="8">
+              <widget class="QPushButton" name="readbtn_reg4">
+               <property name="text">
+                <string>Read</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="reg46">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_55">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_53">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_56">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_52">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_49">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_54">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_51">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_50">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -1102,9 +2017,9 @@ window</string>
         </widget>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
-          <string>5</string>
+          <string>Unused5</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <layout class="QVBoxLayout" name="verticalLayout_12">
           <item>
            <widget class="QGroupBox" name="groupBox_17">
             <property name="enabled">
@@ -1113,71 +2028,159 @@ window</string>
             <property name="title">
              <string>Register 5</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
-             <item>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_61">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_59">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_60">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_62">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_57">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_64">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
               <widget class="QCheckBox" name="checkBox_49">
-               <property name="text">
-                <string>7</string>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_50">
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_51">
-               <property name="text">
-                <string>5</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_52">
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_53">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_54">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_55">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_56">
                <property name="text">
                 <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="3" column="8">
               <widget class="QPushButton" name="pushButton_13">
                <property name="text">
                 <string>Read</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="3" column="11">
+              <widget class="QSpinBox" name="spinBox_14">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QCheckBox" name="checkBox_51">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="10">
+              <widget class="QPushButton" name="pushButton_14">
+               <property name="text">
+                <string>Write</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3">
+              <widget class="QCheckBox" name="checkBox_52">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_63">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="5">
+              <widget class="QCheckBox" name="checkBox_54">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckBox" name="checkBox_50">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="9">
               <widget class="QSpinBox" name="spinBox_7">
                <property name="enabled">
                 <bool>false</bool>
@@ -1187,30 +2190,69 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_14">
+             <item row="3" column="4">
+              <widget class="QCheckBox" name="checkBox_53">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
                <property name="text">
-                <string>Write</string>
+                <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QSpinBox" name="spinBox_14">
-               <property name="maximum">
-                <number>255</number>
+             <item row="3" column="6">
+              <widget class="QCheckBox" name="checkBox_55">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="7">
+              <widget class="QCheckBox" name="checkBox_56">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_58">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
             </layout>
            </widget>
           </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_4">
+            <property name="title">
+             <string/>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
         <widget class="QWidget" name="tab_7">
          <attribute name="title">
-          <string>6</string>
+          <string>Unused6</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <layout class="QVBoxLayout" name="verticalLayout_13">
           <item>
            <widget class="QGroupBox" name="groupBox_16">
             <property name="enabled">
@@ -1219,71 +2261,15 @@ window</string>
             <property name="title">
              <string>Register 6</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
-             <item>
-              <widget class="QCheckBox" name="checkBox_41">
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="2" column="10">
+              <widget class="QPushButton" name="pushButton_12">
                <property name="text">
-                <string>7</string>
+                <string>Write</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_42">
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_43">
-               <property name="text">
-                <string>5</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_44">
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_45">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_46">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_47">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_48">
-               <property name="text">
-                <string>0</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_11">
-               <property name="text">
-                <string>Read</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+             <item row="2" column="9">
               <widget class="QSpinBox" name="spinBox_6">
                <property name="enabled">
                 <bool>false</bool>
@@ -1293,30 +2279,213 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_12">
-               <property name="text">
-                <string>Write</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+             <item row="2" column="11">
               <widget class="QSpinBox" name="spinBox_15">
                <property name="maximum">
                 <number>255</number>
                </property>
               </widget>
              </item>
+             <item row="2" column="5">
+              <widget class="QCheckBox" name="checkBox_46">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QCheckBox" name="checkBox_44">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="8">
+              <widget class="QPushButton" name="pushButton_11">
+               <property name="text">
+                <string>Read</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="checkBox_42">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QCheckBox" name="checkBox_48">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="4">
+              <widget class="QCheckBox" name="checkBox_45">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="checkBox_41">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QCheckBox" name="checkBox_47">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QCheckBox" name="checkBox_43">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_71">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_69">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_72">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_68">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_65">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_70">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_67">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_66">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
             </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string/>
+            </property>
            </widget>
           </item>
          </layout>
         </widget>
         <widget class="QWidget" name="tab_8">
          <attribute name="title">
-          <string>7</string>
+          <string>Unused7</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <layout class="QVBoxLayout" name="verticalLayout_14">
           <item>
            <widget class="QGroupBox" name="groupBox_15">
             <property name="enabled">
@@ -1325,71 +2494,34 @@ window</string>
             <property name="title">
              <string>Register 7</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_10">
-             <item>
+            <layout class="QGridLayout" name="gridLayout_11">
+             <item row="2" column="0">
               <widget class="QCheckBox" name="checkBox_33">
-               <property name="text">
-                <string>7</string>
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_34">
-               <property name="text">
-                <string>6</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_35">
-               <property name="text">
-                <string>5</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_36">
-               <property name="text">
-                <string>4</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_37">
-               <property name="text">
-                <string>3</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_38">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_39">
-               <property name="text">
-                <string>1</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_40">
                <property name="text">
                 <string>0</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="8">
               <widget class="QPushButton" name="pushButton_9">
                <property name="text">
                 <string>Read</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="11">
+              <widget class="QSpinBox" name="spinBox_16">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="9">
               <widget class="QSpinBox" name="spinBox_5">
                <property name="enabled">
                 <bool>false</bool>
@@ -1399,21 +2531,185 @@ window</string>
                </property>
               </widget>
              </item>
-             <item>
+             <item row="2" column="10">
               <widget class="QPushButton" name="pushButton_10">
                <property name="text">
                 <string>Write</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QSpinBox" name="spinBox_16">
-               <property name="maximum">
-                <number>255</number>
+             <item row="2" column="2">
+              <widget class="QCheckBox" name="checkBox_35">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QCheckBox" name="checkBox_39">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="4">
+              <widget class="QCheckBox" name="checkBox_37">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="checkBox_34">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QCheckBox" name="checkBox_36">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="5">
+              <widget class="QCheckBox" name="checkBox_38">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="7">
+              <widget class="QCheckBox" name="checkBox_40">
+               <property name="font">
+                <font>
+                 <pointsize>20</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_79">
+               <property name="text">
+                <string>[7]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_77">
+               <property name="text">
+                <string>[6]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_80">
+               <property name="text">
+                <string>[5]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_76">
+               <property name="text">
+                <string>[4]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QLabel" name="label_73">
+               <property name="text">
+                <string>[3]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QLabel" name="label_78">
+               <property name="text">
+                <string>[2]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="label_75">
+               <property name="text">
+                <string>[1]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="7">
+              <widget class="QLabel" name="label_74">
+               <property name="text">
+                <string>[0]</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
             </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
+             <string/>
+            </property>
            </widget>
           </item>
          </layout>
