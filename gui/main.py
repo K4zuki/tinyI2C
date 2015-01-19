@@ -15,7 +15,8 @@ import tinyI2C
 import time
 import serial
 
-
+### how to make GUI from ui
+# 
 class MyWidget(QtGui.QWidget):
 
     # SIGNAL definition
@@ -23,13 +24,15 @@ class MyWidget(QtGui.QWidget):
     writeI2C_signal = QtCore.pyqtSignal(object)
     readGPIO_signal = QtCore.pyqtSignal(object)
     writeGPIO_signal = QtCore.pyqtSignal(object)
+    updateCheckbox_signal = QtCore.pyqtSignal(object)
 
     isUI = False
     ports=[]
     i2c=None
     def __init__(self, parent=None):
         super(MyWidget, self).__init__(parent)
-    
+        self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint)
+
     def getUI(self, gui):
         self.gui = gui
         self.isUI = True
@@ -104,20 +107,23 @@ class MyWidget(QtGui.QWidget):
 #    def reg_read(self, registers = "012"):
 
     def readGPIOSlot(self, arg):
+        _sender = self.sender()
         _register,_dest = arg
         read=self.i2c.reg_read(_register).split(",")[0]
         read=int(read,16)
-        for _bit in range(8):
-            if (read&(1<<_bit)):
-                _dest[_bit].setCheckState( QtCore.Qt.Checked )
-            else:
-                _dest[_bit].setCheckState( QtCore.Qt.Unchecked )
-        _dest[8].setValue(read)
+        _dest.setValue(0)
+        _dest.setValue(1)
+        _dest.setValue(read)
 
     def writeGPIOSlot(self, arg):
-        _slave,_channel,_register,_data = arg
-        self.i2c.setChannel(_channel)
-        self.regWrite(_slave,_register,_data)
+        _register, _data, _dest = arg
+        read = self.i2c.reg_write([[_register,_data]])
+        print read
+        read=self.i2c.reg_read(_register).split(",")[0]
+        read=int(read,16)
+        _dest.setValue(0)
+        _dest.setValue(1)
+        _dest.setValue(read)
 
     def I2CregRead(self, slave=0x90, reg=0x00):
         packet=[]
@@ -238,66 +244,20 @@ class MyWidget(QtGui.QWidget):
     def GPIOreadClick(self):
         _sender = self.sender()
         if(_sender == self.gui.readbtn_reg0):
-            self.gui.reg07.checked = True
             _register = self.i2c.CHIP_ID
-            _dest = [   self.gui.reg00,
-                        self.gui.reg01,
-                        self.gui.reg02,
-                        self.gui.reg03,
-                        self.gui.reg04,
-                        self.gui.reg05,
-                        self.gui.reg06,
-                        self.gui.reg07,
-                        self.gui.read_reg0
-                    ]
+            _dest = self.gui.read_reg0
         elif(_sender == self.gui.readbtn_reg1):
             _register = self.i2c.GPIO0_STAT
-            _dest = [   self.gui.reg10,
-                        self.gui.reg11,
-                        self.gui.reg12,
-                        self.gui.reg13,
-                        self.gui.reg14,
-                        self.gui.reg15,
-                        self.gui.reg16,
-                        self.gui.reg17,
-                        self.gui.read_reg1
-                    ]
+            _dest = self.gui.read_reg1
         elif(_sender == self.gui.readbtn_reg2):
             _register = self.i2c.GPIO1_STAT
-            _dest = [   self.gui.reg20,
-                        self.gui.reg21,
-                        self.gui.reg22,
-                        self.gui.reg23,
-                        self.gui.reg24,
-                        self.gui.reg25,
-                        self.gui.reg26,
-                        self.gui.reg27,
-                        self.gui.read_reg2
-                    ]
+            _dest = self.gui.read_reg2
         elif(_sender == self.gui.readbtn_reg3):
             _register = self.i2c.GPIO0_CONF
-            _dest = [   self.gui.reg30,
-                        self.gui.reg31,
-                        self.gui.reg32,
-                        self.gui.reg33,
-                        self.gui.reg34,
-                        self.gui.reg35,
-                        self.gui.reg36,
-                        self.gui.reg37,
-                        self.gui.read_reg3
-                    ]
+            _dest = self.gui.read_reg3
         elif(_sender == self.gui.readbtn_reg4):
             _register = self.i2c.GPIO1_CONF
-            _dest = [   self.gui.reg40,
-                        self.gui.reg41,
-                        self.gui.reg42,
-                        self.gui.reg43,
-                        self.gui.reg44,
-                        self.gui.reg45,
-                        self.gui.reg46,
-                        self.gui.reg47,
-                        self.gui.read_reg4
-                    ]
+            _dest = self.gui.read_reg4
 #        elif(_sender == self.gui.readbtn_reg5):
 #            pass
 #        elif(_sender == self.gui.readbtn_reg6):
@@ -308,8 +268,115 @@ class MyWidget(QtGui.QWidget):
             pass
         self.readGPIO_signal.emit([_register, _dest])
 
+    def GPIOwriteClick(self):
+        _sender = self.sender()
+        print 'GPIOwriteClick()'
+        if(_sender == self.gui.writebtn_reg0):# this should not happen
+            _register = self.i2c.CHIP_ID
+            _data = self.gui.write_reg0.value()
+            _dest = self.gui.read_reg0
+        elif(_sender == self.gui.writebtn_reg1):
+            _register = self.i2c.GPIO0_STAT
+            _data = self.gui.write_reg1.value()
+            _dest = self.gui.read_reg1
+        elif(_sender == self.gui.writebtn_reg2):
+            _register = self.i2c.GPIO1_STAT
+            _data = self.gui.write_reg2.value()
+            _dest = self.gui.read_reg2
+        elif(_sender == self.gui.writebtn_reg3):
+            _register = self.i2c.GPIO0_CONF
+            _data = self.gui.write_reg3.value()
+            _dest = self.gui.read_reg3
+        elif(_sender == self.gui.writebtn_reg4):
+            _register = self.i2c.GPIO1_CONF
+            _data = self.gui.write_reg4.value()
+            _dest = self.gui.read_reg4
+#        elif(_sender == self.gui.writetn_reg5):
+#            pass
+#        elif(_sender == self.gui.writebtn_reg6):
+#            pass
+#        elif(_sender == self.gui.writebtn_reg7):
+#            pass
+        else:
+            pass
+        self.writeGPIO_signal.emit([_register, _data, _dest])
+
+    def updateCheckbox(self,arg):
+        print "updateCheckbox()"
+        _sender = self.sender()
+        _data = _sender.value()
+        if(_sender == self.gui.read_reg0):
+            _dest = [   self.gui.reg00,
+                        self.gui.reg01,
+                        self.gui.reg02,
+                        self.gui.reg03,
+                        self.gui.reg04,
+                        self.gui.reg05,
+                        self.gui.reg06,
+                        self.gui.reg07,
+                    ]
+        elif(_sender == self.gui.read_reg1):
+            _dest = [   self.gui.reg10,
+                        self.gui.reg11,
+                        self.gui.reg12,
+                        self.gui.reg13,
+                        self.gui.reg14,
+                        self.gui.reg15,
+                        self.gui.reg16,
+                        self.gui.reg17,
+                    ]
+        elif(_sender == self.gui.read_reg2):
+            _dest = [   self.gui.reg20,
+                        self.gui.reg21,
+                        self.gui.reg22,
+                        self.gui.reg23,
+                        self.gui.reg24,
+                        self.gui.reg25,
+                        self.gui.reg26,
+                        self.gui.reg27,
+                    ]
+        elif(_sender == self.gui.read_reg3):
+            _dest = [   self.gui.reg30,
+                        self.gui.reg31,
+                        self.gui.reg32,
+                        self.gui.reg33,
+                        self.gui.reg34,
+                        self.gui.reg35,
+                        self.gui.reg36,
+                        self.gui.reg37,
+                    ]
+        elif(_sender == self.gui.read_reg4):
+            _dest = [   self.gui.reg40,
+                        self.gui.reg41,
+                        self.gui.reg42,
+                        self.gui.reg43,
+                        self.gui.reg44,
+                        self.gui.reg45,
+                        self.gui.reg46,
+                        self.gui.reg47,
+                    ]
+#        elif(_sender == self.gui.readbtn_reg5):
+#            pass
+#        elif(_sender == self.gui.readbtn_reg6):
+#            pass
+#        elif(_sender == self.gui.readbtn_reg7):
+#            pass
+        else:
+            pass
+        for _bit in range(8):
+            if (_data&(1<<_bit)):
+#                _dest[_bit].setCheckState( QtCore.Qt.Checked )
+                _dest[_bit].setChecked( True )
+                _dest[_bit].setText( "1" )
+            else:
+#                _dest[_bit].setCheckState( QtCore.Qt.Unchecked )
+                _dest[_bit].setChecked( False )
+                _dest[_bit].setText( "0" )
+        
     def checkClick(self):
         _sender = self.sender()
+        _dest[_bit].isChecked()
+
 
 if __name__=='__main__':
 
@@ -328,23 +395,34 @@ if __name__=='__main__':
     ui.readbtn_CH4.clicked.connect(window.I2CreadClick)
     ui.readbtn_reg0.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg1.clicked.connect(window.GPIOreadClick)
+    ui.readbtn_reg2.clicked.connect(window.GPIOreadClick)
+    ui.readbtn_reg3.clicked.connect(window.GPIOreadClick)
+    ui.readbtn_reg4.clicked.connect(window.GPIOreadClick)
+    ui.writebtn_reg0.clicked.connect(window.GPIOwriteClick)
+    ui.writebtn_reg1.clicked.connect(window.GPIOwriteClick)
+    ui.writebtn_reg2.clicked.connect(window.GPIOwriteClick)
+    ui.writebtn_reg3.clicked.connect(window.GPIOwriteClick)
+    ui.writebtn_reg4.clicked.connect(window.GPIOwriteClick)
+#    ui.writebtn_reg0.clicked.connect(window._null)
+#    ui.writebtn_reg1.clicked.connect(window._null)
+#    ui.writebtn_reg2.clicked.connect(window._null)
+#    ui.writebtn_reg3.clicked.connect(window._null)
+#    ui.writebtn_reg4.clicked.connect(window._null)
     ui.writebtn_CH1.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH2.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH3.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH4.clicked.connect(window.I2CwriteClick)
-    ui.base_CH1.editingFinished.connect(window._null)
-    ui.base_CH2.editingFinished.connect(window._null)
-    ui.reg_CH1.editingFinished.connect(window._null)
-    ui.reg_CH2.editingFinished.connect(window._null)
-    ui.base_CH3.editingFinished.connect(window._null)
-    ui.reg_CH3.editingFinished.connect(window._null)
-    ui.base_CH4.editingFinished.connect(window._null)
-    ui.reg_CH4.editingFinished.connect(window._null)
+    ui.read_reg0.valueChanged.connect(window.updateCheckbox)
+    ui.read_reg1.valueChanged.connect(window.updateCheckbox)
+    ui.read_reg2.valueChanged.connect(window.updateCheckbox)
+    ui.read_reg3.valueChanged.connect(window.updateCheckbox)
+    ui.read_reg4.valueChanged.connect(window.updateCheckbox)
     QtCore.QMetaObject.connectSlotsByName(window)
     window.readI2C_signal.connect(window.readI2CSlot)
     window.writeI2C_signal.connect(window.writeI2CSlot)
     window.readGPIO_signal.connect(window.readGPIOSlot)
     window.writeGPIO_signal.connect(window.writeGPIOSlot)
+    window.updateCheckbox_signal.connect(window.updateCheckbox)
 
     window.show()
     sys.exit(app.exec_())
