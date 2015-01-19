@@ -558,6 +558,9 @@ window</string>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QTabWidget" name="registers_tab">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
           <string>CHIP_ID</string>
