@@ -544,7 +544,7 @@ window</string>
       <item>
        <widget class="QTabWidget" name="registers_tab">
         <property name="currentIndex">
-         <number>0</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -1065,14 +1065,14 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_15">
+              <widget class="QPushButton" name="readbtn_reg4">
                <property name="text">
                 <string>Read</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_8">
+              <widget class="QSpinBox" name="read_reg4">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1082,14 +1082,14 @@ window</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_16">
+              <widget class="QPushButton" name="writebtn_reg4">
                <property name="text">
                 <string>Write</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_13">
+              <widget class="QSpinBox" name="write_reg4">
                <property name="maximum">
                 <number>255</number>
                </property>
