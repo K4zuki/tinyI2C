@@ -30,8 +30,7 @@ class HexSpinBox(QtGui.QSpinBox):
 
     def __init__(self, parent=None):
         super(HexSpinBox, self).__init__(parent)
-#        regex = QtCore.QRegExp(r"(^[ ]*0[xX][0-9A-Fa-f][0-9A-Fa-f]*)|(^[ ]*-?[0-9][0-9]*)")
-        regex = QtCore.QRegExp(r"(^[ ]*[0-9A-Fa-f][0-9A-Fa-f])|(^[ ]*-?[0-9][0-9])")
+        regex = QtCore.QRegExp(r"(^[ ]*0[xX][0-9A-Fa-f][0-9A-Fa-f]*)|(^[ ]*-?[0-9][0-9]*)")
         self.validator = QtGui.QRegExpValidator(regex, self)
         self.setMaximum(255)
         self.connect(self.lineEdit(), QtCore.SIGNAL("textEdited(QString)"),
