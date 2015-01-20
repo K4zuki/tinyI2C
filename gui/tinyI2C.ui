@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>726</width>
-    <height>786</height>
+    <width>774</width>
+    <height>797</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -558,6 +558,9 @@ window</string>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QTabWidget" name="registers_tab">
+        <property name="currentIndex">
+         <number>5</number>
+        </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
           <string>CHIP_ID</string>
@@ -1711,6 +1714,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="1">
@@ -1728,6 +1737,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1747,6 +1762,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="3">
@@ -1764,6 +1785,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1783,6 +1810,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="5">
@@ -1800,6 +1833,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1819,6 +1858,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="7">
@@ -1836,6 +1881,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1978,6 +2029,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="1">
@@ -1995,6 +2052,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2014,6 +2077,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="3">
@@ -2031,6 +2100,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2050,6 +2125,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="5">
@@ -2067,6 +2148,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2086,6 +2173,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="7">
@@ -2103,6 +2196,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2252,6 +2351,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="3" column="5">
@@ -2269,6 +2374,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2288,6 +2399,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="3" column="3">
@@ -2305,6 +2422,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2324,6 +2447,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="3" column="1">
@@ -2341,6 +2470,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2360,6 +2495,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="3" column="7">
@@ -2377,6 +2518,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2533,6 +2680,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="1">
@@ -2550,6 +2703,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2569,6 +2728,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="3">
@@ -2586,6 +2751,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2605,6 +2776,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="5">
@@ -2622,6 +2799,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2641,6 +2824,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="7">
@@ -2658,6 +2847,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2814,6 +3009,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="1">
@@ -2831,6 +3032,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2850,6 +3057,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="3">
@@ -2867,6 +3080,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2886,6 +3105,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="5">
@@ -2903,6 +3128,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -2922,6 +3153,12 @@ window</string>
                <property name="text">
                 <string>0</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
              <item row="2" column="7">
@@ -2939,6 +3176,12 @@ window</string>
                </property>
                <property name="text">
                 <string>0</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
