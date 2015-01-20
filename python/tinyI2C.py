@@ -263,10 +263,12 @@ if __name__=="__main__":
     print dev.write(0xD2,0x4701) 
     print dev.write_and_read(0x90, 0x50, 1)
     raw_input("wait, press enter to transferring data")
-    if False:
-        for hoge in range(0x050, 0x300, 0x10):
+    if True:
+        
+        print "---, 00,01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,0E,0F"
+        for hoge in range(0x000, 0x100, 0x10):
             print "%03X," %(hoge),
-            print dev.write_and_read((0xD0|((hoge&0x300)>>7)), hoge&0xFF, 16)
+            print dev.write_and_read((0x34|((hoge&0x100)>>7)), hoge&0xFF, 16)
 
 
 ###    raw_input("wait, press enter to transferring data")
@@ -313,7 +315,7 @@ if __name__=="__main__":
     dev.raw_write('I01234P')
     print dev.raw_read()
     try:
-        while True:
+        while False:
             for hoge in range(0,16):
                 print dev.reg_write([[dev.GPIO0_STAT,hoge]]),
                 print dev.write_and_read(0xD0, 0x50, 1)
