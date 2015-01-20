@@ -46,29 +46,29 @@ class MyWidget(QtGui.QWidget):
         self._list()
 
     def _list(self):
-        _ser=0
-        _dummy=[0,0,0]
-        _ports=[]
-        _idx=len(self.ports)
+        _ser = 0
+        _dummy = [0, 0, 0]
+        _ports = []
+        _idx = len(self.ports)
 
         if(self.isUI):
             self.gui.portList.clear()
             self.i2c._ser.close()
             for port in serial_comports():
                 _dummy[0], _dummy[1], _dummy[2], = port
-                print "_list()",_dummy[0]
+                print "_list()", _dummy[0]
                 try:
-                    _ser=serial.Serial(port=_dummy[0])
+                    _ser = serial.Serial(port=_dummy[0])
                 except:
                     pass
                 else:
                     _ser.close()
                     _ports.append( ": ".join(_dummy[:-1]))
                     self.ports.append( port[0])
-                    print "_list()",self.ports
+                    print "_list()", self.ports
 
             self.ports=self.ports[_idx:]
-        
+
             self.gui.portList.addItems(_ports)
             self._setup(0)
 
@@ -76,22 +76,22 @@ class MyWidget(QtGui.QWidget):
         if(self.isUI):
             if(self.i2c._ser.isOpen()):
                 self.i2c._ser.close()
-            print "_setup()",self.ports
-            self.i2c=tinyI2C.serial2i2c(port=self.ports[_port])
+            print "_setup()", self.ports
+            self.i2c = tinyI2C.serial2i2c(port = self.ports[_port])
 
     def _null(self):
         pass
 
     def readI2CSlot(self, arg):
-        _slave,_channel,_register,_dest = arg
-        read=self.i2c.setChannel(_channel)
-        read=self.I2CregRead(_slave,_register)
+        _slave, _channel, _register, _dest = arg
+        read = self.i2c.setChannel(_channel)
+        read = self.I2CregRead(_slave, _register)
         _dest.setValue(int(read,16))
 
     def writeI2CSlot(self, arg):
-        _slave,_channel,_register,_data = arg
+        _slave, _channel, _register, _data = arg
         self.i2c.setChannel(_channel)
-        self.I2CregWrite(_slave,_register,_data)
+        self.I2CregWrite(_slave, _register, _data)
 
 #        CHIP_ID = '0',
 #        GPIO0_STAT = '1',
@@ -118,19 +118,19 @@ class MyWidget(QtGui.QWidget):
 
     def writeGPIOSlot(self, arg):
         _register, _data, _dest = arg
-        read = self.i2c.reg_write([[_register,_data]])
+        read = self.i2c.reg_write([[_register, _data]])
         print read
-        read=self.i2c.reg_read(_register).split(",")[0]
-        read=int(read,16)
+        read = self.i2c.reg_read(_register).split(",")[0]
+        read = int(read,16)
         _dest.setValue(0)
         _dest.setValue(1)
         _dest.setValue(read)
 
-    def I2CregRead(self, slave=0x90, reg=0x00):
-        packet=[]
-        slave=self.i2c._hex2ascii(slave,mask=0xa0)
-        reg=self.i2c._hex2ascii(reg,mask=0xb0)
-        length=self.i2c._hex2ascii(len(reg)/2,mask=0xd0)
+    def I2CregRead(self, slave = 0x90, reg = 0x00):
+        packet = []
+        slave = self.i2c._hex2ascii(slave, mask = 0xa0)
+        reg = self.i2c._hex2ascii(reg, mask = 0xb0)
+        length = self.i2c._hex2ascii(len(reg)/2, mask = 0xd0)
 
         slave.reverse()
         length.reverse()
@@ -163,12 +163,12 @@ class MyWidget(QtGui.QWidget):
     # @param reg register address in HEX
     # @param data data in HEX
     # @return created packet
-    def I2CregWrite(self, slave=0x90, reg=0x00, data=0x00):
-        packet=[]
-        slave=self.i2c._hex2ascii(slave,mask=0xa0)
-        reg=self.i2c._hex2ascii(reg,mask=0xb0)
-        data=self.i2c._hex2ascii(data,mask=0xc0)
-        length=self.i2c._hex2ascii(len(reg)/2+len(data)/2,mask=0xd0)
+    def I2CregWrite(self, slave = 0x90, reg = 0x00, data = 0x00):
+        packet = []
+        slave = self.i2c._hex2ascii(slave, mask = 0xa0)
+        reg = self.i2c._hex2ascii(reg, mask = 0xb0)
+        data = self.i2c._hex2ascii(data, mask = 0xc0)
+        length = self.i2c._hex2ascii(len(reg)/2 + len(data)/2, mask = 0xd0)
         
         slave.reverse()
         length.reverse()
@@ -180,7 +180,7 @@ class MyWidget(QtGui.QWidget):
         packet.extend(reg)
         packet.extend(data)
 
-        packet.insert(0,'S')
+        packet.insert(0, 'S')
         packet.append('P')
 
         self.i2c.raw_write("".join(packet))
@@ -471,23 +471,23 @@ if __name__=='__main__':
     ui.writebtn_reg3.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg4.clicked.connect(window.GPIOwriteClick)
 
-    ui.reg17.toggled.connect(window.checkClick)
-    ui.reg16.toggled.connect(window.checkClick)
-    ui.reg15.toggled.connect(window.checkClick)
-    ui.reg14.toggled.connect(window.checkClick)
-    ui.reg13.toggled.connect(window.checkClick)
-    ui.reg12.toggled.connect(window.checkClick)
-    ui.reg11.toggled.connect(window.checkClick)
-    ui.reg10.toggled.connect(window.checkClick)
+    ui.reg17.clicked.connect(window.checkClick)
+    ui.reg16.clicked.connect(window.checkClick)
+    ui.reg15.clicked.connect(window.checkClick)
+    ui.reg14.clicked.connect(window.checkClick)
+    ui.reg13.clicked.connect(window.checkClick)
+    ui.reg12.clicked.connect(window.checkClick)
+    ui.reg11.clicked.connect(window.checkClick)
+    ui.reg10.clicked.connect(window.checkClick)
 
-    ui.reg37.toggled.connect(window.checkClick)
-    ui.reg36.toggled.connect(window.checkClick)
-    ui.reg35.toggled.connect(window.checkClick)
-    ui.reg34.toggled.connect(window.checkClick)
-    ui.reg33.toggled.connect(window.checkClick)
-    ui.reg32.toggled.connect(window.checkClick)
-    ui.reg31.toggled.connect(window.checkClick)
-    ui.reg30.toggled.connect(window.checkClick)
+    ui.reg37.clicked.connect(window.checkClick)
+    ui.reg36.clicked.connect(window.checkClick)
+    ui.reg35.clicked.connect(window.checkClick)
+    ui.reg34.clicked.connect(window.checkClick)
+    ui.reg33.clicked.connect(window.checkClick)
+    ui.reg32.clicked.connect(window.checkClick)
+    ui.reg31.clicked.connect(window.checkClick)
+    ui.reg30.clicked.connect(window.checkClick)
 
     ui.writebtn_CH1.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH2.clicked.connect(window.I2CwriteClick)
