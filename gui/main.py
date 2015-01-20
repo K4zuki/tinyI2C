@@ -24,14 +24,15 @@ class MyWidget(QtGui.QWidget):
     writeI2C_signal = QtCore.pyqtSignal(object)
     readGPIO_signal = QtCore.pyqtSignal(object)
     writeGPIO_signal = QtCore.pyqtSignal(object)
-    updateCheckbox_signal = QtCore.pyqtSignal(object)
+#    updateCheckbox_signal = QtCore.pyqtSignal(object)
 
     isUI = False
     ports=[]
     i2c=None
     def __init__(self, parent=None):
         super(MyWidget, self).__init__(parent)
-        self.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint)
+        self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint)
+        self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)
 
     def getUI(self, gui):
         self.gui = gui
@@ -65,7 +66,7 @@ class MyWidget(QtGui.QWidget):
                     _ports.append( ": ".join(_dummy[:-1]))
                     self.ports.append( port[0])
                     print "_list()",self.ports
-                    
+
             self.ports=self.ports[_idx:]
         
             self.gui.portList.addItems(_ports)
@@ -301,7 +302,7 @@ class MyWidget(QtGui.QWidget):
             pass
         self.writeGPIO_signal.emit([_register, _data, _dest])
 
-    def updateCheckbox(self,arg):
+    def updateCheckbox(self):
         print "updateCheckbox()"
         _sender = self.sender()
         _data = _sender.value()
@@ -365,18 +366,79 @@ class MyWidget(QtGui.QWidget):
             pass
         for _bit in range(8):
             if (_data&(1<<_bit)):
-#                _dest[_bit].setCheckState( QtCore.Qt.Checked )
                 _dest[_bit].setChecked( True )
                 _dest[_bit].setText( "1" )
             else:
-#                _dest[_bit].setCheckState( QtCore.Qt.Unchecked )
                 _dest[_bit].setChecked( False )
                 _dest[_bit].setText( "0" )
         
     def checkClick(self):
+        print "checkClick()"
         _sender = self.sender()
-        _dest[_bit].isChecked()
+        if (_sender == self.gui.reg17):
+            _dest = self.gui.write_reg1
+            _shift = 7
+        elif (_sender == self.gui.reg16):
+            _dest = self.gui.write_reg1
+            _shift = 6
+        elif (_sender == self.gui.reg15):
+            _dest = self.gui.write_reg1
+            _shift = 5
+        elif (_sender == self.gui.reg14):
+            _dest = self.gui.write_reg1
+            _shift = 4
+        elif (_sender == self.gui.reg13):
+            _dest = self.gui.write_reg1
+            _shift = 3
+        elif (_sender == self.gui.reg12):
+            _dest = self.gui.write_reg1
+            _shift = 2
+        elif (_sender == self.gui.reg11):
+            _dest = self.gui.write_reg1
+            _shift = 1
+        elif (_sender == self.gui.reg10):
+            _dest = self.gui.write_reg1
+            _shift = 0
 
+        elif (_sender == self.gui.reg37):
+            _dest = self.gui.write_reg3
+            _shift = 7
+        elif (_sender == self.gui.reg36):
+            _dest = self.gui.write_reg3
+            _shift = 6
+        elif (_sender == self.gui.reg35):
+            _dest = self.gui.write_reg3
+            _shift = 5
+        elif (_sender == self.gui.reg34):
+            _dest = self.gui.write_reg3
+            _shift = 4
+        elif (_sender == self.gui.reg33):
+            _dest = self.gui.write_reg3
+            _shift = 3
+        elif (_sender == self.gui.reg32):
+            _dest = self.gui.write_reg3
+            _shift = 2
+        elif (_sender == self.gui.reg31):
+            _dest = self.gui.write_reg3
+            _shift = 1
+        elif (_sender == self.gui.reg30):
+            _dest = self.gui.write_reg3
+            _shift = 0
+        else:
+            pass
+
+        _data = _dest.value()
+        if(_sender.isChecked()):
+            _sender.setText( "1" )
+            _data |= 1<<_shift
+        else:
+            _sender.setText( "0" )
+            _data &= ~(1<<_shift)
+        
+        _dest.setValue(_data)
+
+    def bitClickedSlot(self):
+        pass
 
 if __name__=='__main__':
 
@@ -387,42 +449,64 @@ if __name__=='__main__':
     window.getUI(ui)
 
     window._list()
+
     ui.portList.currentIndexChanged.connect(window._setup)
+
     ui.getPortBtn.clicked.connect(window._search)
+
     ui.readbtn_CH1.clicked.connect(window.I2CreadClick)
     ui.readbtn_CH2.clicked.connect(window.I2CreadClick)
     ui.readbtn_CH3.clicked.connect(window.I2CreadClick)
     ui.readbtn_CH4.clicked.connect(window.I2CreadClick)
+
     ui.readbtn_reg0.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg1.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg2.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg3.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg4.clicked.connect(window.GPIOreadClick)
+
     ui.writebtn_reg0.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg1.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg2.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg3.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg4.clicked.connect(window.GPIOwriteClick)
-#    ui.writebtn_reg0.clicked.connect(window._null)
-#    ui.writebtn_reg1.clicked.connect(window._null)
-#    ui.writebtn_reg2.clicked.connect(window._null)
-#    ui.writebtn_reg3.clicked.connect(window._null)
-#    ui.writebtn_reg4.clicked.connect(window._null)
+
+    ui.reg17.toggled.connect(window.checkClick)
+    ui.reg16.toggled.connect(window.checkClick)
+    ui.reg15.toggled.connect(window.checkClick)
+    ui.reg14.toggled.connect(window.checkClick)
+    ui.reg13.toggled.connect(window.checkClick)
+    ui.reg12.toggled.connect(window.checkClick)
+    ui.reg11.toggled.connect(window.checkClick)
+    ui.reg10.toggled.connect(window.checkClick)
+
+    ui.reg37.toggled.connect(window.checkClick)
+    ui.reg36.toggled.connect(window.checkClick)
+    ui.reg35.toggled.connect(window.checkClick)
+    ui.reg34.toggled.connect(window.checkClick)
+    ui.reg33.toggled.connect(window.checkClick)
+    ui.reg32.toggled.connect(window.checkClick)
+    ui.reg31.toggled.connect(window.checkClick)
+    ui.reg30.toggled.connect(window.checkClick)
+
     ui.writebtn_CH1.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH2.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH3.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH4.clicked.connect(window.I2CwriteClick)
+
     ui.read_reg0.valueChanged.connect(window.updateCheckbox)
     ui.read_reg1.valueChanged.connect(window.updateCheckbox)
     ui.read_reg2.valueChanged.connect(window.updateCheckbox)
     ui.read_reg3.valueChanged.connect(window.updateCheckbox)
     ui.read_reg4.valueChanged.connect(window.updateCheckbox)
+
     QtCore.QMetaObject.connectSlotsByName(window)
+
     window.readI2C_signal.connect(window.readI2CSlot)
     window.writeI2C_signal.connect(window.writeI2CSlot)
     window.readGPIO_signal.connect(window.readGPIOSlot)
     window.writeGPIO_signal.connect(window.writeGPIOSlot)
-    window.updateCheckbox_signal.connect(window.updateCheckbox)
+#    window.updateCheckbox_signal.connect(window.updateCheckbox)
 
     window.show()
     sys.exit(app.exec_())
