@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 a = Analysis(['\\\\tk-filer\\home_windows\\kyamamot\\common\\GitHub\\TinyI2C\\gui\\main.py'],
-             pathex=['\\\\tk-filer\\home_windows\\kyamamot\\common\\GitHub\\TinyI2C\\gui'],
+             pathex=['\\\\tk-filer\\home_windows\\kyamamot\\common\\GitHub\\TinyI2C\\gui','\\\\tk-filer\\home_windows\\kyamamot\\common\\GitHub\\TinyI2C\\python'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None)
