@@ -79,7 +79,7 @@ class serial2i2c(object):
     ## reads multi byte data
     # @param address 8bit I2C slave address in HEX
     # @param length bytes to read
-    # @return response string from device
+    # @return ACK/NAK + response string from device
     def read(self, address, length = 1):
         packet = ['S', 'P']
 
@@ -101,7 +101,7 @@ class serial2i2c(object):
     ## writes multi byte data
     # @param address 8bit I2C slave address in HEX
     # @param data data to send
-    # @return response string from device
+    # @return ACK/NAK + response string from device
     def write(self, address, data = 0):
         packet = ['S', 'P']
 
@@ -130,7 +130,7 @@ class serial2i2c(object):
     # @param address I2C slave address in HEX
     # @param wdata data to send in HEX
     # @param rlength bytes to read
-    # @return response string from device
+    # @return ACK/NAK + response string from device
     def write_and_read(self, address, wdata = 0, rlength = 1):
         packet = ['S', 'S', 'P']
 
@@ -264,8 +264,15 @@ if __name__=="__main__":
     print dev.write_and_read(0x90, 0x50, 1)
     raw_input("wait, press enter to transferring data")
     if True:
-        
-        print "---, 00,01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,0E,0F"
+        print "--, 00, 02, 04, 06, 08, 0A, 0C, 0E"
+        for hoge in range(0x00, 0x100, 0x10):
+            print "%02X," %(hoge),
+            for foo in range(0,0x10,0x02):
+#                print "%02X," %(hoge|foo),
+                print dev.write(hoge|foo,0x00).split(",")[0],
+            print ""
+
+        print "---, ACK,00,01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,0E,0F"
         for hoge in range(0x000, 0x100, 0x10):
             print "%03X," %(hoge),
             print dev.write_and_read((0x34|((hoge&0x100)>>7)), hoge&0xFF, 16)
