@@ -154,7 +154,8 @@ class MyWidget(QtGui.QWidget):
         self.i2c.raw_write("".join(packet))
         time.sleep(self.i2c._wait * 2)
         read= self.i2c.raw_read()
-        read = read.split(",")[0]
+#        print read
+        read = read.split(",")[1]
         return read
 
     ## writes data to register address in selected slave address
@@ -185,7 +186,7 @@ class MyWidget(QtGui.QWidget):
 
         self.i2c.raw_write("".join(packet))
         _read= self.i2c.raw_read()
-#        print packet
+#        print _read
         return packet
 
     def I2CreadClick(self):
