@@ -7,8 +7,9 @@
 
 #ifdef TINYI2C
 Serial pc(P0_4, P0_0);
-#else //QUAD_I2C
-Serial pc(USBTX,USBRX); // P0_7, P0_18
+#else //TINY_I2C
+Serial pc(P0_4, P0_0);
+//Serial pc(USBTX,USBRX); // P0_7, P0_18
 #endif //TINYI2C
 //P0_13, P0_1
 
@@ -301,7 +302,8 @@ int main()
 
                         if(address & 0x01) { //read
                             ack=dev->read(address, send, length, false); //added
-send[length] = ack;
+                            send[length] = ack;
+                            length+=1;
                             i+=(5);
                         } else { // write
                             for(int j=0; j < (length * 2); j+=2) {
@@ -309,12 +311,13 @@ send[length] = ack;
                                 *(send+(j/2)) = ack; //added
                             }
                             ack=dev->write(address, send, length, true); //added
-send[length] = ack;
                             i+=(5 + length * 2);
+                            send[0] = ack;
                             length=1;
                         }
                     }else{
                         pc.printf("bad packet! %d, %d, %02X, %d\n\r",plength,i,recieve[(i+2)]&0x0F,ack);
+                        s = false;
                         i = plength;
                     }
                     break;
@@ -324,6 +327,12 @@ send[length] = ack;
                     if(s){
                         dev->stop();
                         s = false;
+                        if(send[length-1] == 0){
+                            pc.printf("ACK,");
+                        }else{
+                            pc.printf("NAK,");
+                        }
+                        length--;
                     }
                     i = plength;
                     for(int j=0; j<length; j++) {
