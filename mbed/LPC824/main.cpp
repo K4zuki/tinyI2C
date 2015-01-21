@@ -3,25 +3,30 @@
 
 #include "mbed.h"
 #define QUAD_I2C
-/** replaceD
-//Serial pc(USBTX,USBRX); // P0_7, P0_18
-*/
+#define TINYI2C
+
+#ifdef TINYI2C
 Serial pc(P0_4, P0_0);
+#else //QUAD_I2C
+Serial pc(USBTX,USBRX); // P0_7, P0_18
+#endif //TINYI2C
 //P0_13, P0_1
 
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 
 #ifdef QUAD_I2C
-/**
+
+#ifdef TINYI2C
 I2C dev2(P0_6, P0_14); // 6,14 | A0, A1
 I2C dev3(P0_23, P0_22); // 23,22 | A2, A3
 I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
-*/
+#else //TINYI2C
 I2C dev2(P0_16, P0_27);
 I2C dev3(P0_26, P0_25);
 I2C dev4(P0_24, P0_15);
+#endif //TINYI2C
 
-#else
+#else //QUAD_I2C
 DigitalInOut _GPIO10(P0_15);
 DigitalInOut _GPIO11(P0_24);
 DigitalInOut _GPIO12(P0_25);
@@ -30,8 +35,9 @@ DigitalInOut _GPIO14(P0_27);
 DigitalInOut _GPIO15(P0_16);
 DigitalInOut _GPIO16(P0_28);
 DigitalInOut _GPIO17(P0_12);
-#endif
-/**
+#endif //QUAD_I2C
+
+#ifdef TINYI2C
 DigitalInOut _GPIO00(D2); // P0_19
 DigitalInOut _GPIO01(D3); // P0_12
 DigitalInOut _GPIO02(D4); // P0_18
@@ -40,7 +46,7 @@ DigitalInOut _GPIO04(D6); // P0_16
 DigitalInOut _GPIO05(D7); // P0_17
 DigitalInOut _GPIO06(D8); // P0_13
 DigitalInOut _GPIO07(D9); // P0_27
-*/
+#else
 DigitalInOut _GPIO00(P0_17);
 DigitalInOut _GPIO01(P0_18);
 DigitalInOut _GPIO02(P0_19);
@@ -49,15 +55,15 @@ DigitalInOut _GPIO04(P0_21);
 DigitalInOut _GPIO05(P0_22);
 DigitalInOut _GPIO06(P0_23);
 DigitalInOut _GPIO07(P0_14);
+#endif //TINYI2C
 
-/**
-SPI _spi(D11, D12, D13); // mosi, miso, sclk
-DigitalOut _cs(D10); // CS
-*/
-
+#ifdef TINYI2C
 SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
 DigitalOut _cs(P0_9); // CS
-
+#else
+SPI _spi(D11, D12, D13); // mosi, miso, sclk
+DigitalOut _cs(D10); // CS
+#endif //TINYI2C
 
 //Table 3. ASCII commands supported by SC18IM700
 //ASCII command Hex value Command function
@@ -294,16 +300,18 @@ int main()
                         length = 0xff & (recieve[i+3] << 4 | (recieve[i+4] & 0x0F));
 
                         if(address & 0x01) { //read
-                            dev->read(address, send, length, false); //added
+                            ack=dev->read(address, send, length, false); //added
+send[length] = ack;
                             i+=(5);
                         } else { // write
                             for(int j=0; j < (length * 2); j+=2) {
                                 ack = 0xff&((recieve[5+j] << 4) | (recieve[6+j] & 0x0F));
                                 *(send+(j/2)) = ack; //added
                             }
-                            dev->write(address, send, length, true); //added
+                            ack=dev->write(address, send, length, true); //added
+send[length] = ack;
                             i+=(5 + length * 2);
-                            length=0;
+                            length=1;
                         }
                     }else{
                         pc.printf("bad packet! %d, %d, %02X, %d\n\r",plength,i,recieve[(i+2)]&0x0F,ack);
