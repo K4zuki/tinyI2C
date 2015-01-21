@@ -418,14 +418,14 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <smd name="6" x="-2.65" y="-0.75" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="7" x="-2.65" y="-1.25" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="8" x="-2.65" y="-1.75" dx="1.2" dy="0.3" layer="1" roundness="50" stop="no"/>
-<smd name="9" x="-1.75" y="-2.55" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
-<smd name="10" x="-1.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="11" x="-0.75" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="12" x="-0.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="13" x="0.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="14" x="0.75" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="15" x="1.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="16" x="1.75" y="-2.55" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
+<smd name="9" x="-1.75" y="-2.65" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
+<smd name="10" x="-1.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="11" x="-0.75" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="12" x="-0.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="13" x="0.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="14" x="0.75" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="15" x="1.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="16" x="1.75" y="-2.65" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
 <smd name="17" x="2.65" y="-1.75" dx="1.2" dy="0.3" layer="1" roundness="50" stop="no"/>
 <smd name="18" x="2.65" y="-1.25" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="19" x="2.65" y="-0.75" dx="1.2" dy="0.3" layer="1" stop="no"/>
@@ -460,12 +460,12 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-3.275" y1="-0.425" x2="-2.025" y2="-0.075" layer="29"/>
 <rectangle x1="-3.275" y1="-0.925" x2="-2.025" y2="-0.575" layer="29"/>
 <rectangle x1="-3.275" y1="-1.425" x2="-2.025" y2="-1.075" layer="29"/>
-<rectangle x1="-1.875" y1="-2.725" x2="-0.625" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-1.375" y1="-2.725" x2="-0.125" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-0.875" y1="-2.725" x2="0.375" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-0.375" y1="-2.725" x2="0.875" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="0.125" y1="-2.725" x2="1.375" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="0.625" y1="-2.725" x2="1.875" y2="-2.375" layer="29" rot="R90"/>
+<rectangle x1="-1.875" y1="-2.825" x2="-0.625" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-1.375" y1="-2.825" x2="-0.125" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-0.875" y1="-2.825" x2="0.375" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-0.375" y1="-2.825" x2="0.875" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="0.125" y1="-2.825" x2="1.375" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="0.625" y1="-2.825" x2="1.875" y2="-2.475" layer="29" rot="R90"/>
 <rectangle x1="2.025" y1="-1.425" x2="3.275" y2="-1.075" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="-0.925" x2="3.275" y2="-0.575" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="-0.425" x2="3.275" y2="-0.075" layer="29" rot="R180"/>
@@ -481,8 +481,8 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-3.275" y1="1.575" x2="-2.025" y2="1.925" layer="29"/>
 <rectangle x1="-2.375" y1="2.475" x2="-1.125" y2="2.825" layer="29" rot="R270"/>
 <rectangle x1="-3.275" y1="-1.925" x2="-2.025" y2="-1.575" layer="29"/>
-<rectangle x1="-2.375" y1="-2.725" x2="-1.125" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="1.125" y1="-2.725" x2="2.375" y2="-2.375" layer="29" rot="R90"/>
+<rectangle x1="-2.375" y1="-2.825" x2="-1.125" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="1.125" y1="-2.825" x2="2.375" y2="-2.475" layer="29" rot="R90"/>
 <rectangle x1="2.025" y1="-1.925" x2="3.275" y2="-1.575" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="1.575" x2="3.275" y2="1.925" layer="29" rot="R180"/>
 <rectangle x1="1.125" y1="2.475" x2="2.375" y2="2.825" layer="29" rot="R270"/>
@@ -1323,7 +1323,7 @@ design rules under a new name.</description>
 <contactref element="R2" pad="1"/>
 <contactref element="X1" pad="6"/>
 <wire x1="3.5" y1="27.5" x2="6.15" y2="25.15" width="0.25" layer="1"/>
-<wire x1="7.75" y1="25.15" x2="6.15" y2="25.15" width="0.25" layer="1"/>
+<wire x1="7.65" y1="25.15" x2="6.15" y2="25.15" width="0.25" layer="1"/>
 <wire x1="3.5" y1="27.5" x2="1.44" y2="27.5" width="0.25" layer="1"/>
 <wire x1="1.44" y1="27.5" x2="1.21" y2="27.27" width="0.25" layer="1"/>
 </signal>
@@ -1334,11 +1334,11 @@ design rules under a new name.</description>
 <wire x1="3.5" y1="25.2" x2="1.68" y2="25.2" width="0.25" layer="1"/>
 <wire x1="1.68" y1="25.2" x2="1.21" y2="24.73" width="0.25" layer="1"/>
 <wire x1="3.5" y1="25.2" x2="4.05" y2="24.65" width="0.25" layer="1"/>
-<wire x1="7.75" y1="24.65" x2="4.05" y2="24.65" width="0.25" layer="1"/>
+<wire x1="7.65" y1="24.65" x2="4.05" y2="24.65" width="0.25" layer="1"/>
 </signal>
 <signal name="GPIO14">
 <contactref element="U1" pad="11"/>
-<wire x1="7.75" y1="24.15" x2="4.85" y2="24.15" width="0.25" layer="1"/>
+<wire x1="7.65" y1="24.15" x2="4.85" y2="24.15" width="0.25" layer="1"/>
 <contactref element="R6" pad="1"/>
 <contactref element="X1" pad="8"/>
 <wire x1="3.5" y1="22.8" x2="1.82" y2="22.8" width="0.25" layer="1"/>
@@ -1347,7 +1347,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="GPIO13">
 <contactref element="U1" pad="12"/>
-<wire x1="7.75" y1="23.65" x2="5.05" y2="23.65" width="0.25" layer="1"/>
+<wire x1="7.65" y1="23.65" x2="5.05" y2="23.65" width="0.25" layer="1"/>
 <contactref element="R7" pad="1"/>
 <contactref element="X1" pad="9"/>
 <wire x1="3.5" y1="20.2" x2="1.76" y2="20.2" width="0.25" layer="1"/>
@@ -1358,7 +1358,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="GPIO12">
 <contactref element="U1" pad="13"/>
-<wire x1="7.75" y1="23.15" x2="5.55" y2="23.15" width="0.25" layer="1"/>
+<wire x1="7.65" y1="23.15" x2="5.55" y2="23.15" width="0.25" layer="1"/>
 <contactref element="R8" pad="1"/>
 <contactref element="X1" pad="10"/>
 <wire x1="3.5" y1="17.7" x2="1.8" y2="17.7" width="0.25" layer="1"/>
@@ -1371,7 +1371,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="GPIO11">
 <contactref element="U1" pad="14"/>
-<wire x1="7.75" y1="22.65" x2="6.05" y2="22.65" width="0.25" layer="1"/>
+<wire x1="7.65" y1="22.65" x2="6.05" y2="22.65" width="0.25" layer="1"/>
 <contactref element="R9" pad="1"/>
 <contactref element="X1" pad="11"/>
 <wire x1="3.5" y1="15.2" x2="1.84" y2="15.2" width="0.25" layer="1"/>
@@ -1386,7 +1386,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="GPIO10">
 <contactref element="U1" pad="15"/>
-<wire x1="7.75" y1="22.15" x2="6.55" y2="22.15" width="0.25" layer="1"/>
+<wire x1="7.65" y1="22.15" x2="6.55" y2="22.15" width="0.25" layer="1"/>
 <contactref element="R10" pad="1"/>
 <contactref element="X1" pad="12"/>
 <wire x1="3.5" y1="11.8" x2="1.44" y2="11.8" width="0.25" layer="1"/>
@@ -1418,9 +1418,9 @@ design rules under a new name.</description>
 <signal name="SPI_CS">
 <contactref element="X2" pad="12"/>
 <contactref element="U1" pad="16"/>
-<wire x1="7.75" y1="21.65" x2="7.05" y2="21.65" width="0.25" layer="1"/>
-<wire x1="7.05" y1="21.65" x2="6.2" y2="20.8" width="0.25" layer="1"/>
-<wire x1="6.2" y1="20.8" x2="6.2" y2="20.1" width="0.25" layer="1"/>
+<wire x1="7.65" y1="21.65" x2="6.95" y2="21.65" width="0.25" layer="1"/>
+<wire x1="6.95" y1="21.65" x2="6.2" y2="20.9" width="0.25" layer="1"/>
+<wire x1="6.2" y1="20.9" x2="6.2" y2="20.1" width="0.25" layer="1"/>
 <wire x1="6.2" y1="20.1" x2="5.7" y2="19.6" width="0.25" layer="1"/>
 <wire x1="5.7" y1="19.6" x2="5.7" y2="12.9" width="0.25" layer="1"/>
 <wire x1="18.99" y1="12.03" x2="18.87" y2="12.03" width="0.25" layer="1"/>

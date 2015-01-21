@@ -1272,14 +1272,14 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <smd name="6" x="-2.65" y="-0.75" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="7" x="-2.65" y="-1.25" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="8" x="-2.65" y="-1.75" dx="1.2" dy="0.3" layer="1" roundness="50" stop="no"/>
-<smd name="9" x="-1.75" y="-2.55" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
-<smd name="10" x="-1.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="11" x="-0.75" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="12" x="-0.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="13" x="0.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="14" x="0.75" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="15" x="1.25" y="-2.55" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
-<smd name="16" x="1.75" y="-2.55" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
+<smd name="9" x="-1.75" y="-2.65" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
+<smd name="10" x="-1.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="11" x="-0.75" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="12" x="-0.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="13" x="0.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="14" x="0.75" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="15" x="1.25" y="-2.65" dx="1.2" dy="0.3" layer="1" rot="R90" stop="no"/>
+<smd name="16" x="1.75" y="-2.65" dx="1.2" dy="0.3" layer="1" roundness="50" rot="R90" stop="no"/>
 <smd name="17" x="2.65" y="-1.75" dx="1.2" dy="0.3" layer="1" roundness="50" stop="no"/>
 <smd name="18" x="2.65" y="-1.25" dx="1.2" dy="0.3" layer="1" stop="no"/>
 <smd name="19" x="2.65" y="-0.75" dx="1.2" dy="0.3" layer="1" stop="no"/>
@@ -1314,12 +1314,12 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-3.275" y1="-0.425" x2="-2.025" y2="-0.075" layer="29"/>
 <rectangle x1="-3.275" y1="-0.925" x2="-2.025" y2="-0.575" layer="29"/>
 <rectangle x1="-3.275" y1="-1.425" x2="-2.025" y2="-1.075" layer="29"/>
-<rectangle x1="-1.875" y1="-2.725" x2="-0.625" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-1.375" y1="-2.725" x2="-0.125" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-0.875" y1="-2.725" x2="0.375" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="-0.375" y1="-2.725" x2="0.875" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="0.125" y1="-2.725" x2="1.375" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="0.625" y1="-2.725" x2="1.875" y2="-2.375" layer="29" rot="R90"/>
+<rectangle x1="-1.875" y1="-2.825" x2="-0.625" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-1.375" y1="-2.825" x2="-0.125" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-0.875" y1="-2.825" x2="0.375" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="-0.375" y1="-2.825" x2="0.875" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="0.125" y1="-2.825" x2="1.375" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="0.625" y1="-2.825" x2="1.875" y2="-2.475" layer="29" rot="R90"/>
 <rectangle x1="2.025" y1="-1.425" x2="3.275" y2="-1.075" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="-0.925" x2="3.275" y2="-0.575" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="-0.425" x2="3.275" y2="-0.075" layer="29" rot="R180"/>
@@ -1335,8 +1335,8 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-3.275" y1="1.575" x2="-2.025" y2="1.925" layer="29"/>
 <rectangle x1="-2.375" y1="2.475" x2="-1.125" y2="2.825" layer="29" rot="R270"/>
 <rectangle x1="-3.275" y1="-1.925" x2="-2.025" y2="-1.575" layer="29"/>
-<rectangle x1="-2.375" y1="-2.725" x2="-1.125" y2="-2.375" layer="29" rot="R90"/>
-<rectangle x1="1.125" y1="-2.725" x2="2.375" y2="-2.375" layer="29" rot="R90"/>
+<rectangle x1="-2.375" y1="-2.825" x2="-1.125" y2="-2.475" layer="29" rot="R90"/>
+<rectangle x1="1.125" y1="-2.825" x2="2.375" y2="-2.475" layer="29" rot="R90"/>
 <rectangle x1="2.025" y1="-1.925" x2="3.275" y2="-1.575" layer="29" rot="R180"/>
 <rectangle x1="2.025" y1="1.575" x2="3.275" y2="1.925" layer="29" rot="R180"/>
 <rectangle x1="1.125" y1="2.475" x2="2.375" y2="2.825" layer="29" rot="R270"/>
