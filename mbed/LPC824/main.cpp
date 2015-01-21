@@ -17,13 +17,13 @@ I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 #ifdef QUAD_I2C
 
 #ifdef TINYI2C
-I2C dev2(P0_6, P0_14); // 6,14 | A0, A1
-I2C dev3(P0_23, P0_22); // 23,22 | A2, A3
-I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
-#else //TINYI2C
 I2C dev2(P0_16, P0_27);
 I2C dev3(P0_26, P0_25);
 I2C dev4(P0_24, P0_15);
+#else //TINYI2C
+I2C dev2(P0_6, P0_14); // 6,14 | A0, A1
+I2C dev3(P0_23, P0_22); // 23,22 | A2, A3
+I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
 #endif //TINYI2C
 
 #else //QUAD_I2C
@@ -38,15 +38,6 @@ DigitalInOut _GPIO17(P0_12);
 #endif //QUAD_I2C
 
 #ifdef TINYI2C
-DigitalInOut _GPIO00(D2); // P0_19
-DigitalInOut _GPIO01(D3); // P0_12
-DigitalInOut _GPIO02(D4); // P0_18
-DigitalInOut _GPIO03(D5); // P0_28
-DigitalInOut _GPIO04(D6); // P0_16
-DigitalInOut _GPIO05(D7); // P0_17
-DigitalInOut _GPIO06(D8); // P0_13
-DigitalInOut _GPIO07(D9); // P0_27
-#else
 DigitalInOut _GPIO00(P0_17);
 DigitalInOut _GPIO01(P0_18);
 DigitalInOut _GPIO02(P0_19);
@@ -55,6 +46,15 @@ DigitalInOut _GPIO04(P0_21);
 DigitalInOut _GPIO05(P0_22);
 DigitalInOut _GPIO06(P0_23);
 DigitalInOut _GPIO07(P0_14);
+#else
+DigitalInOut _GPIO00(D2); // P0_19
+DigitalInOut _GPIO01(D3); // P0_12
+DigitalInOut _GPIO02(D4); // P0_18
+DigitalInOut _GPIO03(D5); // P0_28
+DigitalInOut _GPIO04(D6); // P0_16
+DigitalInOut _GPIO05(D7); // P0_17
+DigitalInOut _GPIO06(D8); // P0_13
+DigitalInOut _GPIO07(D9); // P0_27
 #endif //TINYI2C
 
 #ifdef TINYI2C
