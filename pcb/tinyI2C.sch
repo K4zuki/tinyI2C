@@ -2731,19 +2731,19 @@ C2 |--- 0.1uF GRM155R71C104KA88D
 C6 |
 C7 |</text>
 <wire x1="203.2" y1="172.72" x2="254" y2="172.72" width="0.1524" layer="94"/>
-<wire x1="254" y1="172.72" x2="254" y2="114.3" width="0.1524" layer="94"/>
-<wire x1="254" y1="114.3" x2="203.2" y2="114.3" width="0.1524" layer="94"/>
-<wire x1="203.2" y1="114.3" x2="203.2" y2="172.72" width="0.1524" layer="94"/>
-<text x="205.74" y="147.32" size="1.778" layer="94">C3 |
-C4 |--- 10uF GRM155R60J106ME44D</text>
-<text x="205.74" y="132.08" size="1.778" layer="94">IC1 |
+<wire x1="254" y1="172.72" x2="254" y2="116.84" width="0.1524" layer="94"/>
+<wire x1="254" y1="116.84" x2="203.2" y2="116.84" width="0.1524" layer="94"/>
+<wire x1="203.2" y1="116.84" x2="203.2" y2="172.72" width="0.1524" layer="94"/>
+<text x="205.74" y="149.86" size="1.778" layer="94">C3 |
+C4 |--- 10uF GRM155R60J106ME44D
+C5 |</text>
+<text x="205.74" y="134.62" size="1.778" layer="94">IC1 |
 IC2 |-- SN74LVC1G125DCKR</text>
-<text x="205.74" y="127" size="1.778" layer="94">IC3 |-- MIC5355-SGYMME</text>
-<text x="205.74" y="154.94" size="1.778" layer="94">C5 |--- 1.0uF GRM155R61A105KE15</text>
-<text x="205.74" y="116.84" size="1.778" layer="94">U1 |-- LPC824201JHI33</text>
-<text x="205.74" y="139.7" size="1.778" layer="94">C8 |
+<text x="205.74" y="129.54" size="1.778" layer="94">IC3 |-- MIC5355-SGYMME</text>
+<text x="205.74" y="119.38" size="1.778" layer="94">U1 |-- LPC824201JHI33</text>
+<text x="205.74" y="142.24" size="1.778" layer="94">C8 |
 C9 |--- 18pF GRM1555C1E180JA01D</text>
-<text x="205.74" y="121.92" size="1.778" layer="94">Q1 |-- 12MHz CX3225GB12000P0HPQCC</text>
+<text x="205.74" y="124.46" size="1.778" layer="94">Q1 |-- 12MHz CX3225GB12000P0HPQCC</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
