@@ -12,19 +12,6 @@
 import sys
 from PyQt4 import QtCore, QtGui
 
-def _hex2ascii(h, mask = 0xa0):
-    chars_in_reverse = []
-    chars_in_reverse.append("%X"%( (h & 0x0F)))
-    chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
-    h = h >> 8
-    while h != 0x0:
-        chars_in_reverse.append("%X"%( (h & 0x0F)))
-        chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
-        h = h >> 8
-
-    chars_in_reverse.reverse()
-    return "".join(chars_in_reverse)
-
 # Regex adapted from Mark Pilgrim's "Dive Into Python" book
 class HexSpinBox(QtGui.QSpinBox):
 
@@ -50,9 +37,35 @@ class HexSpinBox(QtGui.QSpinBox):
         return int(unicode(text),16)
 
     def textFromValue(self, value):
-        return _hex2ascii(value)
+        return self._hex2ascii(value)
+
+    def _hex2ascii(self, h, mask = 0xa0):
+        chars_in_reverse = []
+        chars_in_reverse.append("%X"%( (h & 0x0F)))
+        chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+        h = h >> 8
+        while h != 0x0:
+            chars_in_reverse.append("%X"%( (h & 0x0F)))
+            chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+            h = h >> 8
+    
+        chars_in_reverse.reverse()
+        return "".join(chars_in_reverse)
 
 if __name__ == "__main__":
+    def _hex2ascii(h, mask = 0xa0):
+        chars_in_reverse = []
+        chars_in_reverse.append("%X"%( (h & 0x0F)))
+        chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+        h = h >> 8
+        while h != 0x0:
+            chars_in_reverse.append("%X"%( (h & 0x0F)))
+            chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+            h = h >> 8
+    
+        chars_in_reverse.reverse()
+        return "".join(chars_in_reverse)
+
     def report(value):
         print "%4d %s" % (value, _hex2ascii(value))
 
