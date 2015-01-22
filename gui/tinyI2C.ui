@@ -89,6 +89,9 @@ a
 log message
 window</string>
         </property>
+        <property name="centerOnScroll">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -117,7 +120,7 @@ window</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QSpinBox" name="base_CH1">
+          <widget class="HexSpinBox" name="base_CH1">
            <property name="suffix">
             <string/>
            </property>
@@ -136,7 +139,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="reg_CH1">
+          <widget class="HexSpinBox" name="reg_CH1">
            <property name="suffix">
             <string/>
            </property>
@@ -156,7 +159,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="read_CH1">
+          <widget class="HexSpinBox" name="read_CH1">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -179,7 +182,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="write_CH1">
+          <widget class="HexSpinBox" name="write_CH1">
            <property name="suffix">
             <string/>
            </property>
@@ -206,7 +209,7 @@ window</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QSpinBox" name="base_CH2">
+          <widget class="HexSpinBox" name="base_CH2">
            <property name="suffix">
             <string/>
            </property>
@@ -225,7 +228,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="reg_CH2">
+          <widget class="HexSpinBox" name="reg_CH2">
            <property name="suffix">
             <string/>
            </property>
@@ -245,7 +248,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="read_CH2">
+          <widget class="HexSpinBox" name="read_CH2">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -268,7 +271,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="write_CH2">
+          <widget class="HexSpinBox" name="write_CH2">
            <property name="suffix">
             <string/>
            </property>
@@ -295,7 +298,7 @@ window</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <item>
-          <widget class="QSpinBox" name="base_CH3">
+          <widget class="HexSpinBox" name="base_CH3">
            <property name="suffix">
             <string/>
            </property>
@@ -314,7 +317,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="reg_CH3">
+          <widget class="HexSpinBox" name="reg_CH3">
            <property name="suffix">
             <string/>
            </property>
@@ -334,7 +337,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="read_CH3">
+          <widget class="HexSpinBox" name="read_CH3">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -357,7 +360,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="write_CH3">
+          <widget class="HexSpinBox" name="write_CH3">
            <property name="suffix">
             <string/>
            </property>
@@ -384,7 +387,7 @@ window</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>
-          <widget class="QSpinBox" name="base_CH4">
+          <widget class="HexSpinBox" name="base_CH4">
            <property name="suffix">
             <string/>
            </property>
@@ -403,7 +406,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="reg_CH4">
+          <widget class="HexSpinBox" name="reg_CH4">
            <property name="suffix">
             <string/>
            </property>
@@ -423,7 +426,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="read_CH4">
+          <widget class="HexSpinBox" name="read_CH4">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -446,7 +449,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="write_CH4">
+          <widget class="HexSpinBox" name="write_CH4">
            <property name="suffix">
             <string/>
            </property>
@@ -473,7 +476,7 @@ window</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_10">
          <item>
-          <widget class="QSpinBox" name="base_SPI">
+          <widget class="HexSpinBox" name="base_SPI">
            <property name="suffix">
             <string/>
            </property>
@@ -489,7 +492,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="reg_SPI">
+          <widget class="HexSpinBox" name="reg_SPI">
            <property name="suffix">
             <string/>
            </property>
@@ -509,7 +512,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="read_SPI">
+          <widget class="HexSpinBox" name="read_SPI">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -532,7 +535,7 @@ window</string>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="write_SPI">
+          <widget class="HexSpinBox" name="write_SPI">
            <property name="suffix">
             <string/>
            </property>
@@ -559,7 +562,7 @@ window</string>
       <item>
        <widget class="QTabWidget" name="registers_tab">
         <property name="currentIndex">
-         <number>5</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -580,7 +583,7 @@ window</string>
               </widget>
              </item>
              <item row="1" column="9">
-              <widget class="QSpinBox" name="read_reg0">
+              <widget class="HexSpinBox" name="read_reg0">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -600,7 +603,7 @@ window</string>
               </widget>
              </item>
              <item row="1" column="11">
-              <widget class="QSpinBox" name="write_reg0">
+              <widget class="HexSpinBox" name="write_reg0">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1052,7 +1055,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="13" rowspan="2">
-              <widget class="QSpinBox" name="write_reg1">
+              <widget class="HexSpinBox" name="write_reg1">
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -1086,7 +1089,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="11" rowspan="2">
-              <widget class="QSpinBox" name="read_reg1">
+              <widget class="HexSpinBox" name="read_reg1">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1388,7 +1391,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="17">
-              <widget class="QSpinBox" name="write_reg3">
+              <widget class="HexSpinBox" name="write_reg3">
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -1409,7 +1412,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="15">
-              <widget class="QSpinBox" name="read_reg3">
+              <widget class="HexSpinBox" name="read_reg3">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1595,7 +1598,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="9">
-              <widget class="QSpinBox" name="read_reg2">
+              <widget class="HexSpinBox" name="read_reg2">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1605,7 +1608,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="11">
-              <widget class="QSpinBox" name="spinBox_11">
+              <widget class="HexSpinBox" name="spinBox_11">
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -1910,7 +1913,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="9">
-              <widget class="QSpinBox" name="read_reg4">
+              <widget class="HexSpinBox" name="read_reg4">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1920,7 +1923,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="11">
-              <widget class="QSpinBox" name="write_reg4">
+              <widget class="HexSpinBox" name="write_reg4">
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -2292,7 +2295,7 @@ window</string>
               </widget>
              </item>
              <item row="3" column="11">
-              <widget class="QSpinBox" name="write_reg5">
+              <widget class="HexSpinBox" name="write_reg5">
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -2316,7 +2319,7 @@ window</string>
               </widget>
              </item>
              <item row="3" column="9">
-              <widget class="QSpinBox" name="read_reg5">
+              <widget class="HexSpinBox" name="read_reg5">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -2561,7 +2564,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="9">
-              <widget class="QSpinBox" name="read_reg6">
+              <widget class="HexSpinBox" name="read_reg6">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -2571,7 +2574,7 @@ window</string>
               </widget>
              </item>
              <item row="2" column="11">
-              <widget class="QSpinBox" name="write_reg6">
+              <widget class="HexSpinBox" name="write_reg6">
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -2890,14 +2893,14 @@ window</string>
               </widget>
              </item>
              <item row="2" column="11">
-              <widget class="QSpinBox" name="write_reg7">
+              <widget class="HexSpinBox" name="write_reg7">
                <property name="maximum">
                 <number>255</number>
                </property>
               </widget>
              </item>
              <item row="2" column="9">
-              <widget class="QSpinBox" name="read_reg7">
+              <widget class="HexSpinBox" name="read_reg7">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -3204,6 +3207,13 @@ window</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HexSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>hexSpinbox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
  <designerdata>
