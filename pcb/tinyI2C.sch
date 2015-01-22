@@ -1394,6 +1394,11 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="-1" y1="-0.4" x2="-0.2" y2="0.4" layer="29"/>
 <rectangle x1="0.2" y1="-0.4" x2="1" y2="0.4" layer="29"/>
 <rectangle x1="0.25" y1="-0.3" x2="0.55" y2="0.3" layer="51"/>
+<wire x1="-0.1" y1="0.5" x2="0" y2="0.5" width="0.2" layer="21"/>
+<wire x1="0" y1="0.5" x2="0.1" y2="0.5" width="0.2" layer="21"/>
+<wire x1="-0.1" y1="-0.5" x2="0" y2="-0.5" width="0.2" layer="21"/>
+<wire x1="0" y1="-0.5" x2="0.1" y2="-0.5" width="0.2" layer="21"/>
+<wire x1="0" y1="0.5" x2="0" y2="-0.5" width="0.2" layer="21"/>
 </package>
 <package name="CR_1608">
 <wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.2" layer="21"/>
@@ -2721,21 +2726,24 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <sheet>
 <plain>
 <text x="238.76" y="27.94" size="1.778" layer="91">FIDUCIALS</text>
-<text x="198.12" y="160.02" size="1.778" layer="94">C1 |
+<text x="205.74" y="160.02" size="1.778" layer="94">C1 |
 C2 |--- 0.1uF GRM155R71C104KA88D
 C6 |
 C7 |</text>
-<wire x1="195.58" y1="172.72" x2="254" y2="172.72" width="0.1524" layer="94"/>
-<wire x1="254" y1="172.72" x2="254" y2="127" width="0.1524" layer="94"/>
-<wire x1="254" y1="127" x2="195.58" y2="127" width="0.1524" layer="94"/>
-<wire x1="195.58" y1="127" x2="195.58" y2="172.72" width="0.1524" layer="94"/>
-<text x="198.12" y="147.32" size="1.778" layer="94">C3 |
+<wire x1="203.2" y1="172.72" x2="254" y2="172.72" width="0.1524" layer="94"/>
+<wire x1="254" y1="172.72" x2="254" y2="114.3" width="0.1524" layer="94"/>
+<wire x1="254" y1="114.3" x2="203.2" y2="114.3" width="0.1524" layer="94"/>
+<wire x1="203.2" y1="114.3" x2="203.2" y2="172.72" width="0.1524" layer="94"/>
+<text x="205.74" y="147.32" size="1.778" layer="94">C3 |
 C4 |--- 10uF GRM155R60J106ME44D</text>
-<text x="198.12" y="139.7" size="1.778" layer="94">IC1 |
+<text x="205.74" y="132.08" size="1.778" layer="94">IC1 |
 IC2 |-- SN74LVC1G125DCKR</text>
-<text x="198.12" y="134.62" size="1.778" layer="94">IC3 |-- MIC5355-SGYMME</text>
-<text x="198.12" y="154.94" size="1.778" layer="94">C5 |--- 1.0uF GRM155R61A105KE15</text>
-<text x="198.12" y="129.54" size="1.778" layer="94">U1 |-- LPC824201JHI33</text>
+<text x="205.74" y="127" size="1.778" layer="94">IC3 |-- MIC5355-SGYMME</text>
+<text x="205.74" y="154.94" size="1.778" layer="94">C5 |--- 1.0uF GRM155R61A105KE15</text>
+<text x="205.74" y="116.84" size="1.778" layer="94">U1 |-- LPC824201JHI33</text>
+<text x="205.74" y="139.7" size="1.778" layer="94">C8 |
+C9 |--- 18pF GRM1555C1E180JA01D</text>
+<text x="205.74" y="121.92" size="1.778" layer="94">Q1 |-- 12MHz CX3225GB12000P0HPQCC</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
