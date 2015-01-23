@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'tinyI2C.ui'
 #
-# Created: Thu Jan 22 15:32:43 2015
+# Created: Fri Jan 23 16:04:36 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1356,7 +1356,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         self.portList.setCurrentIndex(-1)
-        self.registers_tab.setCurrentIndex(4)
+        self.registers_tab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

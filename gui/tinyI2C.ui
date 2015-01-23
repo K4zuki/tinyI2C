@@ -562,7 +562,7 @@ window</string>
       <item>
        <widget class="QTabWidget" name="registers_tab">
         <property name="currentIndex">
-         <number>4</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
