@@ -56,7 +56,7 @@ class MyWidget(QtGui.QWidget):
             self.i2c._ser.close()
             for port in serial_comports():
                 _dummy[0], _dummy[1], _dummy[2], = port
-                print "_list()", _dummy[0]
+#                print "_list()", _dummy[0]
                 try:
                     _ser = serial.Serial(port=_dummy[0])
                 except:
@@ -65,7 +65,7 @@ class MyWidget(QtGui.QWidget):
                     _ser.close()
                     _ports.append( ": ".join(_dummy[:-1]))
                     self.ports.append( port[0])
-                    print "_list()", self.ports
+#                    print "_list()", self.ports
 
             self.ports=self.ports[_idx:]
 
@@ -76,7 +76,7 @@ class MyWidget(QtGui.QWidget):
         if(self.isUI):
             if(self.i2c._ser.isOpen()):
                 self.i2c._ser.close()
-            print "_setup()", self.ports
+#            print "_setup()", self.ports
             self.i2c = tinyI2C.serial2i2c(port = self.ports[_port])
 
     def _null(self):
@@ -119,7 +119,7 @@ class MyWidget(QtGui.QWidget):
     def writeGPIOSlot(self, arg):
         _register, _data, _dest = arg
         read = self.i2c.reg_write([[_register, _data]])
-        print read
+#        print read
         read = self.i2c.reg_read(_register).split(",")[0]
         read = int(read,16)
         _dest.setValue(0)
@@ -272,7 +272,7 @@ class MyWidget(QtGui.QWidget):
 
     def GPIOwriteClick(self):
         _sender = self.sender()
-        print 'GPIOwriteClick()'
+#        print 'GPIOwriteClick()'
         if(_sender == self.gui.writebtn_reg0):# this should not happen
             _register = self.i2c.CHIP_ID
             _data = self.gui.write_reg0.value()
@@ -304,7 +304,7 @@ class MyWidget(QtGui.QWidget):
         self.writeGPIO_signal.emit([_register, _data, _dest])
 
     def updateCheckbox(self):
-        print "updateCheckbox()"
+#        print "updateCheckbox()"
         _sender = self.sender()
         _data = _sender.value()
         if(_sender == self.gui.read_reg0):
@@ -374,7 +374,7 @@ class MyWidget(QtGui.QWidget):
                 _dest[_bit].setText( "0" )
         
     def checkClick(self):
-        print "checkClick()"
+#        print "checkClick()"
         _sender = self.sender()
         if (_sender == self.gui.reg17):
             _dest = self.gui.write_reg1
