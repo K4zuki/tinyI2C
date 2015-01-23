@@ -264,14 +264,23 @@ if __name__=="__main__":
     print dev.write_and_read(0x90, 0x50, 1)
     raw_input("wait, press enter to transferring data")
     if True:
-        print "--, 00, 02, 04, 06, 08, 0A, 0C, 0E"
-        for hoge in range(0x00, 0x100, 0x10):
-            print "%02X," %(hoge),
-            for foo in range(0,0x10,0x02):
+        for hoo in range(4):
+            print hoo
+            dev.setChannel(hoo)
+            print "--, 00, 02, 04, 06, 08, 0A, 0C, 0E"
+            for hoge in range(0x00, 0x100, 0x10):
+#                print "%02X," %(hoge),
+                for foo in range(0,0x10,0x02):
 #                print "%02X," %(hoge|foo),
-                print dev.write(hoge|foo,0x00).split(",")[0],
-            print ""
-
+                    if (dev.write(hoge|foo,0x00).split(",")[0] == "ACK"):
+                        print ">A<",
+                    else:
+                        print " N ",
+#                print dev.write(hoge|foo,0x00).split(",")[0],
+                print ""
+    
+        dev.setChannel(0)
+        print ""
         print "---, ACK,00,01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,0E,0F"
         for hoge in range(0x000, 0x100, 0x10):
             print "%03X," %(hoge),
