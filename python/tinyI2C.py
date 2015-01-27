@@ -57,6 +57,8 @@ class serial2i2c(object):
     ## register 2; rw; returns status of GPIO1 if enabled
     GPIO0_CONF = '3'
     GPIO1_CONF = '4'
+    I2C_CONF = '5'
+    SPI_CONF = '6'
 
     ## constructor
     # @param port COM port which device is conected
@@ -269,7 +271,7 @@ if __name__=="__main__":
             dev.setChannel(hoo)
             print "--, 00, 02, 04, 06, 08, 0A, 0C, 0E"
             for hoge in range(0x00, 0x100, 0x10):
-#                print "%02X," %(hoge),
+                print "%02X," %(hoge),
                 for foo in range(0,0x10,0x02):
 #                print "%02X," %(hoge|foo),
                     if (dev.write(hoge|foo,0x00).split(",")[0] == "ACK"):

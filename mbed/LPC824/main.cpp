@@ -100,7 +100,7 @@ int main()
     pc.baud(115200);
 
     bool s = false;
-    dev1.frequency(900000);//900k; works around 940kHz with 200ohm pullups/ not work at 1M? 
+    dev1.frequency(800000);//900k; works around 940kHz with 200ohm pullups/ not work at 1M? 
     LPC_IOCON->PIO0_11 &= ~(0x03<<8);
     LPC_IOCON->PIO0_11 |= (0x02<<8);
     LPC_IOCON->PIO0_10 &= ~(0x03<<8);
@@ -211,8 +211,8 @@ int main()
         GPIO1_STAT = '2',
         GPIO0_CONF = '3',
         GPIO1_CONF = '4',
-        REG5,
-        REG6,
+        I2C_CONF = '5',
+        SPI_CONF = '6',
         REG7,
         REG8,
         REG9,
@@ -225,12 +225,12 @@ int main()
     static const uint8_t chip_id=ID_LPC824;
     static uint8_t registers[]={
         chip_id,
-        0xBB,
-        0xCC,
-        0xDD,
-        0xEE,
-        REG5,
-        REG6,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0xFF,
+        0x70,
         REG7,
         REG8,
         REG9,
@@ -387,6 +387,16 @@ int main()
                                     break;
                                 }
 #endif
+                                case I2C_CONF:
+                                {
+                                    data = registers[I2C_CONF-'0'];
+                                    break;
+                                }
+                                case SPI_CONF:
+                                {
+                                    data = registers[SPI_CONF-'0'];
+                                    break;
+                                }
                                 default:
                                 {
                                     data = 0xAA;
@@ -477,6 +487,22 @@ int main()
                                     break;
                                 }
 #endif
+                                case I2C_CONF:
+                                {
+                                    registers[I2C_CONF-'0'] = data;
+                                    dev1.frequency(100 * ((0x03 & (data>>0)) + 1));
+                                    dev2.frequency(100 * ((0x03 & (data>>2)) + 1));
+                                    dev3.frequency(100 * ((0x03 & (data>>4)) + 1));
+                                    dev4.frequency(100 * ((0x03 & (data>>6)) + 1));
+                                    break;
+                                }
+                                case SPI_CONF:
+                                {
+                                    registers[SPI_CONF-'0'] = data;
+                                    _spi.frequency(1000000 * ((0x07 & (data>>4)) + 1));
+                                    _spi.format(0x03 & (data));
+                                    break;
+                                }
                                 default:
                                 {
                                     break;
