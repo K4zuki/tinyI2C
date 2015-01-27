@@ -490,17 +490,17 @@ int main()
                                 case I2C_CONF:
                                 {
                                     registers[I2C_CONF-'0'] = data;
-                                    dev1.frequency(100 * ((0x03 & (data>>0)) + 1));
-                                    dev2.frequency(100 * ((0x03 & (data>>2)) + 1));
-                                    dev3.frequency(100 * ((0x03 & (data>>4)) + 1));
-                                    dev4.frequency(100 * ((0x03 & (data>>6)) + 1));
+                                    dev1.frequency(100000 * ((0x03 & (data>>0)) + 1));
+                                    dev2.frequency(100000 * ((0x03 & (data>>2)) + 1));
+                                    dev3.frequency(100000 * ((0x03 & (data>>4)) + 1));
+                                    dev4.frequency(100000 * ((0x03 & (data>>6)) + 1));
                                     break;
                                 }
                                 case SPI_CONF:
                                 {
                                     registers[SPI_CONF-'0'] = data;
+                                    _spi.format(8, 0x03 & (data));
                                     _spi.frequency(1000000 * ((0x07 & (data>>4)) + 1));
-                                    _spi.format(0x03 & (data));
                                     break;
                                 }
                                 default:
