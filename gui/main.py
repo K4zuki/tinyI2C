@@ -108,6 +108,7 @@ class MyWidget(QtGui.QWidget):
 #    def reg_read(self, registers = "012"):
 
     def readGPIOSlot(self, arg):
+#        print "readGPIOslot()",
         _sender = self.sender()
         _register,_dest = arg
         read=self.i2c.reg_read(_register).split(",")[0]
@@ -117,9 +118,9 @@ class MyWidget(QtGui.QWidget):
         _dest.setValue(read)
 
     def writeGPIOSlot(self, arg):
+#        print "writeGPIOslot()",
         _register, _data, _dest = arg
-        read = self.i2c.reg_write([[_register, _data]])
-#        print read
+        read = self.i2c.reg_write([[str(_register), _data]])
         read = self.i2c.reg_read(_register).split(",")[0]
         read = int(read,16)
         _dest.setValue(0)
@@ -165,6 +166,8 @@ class MyWidget(QtGui.QWidget):
     # @param data data in HEX
     # @return created packet
     def I2CregWrite(self, slave = 0x90, reg = 0x00, data = 0x00):
+#        print "I2CregWrite()",
+
         packet = []
         slave = self.i2c._hex2ascii(slave, mask = 0xa0)
         reg = self.i2c._hex2ascii(reg, mask = 0xb0)
@@ -186,7 +189,6 @@ class MyWidget(QtGui.QWidget):
 
         self.i2c.raw_write("".join(packet))
         _read= self.i2c.raw_read()
-#        print _read
         return packet
 
     def I2CreadClick(self):
@@ -244,6 +246,7 @@ class MyWidget(QtGui.QWidget):
         self.writeI2C_signal.emit([_slave, _channel, _register, _data])
 
     def GPIOreadClick(self):
+#        print "GPIOreadClick()",
         _sender = self.sender()
         if(_sender == self.gui.readbtn_reg0):
             _register = self.i2c.CHIP_ID
@@ -273,8 +276,8 @@ class MyWidget(QtGui.QWidget):
         self.readGPIO_signal.emit([_register, _dest])
 
     def GPIOwriteClick(self):
+#        print "GPIOreadClick()",
         _sender = self.sender()
-#        print 'GPIOwriteClick()'
         if(_sender == self.gui.writebtn_reg0):# this should not happen
             _register = self.i2c.CHIP_ID
             _data = self.gui.write_reg0.value()
