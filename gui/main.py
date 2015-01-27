@@ -260,10 +260,12 @@ class MyWidget(QtGui.QWidget):
         elif(_sender == self.gui.readbtn_reg4):
             _register = self.i2c.GPIO1_CONF
             _dest = self.gui.read_reg4
-#        elif(_sender == self.gui.readbtn_reg5):
-#            pass
-#        elif(_sender == self.gui.readbtn_reg6):
-#            pass
+        elif(_sender == self.gui.readbtn_reg5):
+            _register = self.i2c.I2C_CONF
+            _dest = self.gui.read_reg5
+        elif(_sender == self.gui.readbtn_reg6):
+            _register = self.i2c.SPI_CONF
+            _dest = self.gui.read_reg6
 #        elif(_sender == self.gui.readbtn_reg7):
 #            pass
         else:
@@ -293,10 +295,14 @@ class MyWidget(QtGui.QWidget):
             _register = self.i2c.GPIO1_CONF
             _data = self.gui.write_reg4.value()
             _dest = self.gui.read_reg4
-#        elif(_sender == self.gui.writetn_reg5):
-#            pass
-#        elif(_sender == self.gui.writebtn_reg6):
-#            pass
+        elif(_sender == self.gui.writebtn_reg5):
+            _register = self.i2c.I2C_CONF
+            _data = self.gui.write_reg5.value()
+            _dest = self.gui.read_reg5
+        elif(_sender == self.gui.writebtn_reg6):
+            _register = self.i2c.SPI_CONF
+            _data = self.gui.write_reg6.value()
+            _dest = self.gui.read_reg6
 #        elif(_sender == self.gui.writebtn_reg7):
 #            pass
         else:
@@ -357,10 +363,26 @@ class MyWidget(QtGui.QWidget):
                         self.gui.reg46,
                         self.gui.reg47,
                     ]
-#        elif(_sender == self.gui.readbtn_reg5):
-#            pass
-#        elif(_sender == self.gui.readbtn_reg6):
-#            pass
+        elif(_sender == self.gui.read_reg5):
+            _dest = [   self.gui.reg50,
+                        self.gui.reg51,
+                        self.gui.reg52,
+                        self.gui.reg53,
+                        self.gui.reg54,
+                        self.gui.reg55,
+                        self.gui.reg56,
+                        self.gui.reg57,
+                    ]
+        elif(_sender == self.gui.read_reg6):
+            _dest = [   self.gui.reg60,
+                        self.gui.reg61,
+                        self.gui.reg62,
+                        self.gui.reg63,
+                        self.gui.reg64,
+                        self.gui.reg65,
+                        self.gui.reg66,
+                        self.gui.reg67,
+                    ]
 #        elif(_sender == self.gui.readbtn_reg7):
 #            pass
         else:
@@ -425,6 +447,57 @@ class MyWidget(QtGui.QWidget):
         elif (_sender == self.gui.reg30):
             _dest = self.gui.write_reg3
             _shift = 0
+
+        elif (_sender == self.gui.reg57):
+            _dest = self.gui.write_reg5
+            _shift = 7
+        elif (_sender == self.gui.reg56):
+            _dest = self.gui.write_reg5
+            _shift = 6
+        elif (_sender == self.gui.reg55):
+            _dest = self.gui.write_reg5
+            _shift = 5
+        elif (_sender == self.gui.reg54):
+            _dest = self.gui.write_reg5
+            _shift = 4
+        elif (_sender == self.gui.reg53):
+            _dest = self.gui.write_reg5
+            _shift = 3
+        elif (_sender == self.gui.reg52):
+            _dest = self.gui.write_reg5
+            _shift = 2
+        elif (_sender == self.gui.reg51):
+            _dest = self.gui.write_reg5
+            _shift = 1
+        elif (_sender == self.gui.reg50):
+            _dest = self.gui.write_reg5
+            _shift = 0
+
+        elif (_sender == self.gui.reg67):
+            _dest = self.gui.write_reg6
+            _shift = 7
+        elif (_sender == self.gui.reg66):
+            _dest = self.gui.write_reg6
+            _shift = 6
+        elif (_sender == self.gui.reg65):
+            _dest = self.gui.write_reg6
+            _shift = 5
+        elif (_sender == self.gui.reg64):
+            _dest = self.gui.write_reg6
+            _shift = 4
+        elif (_sender == self.gui.reg63):
+            _dest = self.gui.write_reg6
+            _shift = 3
+        elif (_sender == self.gui.reg62):
+            _dest = self.gui.write_reg6
+            _shift = 2
+        elif (_sender == self.gui.reg61):
+            _dest = self.gui.write_reg6
+            _shift = 1
+        elif (_sender == self.gui.reg60):
+            _dest = self.gui.write_reg6
+            _shift = 0
+
         else:
             pass
 
@@ -465,12 +538,16 @@ if __name__=='__main__':
     ui.readbtn_reg2.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg3.clicked.connect(window.GPIOreadClick)
     ui.readbtn_reg4.clicked.connect(window.GPIOreadClick)
+    ui.readbtn_reg5.clicked.connect(window.GPIOreadClick)
+    ui.readbtn_reg6.clicked.connect(window.GPIOreadClick)
 
     ui.writebtn_reg0.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg1.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg2.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg3.clicked.connect(window.GPIOwriteClick)
     ui.writebtn_reg4.clicked.connect(window.GPIOwriteClick)
+    ui.writebtn_reg5.clicked.connect(window.GPIOwriteClick)
+    ui.writebtn_reg6.clicked.connect(window.GPIOwriteClick)
 
     ui.reg17.clicked.connect(window.checkClick)
     ui.reg16.clicked.connect(window.checkClick)
@@ -490,6 +567,24 @@ if __name__=='__main__':
     ui.reg31.clicked.connect(window.checkClick)
     ui.reg30.clicked.connect(window.checkClick)
 
+    ui.reg57.clicked.connect(window.checkClick)
+    ui.reg56.clicked.connect(window.checkClick)
+    ui.reg55.clicked.connect(window.checkClick)
+    ui.reg54.clicked.connect(window.checkClick)
+    ui.reg53.clicked.connect(window.checkClick)
+    ui.reg52.clicked.connect(window.checkClick)
+    ui.reg51.clicked.connect(window.checkClick)
+    ui.reg50.clicked.connect(window.checkClick)
+
+    ui.reg67.clicked.connect(window.checkClick)
+    ui.reg66.clicked.connect(window.checkClick)
+    ui.reg65.clicked.connect(window.checkClick)
+    ui.reg64.clicked.connect(window.checkClick)
+    ui.reg63.clicked.connect(window.checkClick)
+    ui.reg62.clicked.connect(window.checkClick)
+    ui.reg61.clicked.connect(window.checkClick)
+    ui.reg60.clicked.connect(window.checkClick)
+
     ui.writebtn_CH1.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH2.clicked.connect(window.I2CwriteClick)
     ui.writebtn_CH3.clicked.connect(window.I2CwriteClick)
@@ -500,6 +595,8 @@ if __name__=='__main__':
     ui.read_reg2.valueChanged.connect(window.updateCheckbox)
     ui.read_reg3.valueChanged.connect(window.updateCheckbox)
     ui.read_reg4.valueChanged.connect(window.updateCheckbox)
+    ui.read_reg5.valueChanged.connect(window.updateCheckbox)
+    ui.read_reg6.valueChanged.connect(window.updateCheckbox)
 
     QtCore.QMetaObject.connectSlotsByName(window)
 
