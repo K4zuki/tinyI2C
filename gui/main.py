@@ -312,6 +312,22 @@ class MyWidget(QtGui.QWidget):
             pass
         self.writeGPIO_signal.emit([_register, _data, _dest])
 
+    def updateI2Cspeed(self):
+#        print "updateI2Cspeed()",
+        _data = self.gui.read_reg5.value()
+#        print _data,(0x06 & (_data>>5))
+        self.gui.speed_CH1.setValue((0x06 & (_data>>5)) + 2)
+        self.gui.speed_CH2.setValue((0x03 & (_data>>4)) + 1)
+        self.gui.speed_CH3.setValue((0x03 & (_data>>2)) + 1)
+        self.gui.speed_CH4.setValue((0x03 & (_data>>0)) + 1)
+
+    def updateSPIspeed(self):
+#        print "updateSPIspeed()"
+        _data = self.gui.read_reg6.value()
+        self.gui.speed_SPI.setValue((0x07 & (_data>>4)) + 1)
+        self.gui.format_SPI.setValue((0x03 & (_data>>0)))
+        self.gui.read_reg6.setValue(_data & 0x73)
+
     def updateCheckbox(self):
 #        print "updateCheckbox()"
         _sender = self.sender()
@@ -600,6 +616,9 @@ if __name__=='__main__':
     ui.read_reg4.valueChanged.connect(window.updateCheckbox)
     ui.read_reg5.valueChanged.connect(window.updateCheckbox)
     ui.read_reg6.valueChanged.connect(window.updateCheckbox)
+
+    ui.read_reg5.valueChanged.connect(window.updateI2Cspeed)
+    ui.read_reg6.valueChanged.connect(window.updateSPIspeed)
 
     QtCore.QMetaObject.connectSlotsByName(window)
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'tinyI2C.ui'
 #
-# Created: Tue Jan 27 17:29:51 2015
+# Created: Wed Jan 28 18:45:36 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -315,7 +315,12 @@ class Ui_Form(object):
         self.verticalLayout_10.addWidget(self.write_SPI)
         spacerItem4 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout_10.addItem(spacerItem4)
+        self.format_SPI = QtGui.QSpinBox(self.spi_box)
+        self.format_SPI.setEnabled(False)
+        self.format_SPI.setObjectName(_fromUtf8("format_SPI"))
+        self.verticalLayout_10.addWidget(self.format_SPI)
         self.speed_SPI = QtGui.QSpinBox(self.spi_box)
+        self.speed_SPI.setEnabled(False)
         self.speed_SPI.setMinimum(1)
         self.speed_SPI.setMaximum(8)
         self.speed_SPI.setProperty("value", 8)
@@ -1181,6 +1186,7 @@ class Ui_Form(object):
         self.label_66.setObjectName(_fromUtf8("label_66"))
         self.gridLayout_10.addWidget(self.label_66, 1, 7, 1, 1)
         self.reg67 = QtGui.QPushButton(self.groupBox_16)
+        self.reg67.setEnabled(False)
         self.reg67.setMinimumSize(QtCore.QSize(40, 0))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -1217,6 +1223,7 @@ class Ui_Form(object):
         self.reg64.setObjectName(_fromUtf8("reg64"))
         self.gridLayout_10.addWidget(self.reg64, 2, 3, 1, 1)
         self.reg63 = QtGui.QPushButton(self.groupBox_16)
+        self.reg63.setEnabled(False)
         self.reg63.setMinimumSize(QtCore.QSize(40, 0))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -1226,6 +1233,7 @@ class Ui_Form(object):
         self.reg63.setObjectName(_fromUtf8("reg63"))
         self.gridLayout_10.addWidget(self.reg63, 2, 4, 1, 1)
         self.reg62 = QtGui.QPushButton(self.groupBox_16)
+        self.reg62.setEnabled(False)
         self.reg62.setMinimumSize(QtCore.QSize(40, 0))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -1560,12 +1568,12 @@ class Ui_Form(object):
         self.label_70.setText(_translate("Form", "[2]", None))
         self.label_67.setText(_translate("Form", "[1]", None))
         self.label_66.setText(_translate("Form", "[0]", None))
-        self.reg67.setText(_translate("Form", "0", None))
+        self.reg67.setText(_translate("Form", "X", None))
         self.reg66.setText(_translate("Form", "0", None))
         self.reg65.setText(_translate("Form", "0", None))
         self.reg64.setText(_translate("Form", "0", None))
-        self.reg63.setText(_translate("Form", "0", None))
-        self.reg62.setText(_translate("Form", "0", None))
+        self.reg63.setText(_translate("Form", "X", None))
+        self.reg62.setText(_translate("Form", "X", None))
         self.reg61.setText(_translate("Form", "0", None))
         self.reg60.setText(_translate("Form", "0", None))
         self.registers_tab.setTabText(self.registers_tab.indexOf(self.tab_7), _translate("Form", "SPI", None))
