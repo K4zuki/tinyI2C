@@ -98,6 +98,7 @@ int main()
 {
     I2C* dev=&dev1;
     pc.baud(115200);
+    _spi.frequency(8000000);
 
     bool s = false;
     dev1.frequency(800000);//900k; works around 940kHz with 200ohm pullups/ not work at 1M? 
@@ -490,10 +491,10 @@ int main()
                                 case I2C_CONF:
                                 {
                                     registers[I2C_CONF-'0'] = data;
-                                    dev1.frequency(100000 * ((0x03 & (data>>0)) + 1));
-                                    dev2.frequency(100000 * ((0x03 & (data>>2)) + 1));
-                                    dev3.frequency(100000 * ((0x03 & (data>>4)) + 1));
-                                    dev4.frequency(100000 * ((0x03 & (data>>6)) + 1));
+                                    dev1.frequency(200000 * ((0x03 & (data>>6)) + 1));
+                                    dev2.frequency(100000 * ((0x03 & (data>>4)) + 1));
+                                    dev3.frequency(100000 * ((0x03 & (data>>2)) + 1));
+                                    dev4.frequency(100000 * ((0x03 & (data>>0)) + 1));
                                     break;
                                 }
                                 case SPI_CONF:
