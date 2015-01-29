@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>726</width>
-    <height>863</height>
+    <height>832</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -210,28 +210,6 @@ window</string>
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QSpinBox" name="speed_CH1">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="suffix">
-            <string>00kHz</string>
-           </property>
-           <property name="minimum">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <number>8</number>
-           </property>
-           <property name="singleStep">
-            <number>2</number>
-           </property>
-           <property name="value">
-            <number>8</number>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
@@ -337,25 +315,6 @@ window</string>
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QSpinBox" name="speed_CH2">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="suffix">
-            <string>00kHz</string>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>4</number>
-           </property>
-           <property name="value">
-            <number>4</number>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
@@ -457,25 +416,6 @@ window</string>
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="speed_CH3">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="suffix">
-            <string>00kHz</string>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>4</number>
-           </property>
-           <property name="value">
-            <number>4</number>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>
@@ -579,25 +519,6 @@ window</string>
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QSpinBox" name="speed_CH4">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="suffix">
-            <string>00kHz</string>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>4</number>
-           </property>
-           <property name="value">
-            <number>4</number>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
@@ -696,32 +617,6 @@ window</string>
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="format_SPI">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="speed_SPI">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="suffix">
-            <string>MHz</string>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>8</number>
-           </property>
-           <property name="value">
-            <number>8</number>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>
@@ -2465,6 +2360,9 @@ window</string>
              </item>
              <item row="3" column="8">
               <widget class="QPushButton" name="readbtn_reg5">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="text">
                 <string>Read</string>
                </property>
@@ -2472,6 +2370,9 @@ window</string>
              </item>
              <item row="3" column="11">
               <widget class="HexSpinBox" name="write_reg5">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -2479,6 +2380,9 @@ window</string>
              </item>
              <item row="3" column="10">
               <widget class="QPushButton" name="writebtn_reg5">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="text">
                 <string>Write</string>
                </property>
@@ -2516,6 +2420,9 @@ window</string>
              </item>
              <item row="3" column="6">
               <widget class="QPushButton" name="reg51">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2540,6 +2447,9 @@ window</string>
              </item>
              <item row="3" column="5">
               <widget class="QPushButton" name="reg52">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2564,6 +2474,9 @@ window</string>
              </item>
              <item row="3" column="4">
               <widget class="QPushButton" name="reg53">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2588,6 +2501,9 @@ window</string>
              </item>
              <item row="3" column="3">
               <widget class="QPushButton" name="reg54">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2612,6 +2528,9 @@ window</string>
              </item>
              <item row="3" column="2">
               <widget class="QPushButton" name="reg55">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2636,6 +2555,9 @@ window</string>
              </item>
              <item row="3" column="1">
               <widget class="QPushButton" name="reg56">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2660,6 +2582,9 @@ window</string>
              </item>
              <item row="3" column="0">
               <widget class="QPushButton" name="reg57">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2684,6 +2609,9 @@ window</string>
              </item>
              <item row="3" column="7">
               <widget class="QPushButton" name="reg50">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2714,6 +2642,115 @@ window</string>
             <property name="title">
              <string/>
             </property>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="1" column="0">
+              <widget class="QSpinBox" name="speed_CH1">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="suffix">
+                <string>00kHz</string>
+               </property>
+               <property name="minimum">
+                <number>2</number>
+               </property>
+               <property name="maximum">
+                <number>8</number>
+               </property>
+               <property name="singleStep">
+                <number>2</number>
+               </property>
+               <property name="value">
+                <number>8</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="speed_CH3">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="suffix">
+                <string>00kHz</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>4</number>
+               </property>
+               <property name="value">
+                <number>4</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="speed_CH2">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="suffix">
+                <string>00kHz</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>4</number>
+               </property>
+               <property name="value">
+                <number>4</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="speed_CH4">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="suffix">
+                <string>00kHz</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>4</number>
+               </property>
+               <property name="value">
+                <number>4</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>I2C0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_18">
+               <property name="text">
+                <string>I2C1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_19">
+               <property name="text">
+                <string>I2C2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_20">
+               <property name="text">
+                <string>I2C3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
@@ -2734,6 +2771,9 @@ window</string>
             <layout class="QGridLayout" name="gridLayout_10">
              <item row="2" column="10">
               <widget class="QPushButton" name="writebtn_reg6">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="text">
                 <string>Write</string>
                </property>
@@ -2751,6 +2791,9 @@ window</string>
              </item>
              <item row="2" column="11">
               <widget class="HexSpinBox" name="write_reg6">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="maximum">
                 <number>255</number>
                </property>
@@ -2758,6 +2801,9 @@ window</string>
              </item>
              <item row="2" column="8">
               <widget class="QPushButton" name="readbtn_reg6">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="text">
                 <string>Read</string>
                </property>
@@ -2860,7 +2906,7 @@ window</string>
                 </font>
                </property>
                <property name="text">
-                <string>X</string>
+                <string>0</string>
                </property>
                <property name="checkable">
                 <bool>true</bool>
@@ -2872,6 +2918,9 @@ window</string>
              </item>
              <item row="2" column="1">
               <widget class="QPushButton" name="reg66">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2896,6 +2945,9 @@ window</string>
              </item>
              <item row="2" column="2">
               <widget class="QPushButton" name="reg65">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2920,6 +2972,9 @@ window</string>
              </item>
              <item row="2" column="3">
               <widget class="QPushButton" name="reg64">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -2959,7 +3014,7 @@ window</string>
                 </font>
                </property>
                <property name="text">
-                <string>X</string>
+                <string>0</string>
                </property>
                <property name="checkable">
                 <bool>true</bool>
@@ -2986,7 +3041,7 @@ window</string>
                 </font>
                </property>
                <property name="text">
-                <string>X</string>
+                <string>0</string>
                </property>
                <property name="checkable">
                 <bool>true</bool>
@@ -2998,6 +3053,9 @@ window</string>
              </item>
              <item row="2" column="6">
               <widget class="QPushButton" name="reg61">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -3022,6 +3080,9 @@ window</string>
              </item>
              <item row="2" column="7">
               <widget class="QPushButton" name="reg60">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -3052,6 +3113,74 @@ window</string>
             <property name="title">
              <string/>
             </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="2">
+              <widget class="QGroupBox" name="groupBox_7">
+               <property name="title">
+                <string>CPHA</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <item>
+                 <widget class="QSpinBox" name="cpha_SPI">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="maximum">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="groupBox_5">
+               <property name="title">
+                <string>SPEED</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <item>
+                 <widget class="QSpinBox" name="sped_SPI">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="suffix">
+                   <string>MHz</string>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>8</number>
+                  </property>
+                  <property name="value">
+                   <number>8</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QGroupBox" name="groupBox_6">
+               <property name="title">
+                <string>CPOL</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QSpinBox" name="cpol_SPI">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="maximum">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
