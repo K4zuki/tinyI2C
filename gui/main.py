@@ -24,6 +24,7 @@ class MyWidget(QtGui.QWidget):
     writeI2C_signal = QtCore.pyqtSignal(object)
     readGPIO_signal = QtCore.pyqtSignal(object)
     writeGPIO_signal = QtCore.pyqtSignal(object)
+    updateI2Cspeed_signal = QtCore.pyqtSignal(object)
 #    updateCheckbox_signal = QtCore.pyqtSignal(object)
 
     isUI = False
@@ -108,7 +109,7 @@ class MyWidget(QtGui.QWidget):
 #    def reg_read(self, registers = "012"):
 
     def readGPIOSlot(self, arg):
-#        print "readGPIOslot()",
+        print "readGPIOslot()"
         _sender = self.sender()
         _register,_dest = arg
         read=self.i2c.reg_read(_register).split(",")[0]
@@ -118,7 +119,7 @@ class MyWidget(QtGui.QWidget):
         _dest.setValue(read)
 
     def writeGPIOSlot(self, arg):
-#        print "writeGPIOslot()",
+        print "writeGPIOslot()"
         _register, _data, _dest = arg
         read = self.i2c.reg_write([[str(_register), _data]])
         read = self.i2c.reg_read(_register).split(",")[0]
@@ -246,7 +247,7 @@ class MyWidget(QtGui.QWidget):
         self.writeI2C_signal.emit([_slave, _channel, _register, _data])
 
     def GPIOreadClick(self):
-#        print "GPIOreadClick()",
+        print "GPIOreadClick()",
         _sender = self.sender()
         if(_sender == self.gui.readbtn_reg0):
             _register = self.i2c.CHIP_ID
@@ -276,7 +277,7 @@ class MyWidget(QtGui.QWidget):
         self.readGPIO_signal.emit([_register, _dest])
 
     def GPIOwriteClick(self):
-#        print "GPIOreadClick()",
+        print "GPIOreadClick()",
         _sender = self.sender()
         if(_sender == self.gui.writebtn_reg0):# this should not happen
             _register = self.i2c.CHIP_ID
@@ -312,24 +313,54 @@ class MyWidget(QtGui.QWidget):
             pass
         self.writeGPIO_signal.emit([_register, _data, _dest])
 
-    def updateI2Cspeed(self):
-#        print "updateI2Cspeed()",
+    def updateI2CspeedTo(self):
+        print "updateI2CspeedTo()"
+        _data = (((self.gui.speed_CH1.value() - 2)&0x06)<<5)|\
+                (((self.gui.speed_CH2.value() - 1)&0x03)<<4)|\
+                (((self.gui.speed_CH3.value() - 1)&0x03)<<2)|\
+                (((self.gui.speed_CH4.value() - 1)&0x03)<<0)
+        self.gui.write_reg5.setValue(_data)
+
+    def updateI2CspeedFrom(self):
+        print "updateI2CspeedFrom()"
         _data = self.gui.read_reg5.value()
-#        print _data,(0x06 & (_data>>5))
+        self.gui.speed_CH1.setUpdatesEnabled(False)
+        self.gui.speed_CH2.setUpdatesEnabled(False)
+        self.gui.speed_CH3.setUpdatesEnabled(False)
+        self.gui.speed_CH4.setUpdatesEnabled(False)
         self.gui.speed_CH1.setValue((0x06 & (_data>>5)) + 2)
         self.gui.speed_CH2.setValue((0x03 & (_data>>4)) + 1)
         self.gui.speed_CH3.setValue((0x03 & (_data>>2)) + 1)
         self.gui.speed_CH4.setValue((0x03 & (_data>>0)) + 1)
+        self.gui.speed_CH1.setUpdatesEnabled(True)
+        self.gui.speed_CH2.setUpdatesEnabled(True)
+        self.gui.speed_CH3.setUpdatesEnabled(True)
+        self.gui.speed_CH4.setUpdatesEnabled(True)
 
-    def updateSPIspeed(self):
-#        print "updateSPIspeed()"
+    def updateSPIspeedTo(self):
+        print "updateSPIspeed()",
+        _data = (((self.gui.sped_SPI.value() - 1)&0x07)<<4)|\
+                (((self.gui.cpol_SPI.value())&0x01)<<1)|\
+                (((self.gui.cpha_SPI.value())&0x01)<<0)
+        self.gui.write_reg6.setValue(_data)
+#        self.writeGPIO_signal.emit([_register, _data, _dest])
+
+
+    def updateSPIspeedFrom(self):
+        print "updateSPIspeed()",
         _data = self.gui.read_reg6.value()
-        self.gui.speed_SPI.setValue((0x07 & (_data>>4)) + 1)
-        self.gui.format_SPI.setValue((0x03 & (_data>>0)))
-        self.gui.read_reg6.setValue(_data & 0x73)
+        self.gui.sped_SPI.setUpdatesEnabled(False)
+        self.gui.cpol_SPI.setUpdatesEnabled(False)
+        self.gui.cpha_SPI.setUpdatesEnabled(False)
+        self.gui.sped_SPI.setValue((0x07 & (_data>>4)) + 1)
+        self.gui.cpol_SPI.setValue((0x01 & (_data>>1)))
+        self.gui.cpha_SPI.setValue((0x01 & (_data>>0)))
+        self.gui.sped_SPI.setUpdatesEnabled(True)
+        self.gui.cpol_SPI.setUpdatesEnabled(True)
+        self.gui.cpha_SPI.setUpdatesEnabled(True)
 
     def updateCheckbox(self):
-#        print "updateCheckbox()"
+        print "updateCheckbox()"
         _sender = self.sender()
         _data = _sender.value()
         if(_sender == self.gui.read_reg0):
@@ -415,7 +446,7 @@ class MyWidget(QtGui.QWidget):
                 _dest[_bit].setText( "0" )
         
     def checkClick(self):
-#        print "checkClick()"
+        print "checkClick()"
         _sender = self.sender()
         if (_sender == self.gui.reg17):
             _dest = self.gui.write_reg1
@@ -617,8 +648,16 @@ if __name__=='__main__':
     ui.read_reg5.valueChanged.connect(window.updateCheckbox)
     ui.read_reg6.valueChanged.connect(window.updateCheckbox)
 
-    ui.read_reg5.valueChanged.connect(window.updateI2Cspeed)
-    ui.read_reg6.valueChanged.connect(window.updateSPIspeed)
+    ui.read_reg5.valueChanged.connect(window.updateI2CspeedFrom)
+    ui.speed_CH1.valueChanged.connect(window.updateI2CspeedTo)
+    ui.speed_CH2.valueChanged.connect(window.updateI2CspeedTo)
+    ui.speed_CH3.valueChanged.connect(window.updateI2CspeedTo)
+    ui.speed_CH4.valueChanged.connect(window.updateI2CspeedTo)
+
+    ui.read_reg6.valueChanged.connect(window.updateSPIspeedFrom)
+    ui.sped_SPI.valueChanged.connect(window.updateSPIspeedTo)
+    ui.cpol_SPI.valueChanged.connect(window.updateSPIspeedTo)
+    ui.cpha_SPI.valueChanged.connect(window.updateSPIspeedTo)
 
     QtCore.QMetaObject.connectSlotsByName(window)
 
@@ -626,7 +665,7 @@ if __name__=='__main__':
     window.writeI2C_signal.connect(window.writeI2CSlot)
     window.readGPIO_signal.connect(window.readGPIOSlot)
     window.writeGPIO_signal.connect(window.writeGPIOSlot)
-#    window.updateCheckbox_signal.connect(window.updateCheckbox)
+    
 
     window.show()
     sys.exit(app.exec_())
