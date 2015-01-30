@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*- 
 #!/usr/bin/env python
 import serial
-import struct
 import os.path
 import time
 
@@ -247,9 +246,6 @@ if __name__=="__main__":
     baud = parser.args.baud
     dev = serial2i2c(port, baud)
 ##    channel="C0P"
-##    i2cw="S"+chr(0x80)+chr(0x04)+struct.pack(">4B",0xde,0xad,0xbe,0xaf)+"P"
-##    i2crw="S"+chr(0x80)+chr(0x04)+struct.pack(">4B",0xde,0xad,0xbe,0xaf)+"S"+chr(0x81)+chr(0x04)+"P"
-#    print channel,i2cw
 
 #    raw_input("wait, press enter to set channel 0")
     raw_input("wait, press enter to transferring data")
