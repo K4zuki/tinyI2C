@@ -8,12 +8,13 @@ import time
 # ASCII command Hex value Command function
 # [X] S 0x53 I2C-bus START
 # [X] P 0x50 I2C-bus STOP
-# [_] R 0x52 read SC18IM700 internal register
-# [_] W 0x57 write to SC18IM700 internal register
+# [X] R 0x52 read SC18IM700 internal register
+# [X] W 0x57 write to SC18IM700 internal register
 # [_] I 0x49 read GPIO port
 # [_] O 0x4F write to GPIO port
 # [_] Z 0x5A power down
 # [X] C 0x43 change channel
+# [_] E 0x45 SPI transfer start
 
 ##@brief RS232C to I2C converter using \e mbed
 #@code register dump
@@ -161,8 +162,30 @@ class serial2i2c(object):
         time.sleep(self._wait * rlength * 2)
         return self.raw_read()
 
+    def write_and_read_SPI(self, wlength = 1, rlength = 0, data = 0xC4FEE0CA):
+#        pass
+
+        _wlength = self._hex2ascii(wlength, 0xa0)
+        _rlength = self._hex2ascii(rlength, 0xb0)
+        _data = self._hex2ascii(data, 0xc0)
+        
+        _wlength.reverse()
+        _rlength.reverse()
+        _data.reverse()
+        
+        packet = []
+        packet.append('E')
+        packet.extend(_wlength)
+        packet.extend(_rlength)
+        packet.extend(_data)
+        packet.append('P')
+        self.raw_write("".join(packet))
+
+        time.sleep(self._wait * rlength * 2)
+        return self.raw_read()
+
     ## sends raw data on serial port
-    def raw_write(self, data="DEADBEAF"):
+    def raw_write(self, data="C4FEE0CA"):
         self._ser.write(data)
         
     ## reads raw data from serial port
