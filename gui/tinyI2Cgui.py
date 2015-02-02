@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'tinyI2C.ui'
 #
-# Created: Mon Feb 02 17:06:59 2015
+# Created: Mon Feb 02 17:58:10 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -1342,6 +1342,7 @@ class Ui_Form(object):
         self.verticalLayout_17 = QtGui.QVBoxLayout(self.groupBox_9)
         self.verticalLayout_17.setObjectName(_fromUtf8("verticalLayout_17"))
         self.bits_SPI = QtGui.QComboBox(self.groupBox_9)
+        self.bits_SPI.setEnabled(False)
         self.bits_SPI.setObjectName(_fromUtf8("bits_SPI"))
         self.bits_SPI.addItem(_fromUtf8(""))
         self.bits_SPI.addItem(_fromUtf8(""))

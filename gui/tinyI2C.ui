@@ -3219,6 +3219,9 @@ window</string>
                <layout class="QVBoxLayout" name="verticalLayout_17">
                 <item>
                  <widget class="QComboBox" name="bits_SPI">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <item>
                    <property name="text">
                     <string>8 bit</string>
