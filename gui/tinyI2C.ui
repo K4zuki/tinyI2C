@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>726</width>
-    <height>863</height>
+    <height>826</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -2295,7 +2295,7 @@ window</string>
              <bool>true</bool>
             </property>
             <property name="title">
-             <string>Register 5</string>
+             <string>I2C_CONF</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_9">
              <item row="0" column="1">
@@ -2774,7 +2774,7 @@ window</string>
              <bool>true</bool>
             </property>
             <property name="title">
-             <string>Register 6</string>
+             <string>SPI_CONF</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_10" rowstretch="0,0">
              <item row="1" column="10">
@@ -3119,7 +3119,7 @@ window</string>
           <item>
            <widget class="QGroupBox" name="groupBox_3">
             <property name="title">
-             <string>.</string>
+             <string/>
             </property>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="0">

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'tinyI2C.ui'
 #
-# Created: Mon Feb 02 17:58:10 2015
+# Created: Mon Feb 02 18:19:01 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(726, 863)
+        Form.resize(726, 826)
         Form.setMaximumSize(QtCore.QSize(1006, 984))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -1292,6 +1292,7 @@ class Ui_Form(object):
         self.gridLayout_10.addWidget(self.reg60, 1, 7, 1, 1)
         self.verticalLayout_13.addWidget(self.groupBox_16)
         self.groupBox_3 = QtGui.QGroupBox(self.tab_7)
+        self.groupBox_3.setTitle(_fromUtf8(""))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.gridLayout_5 = QtGui.QGridLayout(self.groupBox_3)
         self.gridLayout_5.setObjectName(_fromUtf8("gridLayout_5"))
@@ -1616,7 +1617,7 @@ class Ui_Form(object):
         self.reg41.setText(_translate("Form", "0", None))
         self.reg40.setText(_translate("Form", "0", None))
         self.registers_tab.setTabText(self.registers_tab.indexOf(self.tab_3), _translate("Form", "GPIO1", None))
-        self.groupBox_17.setTitle(_translate("Form", "Register 5", None))
+        self.groupBox_17.setTitle(_translate("Form", "I2C_CONF", None))
         self.label_61.setText(_translate("Form", "[6]", None))
         self.label_59.setText(_translate("Form", "[1]", None))
         self.label_60.setText(_translate("Form", "[4]", None))
@@ -1644,7 +1645,7 @@ class Ui_Form(object):
         self.groupBox_21.setTitle(_translate("Form", "I2C3", None))
         self.speed_CH4.setSuffix(_translate("Form", "00kHz", None))
         self.registers_tab.setTabText(self.registers_tab.indexOf(self.tab_6), _translate("Form", "I2C", None))
-        self.groupBox_16.setTitle(_translate("Form", "Register 6", None))
+        self.groupBox_16.setTitle(_translate("Form", "SPI_CONF", None))
         self.writebtn_reg6.setText(_translate("Form", "Write", None))
         self.readbtn_reg6.setText(_translate("Form", "Read", None))
         self.label_71.setText(_translate("Form", "[7]", None))
@@ -1663,7 +1664,6 @@ class Ui_Form(object):
         self.reg62.setText(_translate("Form", "0", None))
         self.reg61.setText(_translate("Form", "0", None))
         self.reg60.setText(_translate("Form", "0", None))
-        self.groupBox_3.setTitle(_translate("Form", ".", None))
         self.groupBox_5.setTitle(_translate("Form", "SPEED", None))
         self.sped_SPI.setSuffix(_translate("Form", "MHz", None))
         self.groupBox_7.setTitle(_translate("Form", "CPHA", None))
