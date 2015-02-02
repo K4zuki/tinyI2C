@@ -338,8 +338,10 @@ class MyWidget(QtGui.QWidget):
         self.gui.speed_CH4.setUpdatesEnabled(True)
 
     def updateSPIspeedTo(self):
-        print "updateSPIspeed()",
+        print "updateSPIspeedTo()",
         _data = (((self.gui.sped_SPI.value() - 1)&0x07)<<4)|\
+                (self.gui.epol_SPI.currentIndex() <<3)|\
+                (self.gui.bits_SPI.currentIndex() <<2)|\
                 (((self.gui.cpol_SPI.value())&0x01)<<1)|\
                 (((self.gui.cpha_SPI.value())&0x01)<<0)
         self.gui.write_reg6.setValue(_data)
@@ -347,17 +349,23 @@ class MyWidget(QtGui.QWidget):
 
 
     def updateSPIspeedFrom(self):
-        print "updateSPIspeed()",
+        print "updateSPIspeedFrom()",
         _data = self.gui.read_reg6.value()
         self.gui.sped_SPI.setUpdatesEnabled(False)
         self.gui.cpol_SPI.setUpdatesEnabled(False)
         self.gui.cpha_SPI.setUpdatesEnabled(False)
+        self.gui.epol_SPI.setUpdatesEnabled(False)
+        self.gui.bits_SPI.setUpdatesEnabled(False)
         self.gui.sped_SPI.setValue((0x07 & (_data>>4)) + 1)
+        self.gui.epol_SPI.setCurrentIndex(0x01 & (_data>>3))
+        self.gui.bits_SPI.setCurrentIndex(0x01 & (_data>>2))
         self.gui.cpol_SPI.setValue((0x01 & (_data>>1)))
         self.gui.cpha_SPI.setValue((0x01 & (_data>>0)))
         self.gui.sped_SPI.setUpdatesEnabled(True)
         self.gui.cpol_SPI.setUpdatesEnabled(True)
         self.gui.cpha_SPI.setUpdatesEnabled(True)
+        self.gui.epol_SPI.setUpdatesEnabled(True)
+        self.gui.bits_SPI.setUpdatesEnabled(True)
 
     def updateCheckbox(self):
         print "updateCheckbox()"
@@ -658,6 +666,8 @@ if __name__=='__main__':
     ui.sped_SPI.valueChanged.connect(window.updateSPIspeedTo)
     ui.cpol_SPI.valueChanged.connect(window.updateSPIspeedTo)
     ui.cpha_SPI.valueChanged.connect(window.updateSPIspeedTo)
+    ui.epol_SPI.currentIndexChanged.connect(window.updateSPIspeedTo)
+    ui.bits_SPI.currentIndexChanged.connect(window.updateSPIspeedTo)
 
     QtCore.QMetaObject.connectSlotsByName(window)
 
