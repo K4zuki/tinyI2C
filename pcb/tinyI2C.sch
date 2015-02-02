@@ -898,18 +898,18 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <package name="TSW-106-02-S-S-RA">
 <description>&lt;b&gt;THROUGH-HOLE .025" SQ POST HEADER&lt;/b&gt;&lt;p&gt;
 Source: Samtec TSW.pdf</description>
-<wire x1="-7.749" y1="-2.046" x2="7.749" y2="-2.046" width="0.2032" layer="21"/>
-<wire x1="7.749" y1="-2.046" x2="7.749" y2="-0.106" width="0.2032" layer="21"/>
-<wire x1="7.749" y1="-0.106" x2="-7.749" y2="-0.106" width="0.2032" layer="21"/>
-<wire x1="-7.749" y1="-0.106" x2="-7.749" y2="-2.046" width="0.2032" layer="21"/>
+<wire x1="-7.749" y1="-2.046" x2="7.749" y2="-2.046" width="0.2" layer="21"/>
+<wire x1="7.749" y1="-2.046" x2="7.749" y2="-0.106" width="0.2" layer="21"/>
+<wire x1="7.749" y1="-0.106" x2="-7.749" y2="-0.106" width="0.2" layer="21"/>
+<wire x1="-7.749" y1="-0.106" x2="-7.749" y2="-2.046" width="0.2" layer="21"/>
 <pad name="1" x="6.35" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="2" x="3.81" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="3" x="1.27" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="4" x="-1.27" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="5" x="-3.81" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="6" x="-6.35" y="1.524" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
-<text x="-8.255" y="-7.62" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="9.525" y="-7.62" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<text x="-8.255" y="-7.62" size="1" layer="25" font="vector" ratio="20" rot="R90">&gt;NAME</text>
+<text x="9.525" y="-7.62" size="1" layer="27" font="vector" ratio="20" rot="R90">&gt;VALUE</text>
 <rectangle x1="-6.604" y1="0" x2="-6.096" y2="1.778" layer="51"/>
 <rectangle x1="-4.064" y1="0" x2="-3.556" y2="1.778" layer="51"/>
 <rectangle x1="-1.524" y1="0" x2="-1.016" y2="1.778" layer="51"/>
@@ -922,7 +922,7 @@ Source: Samtec TSW.pdf</description>
 <rectangle x1="1.016" y1="-7.89" x2="1.524" y2="-2.04" layer="51"/>
 <rectangle x1="3.556" y1="-7.89" x2="4.064" y2="-2.04" layer="51"/>
 <rectangle x1="6.096" y1="-7.89" x2="6.604" y2="-2.04" layer="51"/>
-<polygon width="0.127" layer="21">
+<polygon width="0.2" layer="21">
 <vertex x="7.7" y="-0.7"/>
 <vertex x="7.1" y="-0.1"/>
 <vertex x="7.7" y="-0.1"/>
@@ -954,10 +954,10 @@ Source: Samtec TSW.pdf</description>
 <package name="TSW-112-02-S-S">
 <description>&lt;b&gt;THROUGH-HOLE .025" SQ POST HEADER&lt;/b&gt;&lt;p&gt;
 Source: Samtec TSW.pdf</description>
-<wire x1="-15.369" y1="1.155" x2="15.369" y2="1.155" width="0.2032" layer="21"/>
-<wire x1="15.369" y1="1.155" x2="15.369" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="15.369" y1="-1.155" x2="-15.369" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="-15.369" y1="-1.155" x2="-15.369" y2="1.155" width="0.2032" layer="21"/>
+<wire x1="-15.369" y1="1.155" x2="15.369" y2="1.155" width="0.2" layer="21"/>
+<wire x1="15.369" y1="1.155" x2="15.369" y2="-1.155" width="0.2" layer="21"/>
+<wire x1="15.369" y1="-1.155" x2="-15.369" y2="-1.155" width="0.2" layer="21"/>
+<wire x1="-15.369" y1="-1.155" x2="-15.369" y2="1.155" width="0.2" layer="21"/>
 <pad name="1" x="13.97" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="2" x="11.43" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="3" x="8.89" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
@@ -970,8 +970,8 @@ Source: Samtec TSW.pdf</description>
 <pad name="10" x="-8.89" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="11" x="-11.43" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="12" x="-13.97" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
-<text x="-15.875" y="-1.27" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="17.145" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<text x="-15.875" y="-1.27" size="1" layer="25" font="vector" ratio="20" rot="R90">&gt;NAME</text>
+<text x="17.145" y="-1.27" size="1" layer="27" font="vector" ratio="20" rot="R90">&gt;VALUE</text>
 <rectangle x1="-14.32" y1="-0.35" x2="-13.62" y2="0.35" layer="51"/>
 <rectangle x1="-11.78" y1="-0.35" x2="-11.08" y2="0.35" layer="51"/>
 <rectangle x1="-9.24" y1="-0.35" x2="-8.54" y2="0.35" layer="51"/>
@@ -984,7 +984,7 @@ Source: Samtec TSW.pdf</description>
 <rectangle x1="8.54" y1="-0.35" x2="9.24" y2="0.35" layer="51"/>
 <rectangle x1="11.08" y1="-0.35" x2="11.78" y2="0.35" layer="51"/>
 <rectangle x1="13.62" y1="-0.35" x2="14.32" y2="0.35" layer="51"/>
-<polygon width="0.127" layer="21">
+<polygon width="0.2" layer="21">
 <vertex x="15.3" y="0.5"/>
 <vertex x="14.7" y="1.1"/>
 <vertex x="15.3" y="1.1"/>
@@ -1040,17 +1040,17 @@ Source: Samtec TSW.pdf</description>
 <package name="TSW-102-02-S-S">
 <description>&lt;b&gt;THROUGH-HOLE .025" SQ POST HEADER&lt;/b&gt;&lt;p&gt;
 Source: Samtec TSW.pdf</description>
-<wire x1="-2.669" y1="1.155" x2="2.669" y2="1.155" width="0.2032" layer="21"/>
-<wire x1="2.669" y1="1.155" x2="2.669" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="2.669" y1="-1.155" x2="-2.669" y2="-1.155" width="0.2032" layer="21"/>
-<wire x1="-2.669" y1="-1.155" x2="-2.669" y2="1.155" width="0.2032" layer="21"/>
+<wire x1="-2.669" y1="1.155" x2="2.669" y2="1.155" width="0.2" layer="21"/>
+<wire x1="2.669" y1="1.155" x2="2.669" y2="-1.155" width="0.2" layer="21"/>
+<wire x1="2.669" y1="-1.155" x2="-2.669" y2="-1.155" width="0.2" layer="21"/>
+<wire x1="-2.669" y1="-1.155" x2="-2.669" y2="1.155" width="0.2" layer="21"/>
 <pad name="1" x="1.27" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
 <pad name="2" x="-1.27" y="0" drill="1" diameter="1.5" shape="octagon" rot="R180"/>
-<text x="-3.175" y="-1.27" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="4.445" y="-1.27" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<text x="-3.175" y="-1.27" size="1" layer="25" font="vector" ratio="20" rot="R90">&gt;NAME</text>
+<text x="4.445" y="-1.27" size="1" layer="27" font="vector" ratio="20" rot="R90">&gt;VALUE</text>
 <rectangle x1="-1.62" y1="-0.35" x2="-0.92" y2="0.35" layer="51"/>
 <rectangle x1="0.92" y1="-0.35" x2="1.62" y2="0.35" layer="51"/>
-<polygon width="0.127" layer="21">
+<polygon width="0.2" layer="21">
 <vertex x="2.6" y="0.5"/>
 <vertex x="2" y="1.1"/>
 <vertex x="2.6" y="1.1"/>
@@ -1251,17 +1251,17 @@ Source: Samtec TSW.pdf</description>
 <package name="HVQFN33">
 <description>&lt;b&gt;HVQFN32&lt;/b&gt; (SOT617-3) 5 x 5 x .85 mm,  Pitch 0.5mm&lt;p&gt;
 Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA9885_TDA9886_2.pdf</description>
-<wire x1="2.45" y1="2" x2="2.45" y2="2.45" width="0.127" layer="21"/>
-<wire x1="2.45" y1="2.45" x2="2" y2="2.45" width="0.127" layer="21"/>
+<wire x1="2.45" y1="2.1" x2="2.45" y2="2.45" width="0.2" layer="21"/>
+<wire x1="2.45" y1="2.45" x2="2.1" y2="2.45" width="0.2" layer="21"/>
 <wire x1="2" y1="2.45" x2="-2" y2="2.45" width="0.127" layer="51"/>
-<wire x1="-2" y1="2.45" x2="-2.45" y2="2.45" width="0.127" layer="21"/>
-<wire x1="-2.45" y1="2.45" x2="-2.45" y2="2" width="0.127" layer="21"/>
+<wire x1="-2.1" y1="2.45" x2="-2.45" y2="2.45" width="0.2" layer="21"/>
+<wire x1="-2.45" y1="2.45" x2="-2.45" y2="2.1" width="0.2" layer="21"/>
 <wire x1="-2.45" y1="2" x2="-2.45" y2="-2" width="0.127" layer="51"/>
-<wire x1="-2.45" y1="-2" x2="-2.45" y2="-2.45" width="0.127" layer="21"/>
-<wire x1="-2.45" y1="-2.45" x2="-2" y2="-2.45" width="0.127" layer="21"/>
+<wire x1="-2.45" y1="-2.1" x2="-2.45" y2="-2.45" width="0.2" layer="21"/>
+<wire x1="-2.45" y1="-2.45" x2="-2.1" y2="-2.45" width="0.2" layer="21"/>
 <wire x1="-2" y1="-2.45" x2="2" y2="-2.45" width="0.127" layer="51"/>
-<wire x1="2" y1="-2.45" x2="2.45" y2="-2.45" width="0.127" layer="21"/>
-<wire x1="2.45" y1="-2.45" x2="2.45" y2="-2" width="0.127" layer="21"/>
+<wire x1="2.1" y1="-2.45" x2="2.45" y2="-2.45" width="0.2" layer="21"/>
+<wire x1="2.45" y1="-2.45" x2="2.45" y2="-2.1" width="0.2" layer="21"/>
 <wire x1="2.45" y1="-2" x2="2.45" y2="2" width="0.127" layer="51"/>
 <rectangle x1="-1.75" y1="-1.75" x2="1.75" y2="1.75" layer="29"/>
 <smd name="1" x="-2.65" y="1.75" dx="1.2" dy="0.3" layer="1" roundness="50" stop="no"/>
@@ -1343,12 +1343,12 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 </package>
 <package name="IC_08_0.65_160MIL">
 <description>&lt;b&gt;Mini Small Outline Package&lt;/b&gt;</description>
-<wire x1="-1.524" y1="0.508" x2="-1.524" y2="-0.508" width="0.127" layer="21" curve="-180"/>
-<wire x1="-1.524" y1="1.27" x2="1.524" y2="1.27" width="0.127" layer="21"/>
-<wire x1="1.524" y1="1.27" x2="1.524" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="1.524" y1="-1.27" x2="-1.524" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-1.524" y1="-1.27" x2="-1.524" y2="-0.508" width="0.127" layer="21"/>
-<wire x1="-1.524" y1="0.508" x2="-1.524" y2="1.27" width="0.127" layer="21"/>
+<wire x1="-1.524" y1="0.508" x2="-1.524" y2="-0.508" width="0.2" layer="21" curve="-180"/>
+<wire x1="-1.524" y1="1.27" x2="1.524" y2="1.27" width="0.2" layer="21"/>
+<wire x1="1.524" y1="1.27" x2="1.524" y2="-1.27" width="0.2" layer="21"/>
+<wire x1="1.524" y1="-1.27" x2="-1.524" y2="-1.27" width="0.2" layer="21"/>
+<wire x1="-1.524" y1="-1.27" x2="-1.524" y2="-0.508" width="0.2" layer="21"/>
+<wire x1="-1.524" y1="0.508" x2="-1.524" y2="1.27" width="0.2" layer="21"/>
 <smd name="8" x="-0.976" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
 <smd name="7" x="-0.326" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
 <smd name="6" x="0.324" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
@@ -1357,8 +1357,8 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <smd name="3" x="0.324" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
 <smd name="2" x="-0.326" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
 <smd name="1" x="-0.976" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<text x="-2.032" y="-2.54" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
-<text x="3.302" y="-2.54" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
+<text x="-2" y="-2.5" size="1" layer="25" font="vector" ratio="20" rot="R90">&gt;NAME</text>
+<text x="3.3" y="-2.5" size="1" layer="27" font="vector" ratio="20" rot="R90">&gt;VALUE</text>
 <rectangle x1="-1.0975" y1="1.6244" x2="-0.8537" y2="2.3557" layer="51"/>
 <rectangle x1="-0.4475" y1="1.6244" x2="-0.2037" y2="2.3557" layer="51"/>
 <rectangle x1="0.2025" y1="1.6244" x2="0.4463" y2="2.3557" layer="51"/>
@@ -1377,6 +1377,7 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="0.15" y1="-2.85" x2="0.5" y2="-1.6" layer="29"/>
 <rectangle x1="0.8" y1="-2.85" x2="1.15" y2="-1.6" layer="29"/>
 <rectangle x1="-0.9" y1="-0.9" x2="0.9" y2="0.9" layer="29"/>
+<wire x1="-1.424" y1="-2.57" x2="-1.424" y2="-1.808" width="0.2" layer="21"/>
 </package>
 <package name="C0402">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;</description>
@@ -1386,8 +1387,8 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <wire x1="-1.073" y1="-0.483" x2="-1.073" y2="0.483" width="0.0508" layer="39"/>
 <smd name="1" x="-0.6" y="0" dx="0.7" dy="0.7" layer="1" stop="no"/>
 <smd name="2" x="0.6" y="0" dx="0.7" dy="0.7" layer="1" stop="no"/>
-<text x="-0.635" y="0.635" size="1.27" layer="25">&gt;NAME</text>
-<text x="-0.635" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
+<text x="-0.6" y="0.6" size="1" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-0.6" y="-1.9" size="1" layer="27" font="vector" ratio="20">&gt;VALUE</text>
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 <rectangle x1="-0.55" y1="-0.3" x2="-0.25" y2="0.3" layer="51"/>
 <rectangle x1="-0.5" y1="-0.25" x2="0.5" y2="0.25" layer="51"/>
@@ -1764,12 +1765,12 @@ TinyLogic(R) from FAIRCHILD Semiconductor TM
 <description>&lt;b&gt;SMT SC70-5&lt;/b&gt;&lt;p&gt;
 SOT353 - Philips Semiconductors&lt;br&gt;
 Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/74HC_HCT1G66_3.pdf</description>
-<wire x1="1" y1="0.55" x2="-1" y2="0.55" width="0.127" layer="51"/>
-<wire x1="-1" y1="0.55" x2="-1" y2="0.25" width="0.127" layer="21"/>
-<wire x1="-1" y1="0.25" x2="-1" y2="-0.25" width="0.127" layer="21"/>
-<wire x1="-1" y1="-0.25" x2="-1" y2="-0.55" width="0.127" layer="21"/>
-<wire x1="-1" y1="-0.55" x2="1" y2="-0.55" width="0.127" layer="51"/>
-<wire x1="1" y1="-0.55" x2="1" y2="0.55" width="0.127" layer="21"/>
+<wire x1="1" y1="0.55" x2="-1" y2="0.55" width="0.2" layer="51"/>
+<wire x1="-1" y1="0.55" x2="-1" y2="0.25" width="0.2" layer="21"/>
+<wire x1="-1" y1="0.25" x2="-1" y2="-0.25" width="0.2" layer="21"/>
+<wire x1="-1" y1="-0.25" x2="-1" y2="-0.55" width="0.2" layer="21"/>
+<wire x1="-1" y1="-0.55" x2="1" y2="-0.55" width="0.2" layer="51"/>
+<wire x1="1" y1="-0.55" x2="1" y2="0.55" width="0.2" layer="21"/>
 <smd name="1" x="-0.65" y="-0.85" dx="0.4" dy="0.7" layer="1" stop="no"/>
 <smd name="2" x="0" y="-0.85" dx="0.4" dy="0.7" layer="1" stop="no"/>
 <smd name="3" x="0.65" y="-0.85" dx="0.4" dy="0.7" layer="1" stop="no"/>
@@ -1787,7 +1788,8 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/74HC_H
 <rectangle x1="-0.9" y1="-1.25" x2="-0.4" y2="-0.45" layer="29"/>
 <rectangle x1="-0.25" y1="-1.25" x2="0.25" y2="-0.45" layer="29"/>
 <rectangle x1="0.4" y1="-1.25" x2="0.9" y2="-0.45" layer="29"/>
-<wire x1="-1" y1="-0.25" x2="-1" y2="0.25" width="0.127" layer="21" curve="180"/>
+<wire x1="-1" y1="-0.25" x2="-1" y2="0.25" width="0.2" layer="21" curve="180"/>
+<wire x1="-1.1" y1="-0.8" x2="-1.1" y2="-1.1" width="0.2" layer="21"/>
 </package>
 <package name="SOT23-5">
 <description>&lt;b&gt;Small Outline Transistor&lt;/b&gt;&lt;p&gt;
@@ -2606,14 +2608,19 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <rectangle x1="-1.9" y1="-1.5" x2="-0.4" y2="-0.2" layer="29"/>
 <rectangle x1="0.4" y1="-1.5" x2="1.9" y2="-0.2" layer="29"/>
 <wire x1="-1.4" y1="-0.6825" x2="-1.4" y2="0.6825" width="0.127" layer="51"/>
-<wire x1="-0.3" y1="1" x2="0.3" y2="1" width="0.15" layer="21"/>
-<wire x1="-0.3" y1="1.2" x2="0.3" y2="1.2" width="0.15" layer="21"/>
-<wire x1="-1.6" y1="-0.1" x2="-1.6" y2="0.1" width="0.15" layer="21"/>
-<wire x1="-1.4" y1="-0.1" x2="-1.4" y2="0.1" width="0.15" layer="21"/>
-<wire x1="-0.3" y1="-1" x2="0.3" y2="-1" width="0.15" layer="21"/>
-<wire x1="-0.3" y1="-1.2" x2="0.3" y2="-1.2" width="0.15" layer="21"/>
-<wire x1="1.4" y1="-0.1" x2="1.4" y2="0.1" width="0.15" layer="21"/>
-<wire x1="1.6" y1="-0.1" x2="1.6" y2="0.1" width="0.15" layer="21"/>
+<wire x1="-0.25" y1="1.2" x2="0.25" y2="1.2" width="0.2" layer="21"/>
+<wire x1="-1.6" y1="-0.05" x2="-1.6" y2="0.05" width="0.2" layer="21"/>
+<wire x1="-0.25" y1="-1.2" x2="0.25" y2="-1.2" width="0.2" layer="21"/>
+<wire x1="1.6" y1="-0.05" x2="1.6" y2="0.05" width="0.2" layer="21"/>
+<wire x1="-2.1" y1="1.7" x2="-1.6" y2="1.7" width="0.2" layer="21"/>
+<wire x1="-2.1" y1="1.2" x2="-2.1" y2="1.7" width="0.2" layer="21"/>
+<wire x1="-2.1" y1="-1.7" x2="-1.6" y2="-1.7" width="0.2" layer="21"/>
+<wire x1="-2.1" y1="-1.7" x2="-2.1" y2="-1.2" width="0.2" layer="21"/>
+<wire x1="1.6" y1="1.7" x2="2.1" y2="1.7" width="0.2" layer="21"/>
+<wire x1="2.1" y1="1.2" x2="2.1" y2="1.7" width="0.2" layer="21"/>
+<wire x1="2.1" y1="-1.7" x2="2.1" y2="-1.2" width="0.2" layer="21"/>
+<wire x1="2.1" y1="-1.7" x2="1.6" y2="-1.7" width="0.2" layer="21"/>
+<circle x="-2.3" y="-1.9" radius="0.22360625" width="0.2" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -2721,6 +2728,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="GND4" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="C8" library="mylib" deviceset="C_PAD_PAD_" device="1005" value="1005"/>
 <part name="C9" library="mylib" deviceset="C_PAD_PAD_" device="1005" value="1005"/>
+<part name="GND16" library="mbed-HDK" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2872,6 +2880,7 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <instance part="GND4" gate="1" x="200.66" y="88.9"/>
 <instance part="C8" gate="G$1" x="190.5" y="96.52"/>
 <instance part="C9" gate="G$1" x="200.66" y="96.52"/>
+<instance part="GND16" gate="1" x="218.44" y="53.34"/>
 </instances>
 <busses>
 </busses>
@@ -3036,6 +3045,16 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <pinref part="C9" gate="G$1" pin="2"/>
 <wire x1="200.66" y1="91.44" x2="200.66" y2="93.98" width="0.1524" layer="91"/>
 <junction x="200.66" y="91.44"/>
+</segment>
+<segment>
+<pinref part="IC3" gate="G$1" pin="NC@2"/>
+<wire x1="213.36" y1="60.96" x2="218.44" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="60.96" x2="218.44" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="IC3" gate="G$1" pin="NC@1"/>
+<wire x1="218.44" y1="58.42" x2="213.36" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="GND16" gate="1" pin="GND"/>
+<wire x1="218.44" y1="53.34" x2="218.44" y2="58.42" width="0.1524" layer="91"/>
+<junction x="218.44" y="58.42"/>
 </segment>
 </net>
 <net name="1.8V" class="0">
