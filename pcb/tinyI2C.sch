@@ -2693,7 +2693,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="GND11" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="TP1" library="testpad_local" deviceset="TP" device="TP07R"/>
 <part name="TP2" library="testpad_local" deviceset="TP" device="TP07R"/>
-<part name="TP3" library="testpad_local" deviceset="TP" device="TP07R"/>
+<part name="TP3" library="testpad_local" deviceset="TP" device="B1,27" value="TPB1,27"/>
 <part name="R1" library="mylib" deviceset="R_US_PAD_PAD" device="_1005" value="220/1005"/>
 <part name="R2" library="mylib" deviceset="R_US_PAD_PAD" device="_1005" value="220/1005"/>
 <part name="R3" library="mylib" deviceset="R_US_PAD_PAD" device="_1005" value="10k/1005"/>
@@ -2729,6 +2729,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C8" library="mylib" deviceset="C_PAD_PAD_" device="1005" value="1005"/>
 <part name="C9" library="mylib" deviceset="C_PAD_PAD_" device="1005" value="1005"/>
 <part name="GND16" library="mbed-HDK" deviceset="GND" device=""/>
+<part name="TP7" library="testpad_local" deviceset="TP" device="B1,27" value="TPB1,27"/>
 </parts>
 <sheets>
 <sheet>
@@ -2779,9 +2780,9 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <instance part="GND11" gate="1" x="170.18" y="81.28"/>
 <instance part="TP1" gate="G$1" x="177.8" y="71.12"/>
 <instance part="TP2" gate="G$1" x="231.14" y="63.5" rot="R270"/>
-<instance part="TP3" gate="G$1" x="172.72" y="53.34" smashed="yes" rot="R90">
-<attribute name="NAME" x="172.212" y="54.356" size="1.778" layer="95" rot="R180"/>
-<attribute name="TP_SIGNAL_NAME" x="173.99" y="54.61" size="1.778" layer="97" rot="R90"/>
+<instance part="TP3" gate="G$1" x="170.18" y="53.34" smashed="yes" rot="R90">
+<attribute name="NAME" x="169.672" y="54.356" size="1.778" layer="95" rot="R180"/>
+<attribute name="TP_SIGNAL_NAME" x="171.45" y="54.61" size="1.778" layer="97" rot="R90"/>
 </instance>
 <instance part="R1" gate="G$1" x="81.28" y="129.54" smashed="yes" rot="R90">
 <attribute name="NAME" x="83.5914" y="123.19" size="1.778" layer="95" rot="R90"/>
@@ -2881,6 +2882,10 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <instance part="C8" gate="G$1" x="190.5" y="96.52"/>
 <instance part="C9" gate="G$1" x="200.66" y="96.52"/>
 <instance part="GND16" gate="1" x="218.44" y="53.34"/>
+<instance part="TP7" gate="G$1" x="170.18" y="55.88" smashed="yes" rot="R90">
+<attribute name="NAME" x="169.672" y="56.896" size="1.778" layer="95" rot="R180"/>
+<attribute name="TP_SIGNAL_NAME" x="171.45" y="57.15" size="1.778" layer="97" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -2961,8 +2966,13 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <wire x1="180.34" y1="53.34" x2="177.8" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="53.34" x2="177.8" y2="58.42" width="0.1524" layer="91"/>
 <pinref part="TP3" gate="G$1" pin="TP"/>
-<wire x1="175.26" y1="53.34" x2="177.8" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="53.34" x2="175.26" y2="53.34" width="0.1524" layer="91"/>
 <junction x="177.8" y="53.34"/>
+<pinref part="TP7" gate="G$1" pin="TP"/>
+<wire x1="175.26" y1="53.34" x2="177.8" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="55.88" x2="175.26" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="55.88" x2="175.26" y2="53.34" width="0.1524" layer="91"/>
+<junction x="175.26" y="53.34"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="VSS"/>

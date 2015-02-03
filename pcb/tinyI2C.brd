@@ -296,6 +296,7 @@
 <wire x1="0" y1="42" x2="0.4" y2="42" width="0" layer="24"/>
 <wire x1="0.4" y1="10.8" x2="0.4" y2="10.4" width="0" layer="24"/>
 <wire x1="0" y1="10.8" x2="0.4" y2="10.8" width="0" layer="24"/>
+<text x="12.2" y="13.3" size="1" layer="21" font="vector" ratio="20">GND</text>
 </plain>
 <libraries>
 <library name="testpad">
@@ -613,6 +614,15 @@ Cream on SMD OFF.&lt;br&gt;
 new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
+<package name="B1,27">
+<description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
+<wire x1="-0.635" y1="0" x2="0.635" y2="0" width="0.0024" layer="37"/>
+<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.0024" layer="37"/>
+<smd name="TP" x="0" y="0" dx="1.27" dy="1.27" layer="1" roundness="100" cream="no"/>
+<text x="-0.635" y="1.016" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-0.635" y="-0.762" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="-0.635" y="-1.905" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+</package>
 <package name="TP07R">
 <description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
 <smd name="TP" x="0" y="0" dx="0.7" dy="0.7" layer="1" roundness="100" stop="no" cream="no"/>
@@ -873,7 +883,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="19.005" y="32.265" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C2" library="mylib" package="C0402" value="1005" x="10.6" y="18.2" smashed="yes" rot="R270">
-<attribute name="NAME" x="10.965" y="14.665" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
+<attribute name="NAME" x="10.865" y="15.065" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="8.695" y="18.835" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C4" library="mylib" package="C0402" value="1005" x="9.1" y="30.5" smashed="yes" rot="R180">
@@ -892,9 +902,9 @@ design rules under a new name.</description>
 <attribute name="TP_SIGNAL_NAME" value="" x="10.6" y="28.595" size="1" layer="37"/>
 <attribute name="VALUE" x="10.346" y="29.992" size="0.0254" layer="27"/>
 </element>
-<element name="TP3" library="testpad_local" package="TP07R" value="TPTP07R" x="12.6" y="15.3" smashed="yes">
-<attribute name="TP_SIGNAL_NAME" value="" x="12.6" y="13.395" size="1" layer="37"/>
-<attribute name="VALUE" x="12.346" y="14.792" size="0.0254" layer="27"/>
+<element name="TP3" library="testpad_local" package="B1,27" value="TPB1,27" x="11.5" y="14.6" smashed="yes">
+<attribute name="TP_SIGNAL_NAME" value="" x="11.5" y="12.695" size="1" layer="37"/>
+<attribute name="VALUE" x="11.246" y="14.092" size="0.0254" layer="27"/>
 </element>
 <element name="R1" library="mylib" package="C0402" value="220/1005" x="3.9" y="29.1" smashed="yes" rot="R270">
 <attribute name="NAME" x="5.465" y="26.235" size="1" layer="25" font="vector" ratio="20"/>
@@ -905,11 +915,11 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="1.995" y="27.335" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R3" library="mylib" package="C0402" value="10k/1005" x="13.5" y="27.7" smashed="yes">
-<attribute name="NAME" x="14.865" y="26.335" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="15.365" y="27.135" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="12.865" y="25.795" size="1.27" layer="27"/>
 </element>
 <element name="R4" library="mylib" package="C0402" value="10k/1005" x="13.5" y="29.1" smashed="yes">
-<attribute name="NAME" x="14.665" y="29.635" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="14.665" y="28.835" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="12.865" y="27.195" size="1.27" layer="27"/>
 </element>
 <element name="R5" library="mylib" package="C0402" value="10k/1005" x="3.9" y="24.3" smashed="yes" rot="R270">
@@ -955,7 +965,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="20.66" y="43.145" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C6" library="mylib" package="C0402" value="1005" x="11.7" y="18.2" smashed="yes" rot="R270">
-<attribute name="NAME" x="12.065" y="14.665" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
+<attribute name="NAME" x="12.965" y="15.065" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="9.795" y="18.835" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="X4" library="con-samtec.local" package="TSW-102-02-S-S" value="TSW-102-02-S-S" x="16.85" y="17.11" smashed="yes" rot="R90">
@@ -1015,6 +1025,10 @@ design rules under a new name.</description>
 <element name="C9" library="mylib" package="C0402" value="1005" x="8.1" y="14.1" smashed="yes" rot="R180">
 <attribute name="NAME" x="7.465" y="12.435" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="8.735" y="16.005" size="1.27" layer="27" rot="R180"/>
+</element>
+<element name="TP7" library="testpad_local" package="B1,27" value="TPB1,27" x="11.5" y="14.6" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="12.135" y="12.695" size="1" layer="38" rot="MR0"/>
+<attribute name="VALUE" x="12.135" y="13.838" size="0.0254" layer="28" rot="MR0"/>
 </element>
 </elements>
 <signals>
@@ -1101,6 +1115,8 @@ design rules under a new name.</description>
 <wire x1="4.676" y1="32.276" x2="4.7" y2="32.3" width="0.25" layer="1"/>
 <wire x1="8.112" y1="32.276" x2="7.224" y2="32.276" width="0.25" layer="1"/>
 <wire x1="7.224" y1="32.276" x2="7.2" y2="32.3" width="0.25" layer="1"/>
+<via x="11.5" y="14.6" extent="1-16" drill="0.8"/>
+<contactref element="TP7" pad="TP"/>
 </signal>
 <signal name="5V">
 <contactref element="X3" pad="3"/>
@@ -1212,8 +1228,8 @@ design rules under a new name.</description>
 <wire x1="3.2" y1="23.7" x2="3.2" y2="26.1" width="0.4" layer="16"/>
 <via x="3.2" y="28.5" extent="1-16" drill="0.3" diameter="0.6"/>
 <wire x1="3.2" y1="26.1" x2="3.2" y2="28.5" width="0.4" layer="16"/>
-<wire x1="3.2" y1="13.5" x2="10.5" y2="13.5" width="0.4" layer="16"/>
-<wire x1="10.5" y1="13.5" x2="12.6" y2="15.6" width="0.4" layer="16"/>
+<wire x1="3.2" y1="13.5" x2="12.2" y2="13.5" width="0.4" layer="16"/>
+<wire x1="12.2" y1="13.5" x2="12.6" y2="13.9" width="0.4" layer="16"/>
 <wire x1="8.112" y1="32.926" x2="9.374" y2="32.926" width="0.25" layer="1"/>
 <wire x1="9.374" y1="32.926" x2="9.5" y2="32.8" width="0.25" layer="1"/>
 <contactref element="IC2" pad="5"/>
@@ -1225,7 +1241,8 @@ design rules under a new name.</description>
 </polygon>
 <contactref element="IC3" pad="7"/>
 <wire x1="14.1" y1="28.4" x2="14.1" y2="29.1" width="0.4" layer="1"/>
-<wire x1="12.6" y1="15.6" x2="12.6" y2="18" width="0.4" layer="16"/>
+<wire x1="12.6" y1="13.9" x2="12.6" y2="17.3" width="0.4" layer="16"/>
+<wire x1="12.6" y1="17.3" x2="12.6" y2="18" width="0.4" layer="16"/>
 <wire x1="14.1" y1="27.7" x2="14.1" y2="28.4" width="0.4" layer="1"/>
 <via x="3.2" y="23.7" extent="1-16" drill="0.3"/>
 <wire x1="3.9" y1="28.5" x2="3.2" y2="28.5" width="0.4" layer="1"/>
@@ -1250,6 +1267,9 @@ design rules under a new name.</description>
 <wire x1="16" y1="32.3" x2="17.1" y2="32.3" width="0.6" layer="1"/>
 <wire x1="17.1" y1="31.6" x2="17.1" y2="32.3" width="0.6" layer="1"/>
 <wire x1="10.65" y1="20.75" x2="10.65" y2="19.75" width="0.25" layer="1"/>
+<wire x1="12.6" y1="17.3" x2="12.3" y2="17.6" width="0.4" layer="16"/>
+<wire x1="12.3" y1="17.6" x2="12.9" y2="17.6" width="0.4" layer="16"/>
+<wire x1="12.9" y1="17.6" x2="12.6" y2="17.3" width="0.4" layer="16"/>
 </signal>
 <signal name="TGT_TX">
 <contactref element="U1" pad="4"/>
@@ -1456,10 +1476,12 @@ design rules under a new name.</description>
 <wire x1="6.6" y1="19.9" x2="6.1" y2="19.4" width="0.25" layer="1"/>
 <wire x1="6.1" y1="19.4" x2="6.1" y2="13.9" width="0.25" layer="1"/>
 <wire x1="19.39" y1="12.03" x2="19.27" y2="12.03" width="0.25" layer="1"/>
-<wire x1="19.27" y1="12.03" x2="17.3" y2="14" width="0.25" layer="1"/>
-<wire x1="17.3" y1="14" x2="10.3" y2="14" width="0.25" layer="1"/>
-<wire x1="10.3" y1="14" x2="9.5" y2="13.2" width="0.25" layer="1"/>
-<wire x1="9.5" y1="13.2" x2="6.8" y2="13.2" width="0.25" layer="1"/>
+<wire x1="19.27" y1="12.03" x2="17.8" y2="13.5" width="0.25" layer="1"/>
+<wire x1="17.8" y1="13.5" x2="11.2" y2="13.5" width="0.25" layer="1"/>
+<wire x1="11.2" y1="13.5" x2="11" y2="13.7" width="0.25" layer="1"/>
+<wire x1="11" y1="13.7" x2="9.5" y2="13.7" width="0.25" layer="1"/>
+<wire x1="9.5" y1="13.7" x2="9" y2="13.2" width="0.25" layer="1"/>
+<wire x1="9" y1="13.2" x2="6.8" y2="13.2" width="0.25" layer="1"/>
 <wire x1="6.8" y1="13.2" x2="6.1" y2="13.9" width="0.25" layer="1"/>
 </signal>
 <signal name="SPI_MISO">
