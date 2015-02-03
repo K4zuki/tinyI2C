@@ -149,7 +149,7 @@ int main()
 
     int ack = 0;
     int plength = 0;
-    char recieve[256];
+    int recieve[256];
     char send[256];
     for(int k = 0; k < 256; k+=4){
         // cafe moca
@@ -232,6 +232,7 @@ int main()
             switch(recieve[i]) {
                 case CMD_C:
                 {
+                    s = false;
                     channel=recieve[i+1];
                     switch(channel) {
                         case CH0:
@@ -321,6 +322,7 @@ int main()
                 }
                 case CMD_R:
                 {
+                    s = false;
                     length = plength - 2;
                     if(length < 1){
                         pc.printf("bad packet! %d\n\r",length);
@@ -390,6 +392,7 @@ int main()
                 }
                 case CMD_W:
                 {
+                    s = false;
                     length = plength - 2;
                     if(length < 3){
                         pc.printf("bad packet! %d\n\r",length);
@@ -497,6 +500,7 @@ int main()
                 }
                 case CMD_I:
                 {
+                    s = false;
                     length = plength - 2;
                     if(length < 1){
                         pc.printf("bad packet! %d\n\r",length);
@@ -542,6 +546,7 @@ int main()
                 }
                 case CMD_O:
                 {
+                    s = false;
                     length = plength - 2;
                     if(length < 3){
                         pc.printf("bad packet! %d\n\r",length);
@@ -597,9 +602,11 @@ int main()
                 }
                 case CMD_E:
                 {
+                    s = false;
                     /*
                     "0|   1   2|   3   4|   5   6  7  8  9 10 11 12|13" //plength=14
                     "E| 0x_0 _1| 0x_0 _0| 0x_D _E| P"                   //minimum plength=8
+                    "E| 0x_0 _1| 0x_0 _0| 0x_D _E|_A _D| P"             //minimum plength=10(16bit)
                     "E| 0x_0 _4| 0x_0 _0| 0x_D _E _A _D _B _E _A _F| P" //write
                     "E| 0x_0 _4| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P" //write and read
                     */
@@ -617,9 +624,9 @@ int main()
                             {
                                 _cs.write(enabled);
                                 for(int j = 0; j < length; j += 2){
-                                    _data = 0xff & ((recieve[i+4+j+0]<<4) | (recieve[i+4+j+1]&0x0F));
+                                    _data = 0xff & ((recieve[i+5+j+0]<<4) | (recieve[i+5+j+1]&0x0F));
                                     ack = _spi.write(_data);
-//                                    pc.printf("s%02X,",ack);
+//                                    pc.printf("s%02X,",_data);
                                     send[j/2] = ack;
                                 }
                                 for(int j = length; j < (length+2*read); j+=2){
@@ -639,12 +646,13 @@ int main()
                                 }else{
                                     _cs.write(enabled);
                                     for(int j = 0; j < length; j += 4){
-                                        _data = 0xff & (((recieve[i+4+j+0] & 0x0F)<<12)|
-                                                        ((recieve[i+4+j+1] & 0x0F)<<8 )|
-                                                        ((recieve[i+4+j+2] & 0x0F)<<4 )|
-                                                        ((recieve[i+4+j+3] & 0x0F)<<0 ));
+                                        _data = 0xffff & (((recieve[i+5+j+0] & 0x0F)<<12)|
+                                                        ((recieve[i+5+j+1] & 0x0F)<<8 )|
+                                                        ((recieve[i+5+j+2] & 0x0F)<<4 )|
+                                                        ((recieve[i+5+j+3] & 0x0F)<<0 )
+                                                        );
                                         ack = _spi.write(_data);
-//                                        pc.printf("s%04X,",ack);
+//                                        pc.printf("s%04X,",_data);
                                         send[(j/2)+0] = 0xFF & (ack>>8);
                                         send[(j/2)+1] = 0xFF & (ack>>0);
                                     }
@@ -666,25 +674,28 @@ int main()
                             
                         }
 //                        pc.printf("command E is for SPI transmission\n\r");
-//                        length = read + data;
+                        length = read + data;
                         i = (plength-1);
                     }
                     break;
                 }
                 case 'Z':
                 {
+                    s = false;
                     pc.printf("command Z is not implemented\n\r");
                     i=plength;
                     break;
                 }
                 case 'V':
                 {
+                    s = false;
                     pc.printf("command V is not implemented\n\r");
                     i=plength;
                     break;
                 }
                 default:
                 {
+                    s = false;
                     pc.printf("command %c is not implemented\n\r", recieve[i]);
                     i=plength;
                     break;
