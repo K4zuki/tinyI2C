@@ -366,11 +366,16 @@ if __name__=="__main__":
     while False:
         print dev.write(0xD0, 0x5D00)
         
-    print dev.reg_write([[dev.SPI_CONF,0x70]])
-    print dev.write_and_read_SPI(4,4,0xC4FEE0CA)
-    print dev.reg_write([[dev.SPI_CONF,0x74]])
-    print dev.write_and_read_SPI(4,6,0xC4FEE0CA)
-    print dev.reg_write([[dev.SPI_CONF,0x70]])
+    try:
+        while True:
+            print dev.reg_write([[dev.SPI_CONF,0x00]])
+            print dev.write_and_read_SPI(4,4,0xC4FEE0CA)
+#            print dev.reg_write([[dev.SPI_CONF,0x04]])
+#            print dev.write_and_read_SPI(4,6,0xC4FEE0CA)
+#            print dev.reg_write([[dev.SPI_CONF,0x00]])
+    except:
+        print "hoge"
+
 ##        print dev.write(0xD0,0x5D01)
 #        print dev.write_and_read(0xD0,0x50,16)
 #        print dev.write_and_read(0xD0,0xD0,16)
