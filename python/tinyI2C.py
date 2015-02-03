@@ -284,7 +284,7 @@ if __name__=="__main__":
     print dev.write(0xD2,0x4701) 
     print dev.write_and_read(0x90, 0x50, 1)
     raw_input("wait, press enter to transferring data")
-    if True:
+    if False:
         for hoo in range(4):
             print hoo
             dev.setChannel(hoo)
@@ -365,6 +365,12 @@ if __name__=="__main__":
     print "port_read = "+ dev.raw_read()
     while False:
         print dev.write(0xD0, 0x5D00)
+        
+    print dev.reg_write([[dev.SPI_CONF,0x70]])
+    print dev.write_and_read_SPI(4,4,0xC4FEE0CA)
+    print dev.reg_write([[dev.SPI_CONF,0x74]])
+    print dev.write_and_read_SPI(4,6,0xC4FEE0CA)
+    print dev.reg_write([[dev.SPI_CONF,0x70]])
 ##        print dev.write(0xD0,0x5D01)
 #        print dev.write_and_read(0xD0,0x50,16)
 #        print dev.write_and_read(0xD0,0xD0,16)

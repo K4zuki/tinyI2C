@@ -103,7 +103,7 @@ int main()
     _spi.frequency(8000000);
 
     bool s = false;
-    dev1.frequency(800000);//900k; works around 940kHz with 200ohm pullups/ not work at 1M? 
+    dev1.frequency(800000);//800k; works around 940kHz with 200ohm pullups/ not work at 1M? 
     LPC_IOCON->PIO0_11 &= ~(0x03<<8);
     LPC_IOCON->PIO0_11 |= (0x02<<8);
     LPC_IOCON->PIO0_10 &= ~(0x03<<8);
@@ -159,13 +159,14 @@ int main()
         recieve[k+3] = send[k+3] = 0xCA;
     }
 
-    char read = 0;
+    int read = 0;
     int address = 0;
     int data = 0;
     int _data = 0;
     int length = 0;
     int channel = 0;
-    bool CE = false;
+    int format = 8;
+    int enabled = 0;
     enum command_e {
         CMD_S='S',
         CMD_P='P',
@@ -236,37 +237,37 @@ int main()
                         case CH0:
                         {
                             channel = CH0;
-                            dev=&dev1;
+                            dev = &dev1;
                             break;
                         }
 #ifdef QUAD_I2C
                         case CH1:
                         {
                             channel = CH1;
-                            dev=&dev2;
+                            dev = &dev2;
                             break;
                         }
                         case CH2:
                         {
                             channel = CH2;
-                            dev=&dev3;
+                            dev = &dev3;
                             break;
                         }
                         case CH3:
                         {
                             channel = CH3;
-                            dev=&dev4;
+                            dev = &dev4;
                             break;
                         }
 #endif
                         default:
                         {
                             channel = CH0;
-                            dev=&dev1;
+                            dev = &dev1;
                             break;
                         }
                     }
-                    i+=(2);
+                    i += 2;
                     break;
                 }
                 case CMD_S:
@@ -281,7 +282,7 @@ int main()
                             ack = dev->read(address, send, length, false); //added
                             send[length] = ack;
                             length += 1;
-                            i+=(5);
+                            i += 5;
                         } else { // write
                             for(int j = 0; j < (length * 2); j+=2) {
                                 ack = 0xff&((recieve[5+j] << 4) | (recieve[6+j] & 0x0F));
@@ -326,7 +327,7 @@ int main()
                         i = plength + 1;
                         length = 0;
                     }else{
-                        for(int j=0; j<length; j++){
+                        for(int j = 0; j < length; j++){
                             address = recieve[i+1+j];
                             switch(address){
                                 case CHIP_ID:
@@ -336,7 +337,7 @@ int main()
                                 }
                                 case GPIO0_STAT:
                                 {
-                                    for(int k=0; k<8; k++){
+                                    for(int k = 0; k < 8; k++){
                                         _data = gpio0[k]->read();
                                         data |= (_data << k);
                                     }
@@ -351,7 +352,7 @@ int main()
 #ifndef QUAD_I2C
                                 case GPIO1_STAT:
                                 {
-                                    for(int k=0; k<8; k++){
+                                    for(int k = 0; k < 8; k++){
                                         _data = gpio1[k]->read();
                                         data |= (_data << k);
                                     }
@@ -381,7 +382,7 @@ int main()
                                 }
                             }
                             send[j] = (char)data;
-                            data=0;
+                            data = 0;
                         }
                         i += (length+1);
                     }
@@ -395,7 +396,7 @@ int main()
                         i = plength + 1;
                         length = 0;
                     }else{
-                        for(int j=0; j<length; j+=3){
+                        for(int j = 0; j < length; j +=3){
                             address = recieve[i+1+j];
                             data = 0xff & (recieve[i+2+j] << 4 | (recieve[i+3+j] & 0x0F));
                             _data = 0;
@@ -422,8 +423,8 @@ int main()
                                 case GPIO0_CONF:
                                 {
                                     registers[GPIO0_CONF-'0'] = data;
-                                    for(int k=0; k<8; k++){
-                                        if(data&0x01){//output
+                                    for(int k = 0; k < 8; k++){
+                                        if(data & 0x01){//output
                                             gpio0[k]->output();
                                         }else{//input
                                             gpio0[k]->input();
@@ -438,8 +439,8 @@ int main()
                                 case GPIO1_STAT:
                                 {
                                     _data = registers[GPIO1_CONF-'0'];
-                                    for(int k=0; k<8; k++){
-                                        if(_data&0x01){ // output
+                                    for(int k = 0; k < 8; k++){
+                                        if(_data & 0x01){ // output
                                             gpio1[k]->write((data>>k)&0x01);
                                         }else{ // input
                                             ; // do nothing
@@ -451,8 +452,8 @@ int main()
                                 case GPIO1_CONF:
                                 {
                                     registers[GPIO1_CONF-'0'] = data;
-                                    for(int k=0; k<6; k++){
-                                        if(data&0x01){//output
+                                    for(int k = 0; k < 6; k++){
+                                        if(data & 0x01){//output
                                             gpio1[k]->output();
                                         }else{//input
                                             gpio1[k]->input();
@@ -467,17 +468,19 @@ int main()
                                 case I2C_CONF:
                                 {
                                     registers[I2C_CONF-'0'] = data;
-                                    dev1.frequency(200000 * ((0x03 & (data>>6)) + 1));
-                                    dev2.frequency(100000 * ((0x03 & (data>>4)) + 1));
-                                    dev3.frequency(100000 * ((0x03 & (data>>2)) + 1));
-                                    dev4.frequency(100000 * ((0x03 & (data>>0)) + 1));
+                                    dev1.frequency(200000 * ((0x03 & (data >> 6)) + 1));
+                                    dev2.frequency(100000 * ((0x03 & (data >> 4)) + 1));
+                                    dev3.frequency(100000 * ((0x03 & (data >> 2)) + 1));
+                                    dev4.frequency(100000 * ((0x03 & (data >> 0)) + 1));
                                     break;
                                 }
                                 case SPI_CONF:
                                 {
                                     registers[SPI_CONF-'0'] = data;
-                                    _spi.format(((data & 0x04) + 4)<<1, 0x03 & (data));
-                                    _spi.frequency(1000000 * ((0x07 & (data>>4)) + 1));
+                                    format = ((data & 0x04) + 4) << 1;
+                                    _spi.format(format, 0x03 & (data));
+                                    _spi.frequency(1000000 * ((0x07 & (data >> 4)) + 1));
+                                    enabled = (data & 0x08) >> 3;
                                     break;
                                 }
                                 default:
@@ -487,7 +490,7 @@ int main()
                             }
                             send[j/3] = data;
                         }
-                        i += (length+1);
+                        i += (length + 1);
                         length /= 3;
                     }
                     break;
@@ -595,18 +598,76 @@ int main()
                 case CMD_E:
                 {
                     /*
+                    "0|   1   2|   3   4|   5   6  7  8  9 10 11 12|13" //plength=14
+                    "E| 0x_0 _1| 0x_0 _0| 0x_D _E| P"                   //minimum plength=8
                     "E| 0x_0 _4| 0x_0 _0| 0x_D _E _A _D _B _E _A _F| P" //write
                     "E| 0x_0 _4| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P" //write and read
                     */
-                    length = plength - 2;
-                    if(length < 3){
+                    length = plength - 2; //6
+                    if(length < 6){
                         pc.printf("bad packet! %d\n\r",length);
                         i = plength + 1;
                         length = 0;
                     }else{
-                        
-                        pc.printf("command E is for SPI transmission\n\r");
-                        i = plength;
+                        length = length-4; //actual data in packet
+                        data = 0xff & ((recieve[i+1]<<4) | (recieve[i+2]&0x0F)); // write length
+                        read = 0xff & ((recieve[i+3]<<4) | (recieve[i+4]&0x0F)); // read length
+                        switch(format){
+                            case 8:
+                            {
+                                _cs.write(enabled);
+                                for(int j = 0; j < length; j += 2){
+                                    _data = 0xff & ((recieve[i+4+j+0]<<4) | (recieve[i+4+j+1]&0x0F));
+                                    ack = _spi.write(_data);
+//                                    pc.printf("s%02X,",ack);
+                                    send[j/2] = ack;
+                                }
+                                for(int j = length; j < (length+2*read); j+=2){
+                                    ack = _spi.write(0xAA); //dummy data to write
+//                                    pc.printf("a%02X,",ack);
+                                    send[j/2] = ack;
+                                }
+                                _cs.write(~enabled);
+                                break;
+                            }
+                            case 16:
+                            {
+                                if((data%2) || (read%2)){ //invalid
+                                    pc.printf("bad packet! %d, %d\n\r",data,read);
+                                    i = plength + 1;
+                                    length = 0;
+                                }else{
+                                    _cs.write(enabled);
+                                    for(int j = 0; j < length; j += 4){
+                                        _data = 0xff & (((recieve[i+4+j+0] & 0x0F)<<12)|
+                                                        ((recieve[i+4+j+1] & 0x0F)<<8 )|
+                                                        ((recieve[i+4+j+2] & 0x0F)<<4 )|
+                                                        ((recieve[i+4+j+3] & 0x0F)<<0 ));
+                                        ack = _spi.write(_data);
+//                                        pc.printf("s%04X,",ack);
+                                        send[(j/2)+0] = 0xFF & (ack>>8);
+                                        send[(j/2)+1] = 0xFF & (ack>>0);
+                                    }
+                                    for(int j = length; j < (length+2*read); j += 4){
+                                        ack = _spi.write(0xAAAA); //dummy data to write
+//                                        pc.printf("a%04X,",ack);
+                                        send[(j/2)+0] = 0xFF & (ack>>8);
+                                        send[(j/2)+1] = 0xFF & (ack>>0);
+                                    }
+                                    _cs.write(~enabled);
+                                }
+                                break;
+                            }
+                            default:
+                            {
+                                pc.printf("this shold not happen %d\n\r",format);
+                                break;
+                            }
+                            
+                        }
+//                        pc.printf("command E is for SPI transmission\n\r");
+//                        length = read + data;
+                        i = (plength-1);
                     }
                     break;
                 }
