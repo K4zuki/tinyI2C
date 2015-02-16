@@ -874,19 +874,19 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="6.9" y="25.9" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="C1" library="mylib" package="C0402" value="1005" x="17.1" y="32.9" smashed="yes" rot="R90">
-<attribute name="NAME" x="16.665" y="34.235" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="16.6" y="34.2" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="19.005" y="32.265" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C2" library="mylib" package="C0402" value="1005" x="10.6" y="18.2" smashed="yes" rot="R270">
-<attribute name="NAME" x="10.865" y="15.065" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
+<attribute name="NAME" x="10.8" y="15" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="8.695" y="18.835" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C4" library="mylib" package="C0402" value="1005" x="9.1" y="30.5" smashed="yes" rot="R180">
-<attribute name="NAME" x="6.365" y="29.935" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="6.3" y="29.9" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="9.735" y="32.405" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C5" library="mylib" package="C0402" value="1005" x="4.1" y="34.8" smashed="yes">
-<attribute name="NAME" x="4.565" y="35.335" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.5" y="35.4" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="3.465" y="32.895" size="1.27" layer="27"/>
 </element>
 <element name="TP1" library="testpad_local" package="TP07R" value="TPTP07R" x="7.6" y="35.9" smashed="yes">
@@ -902,47 +902,47 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="11.246" y="14.092" size="0.0254" layer="27"/>
 </element>
 <element name="R1" library="mylib" package="C0402" value="220/1005" x="3.9" y="29.1" smashed="yes" rot="R270">
-<attribute name="NAME" x="5.465" y="26.235" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="5.5" y="26.2" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="29.735" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R2" library="mylib" package="C0402" value="220/1005" x="3.9" y="26.7" smashed="yes" rot="R270">
-<attribute name="NAME" x="5.465" y="24.935" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="5.5" y="25" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="27.335" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R3" library="mylib" package="C0402" value="10k/1005" x="13.5" y="27.7" smashed="yes">
-<attribute name="NAME" x="15.365" y="27.135" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="15.3" y="27.1" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="12.865" y="25.795" size="1.27" layer="27"/>
 </element>
 <element name="R4" library="mylib" package="C0402" value="10k/1005" x="13.5" y="29.1" smashed="yes">
-<attribute name="NAME" x="14.665" y="28.835" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="14.6" y="28.7" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="12.865" y="27.195" size="1.27" layer="27"/>
 </element>
 <element name="R5" library="mylib" package="C0402" value="10k/1005" x="3.9" y="24.3" smashed="yes" rot="R270">
-<attribute name="NAME" x="4.565" y="23.735" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.6" y="23.7" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="24.935" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R6" library="mylib" package="C0402" value="10k/1005" x="3.9" y="21.9" smashed="yes" rot="R270">
-<attribute name="NAME" x="4.565" y="21.335" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.6" y="21.3" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="22.535" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R7" library="mylib" package="C0402" value="10k/1005" x="3.9" y="19.5" smashed="yes" rot="R270">
-<attribute name="NAME" x="4.565" y="19.335" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.6" y="19.3" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="20.135" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R8" library="mylib" package="C0402" value="10k/1005" x="3.9" y="17.1" smashed="yes" rot="R270">
-<attribute name="NAME" x="4.565" y="16.535" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.6" y="16.5" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="17.735" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R9" library="mylib" package="C0402" value="10k/1005" x="3.9" y="14.7" smashed="yes" rot="R270">
-<attribute name="NAME" x="4.565" y="13.535" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.6" y="13.5" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.995" y="15.335" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R10" library="mylib" package="C0402" value="10k/1005" x="3.9" y="12.3" smashed="yes" rot="R90">
-<attribute name="NAME" x="4.565" y="11.735" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="4.6" y="11.7" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="5.805" y="11.665" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C3" library="mylib" package="C0402" value="1005" x="9.5" y="34.7" smashed="yes" rot="R90">
-<attribute name="NAME" x="10.065" y="31.865" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
+<attribute name="NAME" x="10.1" y="31.9" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="11.405" y="34.065" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="X1" library="con-samtec.local" package="TSW-112-02-S-S" value="TSW-112-02-S-S" x="1.61" y="26" smashed="yes" rot="R90">
@@ -960,7 +960,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="20.66" y="43.145" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C6" library="mylib" package="C0402" value="1005" x="11.7" y="18.2" smashed="yes" rot="R270">
-<attribute name="NAME" x="12.965" y="15.065" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
+<attribute name="NAME" x="13" y="15" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="9.795" y="18.835" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="X4" library="con-samtec.local" package="TSW-102-02-S-S" value="TSW-102-02-S-S" x="16.85" y="17.11" smashed="yes" rot="R90">
@@ -997,28 +997,28 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="10.246" y="33.492" size="0.0254" layer="27"/>
 </element>
 <element name="IC1" library="74xx-little-us_local" package="SC70-5" value="74LVC1G125DCK" x="13" y="33.1" smashed="yes">
-<attribute name="NAME" x="11.96" y="30.67" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="12" y="30.6" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="10.46" y="30.56" size="1.27" layer="27"/>
 </element>
 <element name="IC2" library="74xx-little-us_local" package="SC70-5" value="74LVC1G125DCK" x="15.2" y="33.1" smashed="yes" rot="R180">
-<attribute name="NAME" x="14.16" y="34.67" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="14.1" y="34.6" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="17.74" y="35.64" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C7" library="mylib" package="C0402" value="1005" x="11.5" y="34.7" smashed="yes" rot="R90">
-<attribute name="NAME" x="11.665" y="31.865" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
+<attribute name="NAME" x="11.7" y="31.9" size="1" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="13.405" y="34.065" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="IC3" library="mylib" package="IC_08_0.65_160MIL" value="IC_LDO_MIC5355" x="5.9" y="32.6" smashed="yes" rot="R270">
-<attribute name="NAME" x="6.56" y="34.432" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="6.5" y="34.4" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="3.36" y="29.298" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="Q1" library="adafruit (1)" package="NX3225" value="" x="8" y="16.7" rot="R270"/>
 <element name="C8" library="mylib" package="C0402" value="1005" x="7.8" y="19.3" smashed="yes">
-<attribute name="NAME" x="6.665" y="20.035" size="1" layer="25" font="vector" ratio="15"/>
+<attribute name="NAME" x="6.6" y="20" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="7.165" y="17.395" size="1.27" layer="27"/>
 </element>
 <element name="C9" library="mylib" package="C0402" value="1005" x="8.1" y="14.1" smashed="yes" rot="R180">
-<attribute name="NAME" x="7.465" y="12.435" size="1" layer="25" font="vector" ratio="20"/>
+<attribute name="NAME" x="7.5" y="12.4" size="1" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="8.735" y="16.005" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="TP7" library="testpad_local" package="B1,27" value="TPB1,27" x="11.5" y="14.6" smashed="yes" rot="MR0">
