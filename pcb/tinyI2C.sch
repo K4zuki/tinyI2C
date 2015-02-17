@@ -1349,14 +1349,14 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <wire x1="1.524" y1="-1.27" x2="-1.524" y2="-1.27" width="0.2" layer="21"/>
 <wire x1="-1.524" y1="-1.27" x2="-1.524" y2="-0.508" width="0.2" layer="21"/>
 <wire x1="-1.524" y1="0.508" x2="-1.524" y2="1.27" width="0.2" layer="21"/>
-<smd name="8" x="-0.976" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="7" x="-0.326" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="6" x="0.324" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="5" x="0.974" y="2.212" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="4" x="0.974" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="3" x="0.324" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="2" x="-0.326" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
-<smd name="1" x="-0.976" y="-2.213" dx="0.3" dy="1.2" layer="1" stop="no"/>
+<smd name="8" x="-0.976" y="2.312" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="7" x="-0.326" y="2.312" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="6" x="0.324" y="2.312" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="5" x="0.974" y="2.312" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="4" x="0.974" y="-2.313" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="3" x="0.324" y="-2.313" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="2" x="-0.326" y="-2.313" dx="0.4" dy="1.2" layer="1" stop="no"/>
+<smd name="1" x="-0.976" y="-2.313" dx="0.4" dy="1.2" layer="1" stop="no"/>
 <text x="-2" y="-2.5" size="1" layer="25" font="vector" ratio="20" rot="R90">&gt;NAME</text>
 <text x="3.3" y="-2.5" size="1" layer="27" font="vector" ratio="20" rot="R90">&gt;VALUE</text>
 <rectangle x1="-1.0975" y1="1.6244" x2="-0.8537" y2="2.3557" layer="51"/>
@@ -1368,16 +1368,16 @@ Source: http://www.semiconductors.philips.com/acrobat_download/datasheets/TDA988
 <rectangle x1="0.2025" y1="-2.3569" x2="0.4463" y2="-1.6256" layer="51"/>
 <rectangle x1="0.8525" y1="-2.3569" x2="1.0963" y2="-1.6256" layer="51"/>
 <smd name="EXP" x="0" y="0" dx="1.7" dy="1.7" layer="1" stop="no"/>
-<rectangle x1="-1.15" y1="1.6" x2="-0.8" y2="2.85" layer="29"/>
-<rectangle x1="-0.5" y1="1.6" x2="-0.15" y2="2.85" layer="29"/>
-<rectangle x1="0.15" y1="1.6" x2="0.5" y2="2.85" layer="29"/>
-<rectangle x1="0.8" y1="1.6" x2="1.15" y2="2.85" layer="29"/>
-<rectangle x1="-1.15" y1="-2.85" x2="-0.8" y2="-1.6" layer="29"/>
-<rectangle x1="-0.5" y1="-2.85" x2="-0.15" y2="-1.6" layer="29"/>
-<rectangle x1="0.15" y1="-2.85" x2="0.5" y2="-1.6" layer="29"/>
-<rectangle x1="0.8" y1="-2.85" x2="1.15" y2="-1.6" layer="29"/>
+<rectangle x1="0.1" y1="1.7" x2="0.55" y2="2.95" layer="29"/>
 <rectangle x1="-0.9" y1="-0.9" x2="0.9" y2="0.9" layer="29"/>
 <wire x1="-1.424" y1="-2.57" x2="-1.424" y2="-1.808" width="0.2" layer="21"/>
+<rectangle x1="-0.55" y1="1.7" x2="-0.1" y2="2.95" layer="29"/>
+<rectangle x1="0.75" y1="1.7" x2="1.2" y2="2.95" layer="29"/>
+<rectangle x1="-1.2" y1="1.7" x2="-0.75" y2="2.95" layer="29"/>
+<rectangle x1="0.75" y1="-2.95" x2="1.2" y2="-1.7" layer="29"/>
+<rectangle x1="0.1" y1="-2.95" x2="0.55" y2="-1.7" layer="29"/>
+<rectangle x1="-0.55" y1="-2.95" x2="-0.1" y2="-1.7" layer="29"/>
+<rectangle x1="-1.2" y1="-2.95" x2="-0.75" y2="-1.7" layer="29"/>
 </package>
 <package name="C0402">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;</description>
@@ -1451,31 +1451,6 @@ chip</description>
 <text x="-0.635" y="-2.2225" size="1.27" layer="27" font="vector" ratio="15">&gt;VALUE</text>
 <wire x1="-0.3175" y1="-0.8" x2="0.3175" y2="-0.8" width="0.2" layer="21"/>
 </package>
-<package name="R_2125_PADPAD">
-<smd name="1" x="-1.27" y="0" dx="1.4224" dy="1.4224" layer="1"/>
-<smd name="2" x="1.27" y="0" dx="1.4224" dy="1.4224" layer="1"/>
-<text x="-0.635" y="1.27" size="1.27" layer="25">&gt;NAME</text>
-<text x="-0.635" y="-2.54" size="1.27" layer="27">&gt;VALUE</text>
-<polygon width="0.127" layer="51">
-<vertex x="-1" y="-0.6"/>
-<vertex x="1" y="-0.6"/>
-<vertex x="1" y="0.6"/>
-<vertex x="-1" y="0.6"/>
-</polygon>
-<wire x1="-0.9525" y1="0" x2="-0.4763" y2="0" width="0.127" layer="21"/>
-<wire x1="-0.4763" y1="0" x2="-0.3176" y2="0.635" width="0.127" layer="21"/>
-<wire x1="-0.3176" y1="0.635" x2="-0.1588" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="-0.1588" y1="-0.635" x2="-0.0001" y2="0.635" width="0.127" layer="21"/>
-<wire x1="-0.0001" y1="0.635" x2="0.1587" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="0.1587" y1="-0.635" x2="0.3175" y2="0.635" width="0.127" layer="21"/>
-<wire x1="0.3175" y1="0.635" x2="0.4762" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="0.4762" y1="-0.635" x2="0.635" y2="0" width="0.127" layer="21"/>
-<wire x1="0.635" y1="0" x2="0.9524" y2="0" width="0.127" layer="21"/>
-<wire x1="-2.2225" y1="0.9525" x2="-2.2225" y2="-0.9525" width="0.127" layer="21"/>
-<wire x1="-2.2225" y1="-0.9525" x2="2.2225" y2="-0.9525" width="0.127" layer="21"/>
-<wire x1="2.2225" y1="-0.9525" x2="2.2225" y2="0.9525" width="0.127" layer="21"/>
-<wire x1="2.2225" y1="0.9525" x2="-2.2225" y2="0.9525" width="0.127" layer="21"/>
-</package>
 <package name="R_3216_PADPAD">
 <wire x1="-1.27" y1="0" x2="-0.9525" y2="0" width="0.127" layer="21"/>
 <wire x1="-0.9525" y1="0" x2="-0.7938" y2="0.635" width="0.127" layer="21"/>
@@ -1494,6 +1469,22 @@ chip</description>
 <smd name="2" x="1.27" y="0" dx="1.27" dy="1.778" layer="1"/>
 <text x="-1.27" y="1.4605" size="1.27" layer="25">&gt;NAME</text>
 <text x="-1.27" y="-2.7305" size="1.27" layer="27">&gt;VALUE</text>
+</package>
+<package name="R_2125_PADPAD">
+<smd name="1" x="-1.27" y="0" dx="1.4224" dy="1.4224" layer="1"/>
+<smd name="2" x="1.27" y="0" dx="1.4224" dy="1.4224" layer="1"/>
+<text x="-0.635" y="1.27" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.635" y="-2.54" size="1.27" layer="27">&gt;VALUE</text>
+<polygon width="0.127" layer="51">
+<vertex x="-1" y="-0.6"/>
+<vertex x="1" y="-0.6"/>
+<vertex x="1" y="0.6"/>
+<vertex x="-1" y="0.6"/>
+</polygon>
+<wire x1="-2.3225" y1="1.0525" x2="-2.3225" y2="-1.0525" width="0.2" layer="21"/>
+<wire x1="-2.3225" y1="-1.0525" x2="2.3225" y2="-1.0525" width="0.2" layer="21"/>
+<wire x1="2.3225" y1="-1.0525" x2="2.3225" y2="1.0525" width="0.2" layer="21"/>
+<wire x1="2.3225" y1="1.0525" x2="-2.3225" y2="1.0525" width="0.2" layer="21"/>
 </package>
 </packages>
 <symbols>
