@@ -31,8 +31,8 @@ tinyI2C       <-- root
 ## Contribution by
 Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
-## Licence
-CC 1.0
+## License
+[CC-BY-SA] (http://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
 ## Author
 
