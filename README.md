@@ -33,6 +33,7 @@ Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
 ## License
 [CC-BY-SA] (http://creativecommons.org/licenses/by-sa/4.0/legalcode)
+[CC-BY-SA 日本語](http://creativecommons.org/licenses/by-sa/2.1/jp/legalcode)
 
 ## Author
 
