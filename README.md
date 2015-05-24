@@ -1,6 +1,5 @@
 tinyI2C
 =======
-
 tiny UART-I2C converter project using mbed microcontrollers.
 
 tinyI2C       <-- root  
@@ -22,6 +21,7 @@ tinyI2C       <-- root
 3. start gui software
 4. select Serial port from dropdown list
 5. you will be able to use up to 4 channels of I2C slaves and more!
+6. check [PinOut](TinyI2C_PinOut.png) for your usage!
 
 ## Install
 1. install python 2.7 on your PC
