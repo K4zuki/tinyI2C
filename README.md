@@ -20,8 +20,8 @@ tinyI2C       <-- root
 2. connect mbed to PC via Serial port
 3. start gui software
 4. select Serial port from dropdown list
-5. you will be able to use up to 4 channels of I2C slaves and more!
-6. check [PinOut](TinyI2C_PinOut.png) for your usage!
+5. you will be able to use up to 4 channels of I2C slaves and more!    
+    * check PinOut for your usage! ![](TinyI2C_PinOut.png)
 
 ## Install
 1. install python 2.7 on your PC
