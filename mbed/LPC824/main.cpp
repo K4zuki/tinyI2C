@@ -6,28 +6,34 @@
 #define TINYI2C
 
 #ifdef TINYI2C
+#warning "TINYI2C"
 Serial pc(P0_4, P0_0);
 #else //TINY_I2C
-Serial pc(P0_4, P0_0);
-//Serial pc(USBTX,USBRX); // P0_7, P0_18
+#warning "NOT TINYI2C"
+//Serial pc(P0_4, P0_0);
+Serial pc(USBTX,USBRX); // P0_7, P0_18
 #endif //TINYI2C
 //P0_13, P0_1
 
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 
 #ifdef QUAD_I2C
+#warning "QUAD_I2C"
 
 #ifdef TINYI2C
+#warning "TINYI2C"
 I2C dev2(P0_16, P0_27);
 I2C dev3(P0_26, P0_25);
 I2C dev4(P0_24, P0_15);
 #else //TINYI2C
+#warning "NOT TINYI2C"
 I2C dev2(P0_6, P0_14); // 6,14 | A0, A1
 I2C dev3(P0_23, P0_22); // 23,22 | A2, A3
 I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
 #endif //TINYI2C
 
 #else //QUAD_I2C
+#warning "NOT QUAD_I2C"
 DigitalInOut _GPIO10(P0_15);
 DigitalInOut _GPIO11(P0_24);
 DigitalInOut _GPIO12(P0_25);
@@ -39,6 +45,7 @@ DigitalInOut _GPIO17(P0_12);
 #endif //QUAD_I2C
 
 #ifdef TINYI2C
+#warning "TINYI2C"
 DigitalInOut _GPIO00(P0_17);
 DigitalInOut _GPIO01(P0_18);
 DigitalInOut _GPIO02(P0_19);
@@ -48,22 +55,25 @@ DigitalInOut _GPIO05(P0_22);
 DigitalInOut _GPIO06(P0_23);
 DigitalInOut _GPIO07(P0_14);
 #else
-DigitalInOut _GPIO00(D2); // P0_19
-DigitalInOut _GPIO01(D3); // P0_12
-DigitalInOut _GPIO02(D4); // P0_18
-DigitalInOut _GPIO03(D5); // P0_28
-DigitalInOut _GPIO04(D6); // P0_16
-DigitalInOut _GPIO05(D7); // P0_17
-DigitalInOut _GPIO06(D8); // P0_13
-DigitalInOut _GPIO07(D9); // P0_27
+#warning "NOT TINYI2C"
+DigitalInOut _GPIO00(P0_19); // D2
+DigitalInOut _GPIO01(P0_12); // D3
+DigitalInOut _GPIO02(P0_18); // D4
+DigitalInOut _GPIO03(P0_28); // D5
+DigitalInOut _GPIO04(P0_16); // D6
+DigitalInOut _GPIO05(P0_17); // D7
+DigitalInOut _GPIO06(P0_13); // D8
+DigitalInOut _GPIO07(P0_27); // D9
 #endif //TINYI2C
 
 #ifdef TINYI2C
-SPI _spi(P0_6, P0_7, P0_8); // mosi, miso, sclk
-DigitalOut _cs(P0_9); // CS
+#warning "TINYI2C"
+SPI _spi(P0_6, P0_7, P0_13); // mosi, miso, sclk
+DigitalOut _cs(P0_1); // CS
 #else
-SPI _spi(D11, D12, D13); // mosi, miso, sclk
-DigitalOut _cs(D10); // CS
+#warning "NOT TINYI2C"
+SPI _spi(P0_26,P0_25,P0_24); // mosi, miso, sclk, D11, D12, D13
+DigitalOut _cs(P0_15); // CS, D10
 #endif //TINYI2C
 
 //Table 3. ASCII commands supported by SC18IM700
@@ -113,10 +123,12 @@ int main()
 //    LPC_I2C0->MSTTIME &= 0xFFFFFF00;
 //    LPC_I2C0->MSTTIME |= 0x00;
 #ifdef QUAD_I2C
+#warning "QUAD_I2C"
     dev2.frequency(400000);//400k
     dev3.frequency(400000);//400k
     dev4.frequency(400000);//400k
 #else
+#warning "NOT QUAD_I2C"
     DigitalInOut* gpio1[]={
         &_GPIO10,
         &_GPIO11,
@@ -167,6 +179,7 @@ int main()
     int channel = 0;
     int format = 8;
     int enabled = 0;
+    int disabled = 0;
     enum command_e {
         CMD_S='S',
         CMD_P='P',
@@ -242,6 +255,7 @@ int main()
                             break;
                         }
 #ifdef QUAD_I2C
+#warning "QUAD_I2C"
                         case CH1:
                         {
                             channel = CH1;
@@ -352,6 +366,7 @@ int main()
                                     break;
                                 }
 #ifndef QUAD_I2C
+#warning "NOT QUAD_I2C"
                                 case GPIO1_STAT:
                                 {
                                     for(int k = 0; k < 8; k++){
@@ -439,6 +454,7 @@ int main()
                                     break;
                                 }
 #ifndef QUAD_I2C
+#warning "NOT QUAD_I2C"
                                 case GPIO1_STAT:
                                 {
                                     _data = registers[GPIO1_CONF-'0'];
@@ -472,9 +488,12 @@ int main()
                                 {
                                     registers[I2C_CONF-'0'] = data;
                                     dev1.frequency(200000 * ((0x03 & (data >> 6)) + 1));
+#ifdef QUAD_I2C
+#warning "QUAD_I2C"
                                     dev2.frequency(100000 * ((0x03 & (data >> 4)) + 1));
                                     dev3.frequency(100000 * ((0x03 & (data >> 2)) + 1));
                                     dev4.frequency(100000 * ((0x03 & (data >> 0)) + 1));
+#endif
                                     break;
                                 }
                                 case SPI_CONF:
@@ -484,6 +503,7 @@ int main()
                                     _spi.format(format, 0x03 & (data));
                                     _spi.frequency(1000000 * ((0x07 & (data >> 4)) + 1));
                                     enabled = (data & 0x08) >> 3;
+                                    disabled = ~enabled;
                                     break;
                                 }
                                 default:
@@ -521,6 +541,7 @@ int main()
                                     break;
                                 }
 #ifndef QUAD_I2C
+#warning "NOT QUAD_I2C"
                                 case GPIO1_STAT:
                                 {
                                     for(int k=0; k<8; k++){
@@ -572,6 +593,7 @@ int main()
                                     break;
                                 }
 #ifndef QUAD_I2C
+#warning "NOT QUAD_I2C"
                                 case GPIO1_STAT:
                                 {
                                     _data = registers[GPIO1_CONF-'0'];
@@ -634,7 +656,7 @@ int main()
 //                                    pc.printf("a%02X,",ack);
                                     send[j/2] = ack;
                                 }
-                                _cs.write(~enabled);
+                                _cs.write(disabled);
                                 break;
                             }
                             case 16:
@@ -662,7 +684,7 @@ int main()
                                         send[(j/2)+0] = 0xFF & (ack>>8);
                                         send[(j/2)+1] = 0xFF & (ack>>0);
                                     }
-                                    _cs.write(~enabled);
+                                    _cs.write(disabled);
                                 }
                                 break;
                             }
