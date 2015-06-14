@@ -361,51 +361,30 @@ if __name__=="__main__":
         print dev.reg_write([[dev.GPIO0_STAT,0x00]])
 
     print "reg_read = "+dev.reg_read('01234')
-    dev.raw_write('I'+dev.GPIO0_STAT+'P')
+    dev.raw_write('R'+dev.GPIO0_CONF+'P')
     print "port_read = "+ dev.raw_read()
     while False:
         print dev.write(0xD0, 0x5D00)
-        
+
+    print dev.reg_write([[dev.SPI_CONF,0x08]])
+    print dev.reg_write([[dev.GPIO0_CONF,0x80]])
+    print dev.reg_write([[dev.GPIO0_STAT,0x80]])
+    print dev.write_and_read_SPI(2,1,0x4000)
+    print dev.write_and_read_SPI(2,1,0x4000)
     try:
         while True:
 #            print dev.reg_write([[dev.SPI_CONF,0x00]])
-#            print dev.write_and_read_SPI(2,10,0xC4FE)
-            print dev.reg_write([[dev.SPI_CONF,0x04]])
-            print dev.write_and_read_SPI(2,10,0xC4FE)
-            print dev.reg_write([[dev.SPI_CONF,0x00]])
+#            print dev.reg_write([[dev.GPIO0_STAT,0x80]])
+#            print dev.write_and_read_SPI(2,0,0xC4FE)
+#            print dev.reg_write([[dev.GPIO0_STAT,0x00]])
+            print dev.write_and_read_SPI(54,0,0x8055C4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CA0000 )
+#            print dev.reg_write([[dev.SPI_CONF,0x00]])
     except:
         print dev.raw_read()
-
-##        print dev.write(0xD0,0x5D01)
-#        print dev.write_and_read(0xD0,0x50,16)
-#        print dev.write_and_read(0xD0,0xD0,16)
-        #print dev.write_and_read(0xD2,0x10,15)
-#        print dev.write_and_read(0xD0,0x50,16)
-#        print dev.write_and_read(0xD4,0x10,16)
-##    print "%02X"%(int(dev.write_and_read(0x90,0xdeadbeaf,50).split(',')[0],16))
-#    print dev.ser.readline().strip()
 
 ##    raw_input("wait, press enter to send repeated start command")
 ##    dev.ser.write(i2crw)
 ##    print dev.ser.readline()
-
-##    raw_input("wait, press enter to send 'R' command")
-##    dev.ser.write('RP')
-##    print dev.ser.readline()
-##    neroaddr=0xD0
-##    nerodata=[
-##        [0xD8,0x00],
-##        [0xD8,0x46],
-##        [0xD8,0x7F],
-##    ]
-##    nerodata2=""
-##    for hoge in nerodata:
-##        print dev._hex2ascii(hoge),
-##    
-###    print dev._hex2ascii(nerodata)
-##    
-##    print dev.write(neroaddr,nerodata)
-    
 
 ##    raw_input("wait, press enter to send 'W' command")
 ##    ser.write('WP')
