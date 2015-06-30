@@ -46,7 +46,7 @@ class serial2i2c(object):
     _wait = 1e-3
     ## register 0; ro; returns chip ID to identify device
     CHIP_ID = '0'
-    
+
     ## register 1
     #@brief Readable / Writable
     #@param status 1 to set 'H' or 0 to set 'L' on each corresponding GPIO0 pin
@@ -93,8 +93,6 @@ class serial2i2c(object):
         for _l in self._hex2ascii(length, 0xd0):
             packet.insert(3, _l)
 
-#        for _p in packet:
-#            self._ser.write(_p)
         self.raw_write("".join(packet))
 
         time.sleep(self._wait * length * 2)
@@ -111,7 +109,7 @@ class serial2i2c(object):
         alength = len(address) / 2
         for _a in address:
             packet.insert(1, _a)
-        
+
         data = self._hex2ascii(data, 0xb0)
         length = len(data) / 2
 
@@ -120,7 +118,7 @@ class serial2i2c(object):
 
         for _d in data:
             packet.insert(5, _d)
-        
+
 #        for _p in packet:
 #            self._ser.write(_p)
         self.raw_write("".join(packet))
@@ -168,11 +166,11 @@ class serial2i2c(object):
         _wlength = self._hex2ascii(wlength, 0xa0)
         _rlength = self._hex2ascii(rlength, 0xb0)
         _data = self._hex2ascii(data, 0xc0)
-        
+
         _wlength.reverse()
         _rlength.reverse()
         _data.reverse()
-        
+
         packet = []
         packet.append('E')
         packet.extend(_wlength)
@@ -187,7 +185,7 @@ class serial2i2c(object):
     ## sends raw data on serial port
     def raw_write(self, data="C4FEE0CA"):
         self._ser.write(data)
-        
+
     ## reads raw data from serial port
     def raw_read(self):
         return (self._ser.readline().strip())
@@ -217,7 +215,7 @@ class serial2i2c(object):
     # @return response string from device
     def reg_write(self, pair = [ ['1', 0xFF], ]):
         packet = ['W', 'P']
-        
+
         for _p in pair:
             reg, data = _p
             data = self._hex2ascii(data, 0xA0)
@@ -230,9 +228,9 @@ class serial2i2c(object):
         self.raw_write("".join(packet))
 
         time.sleep(self._wait * length)
-        
+
         return self.raw_read()
-    
+
     ## converts hex data to string
     # @param h data in HEX
     # @param mask mask data in HEX, LSB must be 0, MSB must not be 0 (0x?0, ?>8)
@@ -250,162 +248,4 @@ class serial2i2c(object):
         return (chars_in_reverse)
 
 if __name__=="__main__":
-    import argparse
-    class MyParser(object):
-        def __init__(self):
-            self._parser = argparse.ArgumentParser(description="hogeeee")
-            self._parser.add_argument('--port','-p', help='number or name of serial port', default='com1')
-            self._parser.add_argument('--baud','-b', help='baudrate of serial port', default='115200')#460800
-            self.args=self._parser.parse_args(namespace=self)        
-
-
-#    parser.print_help()
-    parser = MyParser()
-#    args=parser.parse_args()
-#    print args
-#    print args.port, args.baud
-    
-    port = parser.args.port # port number, different in OSes
-    baud = parser.args.baud
-    dev = serial2i2c(port, baud)
-##    channel="C0P"
-
-#    raw_input("wait, press enter to set channel 0")
-    raw_input("wait, press enter to transferring data")
-    print dev.setChannel(0)
-    dev.write(0xD2,0x4100) 
-    dev.write(0xD2,0x42d2) 
-    dev.write(0xD2,0x42b0) 
-    dev.write(0xD2,0x42a9) 
-    dev.write(0xD2,0x428a) 
-    dev.write(0xD2,0x42a7) 
-    dev.write(0xD2,0x42a8) 
-    dev.write(0xD2,0x42b1) 
-    print dev.write(0xD2,0x4701) 
-    print dev.write_and_read(0x90, 0x50, 1)
-    raw_input("wait, press enter to transferring data")
-    if False:
-        for hoo in range(4):
-            print hoo
-            dev.setChannel(hoo)
-            print "--, 00, 02, 04, 06, 08, 0A, 0C, 0E"
-            for hoge in range(0x00, 0x100, 0x10):
-                print "%02X," %(hoge),
-                for foo in range(0,0x10,0x02):
-#                print "%02X," %(hoge|foo),
-                    if (dev.write(hoge|foo,0x00).split(",")[0] == "ACK"):
-                        print ">A<",
-                    else:
-                        print " N ",
-#                print dev.write(hoge|foo,0x00).split(",")[0],
-                print ""
-    
-        dev.setChannel(0)
-        print ""
-        print "---, ACK,00,01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,0E,0F"
-        for hoge in range(0x000, 0x100, 0x10):
-            print "%03X," %(hoge),
-            print dev.write_and_read((0x34|((hoge&0x100)>>7)), hoge&0xFF, 16)
-
-
-###    raw_input("wait, press enter to transferring data")
-###    print dev.setChannel(1)
-###    print dev.write_and_read(0xD0,0xD0,16)
-###    raw_input("wait, press enter to transferring data")
-###    print dev.setChannel(2)
-###    print dev.write_and_read(0xD0,0xD0,16)
-###    raw_input("wait, press enter to transferring data")
-###    print dev.setChannel(3)
-###    print dev.write_and_read(0xD0,0xD0,16)
-
-# 0x141,0x00
-# 0x142,0xd2
-# 0x142,0xb0
-# 0x142,0xa9
-# 0x142,0x8a
-# 0x142,0xa7
-# 0x142,0xa8
-# 0x142,0xb1
-##    print dev.write(0xD2,0x4100) 
-##    print dev.write(0xD2,0x42d2) 
-##    print dev.write(0xD2,0x42b0) 
-##    print dev.write(0xD2,0x42a9) 
-##    print dev.write(0xD2,0x428a) 
-##    print dev.write(0xD2,0x42a7) 
-##    print dev.write(0xD2,0x42a8) 
-##    print dev.write(0xD2,0x42b1) 
-##    time.sleep(0.1)
-##    print dev.write(0xD2,0x4701)
-##    time.sleep(0.1)
-##    print dev.write_and_read(0xD0,0x50,16)
-##    print dev.write_and_read(0xD0,0xD0,16)
-#    print dev.write_and_read(0xD0,0x5D00,16)
-##    print dev.write(0xD0,0x5D01)
-##    time.sleep(0.1)
-##    print dev.write(0xD0,0xD800)
-##    print dev.write(0xD0,0xD846)
-##    print dev.write(0xD0,0x5D00)
-    
-#    print dev.read(0xD0,1)
-    print dev.reg_read('01234')
-    print dev.reg_write([ [dev.GPIO0_STAT,0xFF],[dev.GPIO0_CONF,0xFF] ])
-    dev.raw_write('I01234P')
-    print dev.raw_read()
-    try:
-        while False:
-            for hoge in range(0,16):
-                print dev.reg_write([[dev.GPIO0_STAT,hoge]]),
-                print dev.write_and_read(0xD0, 0x50, 1)
-    except:
-        print dev.raw_read()
-        print dev.reg_write([[dev.GPIO0_STAT,0x00]])
-
-    print "reg_read = "+dev.reg_read('01234')
-    dev.raw_write('R'+dev.GPIO0_CONF+'P')
-    print "port_read = "+ dev.raw_read()
-    while False:
-        print dev.write(0xD0, 0x5D00)
-
-    print dev.reg_write([[dev.SPI_CONF,0x08]])
-    print dev.reg_write([[dev.GPIO0_CONF,0x80]])
-    print dev.reg_write([[dev.GPIO0_STAT,0x80]])
-    print dev.write_and_read_SPI(2,1,0x4000)
-    print dev.write_and_read_SPI(2,1,0x4000)
-    try:
-        while True:
-#            print dev.reg_write([[dev.SPI_CONF,0x00]])
-#            print dev.reg_write([[dev.GPIO0_STAT,0x80]])
-#            print dev.write_and_read_SPI(2,0,0xC4FE)
-#            print dev.reg_write([[dev.GPIO0_STAT,0x00]])
-            print dev.write_and_read_SPI(54,0,0x8055C4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CA0000 )
-#            print dev.reg_write([[dev.SPI_CONF,0x00]])
-    except:
-        print dev.raw_read()
-
-##    raw_input("wait, press enter to send repeated start command")
-##    dev.ser.write(i2crw)
-##    print dev.ser.readline()
-
-##    raw_input("wait, press enter to send 'W' command")
-##    ser.write('WP')
-##    print dev.ser.readline()
-
-##    raw_input("wait, press enter to send 'I' command")
-##    ser.write('IP')
-##    print dev.ser.readline()
-
-##    raw_input("wait, press enter to send 'O' command")
-##    ser.write('OP')
-##    print dev.ser.readline()
-
-##    raw_input("wait, press enter to send 'Z' command")
-##    ser.write('ZP')
-##    print dev.ser.readline()
-
-##    raw_input("wait, press enter to send unknown command")
-##    ser.write('XP')
-##    print dev.ser.readline()
-
-#    while(ser.inWaiting()>0):
-#        print ser.readline()
-#    dev.ser.close()
+    print "please try test.py"
