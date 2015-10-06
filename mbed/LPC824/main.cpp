@@ -15,6 +15,7 @@ Serial pc(USBTX,USBRX); // P0_7, P0_18
 #endif //TINYI2C
 //P0_13, P0_1
 
+#warning "I2C1 = I2C_SDA, I2C_SCL"
 I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 
 #ifdef QUAD_I2C
@@ -22,11 +23,20 @@ I2C dev1(I2C_SDA, I2C_SCL);//11,10 hard coded, 220 ohm pull-up
 
 #ifdef TINYI2C
 #warning "TINYI2C"
+#warning "I2C2 = P0_16, P0_27"
+#warning "I2C3 = P0_26, P0_25"
+#warning "I2C4 = P0_24, P0_15"
+
 I2C dev2(P0_16, P0_27);
 I2C dev3(P0_26, P0_25);
 I2C dev4(P0_24, P0_15);
+
 #else //TINYI2C
 #warning "NOT TINYI2C"
+#warning "I2C2 = A0, A1"
+#warning "I2C3 = A2, A3"
+#warning "I2C4 = A4, A5"
+
 I2C dev2(P0_6, P0_14); // 6,14 | A0, A1
 I2C dev3(P0_23, P0_22); // 23,22 | A2, A3
 I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
@@ -34,6 +44,15 @@ I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
 
 #else //QUAD_I2C
 #warning "NOT QUAD_I2C"
+#warning "GPIO10 = P0_15"
+#warning "GPIO11 = P0_24"
+#warning "GPIO12 = P0_25"
+#warning "GPIO13 = P0_26"
+#warning "GPIO14 = P0_27"
+#warning "GPIO15 = P0_16"
+#warning "GPIO16 = P0_28"
+#warning "GPIO17 = P0_12"
+
 DigitalInOut _GPIO10(P0_15);
 DigitalInOut _GPIO11(P0_24);
 DigitalInOut _GPIO12(P0_25);
@@ -46,6 +65,14 @@ DigitalInOut _GPIO17(P0_12);
 
 #ifdef TINYI2C
 #warning "TINYI2C"
+#warning "GPIO00 = P0_17"
+#warning "GPIO01 = P0_18"
+#warning "GPIO02 = P0_19"
+#warning "GPIO03 = P0_20"
+#warning "GPIO04 = P0_21"
+#warning "GPIO05 = P0_22"
+#warning "GPIO06 = P0_23"
+#warning "GPIO07 = P0_14"
 DigitalInOut _GPIO00(P0_17);
 DigitalInOut _GPIO01(P0_18);
 DigitalInOut _GPIO02(P0_19);
@@ -56,6 +83,14 @@ DigitalInOut _GPIO06(P0_23);
 DigitalInOut _GPIO07(P0_14);
 #else
 #warning "NOT TINYI2C"
+#warning "GPIO00 = P0_19 = D2"
+#warning "GPIO01 = P0_12 = D3"
+#warning "GPIO02 = P0_18 = D4"
+#warning "GPIO03 = P0_28 = D5"
+#warning "GPIO04 = P0_16 = D6"
+#warning "GPIO05 = P0_17 = D7"
+#warning "GPIO06 = P0_13 = D8"
+#warning "GPIO07 = P0_27 = D9"
 DigitalInOut _GPIO00(P0_19); // D2
 DigitalInOut _GPIO01(P0_12); // D3
 DigitalInOut _GPIO02(P0_18); // D4
@@ -68,10 +103,14 @@ DigitalInOut _GPIO07(P0_27); // D9
 
 #ifdef TINYI2C
 #warning "TINYI2C"
+#warning "SPI = P0_6, P0_7, P0_13"
+#warning "CS = P0_1"
 SPI _spi(P0_6, P0_7, P0_13); // mosi, miso, sclk
 DigitalOut _cs(P0_1); // CS
 #else
 #warning "NOT TINYI2C"
+#warning "SPI = D11, D12, D13"
+#warning "CS = D10"
 SPI _spi(P0_26,P0_25,P0_24); // mosi, miso, sclk, D11, D12, D13
 DigitalOut _cs(P0_15); // CS, D10
 #endif //TINYI2C
