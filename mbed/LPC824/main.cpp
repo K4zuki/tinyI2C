@@ -103,13 +103,13 @@ DigitalInOut _GPIO07(P0_27); // D9
 
 #ifdef TINYI2C
 #warning "TINYI2C"
-#warning "SPI = P0_6, P0_7, P0_13"
+#warning "SPI(mosi, miso, sclk) = P0_6, P0_7, P0_13"
 #warning "CS = P0_1"
 SPI _spi(P0_6, P0_7, P0_13); // mosi, miso, sclk
 DigitalOut _cs(P0_1); // CS
 #else
 #warning "NOT TINYI2C"
-#warning "SPI = D11, D12, D13"
+#warning "SPI(mosi, miso, sclk) = D11, D12, D13"
 #warning "CS = D10"
 SPI _spi(P0_26,P0_25,P0_24); // mosi, miso, sclk, D11, D12, D13
 DigitalOut _cs(P0_15); // CS, D10
