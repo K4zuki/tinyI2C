@@ -152,7 +152,7 @@ int main()
     _spi.frequency(8000000);
 
     bool s = false;
-    dev1.frequency(800000);//800k; works around 940kHz with 200ohm pullups/ not work at 1M? 
+    dev1.frequency(800000);//800k; works around 940kHz with 200ohm pullups/ not work at 1M?
     LPC_IOCON->PIO0_11 &= ~(0x03<<8);
     LPC_IOCON->PIO0_11 |= (0x02<<8);
     LPC_IOCON->PIO0_10 &= ~(0x03<<8);
@@ -542,6 +542,13 @@ int main()
                                     _spi.format(format, 0x03 & (data));
                                     _spi.frequency(1000000 * ((0x07 & (data >> 4)) + 1));
                                     enabled = (data & 0x08) >> 3;
+                                    /*
+                                    7 not used
+                                    6:4 frequency
+                                    3 CE pol
+                                    2 word size(0=8bit,1=16bit)
+                                    1:0 pol(corresponds to spi.format())
+                                    */
                                     disabled = ~enabled;
                                     break;
                                 }
@@ -732,7 +739,7 @@ int main()
                                 pc.printf("this shold not happen %d\n\r",format);
                                 break;
                             }
-                            
+
                         }
 //                        pc.printf("command E is for SPI transmission\n\r");
                         length = read + data;
