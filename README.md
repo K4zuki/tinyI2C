@@ -148,6 +148,28 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 ### Internal registers(speed setting etc.)
 #### `'R'` 0x52 read internal register
 #### `'W'` 0x57 write to internal register
+- single register read
+
+|head | register  |tail |
+|:---:|:---:      |:---:|
+| R   | '0'       | P   |
+| R   | '1'       | P   |
+
+- multi registers read
+  - return packet's order is same as command packet's order
+
+|head | register(1) | register(2) | ... | register(n) |tail |
+|:---:|:---:        |:---:        |:---:|:---:        |:---:|
+| R   | '0'         | '1'         | ... | '5'         | P   |
+| R   | '1'         | '0'         | ... | '9'         | P   |
+
+- multi registers write
+  - return packet's order is same as command packet's order
+
+|head | register(1) | register data (1) | register(2) | register data (2) | ... | register(n) | register data (n) |tail |
+|:---:|:---:        |:---:              |:---:        |:---:              |:---:|:---:        |:---:              |:---:|
+| W   | '0'         | 0x_a _a           | '1'         | 0x_a _b           | ... | '5'         | 0x_a _d           | P   |
+| W   | '1'         | 0x_a _a           | '0'         | 0x_a _b           | ... | '9'         | 0x_a _d           | P   |
 
 |register |name in python |purpose                                |
 |:---:    |:---:          |:---                                   |
@@ -211,19 +233,16 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 |           |         | 10: I2C1 is set to operate in 600kHz clock                                                    |
 |           |         | 01: I2C1 is set to operate in 400kHz clock                                                    |
 |           |         | 00: I2C1 is set to operate in 200kHz clock                                                    |
-|           |         | **if I2C2 is not enabled, access to this bitfield will be ignored**                           |
 |[5\.\.\.4\]|         | Reads clock configuration of I2C2; **if I2C2 is not enabled, access to this bitfield will be ignored**|
 |           |         | 11: I2C2 is set to operate in 400kHz clock                                                    |
 |           |         | 10: I2C2 is set to operate in 300kHz clock                                                    |
 |           |         | 01: I2C2 is set to operate in 200kHz clock                                                    |
 |           |         | 00: I2C2 is set to operate in 100kHz clock                                                    |
-|           |         | **if I2C3 is not enabled, access to this bitfield will be ignored**                           |
 |[3\.\.\.2\]|         | Reads clock configuration of I2C3; **if I2C3 is not enabled, access to this bitfield will be ignored**|
 |           |         | 11: I2C3 is set to operate in 400kHz clock                                                    |
 |           |         | 10: I2C3 is set to operate in 300kHz clock                                                    |
 |           |         | 01: I2C3 is set to operate in 200kHz clock                                                    |
 |           |         | 00: I2C3 is set to operate in 100kHz clock                                                    |
-|           |         | **if I2C4 is not enabled, access to this bitfield will be ignored**                           |
 |[1\.\.\.0\]|         | Reads clock configuration of I2C4; **if I2C4 is not enabled, access to this bitfield will be ignored**|
 |           |         | 11: I2C4 is set to operate in 400kHz clock                                                    |
 |           |         | 10: I2C4 is set to operate in 300kHz clock                                                    |
@@ -245,28 +264,6 @@ I2C_CONF = '5',
 SPI_CONF = '6',
 ~~~
 
-- single register read
-
-|head | register  |tail |
-|:---:|:---:      |:---:|
-| R   | '0'       | P   |
-| R   | '1'       | P   |
-
-- multi registers read
-  - return packet's order is same as command packet's order
-
-|head | register(1) | register(2) | ... | register(n) |tail |
-|:---:|:---:        |:---:        |:---:|:---:        |:---:|
-| R   | '0'         | '1'         | ... | '5'         | P   |
-| R   | '1'         | '0'         | ... | '9'         | P   |
-
-- multi registers write
-  - return packet's order is same as command packet's order
-
-|head | register(1) | register data (1) | register(2) | register data (2) | ... | register(n) | register data (n) |tail |
-|:---:|:---:        |:---:              |:---:        |:---:              |:---:|:---:        |:---:              |:---:|
-| W   | '0'         | 0x_a _a           | '1'         | 0x_a _b           | ... | '5'         | 0x_a _d           | P   |
-| W   | '1'         | 0x_a _a           | '0'         | 0x_a _b           | ... | '9'         | 0x_a _d           | P   |
 
 ~~~
 "R| '0'| P"
