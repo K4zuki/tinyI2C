@@ -50,7 +50,7 @@ NXP Semiconductor's UART-I2C converter/controller, named **SC18IM700**._
 character there are several choices but ending(`tail`) is always `'P'`, 0x50 in hex.
   - if only sending 'P', `tinyI2C` makes stop condition pulse (**without start condition**)
   on currently selected I2C bus and returns "OK" return packet.
-- the `tinyI2C` watches its UART port _forever until_ it receives `tail`
+- the `tinyI2C` watches its UART port \_Forever until_ it receives `tail`
   and counts received packet length by bytes (`plength`).
   then searches first character of the packet whether if matches one of registered `head` character.
   - if it does not match with any of valid `head` the device returns
@@ -68,23 +68,31 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
   - *Read*: actual binary data ending by `OK`
   - *Write*: `"ACK"` or `"NAK"` depends on response from slave and `"OK"`
 
-|head |slave address(W) |data length  |binary data to write       |tail |
-|:---:|:---:            |:---:        |:---:                      |:---:|
-| S   | 0x_8 _0         | 0x_0 _4     | 0x_D _E _A _D _B _E _A _F | P   |
-- command packet: write 4 bytes to register 0x80(8bit)
+
+- command packet: write 4 bytes to slave at 0x80(8bit)
+
+|head |slave address(W) |data length  |binary data to write               |tail |
+|:---:|:---:            |:---:        |:---:                              |:---:|
+| S   | 0x\_8 \_0       | 0x\_0 \_4   | 0x_D \_E \_A \_D \_B \_E \_A \_F  | P   |
+
+
+- return packet(success)
 
 |head |tail |
 |:---:|:---:|
-|"ACK"| "OK"|
-- return packet(success)
+|"ACK"| "ok"|
+
+- command packet: read 4 bytes from slave at 0x80(8bit)
 
 |head |slave address(R\)|data length  |tail |
 |:---:|:---:            |:---:        |:---:|
-| S   | 0x_8 _1         | 0x_0 _4     | P   |
+| S   | 0x\_8 \_1       | 0x\_0 \_4   | P   |
 
-|head |slave address(W) |data length  |binary data to write       |repeated start |slave address    |data length  |tail |
-|:---:|:---:            |:---:        |:---:                      |:---:          |:---:            |:---:        |:---:|
-| S   | 0x_8 _0         | 0x_0 _4     | 0x_D _E _A _D _B _E _A _F | S             | 0x_8 _1         | 0x_0 _4     | P   |
+- command packet: write and read 4 bytes to/from slave at 0x80(8bit)
+
+|head |slave address(W) |data length  |binary data to write               |repeated start |slave address    |data length  |tail |
+|:---:|:---:            |:---:        |:---:                              |:---:          |:---:            |:---:        |:---:|
+| S   | 0x\_8 \_0       | 0x\_0 \_4   | 0x_D \_E \_A \_D \_B \_E \_A \_F  | S             | 0x\_8 \_1       | 0x\_0 \_4   | P   |
 
 #### `'C'` 0x43 change channel
 - you can select I2C channel by sending `'C'` and channel number `'0'`to`'3'` with `tail` char.
@@ -99,35 +107,40 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 ### SPI
 #### `'E'` 0x45 SPI transfer start
 
-|head | data length(W)  |data length(R\)  |binary data to write |tail |
-|:---:|:---:            |:---:            |:---:                |:---:|
-| E   | 0x_0 _1         | 0x_0 _0         | 0x_D _E             | P   |
 - minimum plength=8
 
 |head | data length(W)  |data length(R\)  |binary data to write |tail |
 |:---:|:---:            |:---:            |:---:                |:---:|
-| E   | 0x_0 _1         | 0x_0 _0         | 0x_D _E _A _D       | P   |
+| E   | 0x\_0 \_1       | 0x\_0 \_0       | 0x\_D \_E           | P   |
+
+
 - minimum plength=10(16bit)
 
-|head | data length(W)  |data length(R\)  |binary data to write       |tail |
-|:---:|:---:            |:---:            |:---:                      |:---:|
-| E   | 0x_0 _4         | 0x_0 _4         | 0x_D _E _A _D _B _E _A _F | P   |
+|head | data length(W)  |data length(R\)  |binary data to write |tail |
+|:---:|:---:            |:---:            |:---:                |:---:|
+| E   | 0x\_0 \_1       | 0x\_0 \_0       | 0x_D \_E \_A \_D    | P   |
+
 - write and read
+
+|head | data length(W)  |data length(R\)  |binary data to write               |tail |
+|:---:|:---:            |:---:            |:---:                              |:---:|
+| E   | 0x\_0 \_4       | 0x\_0 \_4       | 0x_D \_E \_A \_D \_B \_E \_A \_F  | P   |
 
 <!--
 ~~~
 /*
 "0|   1   2|   3   4|   5   6  7  8  9 10 11 12|13" //plength=14
-"E| 0x_0 _1| 0x_0 _0| 0x_D _E| P"                   //minimum plength=8
-"E| 0x_0 _1| 0x_0 _0| 0x_D _E|_A _D| P"             //minimum plength=10(16bit)
-"E| 0x_0 _4| 0x_0 _0| 0x_D _E _A _D _B _E _A _F| P" //write
-"E| 0x_0 _4| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P" //write and read
+"E| 0x\_0 \_1| 0x\_0 \_0| 0x_D \_E| P"                   //minimum plength=8
+"E| 0x\_0 \_1| 0x\_0 \_0| 0x_D \_E|_A \_D| P"             //minimum plength=10(16bit)
+"E| 0x\_0 \_4| 0x\_0 \_0| 0x_D \_E \_A \_D \_B \_E \_A \_F| P" //write
+"E| 0x\_0 \_4| 0x\_0 \_4| 0x_D \_E \_A \_D \_B \_E \_A \_F| P" //write and read
 */
 ~~~
 -->
 
 ### GPIO
 This is a subset of [R/W commands](#internal-registers); only access GPIO's status registers.
+
 #### `'I'` 0x49 read GPIO port register
 #### `'O'` 0x4F write to GPIO port register
 
@@ -138,8 +151,8 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 
 |head | GPIO  |data     |tail |
 |:---:|:---:  |:---:    |:---:|
-| O   | '0'   | 0x_a _a | P   |
-| O   | '1'   | 0x_a _a | P   |
+| O   | '0'   | 0x_a \_A | P   |
+| O   | '1'   | 0x_a \_A | P   |
 
 |register |name in python |purpose                                |
 |:---:    |:---:          |:---                                   |
@@ -149,7 +162,7 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 <!--
 ~~~
 "I| '0'| P"
-"O| '0'| 0x_a _a| P"
+"O| '0'| 0x_a \_A| P"
 ~~~
 -->
 
@@ -164,20 +177,22 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 | R   | '1'       | P   |
 
 - multi registers read
-  - return packet's order is same as command packet's order
 
 |head | register(1) | register(2) | ... | register(n) |tail |
 |:---:|:---:        |:---:        |:---:|:---:        |:---:|
 | R   | '0'         | '1'         | ... | '5'         | P   |
 | R   | '1'         | '0'         | ... | '9'         | P   |
 
-- multi registers write
-  - return packet's order is same as command packet's order
+- return packet's order is same as command packet's order
+
+: multi registers write
 
 |head | register(1) | register data (1) | register(2) | register data (2) | ... | register(n) | register data (n) |tail |
 |:---:|:---:        |:---:              |:---:        |:---:              |:---:|:---:        |:---:              |:---:|
-| W   | '0'         | 0x_a _a           | '1'         | 0x_a _b           | ... | '5'         | 0x_a _d           | P   |
-| W   | '1'         | 0x_a _a           | '0'         | 0x_a _b           | ... | '9'         | 0x_a _d           | P   |
+| W   | '0'         | 0x_a \_A           | '1'         | 0x_a \_B           | ... | '5'         | 0x_a \_D           | P   |
+| W   | '1'         | 0x_a \_A           | '0'         | 0x_a \_B           | ... | '9'         | 0x_a \_D           | P   |
+
+- return packet's order is same as command packet's order
 
 |register |name in python |purpose                                |
 |:---:    |:---:          |:---                                   |
@@ -277,6 +292,7 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 |           |         | 10: SPI is set to operate in clock mode 2 |
 |           |         | 01: SPI is set to operate in clock mode 1 |
 |           |         | 00: SPI is set to operate in clock mode 0 |
+
 <!--
 ~~~c
 /*
@@ -304,15 +320,15 @@ SPI_CONF = '6',
 ~~~
 "R| '0'| P"
 "R| '0'| '1'| ...| P"
-"W| '0' 0x_a _a| P"
-"W| '0' 0x_a _a| '1' 0x_b _b| ...| P"
+"W| '0' 0x_a \_A| P"
+"W| '0' 0x_a \_A| '1' 0x_b \_B| ...| P"
 ~~~
 -->
 ## Contribution by
 Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
 ## License
-- [CC-BY-SA] (http://creativecommons.org/licenses/by-sa/4.0/legalcode)
+- [CC-BY-SA](http://creativecommons.org/licenses/by-sa/4.0/legalcode)
 - [CC-BY-SA 日本語](http://creativecommons.org/licenses/by-sa/2.1/jp/legalcode)
 
 ## Author
