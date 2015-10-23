@@ -68,17 +68,15 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
   - *Read*: actual binary data ending by `OK`
   - *Write*: `"ACK"` or `"NAK"` depends on response from slave and `"OK"`
 
-- command packet: write 4 bytes to register 0x80(8bit)
-
 |head |slave address(W) |data length  |binary data to write       |tail |
 |:---:|:---:            |:---:        |:---:                      |:---:|
 | S   | 0x_8 _0         | 0x_0 _4     | 0x_D _E _A _D _B _E _A _F | P   |
-
-- return packet(success)
+- command packet: write 4 bytes to register 0x80(8bit)
 
 |head |tail |
 |:---:|:---:|
 |"ACK"| "OK"|
+- return packet(success)
 
 |head |slave address(R\)|data length  |tail |
 |:---:|:---:            |:---:        |:---:|
@@ -89,7 +87,7 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 | S   | 0x_8 _0         | 0x_0 _4     | 0x_D _E _A _D _B _E _A _F | S             | 0x_8 _1         | 0x_0 _4     | P   |
 
 #### `'C'` 0x43 change channel
-- you can select I2C channel by sending `'C'` and channel number `'0'`to`'3'` with tail char.
+- you can select I2C channel by sending `'C'` and channel number `'0'`to`'3'` with `tail` char.
 
 |head |channel  |tail |
 |:---:|:---:    |:---:|
@@ -104,18 +102,19 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 |head | data length(W)  |data length(R\)  |binary data to write |tail |
 |:---:|:---:            |:---:            |:---:                |:---:|
 | E   | 0x_0 _1         | 0x_0 _0         | 0x_D _E             | P   |
-//minimum plength=8
+- minimum plength=8
 
 |head | data length(W)  |data length(R\)  |binary data to write |tail |
 |:---:|:---:            |:---:            |:---:                |:---:|
 | E   | 0x_0 _1         | 0x_0 _0         | 0x_D _E _A _D       | P   |
-//minimum plength=10(16bit)
+- minimum plength=10(16bit)
 
 |head | data length(W)  |data length(R\)  |binary data to write       |tail |
 |:---:|:---:            |:---:            |:---:                      |:---:|
 | E   | 0x_0 _4         | 0x_0 _4         | 0x_D _E _A _D _B _E _A _F | P   |
-//write and read
+- write and read
 
+<!--
 ~~~
 /*
 "0|   1   2|   3   4|   5   6  7  8  9 10 11 12|13" //plength=14
@@ -125,10 +124,12 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 "E| 0x_0 _4| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P" //write and read
 */
 ~~~
+-->
 
 ### GPIO
-#### `'I'` 0x49 read GPIO port
-#### `'O'` 0x4F write to GPIO port
+This is a subset of [R/W commands](#internal-registers); only access GPIO's status registers.
+#### `'I'` 0x49 read GPIO port register
+#### `'O'` 0x4F write to GPIO port register
 
 |head | GPIO  |tail |
 |:---:|:---:  |:---:|
@@ -140,12 +141,19 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 | O   | '0'   | 0x_a _a | P   |
 | O   | '1'   | 0x_a _a | P   |
 
+|register |name in python |purpose                                |
+|:---:    |:---:          |:---                                   |
+| 0       |GPIO0_STAT     | status of GPIO 0                      |
+| 1       |GPIO1_STAT     | status of GPIO 1                      |
+
+<!--
 ~~~
 "I| '0'| P"
 "O| '0'| 0x_a _a| P"
 ~~~
+-->
 
-### Internal registers(speed setting etc.)
+### Internal registers
 #### `'R'` 0x52 read internal register
 #### `'W'` 0x57 write to internal register
 - single register read
@@ -175,9 +183,9 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 |:---:    |:---:          |:---                                   |
 | 0       | CHIP_ID       | converter's chip ID                   |
 | 1       |GPIO0_STAT     | status of GPIO 0                      |
-| 2       |GPIO1_STAT     | status of GPIO 0                      |
-| 3       |GPIO0_CONF     | GPIO 0 IO configuration               |
+| 2       |GPIO1_STAT     | status of GPIO 1                      |
 | 4       |GPIO1_CONF     | GPIO 0 IO configuration               |
+| 3       |GPIO0_CONF     | GPIO 1 IO configuration               |
 | 5       |I2C_CONF       | I2C channel 1~4 speed configuration   |
 | 6       |SPI_CONF       | SPI speed and polarity configuration  |
 
@@ -228,32 +236,62 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 
 |register 5 | command | I2C_CONF                                                                                      |
 |:---:      |:---:    |:---                                                                                           |
-|[7\.\.\.6\]| R/W     | Reads clock configuration of I2C1                                                             |
+|[7\.\.\.6\]| R/W     | Read/Write clock configuration of I2C1                                                        |
 |           |         | 11: I2C1 is set to operate in 800kHz clock                                                    |
 |           |         | 10: I2C1 is set to operate in 600kHz clock                                                    |
 |           |         | 01: I2C1 is set to operate in 400kHz clock                                                    |
 |           |         | 00: I2C1 is set to operate in 200kHz clock                                                    |
-|[5\.\.\.4\]|         | Reads clock configuration of I2C2; **if I2C2 is not enabled, access to this bitfield will be ignored**|
+|[5\.\.\.4\]|         | Read/Write clock configuration of I2C2; **if I2C2 is not enabled, access to this bitfield will be ignored**|
 |           |         | 11: I2C2 is set to operate in 400kHz clock                                                    |
 |           |         | 10: I2C2 is set to operate in 300kHz clock                                                    |
 |           |         | 01: I2C2 is set to operate in 200kHz clock                                                    |
 |           |         | 00: I2C2 is set to operate in 100kHz clock                                                    |
-|[3\.\.\.2\]|         | Reads clock configuration of I2C3; **if I2C3 is not enabled, access to this bitfield will be ignored**|
+|[3\.\.\.2\]|         | Read/Write clock configuration of I2C3; **if I2C3 is not enabled, access to this bitfield will be ignored**|
 |           |         | 11: I2C3 is set to operate in 400kHz clock                                                    |
 |           |         | 10: I2C3 is set to operate in 300kHz clock                                                    |
 |           |         | 01: I2C3 is set to operate in 200kHz clock                                                    |
 |           |         | 00: I2C3 is set to operate in 100kHz clock                                                    |
-|[1\.\.\.0\]|         | Reads clock configuration of I2C4; **if I2C4 is not enabled, access to this bitfield will be ignored**|
+|[1\.\.\.0\]|         | Read/Write clock configuration of I2C4; **if I2C4 is not enabled, access to this bitfield will be ignored**|
 |           |         | 11: I2C4 is set to operate in 400kHz clock                                                    |
 |           |         | 10: I2C4 is set to operate in 300kHz clock                                                    |
 |           |         | 01: I2C4 is set to operate in 200kHz clock                                                    |
 |           |         | 00: I2C4 is set to operate in 100kHz clock                                                    |
 
+|register 6 | command | SPI_CONF                                  |
+|:---:      |:---:    |:---                                       |
+| [7\]      | R/W     | Not used                                  |
+|[6\.\.\.4\]|         | Read/Write clock configuration of SPI     |
+|           |         | 111: SPI is set to operate in 8MHz clock  |
+|           |         | 110: SPI is set to operate in 7MHz clock  |
+|           |         |  ...                                      |
+|           |         | 001: SPI is set to operate in 2MHz clock  |
+|           |         | 000: SPI is set to operate in 1MHz clock  |
+| [3\]      |         | Reads/Wreite polarity of CE print         |
+|           |         | 1: CE is set to HIGH-active               |
+|           |         | 0: CE is set to LOW-active                |
+| [2\]      |         | Read/Write word size setting of SPI       |
+|           |         | 1: 16 bit word                            |
+|           |         | 0: 8 bit word                             |
+|[1\.\.\.0\]|         | Read/Write SPI mode                       |
+|           |         | 11: SPI is set to operate in clock mode 3 |
+|           |         | 10: SPI is set to operate in clock mode 2 |
+|           |         | 01: SPI is set to operate in clock mode 1 |
+|           |         | 00: SPI is set to operate in clock mode 0 |
+<!--
+~~~c
+/*
+7 not used
+6:4 frequency
+3 CE pol
+2 word size(0=8bit,1=16bit)
+1:0 pol(corresponds to spi.format())
+*/
+~~~
 ~~~c
 ID_LPC824 = '0',
 ID_LPC1768 = '1',
 ID_LPC11UXX = '2',
-~~~
+~~~  
 ~~~c
 CHIP_ID = '0',
 GPIO0_STAT = '1',
@@ -262,15 +300,14 @@ GPIO0_CONF = '3',
 GPIO1_CONF = '4',
 I2C_CONF = '5',
 SPI_CONF = '6',
-~~~
-
-
+~~~  
 ~~~
 "R| '0'| P"
 "R| '0'| '1'| ...| P"
 "W| '0' 0x_a _a| P"
 "W| '0' 0x_a _a| '1' 0x_b _b| ...| P"
 ~~~
+-->
 ## Contribution by
 Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
