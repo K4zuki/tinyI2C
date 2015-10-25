@@ -40,7 +40,7 @@ configurable pull-up/pull-down modes.
     * check PinOut for your usage! ![](TinyI2C_PinOut.png)
 
 ## Demo
-  try `python/tinyI2C.py`
+  try `python/test.py`
 
 ## Command set and protocol
 - _this command character as well as packet structure is inspired(some copied) from
@@ -49,7 +49,7 @@ NXP Semiconductor's UART-I2C converter/controller, named **SC18IM700**._
 - the command packet starts/ends with few number of characters: for starting(`head`)
 character there are several choices but ending(`tail`) is always `'P'`, 0x50 in hex.
   - if only sending 'P', `tinyI2C` makes stop condition pulse (**without start condition**)
-  on currently selected I2C bus and returns "OK" return packet.
+  on currently selected I2C bus and returns "ok" return packet.
 - the `tinyI2C` watches its UART port \_Forever until_ it receives `tail`
   and counts received packet length by bytes (`plength`).
   then searches first character of the packet whether if matches one of registered `head` character.
@@ -64,9 +64,11 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 - the protocol starts from `'S'`, which makes start condition on I2C bus, followed by 7bit I2C slave address and read(1)/write(0) command bit and,
   - to *Write* data into slave device: send data length to write(1~255) and actual data
   - to *Read* data from slave device: send data length to read(1~255)
-- ends with sending `'P'` which makes stop condition on the bus, and return depends on command:
-  - *Read*: actual binary data ending by `OK`
-  - *Write*: `"ACK"` or `"NAK"` depends on response from slave and `"OK"`
+- ends with sending `'P'` which makes stop condition on the bus
+- return packet depends on command:
+  - first, `"ACK"` or `"NAK"` depends on response from slave
+  - *Read*: read data in hex sting (0xAA -> "AA") separated by ',' and ends by `ok`
+  - *Write*: `ok`
 
 
 - command packet: write 4 bytes to slave at 0x80(8bit)
@@ -76,11 +78,12 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 | S   | 0x\_8 \_0       | 0x\_0 \_4   | 0x_D \_E \_A \_D \_B \_E \_A \_F  | P   |
 
 
-- return packet(success)
+- return packet
 
-|head |tail |
-|:---:|:---:|
-|"ACK"| "ok"|
+|result |head |delimiter|tail |
+|:---:  |:---:|:---:    |:---:|
+|sucess |"ACK"|    ,    | "ok"|
+|fail   |"NAK"|    ,    | "ok"|
 
 - command packet: read 4 bytes from slave at 0x80(8bit)
 
@@ -88,11 +91,25 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 |:---:|:---:            |:---:        |:---:|
 | S   | 0x\_8 \_1       | 0x\_0 \_4   | P   |
 
+- return packet
+
+|result |head |delimiter|data                               |tail |
+|:---:  |:---:|:---:    |:---:                              |:---:|
+|sucess |"ACK"|    ,    |actual data: "AA","BB","CC","DD",  | "ok"|
+|fail   |"NAK"|    ,    |dummy data: "C4","FE","E0","CA",   | "ok"|
+
 - command packet: write and read 4 bytes to/from slave at 0x80(8bit)
 
-|head |slave address(W) |data length  |binary data to write               |repeated start |slave address    |data length  |tail |
+|head |slave address(W) |data length  |binary data to write               |repeated start |slave address(R\) |data length  |tail |
 |:---:|:---:            |:---:        |:---:                              |:---:          |:---:            |:---:        |:---:|
 | S   | 0x\_8 \_0       | 0x\_0 \_4   | 0x_D \_E \_A \_D \_B \_E \_A \_F  | S             | 0x\_8 \_1       | 0x\_0 \_4   | P   |
+
+- return packet
+
+|result |head |delimiter|data                               |tail |
+|:---:  |:---:|:---:    |:---:                              |:---:|
+|sucess |"ACK"|    ,    |actual data: "AA","BB","CC","DD",  | "ok"|
+|fail   |"NAK"|    ,    |dummy data: "C4","FE","E0","CA",   | "ok"|
 
 #### `'C'` 0x43 change channel
 - you can select I2C channel by sending `'C'` and channel number `'0'`to`'3'` with `tail` char.
@@ -151,8 +168,8 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 
 |head | GPIO  |data     |tail |
 |:---:|:---:  |:---:    |:---:|
-| O   | '0'   | 0x_a \_A | P   |
-| O   | '1'   | 0x_a \_A | P   |
+| O   | '0'   | 0x\_A \_A | P   |
+| O   | '1'   | 0x\_A \_A | P   |
 
 |register |name in python |purpose                                |
 |:---:    |:---:          |:---                                   |
@@ -189,8 +206,8 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 
 |head | register(1) | register data (1) | register(2) | register data (2) | ... | register(n) | register data (n) |tail |
 |:---:|:---:        |:---:              |:---:        |:---:              |:---:|:---:        |:---:              |:---:|
-| W   | '0'         | 0x_a \_A           | '1'         | 0x_a \_B           | ... | '5'         | 0x_a \_D           | P   |
-| W   | '1'         | 0x_a \_A           | '0'         | 0x_a \_B           | ... | '9'         | 0x_a \_D           | P   |
+| W   | '0'         | 0x\_A \_A          | '1'         | 0x\_A \_B          | ... | '5'         | 0x\_A \_D          | P   |
+| W   | '1'         | 0x\_A \_A          | '0'         | 0x\_A \_B          | ... | '9'         | 0x\_A \_D          | P   |
 
 - return packet's order is same as command packet's order
 
