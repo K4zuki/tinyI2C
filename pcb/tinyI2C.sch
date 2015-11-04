@@ -9013,8 +9013,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C6" library="mylib" deviceset="C_PAD_PAD_" device="1005" value="0.1u/1005"/>
 <part name="X4" library="con-samtec.local" deviceset="TSW-102-02-S-S" device=""/>
 <part name="GND12" library="mbed-HDK" deviceset="GND" device=""/>
-<part name="TP4" library="testpad_local" deviceset="TP" device="TP20R" value="TPTP20R"/>
-<part name="TP5" library="testpad_local" deviceset="TP" device="TP20R" value="TPTP20R"/>
+<part name="TP4" library="mylib" deviceset="TESTPAD" device="_F" value="TESTPAD_F"/>
+<part name="TP5" library="mylib" deviceset="TESTPAD" device="_F" value="TESTPAD_F"/>
 <part name="X5" library="con-samtec.local" deviceset="TSW-102-02-S-S" device=""/>
 <part name="X6" library="con-samtec.local" deviceset="TSW-102-02-S-S" device=""/>
 <part name="GND14" library="mbed-HDK" deviceset="GND" device=""/>
@@ -9030,7 +9030,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C9" library="mylib" deviceset="C_PAD_PAD_" device="1005" value="18p/1005"/>
 <part name="GND16" library="mbed-HDK" deviceset="GND" device=""/>
 <part name="TP7" library="testpad_local" deviceset="TP" device="B1,27" value="TPB1,27"/>
-<part name="TP8" library="testpad_local" deviceset="TP" device="TP20R" value="TPTP20R"/>
+<part name="TP8" library="mylib" deviceset="TESTPAD" device="_F" value="TESTPAD_F"/>
 <part name="I1" library="mylib" deviceset="ICON_MINLAB" device="_5.2S" value="ICON_MINLAB_5.2S"/>
 <part name="TP2" library="mylib" deviceset="TESTPAD" device=""/>
 </parts>
@@ -9198,11 +9198,11 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <attribute name="NAME" x="27.94" y="14.478" size="1.524" layer="95" rot="MR0"/>
 </instance>
 <instance part="GND12" gate="1" x="35.56" y="15.24"/>
-<instance part="TP4" gate="G$1" x="246.38" y="35.56" smashed="yes" rot="R90">
+<instance part="TP4" gate="1" x="246.38" y="35.56" smashed="yes" rot="R90">
 <attribute name="NAME" x="245.872" y="34.544" size="1.778" layer="95" rot="MR0"/>
 <attribute name="TP_SIGNAL_NAME" x="247.65" y="36.83" size="1.778" layer="97" rot="R90"/>
 </instance>
-<instance part="TP5" gate="G$1" x="246.38" y="33.02" smashed="yes" rot="R90">
+<instance part="TP5" gate="1" x="246.38" y="33.02" smashed="yes" rot="R90">
 <attribute name="NAME" x="245.872" y="32.004" size="1.778" layer="95" rot="MR0"/>
 <attribute name="TP_SIGNAL_NAME" x="247.65" y="34.29" size="1.778" layer="97" rot="R90"/>
 </instance>
@@ -9254,7 +9254,7 @@ C9 |--- 18pF GRM1555C1E180JA01D</text>
 <attribute name="NAME" x="159.512" y="49.276" size="1.778" layer="95" rot="R180"/>
 <attribute name="TP_SIGNAL_NAME" x="161.29" y="49.53" size="1.778" layer="97" rot="R90"/>
 </instance>
-<instance part="TP8" gate="G$1" x="246.38" y="38.1" smashed="yes" rot="R90">
+<instance part="TP8" gate="1" x="246.38" y="38.1" smashed="yes" rot="R90">
 <attribute name="NAME" x="245.872" y="37.084" size="1.778" layer="95" rot="MR0"/>
 <attribute name="TP_SIGNAL_NAME" x="247.65" y="39.37" size="1.778" layer="97" rot="R90"/>
 </instance>
