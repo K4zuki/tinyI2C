@@ -44,61 +44,61 @@ I2C dev4(P0_21, P0_20); // 21,20 | A4, A5
 
 #else //QUAD_I2C
 #warning "NOT QUAD_I2C"
-#warning "GPIO10 = P0_15"
-#warning "GPIO11 = P0_24"
-#warning "GPIO12 = P0_25"
-#warning "GPIO13 = P0_26"
-#warning "GPIO14 = P0_27"
-#warning "GPIO15 = P0_16"
-#warning "GPIO16 = P0_28"
 #warning "GPIO17 = P0_12"
+#warning "GPIO16 = P0_28"
+#warning "GPIO15 = P0_16"
+#warning "GPIO13 = P0_26"
+#warning "GPIO12 = P0_25"
+#warning "GPIO14 = P0_27"
+#warning "GPIO11 = P0_24"
+#warning "GPIO10 = P0_15"
 
-DigitalInOut _GPIO10(P0_15);
-DigitalInOut _GPIO11(P0_24);
-DigitalInOut _GPIO12(P0_25);
-DigitalInOut _GPIO13(P0_26);
-DigitalInOut _GPIO14(P0_27);
-DigitalInOut _GPIO15(P0_16);
-DigitalInOut _GPIO16(P0_28);
 DigitalInOut _GPIO17(P0_12);
+DigitalInOut _GPIO16(P0_28);
+DigitalInOut _GPIO15(P0_16);
+DigitalInOut _GPIO14(P0_27);
+DigitalInOut _GPIO13(P0_26);
+DigitalInOut _GPIO12(P0_25);
+DigitalInOut _GPIO11(P0_24);
+DigitalInOut _GPIO10(P0_15);
 #endif //QUAD_I2C
 
 #ifdef TINYI2C
 #warning "TINYI2C"
-#warning "GPIO00 = P0_17"
-#warning "GPIO01 = P0_18"
-#warning "GPIO02 = P0_19"
-#warning "GPIO03 = P0_20"
-#warning "GPIO04 = P0_21"
-#warning "GPIO05 = P0_22"
-#warning "GPIO06 = P0_23"
 #warning "GPIO07 = P0_14"
-DigitalInOut _GPIO00(P0_17);
-DigitalInOut _GPIO01(P0_18);
-DigitalInOut _GPIO02(P0_19);
-DigitalInOut _GPIO03(P0_20);
-DigitalInOut _GPIO04(P0_21);
-DigitalInOut _GPIO05(P0_22);
-DigitalInOut _GPIO06(P0_23);
+#warning "GPIO06 = P0_23"
+#warning "GPIO05 = P0_22"
+#warning "GPIO04 = P0_21"
+#warning "GPIO03 = P0_20"
+#warning "GPIO02 = P0_19"
+#warning "GPIO01 = P0_18"
+#warning "GPIO00 = P0_17"
 DigitalInOut _GPIO07(P0_14);
+DigitalInOut _GPIO06(P0_23);
+DigitalInOut _GPIO05(P0_22);
+DigitalInOut _GPIO04(P0_21);
+DigitalInOut _GPIO03(P0_20);
+DigitalInOut _GPIO02(P0_19);
+DigitalInOut _GPIO01(P0_18);
+DigitalInOut _GPIO00(P0_17);
 #else
 #warning "NOT TINYI2C"
-#warning "GPIO00 = P0_19 = D2"
-#warning "GPIO01 = P0_12 = D3"
-#warning "GPIO02 = P0_18 = D4"
-#warning "GPIO03 = P0_28 = D5"
-#warning "GPIO04 = P0_16 = D6"
-#warning "GPIO05 = P0_17 = D7"
-#warning "GPIO06 = P0_13 = D8"
 #warning "GPIO07 = P0_27 = D9"
-DigitalInOut _GPIO00(P0_19); // D2
-DigitalInOut _GPIO01(P0_12); // D3
-DigitalInOut _GPIO02(P0_18); // D4
-DigitalInOut _GPIO03(P0_28); // D5
-DigitalInOut _GPIO04(P0_16); // D6
-DigitalInOut _GPIO05(P0_17); // D7
-DigitalInOut _GPIO06(P0_13); // D8
+#warning "GPIO06 = P0_13 = D8"
+#warning "GPIO05 = P0_17 = D7"
+#warning "GPIO04 = P0_16 = D6"
+#warning "GPIO03 = P0_28 = D5"
+#warning "GPIO02 = P0_18 = D4"
+#warning "GPIO01 = P0_12 = D3"
+#warning "GPIO00 = P0_19 = D2"
 DigitalInOut _GPIO07(P0_27); // D9
+DigitalInOut _GPIO06(P0_13); // D8
+DigitalInOut _GPIO05(P0_17); // D7
+DigitalInOut _GPIO04(P0_16); // D6
+DigitalInOut _GPIO03(P0_28); // D5
+DigitalInOut _GPIO02(P0_18); // D4
+DigitalInOut _GPIO01(P0_12); // D3
+DigitalInOut _GPIO00(P0_19); // D2
 #endif //TINYI2C
 
 #ifdef TINYI2C
