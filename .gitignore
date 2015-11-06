@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /.project
 pcb/*.b#?
 *.b#?
@@ -13,7 +12,9 @@ pcb/*.gpi
 */*.pyc
 gui/dist
 gui/build
-=======
+
+pcb/*.epf
+
 # Compiled Object files
 *.slo
 *.lo
@@ -86,7 +87,3 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 /.project
->>>>>>> mbed
-
-*.pdf
-pcb/tinyI2C_P.top.png
