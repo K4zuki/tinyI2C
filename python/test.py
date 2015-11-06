@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*- 
+#-*- coding: utf-8 -*-
 #!/usr/bin/env python
 import argparse
 from tinyI2C import serial2i2c
@@ -8,7 +8,7 @@ class MyParser(object):
         self._parser = argparse.ArgumentParser(description="hogeeee")
         self._parser.add_argument('--port','-p', help='number or name of serial port', default='com1')
         self._parser.add_argument('--baud','-b', help='baudrate of serial port', default='115200')#460800
-        self.args=self._parser.parse_args(namespace=self)        
+        self.args=self._parser.parse_args(namespace=self)
 
 #    parser.print_help()
 parser = MyParser()
@@ -24,16 +24,16 @@ dev = serial2i2c(port, baud)
 #    raw_input("wait, press enter to set channel 0")
 raw_input("wait, press enter to transferring data")
 print dev.setChannel(0)
-dev.write(0xD2,0x4100) 
-dev.write(0xD2,0x42d2) 
-dev.write(0xD2,0x42b0) 
-dev.write(0xD2,0x42a9) 
-dev.write(0xD2,0x428a) 
-dev.write(0xD2,0x42a7) 
-dev.write(0xD2,0x42a8) 
-dev.write(0xD2,0x42b1) 
-print dev.write(0xD2,0x4701) 
-print dev.write_and_read(0x90, 0x50, 1)
+dev.write(0xD2,0x4100)
+dev.write(0xD2,0x42d2)
+dev.write(0xD2,0x42b0)
+dev.write(0xD2,0x42a9)
+dev.write(0xD2,0x428a)
+dev.write(0xD2,0x42a7)
+dev.write(0xD2,0x42a8)
+dev.write(0xD2,0x42b1)
+print dev.write(0xD2,0x4701)
+print dev.write_and_read(0x90, 0x50, 4)
 raw_input("wait, press enter to transferring data")
 if False:
     for hoo in range(4):
@@ -77,14 +77,14 @@ if False:
 # 0x142,0xa7
 # 0x142,0xa8
 # 0x142,0xb1
-##    print dev.write(0xD2,0x4100) 
-##    print dev.write(0xD2,0x42d2) 
-##    print dev.write(0xD2,0x42b0) 
-##    print dev.write(0xD2,0x42a9) 
-##    print dev.write(0xD2,0x428a) 
-##    print dev.write(0xD2,0x42a7) 
-##    print dev.write(0xD2,0x42a8) 
-##    print dev.write(0xD2,0x42b1) 
+##    print dev.write(0xD2,0x4100)
+##    print dev.write(0xD2,0x42d2)
+##    print dev.write(0xD2,0x42b0)
+##    print dev.write(0xD2,0x42a9)
+##    print dev.write(0xD2,0x428a)
+##    print dev.write(0xD2,0x42a7)
+##    print dev.write(0xD2,0x42a8)
+##    print dev.write(0xD2,0x42b1)
 ##    time.sleep(0.1)
 ##    print dev.write(0xD2,0x4701)
 ##    time.sleep(0.1)
@@ -128,7 +128,7 @@ _data = str((0xC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC4FE30CAC
 _tail = str((0x0000))
 _p = [_head,_line,_data,_tail,_tail]
 _packet = "".join(_p)
-raw_input(hex(_packet))
+raw_input((_packet))
 try:
     while True:
 #            print dev.reg_write([[dev.SPI_CONF,0x00]])
