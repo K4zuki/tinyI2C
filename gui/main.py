@@ -16,7 +16,7 @@ import time
 import serial
 
 ### how to make GUI from ui
-# 
+#
 class MyWidget(QtGui.QWidget):
 
     # SIGNAL definition
@@ -146,7 +146,7 @@ class MyWidget(QtGui.QWidget):
 
         slave[1]=chr(ord(slave[1]) | 1)
         length=self.i2c._hex2ascii(1,mask=0xd0)
-        
+
         length.reverse()
 
         packet.extend(slave)
@@ -174,7 +174,7 @@ class MyWidget(QtGui.QWidget):
         reg = self.i2c._hex2ascii(reg, mask = 0xb0)
         data = self.i2c._hex2ascii(data, mask = 0xc0)
         length = self.i2c._hex2ascii(len(reg)/2 + len(data)/2, mask = 0xd0)
-        
+
         slave.reverse()
         length.reverse()
         reg.reverse()
@@ -452,7 +452,7 @@ class MyWidget(QtGui.QWidget):
             else:
                 _dest[_bit].setChecked( False )
                 _dest[_bit].setText( "0" )
-        
+
     def checkClick(self):
         print "checkClick()"
         _sender = self.sender()
@@ -566,7 +566,7 @@ class MyWidget(QtGui.QWidget):
         else:
             _sender.setText( "0" )
             _data &= ~(1<<_shift)
-        
+
         _dest.setValue(_data)
 
     def bitClickedSlot(self):
@@ -675,7 +675,7 @@ if __name__=='__main__':
     window.writeI2C_signal.connect(window.writeI2CSlot)
     window.readGPIO_signal.connect(window.readGPIOSlot)
     window.writeGPIO_signal.connect(window.writeGPIOSlot)
-    
+
 
     window.show()
     sys.exit(app.exec_())
