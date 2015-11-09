@@ -2,6 +2,9 @@
 */.hg/*
 */*/.hg/*
 
+*.*~
+*/*.*~
+
 /.project
 pcb/eagle.epf
 pcb/*.b#?
