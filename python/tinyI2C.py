@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*- 
+#-*- coding: utf-8 -*-
 #!/usr/bin/env python
 import serial
 import os.path
@@ -193,7 +193,7 @@ class serial2i2c(object):
     ## sends 'S' command packet to make start condition
     def start(self):
         self._ser.write("S")
-        
+
     ## sends 'P' command packet to make stop condition
     def stop(self):
         self._ser.write("P")
@@ -204,9 +204,9 @@ class serial2i2c(object):
     # @return response string from device
     def reg_read(self, registers = "012"):
         packet = ['R', 'P']
-        
+
         packet.insert(1, registers)
-        
+
         self.raw_write("".join(packet))
         return self.raw_read()
 

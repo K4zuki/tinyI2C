@@ -1,7 +1,6 @@
-tinyI2C
+tinyI2C{-}
 =======
 
-## What is this?
 This is a tiny UART-I2C converter software/hardware project using mbed conpatible microcontrollers.
 The module converts UART command packets into I2C/SPI protocol or GPIO to read/write with
 configurable pull-up/pull-down modes.
@@ -18,7 +17,7 @@ configurable pull-up/pull-down modes.
   - pcb       <-- PCB design files for eagle  
   - python    <-- python module code with standalone test program  
 
-## Requirement
+# Requirement
 - Python 2.7  
   `apt-get install python`
 - PySerial  
@@ -26,12 +25,12 @@ configurable pull-up/pull-down modes.
 * mbed microcontrollers using LPC824(recommended)/LPC1768/LPC11U24/LPC11U35  
   see [mbed.org](developer.mbed.org)
 
-## Install
+# Install
 1. install python 2.7 on your PC
 2. install PySerial
 3. (Windows only) if you use LpcXpresso 824 then install [mbed Serial port driver](http://developer.mbed.org/handbook/Windows-serial-configuration)
 
-## Usage
+# Usage
 1. write mbed program into your mbed
 2. connect mbed to PC via Serial port
 3. start gui software
@@ -39,10 +38,10 @@ configurable pull-up/pull-down modes.
 5. you will be able to use up to 4 channels of I2C slaves and more!
     * check PinOut for your usage! ![](TinyI2C_PinOut.png)
 
-## Demo
+# Demo
   try `python/test.py`
 
-## Command set and protocol
+# Command set and protocol
 - _this command character as well as packet structure is inspired(some copied) from
 NXP Semiconductor's UART-I2C converter/controller, named **SC18IM700**._
 
@@ -58,9 +57,9 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 - if valid head found it checks `plength-2` which is actual data packet length.
   - if you send an invalid packet, the device returns "bad packet" return packet.
 
-### I2C
-#### `'S'` 0x53 I2C-bus START
-#### `'P'` 0x50 I2C-bus STOP
+## I2C
+### `'S'` 0x53 I2C-bus START
+### `'P'` 0x50 I2C-bus STOP
 - the protocol starts from `'S'`, which makes start condition on I2C bus, followed by 7bit I2C slave address and read(1)/write(0) command bit and,
   - to *Write* data into slave device: send data length to write(1~255) and actual data
   - to *Read* data from slave device: send data length to read(1~255)
@@ -111,7 +110,7 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 |sucess |"ACK"|    ,    |actual data: "AA","BB","CC","DD",  | "ok"|
 |fail   |"NAK"|    ,    |dummy data: "C4","FE","E0","CA",   | "ok"|
 
-#### `'C'` 0x43 change channel
+### `'C'` 0x43 change channel
 - you can select I2C channel by sending `'C'` and channel number `'0'`to`'3'` with `tail` char.
 
 |head |channel  |tail |
@@ -121,8 +120,8 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 | C   | '2'     | P   |
 | C   | '3'     | P   |
 
-### SPI
-#### `'E'` 0x45 SPI transfer start
+## SPI
+### `'E'` 0x45 SPI transfer start
 
 - minimum plength=8
 
@@ -155,11 +154,11 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 ~~~
 -->
 
-### GPIO
+## GPIO
 This is a subset of [R/W commands](#internal-registers); only access GPIO's status registers.
 
-#### `'I'` 0x49 read GPIO port register
-#### `'O'` 0x4F write to GPIO port register
+### `'I'` 0x49 read GPIO port register
+### `'O'` 0x4F write to GPIO port register
 
 |head | GPIO  |tail |
 |:---:|:---:  |:---:|
@@ -183,9 +182,9 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 ~~~
 -->
 
-### Internal registers
-#### `'R'` 0x52 read internal register
-#### `'W'` 0x57 write to internal register
+## Internal registers
+### `'R'` 0x52 read internal register
+### `'W'` 0x57 write to internal register
 - single register read
 
 |head | register  |tail |
@@ -341,13 +340,13 @@ SPI_CONF = '6',
 "W| '0' 0x_a \_A| '1' 0x_b \_B| ...| P"
 ~~~
 -->
-## Contribution by
+# Contribution by
 Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
-## License
+# License
 - [CC-BY-SA](http://creativecommons.org/licenses/by-sa/4.0/legalcode)
 - [CC-BY-SA 日本語](http://creativecommons.org/licenses/by-sa/2.1/jp/legalcode)
 
-## Author
+# Author
 
 [K4zuki](https://github.com/K4zuki)
