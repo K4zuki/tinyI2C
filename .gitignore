@@ -1,5 +1,9 @@
+#Mercurial repository
+*/.hg/*
+*/*/.hg/*
 <<<<<<< HEAD
 /.project
+pcb/eagle.epf
 pcb/*.b#?
 *.b#?
 pcb/*.s#?
