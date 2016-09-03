@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['/home/yamamoto/workspace/tinyI2C/gui'],
+             pathex=['./python/', './gui'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None,
@@ -21,4 +21,4 @@ exe = EXE(pyz,
           debug=False,
           strip=None,
           upx=True,
-          console=True )
+          console=False )

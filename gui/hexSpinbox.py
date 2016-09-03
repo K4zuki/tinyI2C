@@ -48,7 +48,7 @@ class HexSpinBox(QtGui.QSpinBox):
             chars_in_reverse.append("%X"%( (h & 0x0F)))
             chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
             h = h >> 8
-    
+
         chars_in_reverse.reverse()
         return "".join(chars_in_reverse)
 
@@ -62,16 +62,16 @@ if __name__ == "__main__":
             chars_in_reverse.append("%X"%( (h & 0x0F)))
             chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
             h = h >> 8
-    
+
         chars_in_reverse.reverse()
         return "".join(chars_in_reverse)
 
     def report(value):
         print "%4d %s" % (value, _hex2ascii(value))
 
-    app = QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     spinbox = HexSpinBox()
     spinbox.show()
     spinbox.setWindowTitle("Roman")
-    spinbox.connect(spinbox, SIGNAL("valueChanged(int)"), report)
+    spinbox.connect(spinbox, QtCore.SIGNAL("valueChanged(int)"), report)
     app.exec_()

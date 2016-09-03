@@ -28,8 +28,8 @@ class MyWidget(QtGui.QWidget):
 #    updateCheckbox_signal = QtCore.pyqtSignal(object)
 
     isUI = False
-    ports=[]
-    i2c=None
+    ports = []
+    i2c = None
     def __init__(self, parent=None):
         super(MyWidget, self).__init__(parent)
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint)
@@ -39,9 +39,9 @@ class MyWidget(QtGui.QWidget):
         self.gui = gui
         self.isUI = True
         if os.name == 'posix':
-            self.i2c=tinyI2C.serial2i2c(port="/dev/ttyS0")
+            self.i2c = tinyI2C.serial2i2c(port = "/dev/ttyS0")
         else:
-            self.i2c=tinyI2C.serial2i2c()
+            self.i2c = tinyI2C.serial2i2c()
 
     def _search(self):
         self._list()
@@ -59,7 +59,7 @@ class MyWidget(QtGui.QWidget):
                 _dummy[0], _dummy[1], _dummy[2], = port
 #                print "_list()", _dummy[0]
                 try:
-                    _ser = serial.Serial(port=_dummy[0])
+                    _ser = serial.Serial(port = _dummy[0])
                 except:
                     pass
                 else:
@@ -68,7 +68,7 @@ class MyWidget(QtGui.QWidget):
                     self.ports.append( port[0])
 #                    print "_list()", self.ports
 
-            self.ports=self.ports[_idx:]
+            self.ports = self.ports[_idx:]
 
             self.gui.portList.addItems(_ports)
             self._setup(0)
@@ -112,7 +112,8 @@ class MyWidget(QtGui.QWidget):
     def readGPIOSlot(self, arg):
         print "readGPIOslot()"
         _sender = self.sender()
-        _register,_dest = arg
+        _register, _dest = arg
+        self.i2c.raw_read()
         read = self.i2c.reg_read(_register).split(",")[0]
         if read:
             read = int(read,16)
@@ -144,11 +145,11 @@ class MyWidget(QtGui.QWidget):
         packet.extend(slave)
         packet.extend(length)
         packet.extend(reg)
-        packet.insert(0,'S')
+        packet.insert(0, 'S')
         packet.append('S')
 
-        slave[1]=chr(ord(slave[1]) | 1)
-        length=self.i2c._hex2ascii(1,mask=0xd0)
+        slave[1] = chr(ord(slave[1]) | 1)
+        length = self.i2c._hex2ascii(1, mask = 0xd0)
 
         length.reverse()
 
@@ -159,10 +160,10 @@ class MyWidget(QtGui.QWidget):
         self.i2c.raw_write("".join(packet))
         time.sleep(self.i2c._wait * 2)
         read= self.i2c.raw_read()
+        read = read.split(",")
         # print read
         if len(read) >= 2:
-            read = read.split(",")[1]
-            return read
+            return read[1]
         else:
             # print "Error"
             return ""
