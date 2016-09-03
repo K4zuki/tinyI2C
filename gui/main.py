@@ -87,7 +87,8 @@ class MyWidget(QtGui.QWidget):
         _slave, _channel, _register, _dest = arg
         read = self.i2c.setChannel(_channel)
         read = self.I2CregRead(_slave, _register)
-        _dest.setValue(int(read,16))
+        if read:
+            _dest.setValue(int(read,16))
 
     def writeI2CSlot(self, arg):
         _slave, _channel, _register, _data = arg
@@ -112,21 +113,23 @@ class MyWidget(QtGui.QWidget):
         print "readGPIOslot()"
         _sender = self.sender()
         _register,_dest = arg
-        read=self.i2c.reg_read(_register).split(",")[0]
-        read=int(read,16)
-        _dest.setValue(0)
-        _dest.setValue(1)
-        _dest.setValue(read)
+        read = self.i2c.reg_read(_register).split(",")[0]
+        if read:
+            read = int(read,16)
+            _dest.setValue(0)
+            _dest.setValue(1)
+            _dest.setValue(read)
 
     def writeGPIOSlot(self, arg):
         print "writeGPIOslot()"
         _register, _data, _dest = arg
         read = self.i2c.reg_write([[str(_register), _data]])
         read = self.i2c.reg_read(_register).split(",")[0]
-        read = int(read,16)
-        _dest.setValue(0)
-        _dest.setValue(1)
-        _dest.setValue(read)
+        if read:
+            read = int(read,16)
+            _dest.setValue(0)
+            _dest.setValue(1)
+            _dest.setValue(read)
 
     def I2CregRead(self, slave = 0x90, reg = 0x00):
         packet = []
@@ -156,9 +159,13 @@ class MyWidget(QtGui.QWidget):
         self.i2c.raw_write("".join(packet))
         time.sleep(self.i2c._wait * 2)
         read= self.i2c.raw_read()
-#        print read
-        read = read.split(",")[1]
-        return read
+        # print read
+        if len(read) >= 2:
+            read = read.split(",")[1]
+            return read
+        else:
+            # print "Error"
+            return ""
 
     ## writes data to register address in selected slave address
     # copy and modify from tempcommand/instr_local.serial_i2c
