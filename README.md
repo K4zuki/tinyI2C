@@ -6,16 +6,16 @@ The module converts UART command packets into I2C/SPI protocol or GPIO to read/w
 configurable pull-up/pull-down modes.
 
 - the "FTDI" USB-UART cable to connect to host PC; from PC the module look only an USB-Serial port
-  - up to 115200 boudrate UART to communicate
+    - up to 115200 boudrate UART to communicate
 - up to 4 channel I2C ports with selectable speed
 - one SPI port with 8/16 bits word, also selectable speed
 - up to 2 x 8bit, General Purpose IO ports
 
 - tinyI2C       <-- root
-  - gui       <-- PyQt4 based GUI source codes  
-  - mbed      <-- mbed source codes  
-  - pcb       <-- PCB design files for eagle  
-  - python    <-- python module code with standalone test program  
+    - gui       <-- PyQt4 based GUI source codes  
+    - mbed      <-- mbed source codes  
+    - pcb       <-- PCB design files for eagle  
+    - python    <-- python module code with standalone test program
 
 # Requirement
 - Python 2.7  
@@ -51,11 +51,12 @@ GUI setup requires:
 
 ### Compile on Windows
 ### Compile on Linux
-in `gui/` directory:
+in `gui/` directory,
 
-- `$ pyinstaller tinyI2C.spec`\
-- `$ pyinstaller --noconsole -p ../python/ main.py --onefile --clean --name tinyI2C`
-
+1. for the first time:\
+`$ pyinstaller --noconsole -p ../python/ main.py --onefile --clean --name tinyI2C`
+1. from next time:\
+`$ pyinstaller tinyI2C.spec`
 
 ### Compile on Mac
 
@@ -65,15 +66,15 @@ NXP Semiconductor's UART-I2C converter/controller, named **SC18IM700**._
 
 - the command packet starts/ends with few number of characters: for starting(`head`)
 character there are several choices but ending(`tail`) is always `'P'`, 0x50 in hex.
-  - if only sending 'P', `tinyI2C` makes stop condition pulse (**without start condition**)
+    - if only sending 'P', `tinyI2C` makes stop condition pulse (**without start condition**)
   on currently selected I2C bus and returns "ok" return packet.
 - the `tinyI2C` watches its UART port \_Forever until_ it receives `tail`
   and counts received packet length by bytes (`plength`).
   then searches first character of the packet whether if matches one of registered `head` character.
-  - if it does not match with any of valid `head` the device returns
+    - if it does not match with any of valid `head` the device returns
   "command is not implemented" return packet.
 - if valid head found it checks `plength-2` which is actual data packet length.
-  - if you send an invalid packet, the device returns "bad packet" return packet.
+    - if you send an invalid packet, the device returns "bad packet" return packet.
 
 ## I2C
 ### `'S'` 0x53 I2C-bus START
@@ -90,9 +91,11 @@ character there are several choices but ending(`tail`) is always `'P'`, 0x50 in 
 
 - command packet: write 4 bytes to slave at 0x80(8bit)
 
-| head | slave address(W) | data length |       binary data to write       | tail |
-|:----:|:----------------:|:-----------:|:--------------------------------:|:----:|
-|  S   |    0x\_8 \_0     |  0x\_0 \_4  | 0x_D \_E \_A \_D \_B \_E \_A \_F |  P   |
+| head  | slave address(W) | data length |          binary data to write           | tail  |
+|:-----:|:----------------:|:-----------:|:---------------------------------------:|:-----:|
+|   S   |    0x\_8 \_0     |  0x\_0 \_4  |    0x_D \_E \_A \_D \_B \_E \_A \_F     |   P   |
+| `'S'` |      `'80'`      |   `'04'`    |              `'=>:=;>:?'`               | `'P'` |
+| 0x53  |    0x38 0x30     |  0x30 0x34  | 0x3D 0x3E 0x3A 0x3D 0x3B 0x3E 0x3A 0x3F | 0x50  |
 
 - return packet
 
