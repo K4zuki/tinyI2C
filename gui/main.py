@@ -82,22 +82,27 @@ class MyWidget(QtGui.QWidget):
             if(self.i2c and self.i2c._ser.isOpen()):
                 self.i2c._ser.close()
 #            print "_setup()", self.ports
-            self.i2c = tinyI2C.serial2i2c(port = self.ports[_port])
+            try:
+                self.i2c = tinyI2C.serial2i2c(port = self.ports[_port])
+            except:
+                pass
 
     def _null(self):
         pass
 
     def readI2CSlot(self, arg):
         _slave, _channel, _register, _dest = arg
-        read = self.i2c.setChannel(_channel)
-        read = self.I2CregRead(_slave, _register)
-        if read:
-            _dest.setValue(int(read,16))
+        if(self.i2c):
+            read = self.i2c.setChannel(_channel)
+            read = self.I2CregRead(_slave, _register)
+            if read:
+                _dest.setValue(int(read,16))
 
     def writeI2CSlot(self, arg):
         _slave, _channel, _register, _data = arg
-        self.i2c.setChannel(_channel)
-        self.I2CregWrite(_slave, _register, _data)
+        if(self.i2c):
+            self.i2c.setChannel(_channel)
+            self.I2CregWrite(_slave, _register, _data)
 
 #        CHIP_ID = '0',
 #        GPIO0_STAT = '1',
@@ -117,24 +122,26 @@ class MyWidget(QtGui.QWidget):
         print "readGPIOslot()"
         _sender = self.sender()
         _register, _dest = arg
-        self.i2c.raw_read()
-        read = self.i2c.reg_read(_register).split(",")[0]
-        if read:
-            read = int(read,16)
-            _dest.setValue(0)
-            _dest.setValue(1)
-            _dest.setValue(read)
+        if(self.i2c):
+            self.i2c.raw_read()
+            read = self.i2c.reg_read(_register).split(",")[0]
+            if read:
+                read = int(read,16)
+                _dest.setValue(0)
+                _dest.setValue(1)
+                _dest.setValue(read)
 
     def writeGPIOSlot(self, arg):
         print "writeGPIOslot()"
         _register, _data, _dest = arg
-        read = self.i2c.reg_write([[str(_register), _data]])
-        read = self.i2c.reg_read(_register).split(",")[0]
-        if read:
-            read = int(read,16)
-            _dest.setValue(0)
-            _dest.setValue(1)
-            _dest.setValue(read)
+        if(self.i2c):
+            read = self.i2c.reg_write([[str(_register), _data]])
+            read = self.i2c.reg_read(_register).split(",")[0]
+            if read:
+                read = int(read,16)
+                _dest.setValue(0)
+                _dest.setValue(1)
+                _dest.setValue(read)
 
     def I2CregRead(self, slave = 0x90, reg = 0x00):
         packet = []
@@ -261,69 +268,71 @@ class MyWidget(QtGui.QWidget):
     def GPIOreadClick(self):
         print "GPIOreadClick()",
         _sender = self.sender()
-        if(_sender == self.gui.readbtn_reg0):
-            _register = self.i2c.CHIP_ID
-            _dest = self.gui.read_reg0
-        elif(_sender == self.gui.readbtn_reg1):
-            _register = self.i2c.GPIO0_STAT
-            _dest = self.gui.read_reg1
-        elif(_sender == self.gui.readbtn_reg2):
-            _register = self.i2c.GPIO1_STAT
-            _dest = self.gui.read_reg2
-        elif(_sender == self.gui.readbtn_reg3):
-            _register = self.i2c.GPIO0_CONF
-            _dest = self.gui.read_reg3
-        elif(_sender == self.gui.readbtn_reg4):
-            _register = self.i2c.GPIO1_CONF
-            _dest = self.gui.read_reg4
-        elif(_sender == self.gui.readbtn_reg5):
-            _register = self.i2c.I2C_CONF
-            _dest = self.gui.read_reg5
-        elif(_sender == self.gui.readbtn_reg6):
-            _register = self.i2c.SPI_CONF
-            _dest = self.gui.read_reg6
-#        elif(_sender == self.gui.readbtn_reg7):
-#            pass
-        else:
-            pass
-        self.readGPIO_signal.emit([_register, _dest])
+        if(self.i2c):
+            if(_sender == self.gui.readbtn_reg0):
+                _register = self.i2c.CHIP_ID
+                _dest = self.gui.read_reg0
+            elif(_sender == self.gui.readbtn_reg1):
+                _register = self.i2c.GPIO0_STAT
+                _dest = self.gui.read_reg1
+            elif(_sender == self.gui.readbtn_reg2):
+                _register = self.i2c.GPIO1_STAT
+                _dest = self.gui.read_reg2
+            elif(_sender == self.gui.readbtn_reg3):
+                _register = self.i2c.GPIO0_CONF
+                _dest = self.gui.read_reg3
+            elif(_sender == self.gui.readbtn_reg4):
+                _register = self.i2c.GPIO1_CONF
+                _dest = self.gui.read_reg4
+            elif(_sender == self.gui.readbtn_reg5):
+                _register = self.i2c.I2C_CONF
+                _dest = self.gui.read_reg5
+            elif(_sender == self.gui.readbtn_reg6):
+                _register = self.i2c.SPI_CONF
+                _dest = self.gui.read_reg6
+    #        elif(_sender == self.gui.readbtn_reg7):
+    #            pass
+            else:
+                pass
+            self.readGPIO_signal.emit([_register, _dest])
 
     def GPIOwriteClick(self):
         print "GPIOreadClick()",
         _sender = self.sender()
-        if(_sender == self.gui.writebtn_reg0):# this should not happen
-            _register = self.i2c.CHIP_ID
-            _data = self.gui.write_reg0.value()
-            _dest = self.gui.read_reg0
-        elif(_sender == self.gui.writebtn_reg1):
-            _register = self.i2c.GPIO0_STAT
-            _data = self.gui.write_reg1.value()
-            _dest = self.gui.read_reg1
-        elif(_sender == self.gui.writebtn_reg2):
-            _register = self.i2c.GPIO1_STAT
-            _data = self.gui.write_reg2.value()
-            _dest = self.gui.read_reg2
-        elif(_sender == self.gui.writebtn_reg3):
-            _register = self.i2c.GPIO0_CONF
-            _data = self.gui.write_reg3.value()
-            _dest = self.gui.read_reg3
-        elif(_sender == self.gui.writebtn_reg4):
-            _register = self.i2c.GPIO1_CONF
-            _data = self.gui.write_reg4.value()
-            _dest = self.gui.read_reg4
-        elif(_sender == self.gui.writebtn_reg5):
-            _register = self.i2c.I2C_CONF
-            _data = self.gui.write_reg5.value()
-            _dest = self.gui.read_reg5
-        elif(_sender == self.gui.writebtn_reg6):
-            _register = self.i2c.SPI_CONF
-            _data = self.gui.write_reg6.value()
-            _dest = self.gui.read_reg6
-#        elif(_sender == self.gui.writebtn_reg7):
-#            pass
-        else:
-            pass
-        self.writeGPIO_signal.emit([_register, _data, _dest])
+        if(self.i2c):
+            if(_sender == self.gui.writebtn_reg0):# this should not happen
+                _register = self.i2c.CHIP_ID
+                _data = self.gui.write_reg0.value()
+                _dest = self.gui.read_reg0
+            elif(_sender == self.gui.writebtn_reg1):
+                _register = self.i2c.GPIO0_STAT
+                _data = self.gui.write_reg1.value()
+                _dest = self.gui.read_reg1
+            elif(_sender == self.gui.writebtn_reg2):
+                _register = self.i2c.GPIO1_STAT
+                _data = self.gui.write_reg2.value()
+                _dest = self.gui.read_reg2
+            elif(_sender == self.gui.writebtn_reg3):
+                _register = self.i2c.GPIO0_CONF
+                _data = self.gui.write_reg3.value()
+                _dest = self.gui.read_reg3
+            elif(_sender == self.gui.writebtn_reg4):
+                _register = self.i2c.GPIO1_CONF
+                _data = self.gui.write_reg4.value()
+                _dest = self.gui.read_reg4
+            elif(_sender == self.gui.writebtn_reg5):
+                _register = self.i2c.I2C_CONF
+                _data = self.gui.write_reg5.value()
+                _dest = self.gui.read_reg5
+            elif(_sender == self.gui.writebtn_reg6):
+                _register = self.i2c.SPI_CONF
+                _data = self.gui.write_reg6.value()
+                _dest = self.gui.read_reg6
+    #        elif(_sender == self.gui.writebtn_reg7):
+    #            pass
+            else:
+                pass
+            self.writeGPIO_signal.emit([_register, _data, _dest])
 
     def updateI2CspeedTo(self):
         print "updateI2CspeedTo()"
