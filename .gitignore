@@ -20,6 +20,8 @@ pcb/*.gpi
 */*.pyc
 gui/dist
 gui/build
+/dist
+/build
 
 pcb/*.epf
 
