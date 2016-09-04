@@ -1,13 +1,16 @@
 # include Makefile.win
 include Makefile.in
 
-MDDIR:= markdown
-DATADIR:= data
-TARGETDIR:= Out
+MDDIR:= doc
+DATADIR:= doc/data
+TARGETDIR:= doc/Out
+GUIDESIGNDIR:= gui
+GUIDESIGN:= $(GUIDESIGNDIR)/tinyI2Cgui.py
 GUIBUILDDIR:= build
 GUIDISTDIR:= dist
+GUIBINARY:= $(GUIDISTDIR)/TinyI2C$(EXE)
 
-INPUT:= source.md
+INPUT:= README.md
 OUTPUT:= $(shell basename $(INPUT) .md)
 # CSV:= $(shell cd $(DATADIR); ls *.csv)
 TABLES:= $(CSV:%.csv=$(TARGETDIR)/%.tmd)
@@ -19,9 +22,12 @@ DOCX:=$(TARGETDIR)/$(OUTPUT).docx
 
 all: mkdir html
 
-gui:
-	pyuic4 gui/tinyI2C.ui -o gui/tinyI2Cgui.py
-	pyinstaller --noconsole -p python/ gui/main.py --onefile --clean --name tinyI2C
+gui: $(GUIBINARY)
+$(GUIBINARY): $(GUIDESIGN)
+	pyinstaller --noconsole -p python/ gui/main.py --onefile --clean --name TinyI2C
+
+$(GUIDESIGN):
+	pyuic4 tinyI2C.ui -o $(GUIDESIGN)
 
 docx: $(DOCX)
 $(DOCX): $(HTML)
@@ -48,5 +54,6 @@ mkdir:
 	mkdir -p $(MDDIR)
 
 clean: mkdir
+	rm *.spec
 	rm -rf $(TARGETDIR) $(GUIBUILDDIR) $(GUIDISTDIR)
 	mkdir -p $(TARGETDIR)
