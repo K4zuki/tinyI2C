@@ -38,10 +38,13 @@ class MyWidget(QtGui.QWidget):
     def getUI(self, gui):
         self.gui = gui
         self.isUI = True
-        if os.name == 'posix':
-            self.i2c = tinyI2C.serial2i2c(port = "/dev/ttyS0")
-        else:
-            self.i2c = tinyI2C.serial2i2c()
+        try:
+            if os.name == 'posix':
+                self.i2c = tinyI2C.serial2i2c(port = "/dev/ttyS0")
+            else:
+                self.i2c = tinyI2C.serial2i2c()
+        except:
+            pass
 
     def _search(self):
         self._list()
@@ -54,7 +57,8 @@ class MyWidget(QtGui.QWidget):
 
         if(self.isUI):
             self.gui.portList.clear()
-            self.i2c._ser.close()
+            if(self.i2c):
+                self.i2c._ser.close()
             for port in serial_comports():
                 _dummy[0], _dummy[1], _dummy[2], = port
 #                print "_list()", _dummy[0]
@@ -75,7 +79,7 @@ class MyWidget(QtGui.QWidget):
 
     def _setup(self, _port = 0):
         if(self.isUI):
-            if(self.i2c._ser.isOpen()):
+            if(self.i2c and self.i2c._ser.isOpen()):
                 self.i2c._ser.close()
 #            print "_setup()", self.ports
             self.i2c = tinyI2C.serial2i2c(port = self.ports[_port])
