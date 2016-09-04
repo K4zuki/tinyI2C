@@ -49,13 +49,17 @@ GUI setup requires:
 - PyQT4
 - pyinstaller
 
-### Compile on Windows
-### Compile on Linux
-in `gui/` directory,
+### Compile GUI
+On project root,
+```
+$ make gui
+```
 
-`$ pyinstaller --noconsole -p ../python/ main.py --onefile --clean --name tinyI2C`
-
-### Compile on Mac
+### Run GUI
+On project root,
+```
+$ dist/TinyI2C
+```
 
 # Command set and protocol
 - _this command character as well as packet structure is inspired(some copied) from
