@@ -6,7 +6,6 @@ HOME = C:/Users/$(USERNAME)
 CABAL = $(HOME)/AppData/Roaming/cabal
 PCROSSREF = $(CABAL)/bin/pandoc-crossref.exe
 PANDOC:= $(CABAL)/bin/pandoc.exe
-EXE=.exe
 else
 CABAL = $(HOME)/.cabal
 PCROSSREF = $(CABAL)/bin/pandoc-crossref

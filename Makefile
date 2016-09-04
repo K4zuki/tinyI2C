@@ -4,10 +4,12 @@ include Makefile.in
 MDDIR:= markdown
 DATADIR:= data
 TARGETDIR:= Out
+GUIBUILDDIR:= build
+GUIDISTDIR:= dist
 
 INPUT:= source.md
 OUTPUT:= $(shell basename $(INPUT) .md)
-CSV:= $(shell cd $(DATADIR); ls *.csv)
+# CSV:= $(shell cd $(DATADIR); ls *.csv)
 TABLES:= $(CSV:%.csv=$(TARGETDIR)/%.tmd)
 FILTERED= $(INPUT:%.md=$(TARGETDIR)/%.fmd)
 HTML:=$(TARGETDIR)/$(OUTPUT).html
@@ -19,7 +21,7 @@ all: mkdir html
 
 gui:
 	pyuic4 gui/tinyI2C.ui -o gui/tinyI2Cgui.py
-	pyinstaller --noconsole -p python/ gui/main.py --onefile --clean --name tinyI2C$(EXE)
+	pyinstaller --noconsole -p python/ gui/main.py --onefile --clean --name tinyI2C
 
 docx: $(DOCX)
 $(DOCX): $(HTML)
@@ -46,5 +48,5 @@ mkdir:
 	mkdir -p $(MDDIR)
 
 clean: mkdir
-	rm -rf $(TARGETDIR)
+	rm -rf $(TARGETDIR) $(GUIBUILDDIR) $(GUIDISTDIR)
 	mkdir -p $(TARGETDIR)
