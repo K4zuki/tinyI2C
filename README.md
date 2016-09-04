@@ -53,10 +53,7 @@ GUI setup requires:
 ### Compile on Linux
 in `gui/` directory,
 
-1. for the first time:\
 `$ pyinstaller --noconsole -p ../python/ main.py --onefile --clean --name tinyI2C`
-1. from next time:\
-`$ pyinstaller tinyI2C.spec`
 
 ### Compile on Mac
 

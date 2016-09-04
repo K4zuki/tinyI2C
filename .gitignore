@@ -22,6 +22,7 @@ gui/dist
 gui/build
 /dist
 /build
+*.spec
 
 pcb/*.epf
 
