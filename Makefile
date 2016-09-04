@@ -18,6 +18,7 @@ DOCX:=$(TARGETDIR)/$(OUTPUT).docx
 all: mkdir html
 
 gui:
+	pyuic4 gui/tinyI2C.ui -o gui/tinyI2Cgui.py
 	pyinstaller --noconsole -p python/ gui/main.py --onefile --clean --name tinyI2C$(EXE)
 
 docx: $(DOCX)
