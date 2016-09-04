@@ -70,3 +70,5 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 /.project
+
+Out/
