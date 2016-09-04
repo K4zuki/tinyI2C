@@ -18,6 +18,11 @@ FILTERED= $(INPUT:%.md=$(TARGETDIR)/%.fmd)
 HTML:=$(TARGETDIR)/$(OUTPUT).html
 DOCX:=$(TARGETDIR)/$(OUTPUT).docx
 
+PANFLAGS += --toc
+PANFLAGS += --listings
+PANFLAGS += --number-sections --highlight-style=pygments
+PANFLAGS += -M localfontdir=$(FONTDIR)
+
 .PHONY: docx html filtered tables clean gui
 
 all: mkdir html
@@ -54,6 +59,5 @@ mkdir:
 	mkdir -p $(MDDIR)
 
 clean: mkdir
-	rm *.spec
 	rm -rf $(TARGETDIR) $(GUIBUILDDIR) $(GUIDISTDIR)
 	mkdir -p $(TARGETDIR)
