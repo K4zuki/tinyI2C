@@ -23,7 +23,7 @@ PANFLAGS += --listings
 PANFLAGS += --number-sections --highlight-style=pygments
 PANFLAGS += -M localfontdir=$(FONTDIR)
 
-.PHONY: docx html filtered tables clean gui
+.PHONY: docx html filtered tables pdf tex merge gui clean
 
 all: mkdir html
 
@@ -44,6 +44,20 @@ html: $(HTML)
 $(HTML): $(TABLES) $(FILTERED)
 	$(PANDOC) $(PANFLAGS) --self-contained -thtml5 --template=$(MISC)/github.html \
 		$(FILTERED) -o $(HTML)
+
+pdf: tex
+	xelatex --output-directory=$(TARGETDIR) --no-pdf $(TARGETDIR)/$(TARGET).tex; \
+	cd $(TARGETDIR); \
+	rm -f ./images; \
+	ln -s ../images; \
+	xelatex $(TARGET).tex
+
+tex: merge
+	$(PANDOC) $(PANFLAGS) --template=$(MISC)/CJK_xelatex.tex --latex-engine=xelatex \
+		$(TARGETDIR)/$(TARGET).md -o $(TARGETDIR)/$(TARGET).tex
+
+merge: filtered
+	cat $(FILTERED) > $(TARGETDIR)/$(TARGET).md
 
 filtered: tables $(FILTERED)
 $(FILTERED): $(MDDIR)/$(INPUT)
