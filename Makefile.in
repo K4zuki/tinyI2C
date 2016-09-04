@@ -3,7 +3,7 @@
 
 ifeq ($(OS),Windows_NT)
 HOME = C:/Users/$(USERNAME)
-CABAL = C:/Users/Kazuki/AppData/Roaming/cabal
+CABAL = $(HOME)/AppData/Roaming/cabal
 PCROSSREF = $(CABAL)/bin/pandoc-crossref.exe
 PANDOC:= $(CABAL)/bin/pandoc.exe
 EXE=.exe
