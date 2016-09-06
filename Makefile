@@ -10,9 +10,10 @@ GUIBUILDDIR:= build
 GUIDISTDIR:= dist
 GUIBINARY:= $(GUIDISTDIR)/TinyI2C$(EXE)
 
-INPUT:= README.md
+INPUT:= TITLE.md
+TARGET = NXPemulatesNXP
 OUTPUT:= $(shell basename $(INPUT) .md)
-# CSV:= $(shell cd $(DATADIR); ls *.csv)
+CSV:= $(shell cd $(DATADIR); ls *.csv)
 TABLES:= $(CSV:%.csv=$(TARGETDIR)/%.tmd)
 FILTERED= $(INPUT:%.md=$(TARGETDIR)/%.fmd)
 HTML:=$(TARGETDIR)/$(OUTPUT).html
