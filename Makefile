@@ -12,17 +12,18 @@ GUIBINARY:= $(GUIDISTDIR)/TinyI2C$(EXE)
 
 INPUT:= TITLE.md
 TARGET = NXPemulatesNXP
-OUTPUT:= $(shell basename $(INPUT) .md)
+
 CSV:= $(shell cd $(DATADIR); ls *.csv)
 TABLES:= $(CSV:%.csv=$(TARGETDIR)/%.tmd)
 FILTERED= $(INPUT:%.md=$(TARGETDIR)/%.fmd)
-HTML:=$(TARGETDIR)/$(OUTPUT).html
-DOCX:=$(TARGETDIR)/$(OUTPUT).docx
+HTML:=$(TARGETDIR)/$(TARGET).html
+DOCX:=$(TARGETDIR)/$(TARGET).docx
 
 PANFLAGS += --toc
 PANFLAGS += --listings
 PANFLAGS += --number-sections --highlight-style=pygments
 PANFLAGS += -M localfontdir=$(FONTDIR)
+PANFLAGS += -M css=$(MISC)/github.css
 
 .PHONY: docx html filtered tables pdf tex merge gui clean
 
@@ -37,42 +38,45 @@ $(GUIDESIGN):
 
 docx: $(DOCX)
 $(DOCX): $(HTML)
-	$(PANDOC) --reference-docx=$(REFERENCE) $(HTML) -o $(TARGETDIR)/$(OUTPUT).docx; \
+	$(PANDOC) --reference-docx=$(REFERENCE) $(HTML) -o $(DOCX); \
 	$(PYTHON) $(DOCXPWRTR) -I $(MDDIR)/$(INPUT) -O $(DOCX)
 
 html: $(HTML)
-
-$(HTML): $(TABLES) $(FILTERED)
+# $(HTML): $(TARGETDIR) $(TABLES) $(FILTERED) $(TARGETDIR)/$(TARGET).md
+$(HTML): tables filtered merge
 	$(PANDOC) $(PANFLAGS) --self-contained -thtml5 --template=$(MISC)/github.html \
 		$(FILTERED) -o $(HTML)
 
 pdf: tex
-	xelatex --output-directory=$(TARGETDIR) --no-pdf $(TARGETDIR)/$(TARGET).tex; \
 	cd $(TARGETDIR); \
 	rm -f ./images; \
 	ln -s ../images; \
 	xelatex $(TARGET).tex
 
-tex: merge
+tex: merge $(TARGETDIR)/$(TARGET).tex
+$(TARGETDIR)/$(TARGET).tex: $(TARGETDIR)/$(TARGET).md
 	$(PANDOC) $(PANFLAGS) --template=$(MISC)/CJK_xelatex.tex --latex-engine=xelatex \
-		$(TARGETDIR)/$(TARGET).md -o $(TARGETDIR)/$(TARGET).tex
+		$(TARGETDIR)/$(TARGET).md -o $(TARGETDIR)/$(TARGET).tex; \
+	xelatex --output-directory=$(TARGETDIR) --no-pdf $(TARGETDIR)/$(TARGET).tex
 
-merge: filtered
+merge: $(TARGETDIR) filtered $(TARGETDIR)/$(TARGET).md
+$(TARGETDIR)/$(TARGET).md:
 	cat $(FILTERED) > $(TARGETDIR)/$(TARGET).md
 
-filtered: tables $(FILTERED)
+filtered: $(MDDIR) tables $(FILTERED)
 $(FILTERED): $(MDDIR)/$(INPUT)
 	cat $< | $(PYTHON) $(FILTER) --out $@
 
-tables: $(TABLES)
+tables: $(TARGETDIR) $(DATADIR) $(TABLES)
 $(TARGETDIR)/%.tmd: $(DATADIR)/%.csv
 	$(PYTHON) $(CSV2TABLE) --file $< --out $@ --delimiter ','
 
-mkdir:
+$(TARGETDIR):
 	mkdir -p $(TARGETDIR)
+$(DATADIR):
 	mkdir -p $(DATADIR)
+$(MDDIR):
 	mkdir -p $(MDDIR)
 
-clean: mkdir
-	rm -rf $(TARGETDIR) $(GUIBUILDDIR) $(GUIDISTDIR)
-	mkdir -p $(TARGETDIR)
+clean: $(TARGETDIR)
+	rm -rf $(TARGETDIR)/* $(GUIBUILDDIR)/* $(GUIDISTDIR)/*
