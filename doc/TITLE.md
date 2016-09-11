@@ -4,12 +4,12 @@ abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^Cインタ�
     "SC18IM700" をエミュレートさせてみた
 author: "KY技研 / @_K4ZUKI_"
 date: C91/2016-Dec
-documentclass: book
-papersize: b5paper
 comiket: "C91"
 year: "2016"
 publisher: "秋葉原キンコーズ"
-# localfontdir: set during compilation
+
+documentclass: book
+papersize: b5paper
 mainfont: RictyDiminished-Regular
 sansfont: RictyDiminished-Regular
 monofont: RictyDiminished-Regular
