@@ -1,0 +1,22 @@
+%% Example of sequence diagram
+    sequenceDiagram
+        PC/host ->> TinyI2C: "P"
+        TinyI2C ->> I2C: generate STOP condition
+        TinyI2C ->> PC/host: "ok"
+
+%        PC/host->>TinyI2C: send a bunch of packet
+%        TinyI2C ->> TinyI2C: wait until receive "P"
+%        PC/host->>TinyI2C: ...
+%        TinyI2C ->> TinyI2C: ...
+%        PC/host->>TinyI2C: "P"
+%        TinyI2C ->> TinyI2C: get head
+%        TinyI2C ->> TinyI2C: get plength
+%        alt invalid head
+%            TinyI2C->>PC/host: command not implemented
+%        else shorter plength than required
+%            TinyI2C->>PC/host: bad packet
+%        end
+%        TinyI2C ->> TinyI2C: execute command
+%        TinyI2C->>PC/host: responses
+%        TinyI2C->>PC/host: terminated by
+%        TinyI2C->>PC/host: "ok"
