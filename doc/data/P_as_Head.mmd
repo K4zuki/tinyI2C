@@ -1,8 +1,8 @@
 %% Example of sequence diagram
-    sequenceDiagram
-        PC/host ->> TinyI2C: "P"
-        TinyI2C ->> I2C: generate STOP condition
-        TinyI2C ->> PC/host: "ok"
+sequenceDiagram
+  PC/host ->> TinyI2C: "P"
+  TinyI2C ->> I2C: generate STOP condition
+  TinyI2C ->> PC/host: "ok"
 
 %        PC/host->>TinyI2C: send a bunch of packet
 %        TinyI2C ->> TinyI2C: wait until receive "P"

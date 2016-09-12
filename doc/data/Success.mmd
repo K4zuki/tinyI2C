@@ -1,10 +1,10 @@
-    sequenceDiagram
-        PC/host->>TinyI2C: send a bunch of packet
-        %PC/host->>TinyI2C: ...
-Note right of TinyI2C: infinite wait until receiving "P"
-        PC/host->>TinyI2C: "P"
-Note right of TinyI2C: verify packet length and head
-Note right of TinyI2C: execute command
-        TinyI2C->>PC/host: responses
-        TinyI2C->>PC/host: terminated with
-        TinyI2C->>PC/host: "ok"
+sequenceDiagram
+  PC/host->>TinyI2C: send a bunch of packet
+  %PC/host->>TinyI2C: ...
+  Note right of TinyI2C: infinite wait until receiving "P"
+  PC/host->>TinyI2C: "P"
+  Note right of TinyI2C: verify packet length and head
+  Note right of TinyI2C: execute command
+  TinyI2C->>PC/host: responses
+  TinyI2C->>PC/host: terminated with
+  TinyI2C->>PC/host: "ok"
