@@ -23,7 +23,7 @@ PANFLAGS += --toc
 PANFLAGS += --listings
 PANFLAGS += --number-sections --highlight-style=pygments
 PANFLAGS += -M localfontdir=$(FONTDIR)
-PANFLAGS += -M css=$(MISC)/github.css
+PANFLAGS += -M css=$(MISC)/github_css/github.css
 
 .PHONY: docx html filtered tables pdf tex merge gui clean
 
