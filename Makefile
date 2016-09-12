@@ -53,7 +53,7 @@ pdf: tex
 	ln -s ../images; \
 	xelatex $(TARGET).tex
 
-tex: merge $(TARGETDIR)/$(TARGET).tex
+tex: merge $(TARGETDIR)/$(TARGET).tex $(TARGETDIR)/$(TARGET).md
 $(TARGETDIR)/$(TARGET).tex: $(TARGETDIR)/$(TARGET).md
 	$(PANDOC) $(PANFLAGS) --template=$(MISC)/CJK_xelatex.tex --latex-engine=xelatex \
 		$(TARGETDIR)/$(TARGET).md -o $(TARGETDIR)/$(TARGET).tex; \
