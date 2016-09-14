@@ -1,0 +1,3 @@
+"result","head","delimiter","tail"
+"sucess","ACK",",","ok"
+"fail","NAK",",","ok"

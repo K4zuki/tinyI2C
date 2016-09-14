@@ -1,0 +1,5 @@
+head,channel,tail,note
+C,'0',P,
+C,'1',P,LPC11U35未サポート
+C,'2',P,LPC11U35/LPC1768未サポート
+C,'3',P,LPC11U35/LPC1768未サポート
