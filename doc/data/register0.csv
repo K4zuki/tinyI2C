@@ -1,0 +1,5 @@
+Register 0,Command,___CHIP_ID___
+[7\.\.\.0\],R/W,returns chip ID character:
+,,'0'(`0x30`) - LPC824
+,,'1'(`0x31`) - LPC1768
+,,'2'(`0x32`) - LPC11U24 or LPC11U35

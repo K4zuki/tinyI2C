@@ -1,0 +1,8 @@
+Register,Name in python,Purpose
+0,CHIP_ID,converter's chip ID
+1,GPIO0_STAT,status of GPIO 0
+2,GPIO1_STAT,status of GPIO 1
+4,GPIO1_CONF,GPIO 0 IO configuration
+3,GPIO0_CONF,GPIO 1 IO configuration
+5,I2C_CONF,I^2^C channel 1~4 speed configuration
+6,SPI_CONF,SPI speed and polarity configuration

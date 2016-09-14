@@ -1,0 +1,7 @@
+Register 1,Command,___GPIO0_STAT___
+[7\.\.\.0\],R,behavior changes depend on corresponding bit of GPIO0_CONF register
+,,1: reads output setting
+,,0: reads input of the pin
+,W,behavior changes depend on corresponding bit of GPIO0_CONF register
+,,1: writes data to the pin
+,,0: do nothing
