@@ -5,17 +5,20 @@ Register 5,Command,___I2C_CONF___
 ,,10: I2C1 is set to operate in 600kHz clock
 ,,01: I2C1 is set to operate in 400kHz clock
 ,,00: I2C1 is set to operate in 200kHz clock
-[5...4],R/W," Read/Write clock configuration of I2C2; **if I2C2 is not enabled, access to this bitfield will be ignored** "
+[5...4],R/W," Read/Write clock configuration of I2C2"
+,,"**if I2C2 is not enabled, access to this bitfield will be ignored** "
 ,,11: I2C2 is set to operate in 400kHz clock
 ,,10: I2C2 is set to operate in 300kHz clock
 ,,01: I2C2 is set to operate in 200kHz clock
 ,,00: I2C2 is set to operate in 100kHz clock
-[3...2],R/W," Read/Write clock configuration of I2C3; **if I2C3 is not enabled, access to this bitfield will be ignored** "
+[3...2],R/W," Read/Write clock configuration of I2C3"
+,,"**if I2C3 is not enabled, access to this bitfield will be ignored** "
 ,,11: I2C3 is set to operate in 400kHz clock
 ,,10: I2C3 is set to operate in 300kHz clock
 ,,01: I2C3 is set to operate in 200kHz clock
 ,,00: I2C3 is set to operate in 100kHz clock
-[1...0],R/W," Read/Write clock configuration of I2C4; **if I2C4 is not enabled, access to this bitfield will be ignored** "
+[1...0],R/W," Read/Write clock configuration of I2C4"
+,,"**if I2C4 is not enabled, access to this bitfield will be ignored** "
 ,,11: I2C4 is set to operate in 400kHz clock
 ,,10: I2C4 is set to operate in 300kHz clock
 ,,01: I2C4 is set to operate in 200kHz clock
