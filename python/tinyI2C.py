@@ -85,12 +85,12 @@ class serial2i2c(object):
     def read(self, address, length = 1):
         packet = ['S', 'P']
 
-        address = self._hex2ascii(address, 0xa0)
+        address = self._hex2ascii(address, 0x30)
         alength = len(address) / 2
         packet.insert(1, chr(ord(address[0]) | 1))
         packet.insert(1, address[1])
 
-        for _l in self._hex2ascii(length, 0xd0):
+        for _l in self._hex2ascii(length, 0x30):
             packet.insert(3, _l)
 
         self.raw_write("".join(packet))
@@ -105,15 +105,15 @@ class serial2i2c(object):
     def write(self, address, data = 0):
         packet = ['S', 'P']
 
-        address = self._hex2ascii(address, 0xa0)
+        address = self._hex2ascii(address, 0x30)
         alength = len(address) / 2
         for _a in address:
             packet.insert(1, _a)
 
-        data = self._hex2ascii(data, 0xb0)
+        data = self._hex2ascii(data, 0x30)
         length = len(data) / 2
 
-        for _l in self._hex2ascii(length,0xc0):
+        for _l in self._hex2ascii(length,0x30):
             packet.insert(3, _l)
 
         for _d in data:
@@ -134,15 +134,15 @@ class serial2i2c(object):
     def write_and_read(self, address, wdata = 0, rlength = 1):
         packet = ['S', 'S', 'P']
 
-        address = self._hex2ascii(address, 0xa0)
+        address = self._hex2ascii(address, 0x30)
         alength = len(address) / 2
         for _a in address:
             packet.insert(1, _a)
 
-        wdata = self._hex2ascii(wdata, 0xb0)
+        wdata = self._hex2ascii(wdata, 0x30)
         wlength = len(wdata) / 2
 
-        for _wl in self._hex2ascii(wlength, 0xc0):
+        for _wl in self._hex2ascii(wlength, 0x30):
             packet.insert(3, _wl)
 
         for _wd in wdata:
@@ -151,7 +151,7 @@ class serial2i2c(object):
         packet.insert(6 + wlength * 2, chr(ord(address[0]) | 1))
         packet.insert(6 + wlength * 2, address[1])
 
-        for _rl in self._hex2ascii(rlength, 0xd0):
+        for _rl in self._hex2ascii(rlength, 0x30):
             packet.insert(8 + wlength * 2, _rl)
 
 #        print packet
@@ -163,9 +163,9 @@ class serial2i2c(object):
     def write_and_read_SPI(self, wlength = 1, rlength = 0, data = 0xC4FEE0CA):
 #        pass
 
-        _wlength = self._hex2ascii(wlength, 0xa0)
-        _rlength = self._hex2ascii(rlength, 0xb0)
-        _data = self._hex2ascii(data, 0xc0)
+        _wlength = self._hex2ascii(wlength, 0x30)
+        _rlength = self._hex2ascii(rlength, 0x30)
+        _data = self._hex2ascii(data, 0x30)
 
         _wlength.reverse()
         _rlength.reverse()
@@ -218,7 +218,7 @@ class serial2i2c(object):
 
         for _p in pair:
             reg, data = _p
-            data = self._hex2ascii(data, 0xA0)
+            data = self._hex2ascii(data, 0x30)
             data.reverse()
 
             packet.insert(1, reg)
@@ -235,7 +235,7 @@ class serial2i2c(object):
     # @param h data in HEX
     # @param mask mask data in HEX, LSB must be 0, MSB must not be 0 (0x?0, ?>8)
     # @return converted format in list
-    def _hex2ascii(self, h, mask = 0xa0):
+    def _hex2ascii(self, h, mask = 0x30):
         chars_in_reverse = []
         chars_in_reverse.append(chr(mask | (h & 0x0F)))
         chars_in_reverse.append(chr(mask | ((h >> 4) & 0x0F)))
