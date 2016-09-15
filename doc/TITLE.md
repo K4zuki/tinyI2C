@@ -2,11 +2,14 @@
 title: NXPのICでNXPのICをエミュレートしてみた本
 abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^CインタフェースIC
     "SC18IM700" をエミュレートさせてみた
-author: "KY技研 / @_K4ZUKI_"
+circle: KY技研
+author: "@_K4ZUKI_"
 date: C91/2016-Dec
 comiket: "C91"
 year: "2016"
 publisher: "秋葉原キンコーズ"
+docrevision: "1.0"
+short-hash: (git short hash)
 
 documentclass: book
 papersize: b5paper
@@ -58,7 +61,7 @@ LPC1768 / LPC824 / LPC11U35に移植した話、TinyI2C基板の回路図、
 `doc/1.0_tinyI2Cabstract.md`{.include}
 `doc/2.0_PythonAPI.md`{.include}
 `doc/9.1_RevHistory.md`{.include}
-`doc/9.9_tail.md`{.include}
+<!-- `doc/9.9_tail.md`{.include} -->
 
 <!--  -->
 [^mbed_fest]: 2014年のmbed祭りのいずれかで懇親会のおみやげにサンプルブックを入手したとかだったような
