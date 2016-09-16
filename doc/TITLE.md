@@ -7,7 +7,7 @@ author: "@_K4ZUKI_"
 date: C91/2016-Dec
 comiket: "C91"
 year: "2016"
-publisher: "秋葉原キンコーズ"
+publisher: "秋葉原キンコーズで印刷製本予定"
 docrevision: "1.0"
 short-hash: (git short hash)
 
