@@ -213,7 +213,7 @@ class serial2i2c(object):
     ## writes data into device's own register
     # @param register list of number and data list
     # @return response string from device
-    def reg_write(self, pair = [ ['1', 0xFF], ]):
+    def reg_write(self, pair = [ [ ('1', 0xFF), ]):
         packet = ['W', 'P']
 
         for _p in pair:
