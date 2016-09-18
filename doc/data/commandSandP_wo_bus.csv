@@ -1,0 +1,2 @@
+Start Condition,Slave address + W,ACK,data,ACK,...,data,ACK,Stop Condition
+S,0x80,A,0xDE,A,...,0xAF,A,P
