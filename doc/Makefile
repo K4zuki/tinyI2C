@@ -5,12 +5,21 @@ MDDIR:= ../doc
 DATADIR:= data
 TARGETDIR:= Out
 IMAGEDIR:= images
+WAVEDIR:= images/waves
 
 INPUT:= TITLE.md
 TARGET = NXPemulatesNXP
 
 CSV:= $(shell cd $(DATADIR); ls *.csv)
 TABLES:= $(CSV:%.csv=$(TARGETDIR)/%.tmd)
+
+WAVEYAML:= $(shell cd $(DATADIR); ls *.yaml)
+PYWAVEOPTS:= -c
+PYWAVEOPTS +=	'import sys, yaml, json; \
+							json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'
+WAVEJSON:= $(WAVEYAML:%.yaml=$(TARGETDIR)/%.json)
+WAVEDROM:= $(WAVEYAML:%.yaml=$(WAVEDIR)/%.png)
+
 FILTERED= $(INPUT:%.md=$(TARGETDIR)/%.fmd)
 HTML:=$(TARGETDIR)/$(TARGET).html
 DOCX:=$(TARGETDIR)/$(TARGET).docx
@@ -23,7 +32,7 @@ PANFLAGS += -M css=$(MISC)/github_css/github.css
 PANFLAGS += -M short-hash=`git rev-parse --short HEAD`
 PANFLAGS += -M tables=true
 
-.PHONY: docx html filtered tables pdf tex merge gui clean
+.PHONY: docx html filtered tables pdf tex merge clean linking
 
 all: html
 
@@ -57,13 +66,21 @@ merge: $(TARGETDIR) filtered $(TARGETDIR)/$(TARGET).md
 $(TARGETDIR)/$(TARGET).md:
 	cat $(FILTERED) > $(TARGETDIR)/$(TARGET).md
 
-filtered: $(MDDIR) tables $(FILTERED)
+filtered: $(MDDIR) tables wavedrom $(FILTERED)
 $(FILTERED): $(MDDIR)/$(INPUT)
 	cat $< | $(PYTHON) $(FILTER) --out $@
 
 tables: $(TARGETDIR) $(DATADIR) $(TABLES)
 $(TARGETDIR)/%.tmd: $(DATADIR)/%.csv
 	$(PYTHON) $(CSV2TABLE) --file $< --out $@ --delimiter ','
+
+wavedrom: $(DATADIR) $(WAVEDIR) yaml2json $(WAVEDROM)
+$(WAVEDIR)/%.png: $(TARGETDIR)/%.json
+	phantomjs /usr/local/bin/wavedrom -i $< -p $@
+
+yaml2json: $(WAVEJSON)
+$(TARGETDIR)/%.json: $(DATADIR)/%.yaml
+	$(PYTHON) $(PYWAVEOPTS) < $< > $@
 
 $(TARGETDIR):
 	mkdir -p $(TARGETDIR)
@@ -73,6 +90,8 @@ $(MDDIR):
 	mkdir -p $(MDDIR)
 $(IMAGEDIR):
 	mkdir -p $(IMAGEDIR)
+$(WAVEDIR):
+	mkdir -p $(WAVEDIR)
 
 clean: $(TARGETDIR)
-	rm -rf $(TARGETDIR)/*
+	rm -rf $(TARGETDIR)/* $(WAVEDIR)/

@@ -1,0 +1,13 @@
+signal:
+  - name: "区分"
+    wave: "x==...=.=........=x"
+    data: ["head","slave address(W)","data length","binary data to write","tail"]
+  - name: "コマンド"
+    wave: "x==.=.===........=x"
+    data: ["S","0x?8","0x?0","0x?0","0x?4","0x?D ?E ?A ?D ?B ?E ?A ?F","P"]
+  - name: "16進数(マスク = 0x30)"
+    wave: "x==.=.===........=x"
+    data: ["0x53","0x38","0x30","0x30","0x34","0x3D 0x3E 0x3A 0x3D 0x3B 0x3E 0x3A 0x3F","0x50"]
+  - name: "アスキー文字列"
+    wave: "x==.=.===........=x"
+    data: ['"S"','"8"','"0"','"0"','"4"','"=>:=;>:?"','"P"']

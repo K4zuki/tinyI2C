@@ -1,0 +1,10 @@
+signal:
+  - name: ""
+    wave: "x=.=..=x"
+    data: ["head", "delimiter", "tail"]
+  - name: "書込み成功"
+    wave: "x=.=..=x"
+    data: ['"ACK"', ",", '"ok"']
+  - name: "書込み失敗"
+    wave: "x=.=..=x"
+    data: ['"NAK"', ",", '"ok"']

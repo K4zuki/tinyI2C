@@ -1,0 +1,8 @@
+signal:
+  - name: sck
+    wave: "x1.0.u0.u|0.u0.u0.u0.u|0.u0.u..x"
+  - name: sda
+    wave: "x10.1..0.|....0..=..=.|.=..0.01x"
+  - name: state
+    wave: "x=..=.........=..=.........=.=.x"
+    data: [Start, "address + w = 0x80", "ACK", data, "ACK", Stop]
