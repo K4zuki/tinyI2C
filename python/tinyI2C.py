@@ -1,5 +1,7 @@
 #-*- coding: utf-8 -*-
 #!/usr/bin/env python
+# MIT License (c) K4ZUKI <https://github.com/K4zuki>
+
 import serial
 import os.path
 import time
@@ -119,8 +121,6 @@ class serial2i2c(object):
         for _d in data:
             packet.insert(5, _d)
 
-#        for _p in packet:
-#            self._ser.write(_p)
         self.raw_write("".join(packet))
 
         time.sleep(self._wait * length * 2)
@@ -154,14 +154,12 @@ class serial2i2c(object):
         for _rl in self._hex2ascii(rlength, 0x30):
             packet.insert(8 + wlength * 2, _rl)
 
-#        print packet
         self.raw_write("".join(packet))
 
         time.sleep(self._wait * rlength * 2)
         return self.raw_read()
 
     def write_and_read_SPI(self, wlength = 1, rlength = 0, data = 0xC4FEE0CA):
-#        pass
 
         _wlength = self._hex2ascii(wlength, 0x30)
         _rlength = self._hex2ascii(rlength, 0x30)
