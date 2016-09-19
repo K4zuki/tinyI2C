@@ -18,7 +18,7 @@ PYWAVEOPTS:= -c
 PYWAVEOPTS +=	'import sys, yaml, json; \
 							json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'
 WAVEJSON:= $(WAVEYAML:%.yaml=$(TARGETDIR)/%.json)
-WAVEDROM:= $(WAVEYAML:%.yaml=$(WAVEDIR)/%.png)
+WAVEPNG:= $(WAVEYAML:%.yaml=$(WAVEDIR)/%.png)
 
 FILTERED= $(INPUT:%.md=$(TARGETDIR)/%.fmd)
 HTML:=$(TARGETDIR)/$(TARGET).html
@@ -74,9 +74,9 @@ tables: $(TARGETDIR) $(DATADIR) $(TABLES)
 $(TARGETDIR)/%.tmd: $(DATADIR)/%.csv
 	$(PYTHON) $(CSV2TABLE) --file $< --out $@ --delimiter ','
 
-wavedrom: $(DATADIR) $(WAVEDIR) yaml2json $(WAVEDROM)
+wavedrom: $(DATADIR) $(WAVEDIR) yaml2json $(WAVEPNG)
 $(WAVEDIR)/%.png: $(TARGETDIR)/%.json
-	phantomjs /usr/local/bin/wavedrom -i $< -p $@
+	phantomjs $(WAVEDROM) -i $< -p $@
 
 yaml2json: $(WAVEJSON)
 $(TARGETDIR)/%.json: $(DATADIR)/%.yaml

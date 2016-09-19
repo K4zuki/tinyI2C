@@ -14,8 +14,10 @@ PANDOC:= $(CABAL)/bin/pandoc
 EXE=
 ifeq ($(shell uname),Linux)
 FONTDIR = "ExternalLocation = /usr/local/share/texmf/fonts/"
+WAVEDROM = /usr/local/bin/wavedrom
 else
 FONTDIR = "ExternalLocation = /usr/local/texlive/2015basic/texmf-local/"
+WAVEDROM = $(HOME)/.nodebrew/current/bin/wavedrom
 endif
 endif
 
