@@ -7,6 +7,7 @@ CABAL = $(HOME)/AppData/Roaming/cabal
 PCROSSREF = $(CABAL)/bin/pandoc-crossref.exe
 PANDOC:= $(CABAL)/bin/pandoc.exe
 EXE:=.exe
+WAVEDROM = C:/Users/kyamamot/AppData/Roaming/npm/wavedrom
 else
 CABAL = $(HOME)/.cabal
 PCROSSREF = $(CABAL)/bin/pandoc-crossref
