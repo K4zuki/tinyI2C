@@ -2,9 +2,9 @@ signal:
   - name: ""
     wave: "x=.=..=...=x"
     data: ["head", "delimiter", "data", "tail"]
-  - name: "書込み成功"
+  - name: "読出し成功"
     wave: "x=.=..=...=x"
     data: ['"ACK"', ",", '"AA,BB,CC,DD"', '"ok"']
-  - name: "書込み失敗"
+  - name: "読出し失敗"
     wave: "x=.=..=...=x"
     data: ['"NAK"', ",", '"CA,FE,E0,CA"','"ok"']
