@@ -1,4 +1,3 @@
-# include Makefile.win
 include Makefile.in
 
 MDDIR:= ../doc
@@ -15,7 +14,7 @@ TABLES:= $(CSV:%.csv=$(TARGETDIR)/%.tmd)
 
 WAVEYAML:= $(shell cd $(DATADIR); ls *.yaml)
 PYWAVEOPTS:= -c
-PYWAVEOPTS +=	'import sys, yaml, json; \
+PYWAVEOPTS += 'import sys, yaml, json; \
 							json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'
 WAVEJSON:= $(WAVEYAML:%.yaml=$(TARGETDIR)/%.json)
 WAVEPNG:= $(WAVEYAML:%.yaml=$(WAVEDIR)/%.png)
@@ -32,6 +31,8 @@ PANFLAGS += -M css=$(MISC)/github_css/github.css
 PANFLAGS += -M short-hash=`git rev-parse --short HEAD`
 PANFLAGS += -M tables=true
 
+MARKDOWN = $(shell ls $(MDDIR)/*.md)
+
 .PHONY: docx html filtered tables pdf tex merge clean linking
 
 all: html
@@ -42,39 +43,39 @@ $(DOCX): $(HTML)
 	$(PYTHON) $(DOCXPWRTR) -I $(MDDIR)/$(INPUT) -O $(DOCX)
 
 html: $(HTML)
-# $(HTML): $(TARGETDIR) $(TABLES) $(FILTERED) $(TARGETDIR)/$(TARGET).md
-$(HTML): tables filtered merge
+$(HTML): $(TARGETDIR)/$(TARGET).md
 	$(PANDOC) $(PANFLAGS) --self-contained -thtml5 --template=$(MISC)/github.html \
 		$(FILTERED) -o $(HTML)
 
-linking: $(TARGETDIR) $(IMAGEDIR)
-	rm -f $(TARGETDIR)/images; \
-	cd $(TARGETDIR);\
-	ln -s ../images
-
-pdf: linking tex
+pdf: $(TARGETDIR)/$(IMAGEDIR) $(TARGETDIR)/$(TARGET).tex
 	cd $(TARGETDIR);\
 	xelatex --no-pdf $(TARGET).tex; \
 	xelatex $(TARGET).tex
 
-tex: linking merge $(TARGETDIR)/$(TARGET).tex $(TARGETDIR)/$(TARGET).md
+linking: $(TARGETDIR)/$(IMAGEDIR)
+$(TARGETDIR)/$(IMAGEDIR):
+	rm -f $(TARGETDIR)/$(IMAGEDIR); \
+	cd $(TARGETDIR);\
+	ln -s ../$(IMAGEDIR)
+
+tex: $(TARGETDIR)/$(TARGET).tex
 $(TARGETDIR)/$(TARGET).tex: $(TARGETDIR)/$(TARGET).md
 	$(PANDOC) $(PANFLAGS) --template=$(MISC)/CJK_xelatex.tex --latex-engine=xelatex \
 		$(TARGETDIR)/$(TARGET).md -o $(TARGETDIR)/$(TARGET).tex
 
-merge: $(TARGETDIR) filtered $(TARGETDIR)/$(TARGET).md
-$(TARGETDIR)/$(TARGET).md:
+merge: $(TARGETDIR)/$(TARGET).md
+$(TARGETDIR)/$(TARGET).md: $(FILTERED)
 	cat $(FILTERED) > $(TARGETDIR)/$(TARGET).md
 
-filtered: $(MDDIR) tables wavedrom $(FILTERED)
-$(FILTERED): $(MDDIR)/$(INPUT)
+filtered: $(FILTERED)
+$(FILTERED): $(MDDIR)/$(INPUT) $(MARKDOWN) $(TABLES) $(WAVEPNG)
 	cat $< | $(PYTHON) $(FILTER) --out $@
 
-tables: $(TARGETDIR) $(DATADIR) $(TABLES)
+tables: $(TABLES)
 $(TARGETDIR)/%.tmd: $(DATADIR)/%.csv
 	$(PYTHON) $(CSV2TABLE) --file $< --out $@ --delimiter ','
 
-wavedrom: $(DATADIR) $(WAVEDIR) yaml2json $(WAVEPNG)
+wavedrom: $(WAVEPNG)
 $(WAVEDIR)/%.png: $(TARGETDIR)/%.json
 	phantomjs $(WAVEDROM) -i $< -p $@
 
