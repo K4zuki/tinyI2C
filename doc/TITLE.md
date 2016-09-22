@@ -59,7 +59,8 @@ LPC1768 / LPC824 / LPC11U35に移植した話、TinyI2C基板の回路図、
 いまのところ特にオチは用意してません ~~がまたも６０ページ前後の超大作になりそうです~~ 。
 
 `1.0_tinyI2Cabstract.md`{.include}
-`2.0_PythonAPI.md`{.include}
+`2.0_Commands.md`{.include}
+`3.0_PythonAPI.md`{.include}
 `9.1_RevHistory.md`{.include}
 <!-- `doc/9.9_tail.md`{.include} -->
 
