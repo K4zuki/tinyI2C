@@ -12,6 +12,8 @@ docrevision: "1.0"
 short-hash: (git short hash)
 
 documentclass: book
+# documentclass: bxjsarticle
+# classoption: ja=standard,pandoc
 papersize: b5paper
 mainfont: RictyDiminished-Regular
 sansfont: RictyDiminished-Regular
@@ -36,6 +38,7 @@ listingTitle: 'List'
 listingTemplate: '---**$$listingTitle$$ $$i$$$$titleDelim$$ $$t$$**---'
 ...
 
+\newpage
 # まえがき {.unnumbered}
 このドキュメントは、NXP社のLPCマイクロコントローラ3種でNXPのI^2^CインタフェースIC
 **`SC18IM700`** をエミュレートしつつ拡張もするプログラム群
@@ -51,12 +54,11 @@ PCから操作する必要があったことから、USBなどとI^2^Cバスの�
 例によってmbed^TM^対応マイコンを使おうと考え、 **`LPC824`** シリーズマイコンが
 I^2^Cマスタ機能を _4基_ 搭載しているということから条件が一致しました。
 
-この本は プロジェクトの概要説明、
-<!-- **`SC18IM700`** ICの解説、 -->
-mbed^TM^
-LPC1768 / LPC824 / LPC11U35に移植した話、TinyI2C基板の回路図、
-それぞれのピン配置図ギャラリー、コマンドセットの解説、GUIの解説をします。
-いまのところ特にオチは用意してません ~~がまたも６０ページ前後の超大作になりそうです~~ 。
+この本は プロジェクトの概要説明とコマンドセット/Pythonライブラリ
+の解説をします。
+いまのところ特にオチは用意してません~~がまたも６０ページ前後の超大作になりそうです~~ 。
+<!-- mbed^TM^ LPC1768 / LPC824 / LPC11U35に移植した話、TinyI2C基板の回路図、
+それぞれのピン配置図ギャラリー、GUI -->
 
 `1.0_tinyI2Cabstract.md`{.include}
 `2.0_Commands.md`{.include}
