@@ -5,7 +5,7 @@ signal:
     data: ["head", "delimiter", "data", "tail"]
   - name: "読出し成功"
     wave: "x=.=.=...=.x"
-    data: ['"ACK"', ",", '"AA,BB,CC,DD"', '"ok"']
+    data: ['"ACK"', '","', '"AA,BB,CC,DD"', '"ok"']
   - name: "読出し失敗"
     wave: "x=.=.=...=.x"
     data: ['"NAK"', '","', '"CA,FE,E0,CA"','"ok"']
