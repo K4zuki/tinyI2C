@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # MIT License (c) K4ZUKI <https://github.com/K4zuki>
 
 import serial
@@ -55,16 +55,24 @@ class serial2i2c(object):
     # @param status 1 to set 'H' or 0 to set 'L' on each corresponding GPIO0 pin
     # @return status of GPIO0
     GPIO0_STAT = '1'
+
     # register 2; rw; returns status of GPIO1 if enabled, 0xAA if disabled
     GPIO1_STAT = '2'
-    # register 2; rw; returns status of GPIO1 if enabled
+
+    # register 3; rw;
     GPIO0_CONF = '3'
+
+    # register 4; rw;
     GPIO1_CONF = '4'
+
+    # register 5; rw;
     I2C_CONF = '5'
+
+    # register 6; rw;
     SPI_CONF = '6'
 
     # constructor
-    # @param port COM port which device is conected
+    # @param port COM port where device is conected
     # @param baud baudrate
     def __init__(self, port='com1', baud='115200'):
         try:

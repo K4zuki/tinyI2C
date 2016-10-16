@@ -1,18 +1,27 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import argparse
 import binascii
 from tinyI2C import serial2i2c
+from colorama import init
+from colorama import Fore, Back, Style
+init()
 
 
 class MyParser(object):
 
     def __init__(self):
-        self._parser = argparse.ArgumentParser(description="hogeeee")
-        self._parser.add_argument(
-            '--port', '-p', help='number or name of serial port', default='com1')
-        self._parser.add_argument(
-            '--baud', '-b', help='baudrate of serial port', default='115200')
+        self._parser = argparse.ArgumentParser(description="TinyI2C test script")
+        self._parser.add_argument('--port',
+                                  '-p',
+                                  help='number or name of serial port',
+                                  default='com1'
+                                  )
+        self._parser.add_argument('--baud',
+                                  '-b',
+                                  help='baudrate of serial port',
+                                  default='115200'
+                                  )
         self.args = self._parser.parse_args(namespace=self)
 
 parser = MyParser()
@@ -22,7 +31,8 @@ baud = parser.args.baud
 dev = serial2i2c(port, baud)
 
 raw_input("I2C: use channel 0")
-print "dev.setChannel(0) -> " + dev.setChannel(0)
+print Fore.CYAN + Style.BRIGHT + "\tdev.setChannel(0)" + Style.RESET_ALL +\
+      " -> " + dev.setChannel(0)
 
 s = """
 I2C: on each channel:
@@ -45,41 +55,46 @@ if False:
             print ""
 
 raw_input("Registers: read registers 0/1/2/3/4 by API")
-print "\tdev.reg_read('01234') -> " + dev.reg_read('01234')
+print Fore.CYAN + Style.BRIGHT + "\tdev.reg_read('01234')" + Style.RESET_ALL +\
+      " -> " + dev.reg_read('01234')
 
 raw_input("Registers: write single data `0x55` to registers 1/3 by API")
-print "\tdev.reg_write([[dev.GPIO0_STAT, 0x55], [dev.GPIO0_CONF, 0x55]]) ->",
-print dev.reg_write([[dev.GPIO0_STAT, 0x55], [dev.GPIO0_CONF, 0x55]])
+print Fore.CYAN + Style.BRIGHT +\
+      "\tdev.reg_write([[dev.GPIO0_STAT, 0x55], [dev.GPIO0_CONF, 0x55]])" +\
+      Style.RESET_ALL +\
+      " -> " + dev.reg_write([[dev.GPIO0_STAT, 0x55], [dev.GPIO0_CONF, 0x55]])
 
 raw_input("GPIO status: reads registers 0/1/2/3/4 " +
           "(where 0/3/4 returns 0xAA) by 'I' command using low level API")
-print "\tdev.raw_write('I01234P') -> ",
 dev.raw_write('I01234P')
-print dev.raw_read()
+print Fore.CYAN + Style.BRIGHT + "\tdev.raw_write('I01234P')" +\
+      Style.RESET_ALL + " -> " + dev.raw_read()
 
 raw_input("Registers: reads registers 0/1/2/3/4 again")
-print "\tdev.reg_read('01234') -> " + dev.reg_read('01234')
+print Fore.CYAN + Style.BRIGHT + "\tdev.reg_read('01234')" + Style.RESET_ALL +\
+      " -> " + dev.reg_read('01234')
 
 raw_input("Registers: reads register 'GPIO0_CONF' by low level API")
 dev.raw_write('R' + dev.GPIO0_CONF + 'P')
-print "\tdev.raw_write('R' + dev.GPIO0_CONF + 'P'); dev.raw_read() -> ",
-print dev.raw_read()
+print Fore.CYAN + Style.BRIGHT + \
+      "\tdev.raw_write('R' + dev.GPIO0_CONF + 'P'); dev.raw_read()" +\
+      Style.RESET_ALL + " -> " + dev.raw_read()
 
 raw_input("Registers: writes single data '0x08' to register 'SPI_CONF' by" +
           " low level API")
-print "\tdev.reg_write([(dev.SPI_CONF, 0x08)]) -> "\
-    + dev.reg_write([(dev.SPI_CONF, 0x08)])
+print Fore.CYAN + Style.BRIGHT + "\tdev.reg_write([(dev.SPI_CONF, 0x08)])" +\
+      Style.RESET_ALL + " -> " + dev.reg_write([(dev.SPI_CONF, 0x08)])
 
 raw_input("Registers: writes single data '0x80' to register 'GPIO0_CONF' by" +
           " low level API")
-print "\tdev.reg_write([[dev.GPIO0_CONF, 0x80]]) -> "\
-    + dev.reg_write([(dev.GPIO0_CONF, 0x80)])
+print Fore.CYAN + Style.BRIGHT + "\tdev.reg_write([[dev.GPIO0_CONF, 0x80]])" +\
+      Style.RESET_ALL + " -> " + dev.reg_write([(dev.GPIO0_CONF, 0x80)])
 
 raw_input("Registers: writes single data '0x80' to register 'GPIO0_STAT' by" +
           " low level API")
-print "\tdev.reg_write([(dev.GPIO0_STAT, 0x80)]) -> "\
-    + dev.reg_write([(dev.GPIO0_STAT, 0x80)])
+print Fore.CYAN + Style.BRIGHT + "\tdev.reg_write([(dev.GPIO0_STAT, 0x80)])" +\
+      Style.RESET_ALL + " -> " + dev.reg_write([(dev.GPIO0_STAT, 0x80)])
 
 raw_input("SPI: writes 2byte data '0x6000' to SPI device by API")
-print "\tdev.write_and_read_SPI(2, 0, 0x6000) -> "\
-    + dev.write_and_read_SPI(2, 0, 0x6000)
+print Fore.CYAN + Style.BRIGHT + "\tdev.write_and_read_SPI(2, 0, 0x6000)" +\
+      Style.RESET_ALL + " -> " + dev.write_and_read_SPI(2, 0, 0x6000)
