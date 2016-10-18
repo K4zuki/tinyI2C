@@ -12,19 +12,18 @@ import time
 # [X] P 0x50 I2C-bus STOP
 # [X] R 0x52 read SC18IM700 internal register
 # [X] W 0x57 write to SC18IM700 internal register
-# [_] I 0x49 read GPIO port
-# [_] O 0x4F write to GPIO port
-# [_] Z 0x5A power down
+# [X] I 0x49 read GPIO port
+# [X] O 0x4F write to GPIO port
 # [X] C 0x43 change channel
-# [_] E 0x45 SPI transfer start
+# [X] E 0x45 SPI transfer start
 
 # @brief RS232C to I2C converter using \e mbed
 # @code register dump
 #    dev = serial2i2c(port = 'com8', baud = '115200')
 #
-#    for hoge in range(0x050, 0x300, 0x10):
-#        print "%03X," %(hoge),
-#        print dev.write_and_read((0xD0|((hoge&0x300)>>7)), hoge&0xFF, 16)
+#    for reg in range(0x050, 0x300, 0x10):
+#        print "%03X," %(reg),
+#        print dev.write_and_read((0xD0|((reg&0x300)>>7)), reg&0xFF, 16)
 # @endcode
 
 
@@ -53,20 +52,27 @@ class serial2i2c(object):
 
     # register 1
     # @brief Readable / Writable
-    # @param status 1 to set 'H' or 0 to set 'L' on each corresponding
-    # GPIO0 pin
+    # @param status 1 to set 'H' or 0 to set 'L' on each corresponding GPIO0 pin
     # @return status of GPIO0
     GPIO0_STAT = '1'
+
     # register 2; rw; returns status of GPIO1 if enabled, 0xAA if disabled
     GPIO1_STAT = '2'
-    # register 2; rw; returns status of GPIO1 if enabled
+
+    # register 3; rw;
     GPIO0_CONF = '3'
+
+    # register 4; rw;
     GPIO1_CONF = '4'
+
+    # register 5; rw;
     I2C_CONF = '5'
+
+    # register 6; rw;
     SPI_CONF = '6'
 
     # constructor
-    # @param port COM port which device is conected
+    # @param port COM port where device is conected
     # @param baud baudrate
     def __init__(self, port='com1', baud='115200'):
         try:
@@ -226,6 +232,7 @@ class serial2i2c(object):
             packet.insert(2, "".join(data))
 
         length = len(packet)
+        # print "".join(packet)
         self.raw_write("".join(packet))
 
         time.sleep(self._wait * length)
