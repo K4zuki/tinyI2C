@@ -1,0 +1,19 @@
+signal:
+  - name: "区分"
+    wave: "hl.l..l..l...l.h"
+    node: ".a.b..c..d...e.f"
+  - name: "コマンド"
+    wave: "x=.=..=..=...=.x"
+    data: ["E", "0x?0 ?1", "0x?0 ?0", "0x?D ?E ?A ?D", "P"]
+  - name: "16進数(マスク = 0x30)"
+    wave: "x=.=..=..=...=.x"
+    data: ["0x45", "0x30 0x31", "0x30 0x30", "0x3D 0x3E 0x3A 0x3D", "0x50"]
+  - name: "アスキー文字列"
+    wave: "x=.=..=..=...=.x"
+    data: ['"E"', '"01"', '"00"', '"=>:="', '"P"']
+edge:
+  - a<->b head
+  - b<->c data length(W)
+  - c<->d data length(R)
+  - d<->e data
+  - e<->f tail
