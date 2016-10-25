@@ -1,14 +1,14 @@
 signal:
   - name: "区分"
-    wave: "hl.l.l...l.h"
+    wave: " l.l.l...l. "
     node: ".a.b.c...d.e"
     data: ["head", "delimiter", "data", "tail"]
   - name: "読出し成功"
     wave: "x=.=.=...=.x"
-    data: ['"ACK"', '","', '"AA,BB,CC,DD"', '"ok"']
+    data: ['"ACK"', '","', '"AA,BB,CC,DD,"', '"ok"']
   - name: "読出し失敗"
     wave: "x=.=.=...=.x"
-    data: ['"NAK"', '","', '"CA,FE,E0,CA"','"ok"']
+    data: ['"NAK"', '","', '"CA,FE,E0,CA,"','"ok"']
 edge:
   - a<->b head
   - b<->c delimiter
