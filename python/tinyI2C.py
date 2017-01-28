@@ -17,83 +17,112 @@ import time
 # [X] C 0x43 change channel
 # [X] E 0x45 SPI transfer start
 
-# @brief RS232C to I2C converter using \e mbed
-# @code register dump
-#    dev = serial2i2c(port = 'com8', baud = '115200')
-#
-#    for reg in range(0x050, 0x300, 0x10):
-#        print "%03X," %(reg),
-#        print dev.write_and_read((0xD0|((reg&0x300)>>7)), reg&0xFF, 16)
-# @endcode
-
+# "C| '0'| P"
+# "C| '1'| P"
+# "C| '2'| P"
+# "C| '3'| P"
+# "S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P"
+# "S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| S| 0x_8 _1| 0x_0 _4| P"
+# "S| 0x_8 _1| 0x_0 _4| P"
+# "R| '0'| P"
+# "R| '0'| '1'| ...| P"
+# "W| '0' 0x_a _a| P"
+# "W| '0' 0x_a _a| '1' 0x_b _b| ...| P"
+# "I| '0'| P"
+# "O| '0'| 0x_a _a| P"
 
 class serial2i2c(object):
-    """
-    serial2i2c: RS232C to I2C converter using mbed
-    "C| '0'| P"
-    "C| '1'| P"
-    "C| '2'| P"
-    "C| '3'| P"
-    "S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| P"
-    "S| 0x_8 _0| 0x_0 _4| 0x_D _E _A _D _B _E _A _F| S| 0x_8 _1| 0x_0 _4| P"
-    "S| 0x_8 _1| 0x_0 _4| P"
-    "R| '0'| P"
-    "R| '0'| '1'| ...| P"
-    "W| '0' 0x_a _a| P"
-    "W| '0' 0x_a _a| '1' 0x_b _b| ...| P"
-    "I| '0'| P"
-    "O| '0'| 0x_a _a| P"
+    """ RS232C to I2C converter using mbed
+    Example:
+       dev = serial2i2c(port = 'com8', baud = '115200')
+
+       for reg in range(0x050, 0x300, 0x10):
+           print "%03X," %(reg),
+           print dev.write_and_read((0xD0|((reg&0x300)>>7)), reg&0xFF, 16)
+
+    Keyword Args:
+        port (str): COM port where device is conected
+        baud (str): baudrate
+
     """
     _ser = 0
     _channel = 0
     _wait = 1e-3
-    # register 0; ro; returns chip ID to identify device
+
     CHIP_ID = '0'
+    """ Register 0
 
-    # register 1
-    # @brief Readable / Writable
-    # @param status 1 to set 'H' or 0 to set 'L' on each corresponding GPIO0 pin
-    # @return status of GPIO0
+    Read only
+
+    Returns:
+        chip ID to identify device
+    """
+
     GPIO0_STAT = '1'
+    """ Register 1
 
-    # register 2; rw; returns status of GPIO1 if enabled, 0xAA if disabled
+    Readable / Writable
+
+    Args:
+        status 1 to set 'H' or 0 to set 'L' on each corresponding GPIO0 pin
+    Returns:
+        status of GPIO0
+    """
+
     GPIO1_STAT = '2'
+    """ Register 2
 
-    # register 3; rw;
+    Readable / Writable
+
+    Returns:
+        Status of GPIO1 if enabled, 0xAA if disabled
+    """
     GPIO0_CONF = '3'
+    """register 3
 
-    # register 4; rw;
+    Readable / Writable
+    """
+
     GPIO1_CONF = '4'
+    # register 4; rw;
 
-    # register 5; rw;
     I2C_CONF = '5'
+    # register 5; rw;
 
-    # register 6; rw;
     SPI_CONF = '6'
+    # register 6; rw;
 
-    # constructor
-    # @param port COM port where device is conected
-    # @param baud baudrate
     def __init__(self, port='com1', baud='115200'):
         try:
             self._ser = serial.Serial(port, baudrate=baud, timeout=0.1)
         except:
             raise
 
-    # sets channel by sending "C" command packet
-    # @param channel I2C bus channel
-    # @return response from module
     def setChannel(self, channel=0):
+        """ sets channel by sending "C" command packet
+
+        Args:
+            channel (int): I2C bus channel
+
+        Returns:
+            str: response from module
+        """
         self._channel = channel
         self.raw_write("C" + str(self._channel) + "P")
         time.sleep(self._wait)
         return self.raw_read()
 
-    # reads multi byte data
-    # @param address 8bit I2C slave address in HEX
-    # @param length bytes to read
-    # @return ACK/NAK + response string from device
     def read(self, address, length=1):
+        """ reads multi byte data
+
+        Args:
+            address (int): 8bit I2C slave address in HEX
+            length (int): bytes to read
+
+        Returns:
+            str: ACK/NAK + response string from device
+        """
+
         packet = ['S', 'P']
 
         address = self._hex2ascii(address, 0x30)
@@ -109,11 +138,16 @@ class serial2i2c(object):
         time.sleep(self._wait * length * 2)
         return self.raw_read()
 
-    # writes multi byte data
-    # @param address 8bit I2C slave address in HEX
-    # @param data data to send
-    # @return ACK/NAK + response string from device
     def write(self, address, data=0):
+        """ writes multi byte data
+
+        Args:
+            address(int) 8bit I2C slave address in HEX
+            data(int): data to send
+
+        Returns:
+            str: ACK/NAK + response string from device
+        """
         packet = ['S', 'P']
 
         address = self._hex2ascii(address, 0x30)
@@ -135,12 +169,17 @@ class serial2i2c(object):
         time.sleep(self._wait * length * 2)
         return self.raw_read()
 
-    # writes data and then reads from same slave device
-    # @param address I2C slave address in HEX
-    # @param wdata data to send in HEX
-    # @param rlength bytes to read
-    # @return ACK/NAK + response string from device
     def write_and_read(self, address, wdata=0, rlength=1):
+        """ writes data and then reads from same slave device
+
+        Args:
+            address(int): I2C slave address in HEX
+            wdata(int): data to send in HEX
+            rlength(int): bytes to read
+
+        Returns:
+            str: ACK/NAK + response string from device
+        """
         packet = ['S', 'S', 'P']
 
         address = self._hex2ascii(address, 0x30)
@@ -169,6 +208,16 @@ class serial2i2c(object):
         return self.raw_read()
 
     def write_and_read_SPI(self, wlength=1, rlength=0, data=0xC4FEE0CA):
+        """ writes data and then reads from same SPI device
+
+        Args:
+            wlength(int): length to write
+            rlength(int): length to read
+            data(int): data to send
+
+        Returns:
+            str: ACK/NAK + response string from device
+        """
 
         _wlength = self._hex2ascii(wlength, 0x30)
         _rlength = self._hex2ascii(rlength, 0x30)
@@ -189,27 +238,32 @@ class serial2i2c(object):
         time.sleep(self._wait * rlength * 2)
         return self.raw_read()
 
-    # sends raw data on serial port
     def raw_write(self, data="C4FEE0CA"):
+        # sends raw data on serial port
         self._ser.write(data)
 
-    # reads raw data from serial port
     def raw_read(self):
+        # reads raw data from serial port
         return (self._ser.readline().strip())
 
-    # sends 'S' command packet to make start condition
     def start(self):
+        # sends 'S' command packet to make start condition
         self._ser.write("S")
 
-    # sends 'P' command packet to make stop condition
     def stop(self):
+        # sends 'P' command packet to make stop condition
         self._ser.write("P")
         time.sleep(self._wait)
 
-    # reads data from device's own register
-    # @param registers register addresses
-    # @return response string from device
     def reg_read(self, registers="012"):
+        """ reads data from device's own register
+
+        Args:
+            registers(str): register addresses
+
+        Returns:
+            str: response string from device
+        """
         packet = ['R', 'P']
 
         packet.insert(1, registers)
@@ -217,10 +271,15 @@ class serial2i2c(object):
         self.raw_write("".join(packet))
         return self.raw_read()
 
-    # writes data into device's own register
-    # @param register list of number and data list
-    # @return response string from device
     def reg_write(self, pair=[('1', 0xFF), ]):
+        """ writes data into device's own register
+
+        Args:
+            pair(list): register list of number and data list
+
+        Returns:
+            str: response string from device
+        """
         packet = ['W', 'P']
 
         for _p in pair:
@@ -239,12 +298,15 @@ class serial2i2c(object):
 
         return self.raw_read()
 
-    # converts hex data to string
-    # @param h data in HEX
-    # @param mask mask data in HEX, LSB must be 0,
-    # MSB must not be 0 (0x?0, ?>8)
-    # @return converted format in list
     def _hex2ascii(self, h, mask=0x30):
+        """ converts hex data to string
+        Args:
+            h(int): data in HEX
+            mask(int): mask data in HEX, LSB must be 0, MSB must not be 0 (0x?0, ?>8)
+
+        Returns:
+            list: converted format in list
+        """
         chars_in_reverse = []
         chars_in_reverse.append(chr(mask | (h & 0x0F)))
         chars_in_reverse.append(chr(mask | ((h >> 4) & 0x0F)))
