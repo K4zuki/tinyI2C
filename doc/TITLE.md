@@ -4,9 +4,9 @@ abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^Cインタ�
     "SC18IM700" をエミュレートさせてみた
 circle: KY技研
 author: "@_K4ZUKI_"
-date: C91/2016-Dec
-comiket: "C91"
-year: "2016"
+date: 技術書典２/2017-Apr
+comiket: "技術書典２"
+year: "2017"
 publisher: "秋葉原キンコーズで印刷製本予定"
 docrevision: "1.0"
 short-hash: (git short hash)
@@ -36,7 +36,8 @@ listings: true
 codeBlockCaptions: true
 listingTitle: 'List'
 listingTemplate: '---**$$listingTitle$$ $$i$$$$titleDelim$$ $$t$$**---'
-...
+front: images/TinyI2C-PinOut.png
+---
 
 \newpage
 # まえがき {.unnumbered}
@@ -64,7 +65,7 @@ I^2^Cマスタ機能を _4基_ 搭載しているということから条件が�
 `2.0_Commands.md`{.include}
 `3.0_PythonAPI.md`{.include}
 `9.1_RevHistory.md`{.include}
-<!-- `doc/9.9_tail.md`{.include} -->
+<!-- `9.9_tail.md`{.include} -->
 
 <!--  -->
 [^mbed_fest]: 2014年のmbed祭りのいずれかで懇親会のおみやげにサンプルブックを入手したとかだったような
