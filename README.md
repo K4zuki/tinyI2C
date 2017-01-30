@@ -12,17 +12,17 @@ configurable pull-up/pull-down modes.
 - up to 2 x 8bit, General Purpose IO ports
 
 - tinyI2C       <-- root
-    - gui       <-- PyQt4 based GUI source codes  
-    - mbed      <-- mbed source codes  
-    - pcb       <-- PCB design files for eagle  
+    - gui       <-- PyQt4 based GUI source codes
+    - mbed      <-- mbed source codes
+    - pcb       <-- PCB design files for eagle
     - python    <-- python module code with standalone test program
 
 # Requirement
-- Python 2.7  
+- Python 2.7
   `apt-get install python`
-- PySerial  
+- PySerial
   `pip install pyserial`
-* mbed microcontrollers using LPC824(recommended)/LPC1768/LPC11U24/LPC11U35  
+* mbed microcontrollers using LPC824(recommended)/LPC1768/LPC11U24/LPC11U35
   see [mbed.org](developer.mbed.org)
 
 # Install
@@ -36,7 +36,7 @@ configurable pull-up/pull-down modes.
 3. start gui software
 4. select Serial port from dropdown list
 5. you will be able to use up to 4 channels of I2C slaves and more!
-    * check PinOut for your usage! ![](TinyI2C_PinOut.png)
+    * check PinOut for your usage! ![](doc/images/TinyI2C-PinOut.png)
 
 # Demo
   try `python/test.py`
@@ -343,7 +343,7 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 ID_LPC824 = '0',
 ID_LPC1768 = '1',
 ID_LPC11UXX = '2',
-~~~  
+~~~
 ~~~c
 CHIP_ID = '0',
 GPIO0_STAT = '1',
@@ -352,7 +352,7 @@ GPIO0_CONF = '3',
 GPIO1_CONF = '4',
 I2C_CONF = '5',
 SPI_CONF = '6',
-~~~  
+~~~
 ~~~
 "R| '0'| P"
 "R| '0'| '1'| ...| P"
