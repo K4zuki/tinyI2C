@@ -1,0 +1,18 @@
+# list from LSB
+# bits: bit width
+# attr: information RO/WO/RW etc.
+# name: name of bitfield
+- bits: 2
+  attr: RW
+  name: SPI_MODE
+- bits: 1
+  attr: RW
+  name: WORD
+- bits: 1
+  attr: RW
+  name: CE_POL
+- bits: 3
+  attr: RW
+  name: SPI_SPEED
+- bits: 1
+  # unused!

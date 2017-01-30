@@ -1,0 +1,16 @@
+# list from LSB
+# bits: bit width
+# attr: information RO/WO/RW etc.
+# name: name of bitfield
+- bits: 2
+  attr: RW
+  name: I2C4_SPEED
+- bits: 2
+  attr: RW
+  name: I2C3_SPEED
+- bits: 2
+  attr: RW
+  name: I2C2_SPEED
+- bits: 2
+  attr: RW
+  name: I2C1_SPEED
