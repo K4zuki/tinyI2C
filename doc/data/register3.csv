@@ -1,8 +1,8 @@
- Register 3,Command,___GPIO0_CONF___
- [7\.\.\.0] ,R,Reads each pin's Input/Output conditions:
- ,,1 = the pin is set to output
- ,,0 = the pin is set to input with internal pullup
- ,W,Sets each pin's Input/Output configurations:
- ,,1: sets the pin to an Output. output level is set by
- ,,corresponding bit of GPIO0_STAT register
- ,,0: sets the pin to an Input with internal pull-up connected
+bits,![](images/bitfields/register3.png)
+ [7\.\.\.0] ,**When Read** : Reads each pin's Input/Output conditions:
+ ,1 = the pin is set to output
+ ,0 = the pin is set to input with internal pullup
+ ,**When Write** : Sets each pin's Input/Output configurations:
+ ,1: sets the pin to an Output. output level is set by
+ ,corresponding bit of GPIO0_STAT register
+ ,0: sets the pin to an Input with internal pull-up connected
