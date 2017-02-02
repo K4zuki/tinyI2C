@@ -12,6 +12,7 @@ docrevision: "1.0"
 short-hash: (git short hash)
 
 documentclass: book
+printer: true
 # documentclass: bxjsarticle
 # classoption: ja=standard,pandoc
 papersize: b5paper
