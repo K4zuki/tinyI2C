@@ -1,4 +1,4 @@
-bits,![](images/bitfields/register5.png)
+bits,![t i t l e l e n g t h c h a n g e s a p p e a r a n c e i n o u t p u t p d f](images/bitfields/register5.png)
 [7\.\.\.6],Read/Write clock configuration of I2C1
 ,**implementation for mbed LPC1768 will also set**
 ,**I2C1 clock to 100~400KHz**
