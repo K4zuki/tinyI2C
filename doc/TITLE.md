@@ -1,5 +1,5 @@
 ---
-title: NXPのICでNXPのICをエミュレートしてみた本
+title: NXPのICでNXPのICをエミュレートさせてみた本
 abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^CインタフェースIC
     "SC18IM700" をエミュレートさせてみた
 circle: KY技研
