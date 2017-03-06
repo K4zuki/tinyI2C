@@ -195,13 +195,6 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 |    0     |   GPIO0_STAT   | status of GPIO 0 |
 |    1     |   GPIO1_STAT   | status of GPIO 1 |
 
-<!--
-~~~
-"I| '0'| P"
-"O| '0'| 0x_a \_A| P"
-~~~
--->
-
 ## Internal registers
 ### `'R'` 0x52 read internal register
 ### `'W'` 0x57 write to internal register
@@ -329,37 +322,6 @@ This is a subset of [R/W commands](#internal-registers); only access GPIO's stat
 |             |         | 01: SPI is set to operate in clock mode 1 |
 |             |         | 00: SPI is set to operate in clock mode 0 |
 
-<!--
-~~~c
-/*
-7 not used
-6:4 frequency
-3 CE pol
-2 word size(0=8bit,1=16bit)
-1:0 pol(corresponds to spi.format())
-*/
-~~~
-~~~c
-ID_LPC824 = '0',
-ID_LPC1768 = '1',
-ID_LPC11UXX = '2',
-~~~
-~~~c
-CHIP_ID = '0',
-GPIO0_STAT = '1',
-GPIO1_STAT = '2',
-GPIO0_CONF = '3',
-GPIO1_CONF = '4',
-I2C_CONF = '5',
-SPI_CONF = '6',
-~~~
-~~~
-"R| '0'| P"
-"R| '0'| '1'| ...| P"
-"W| '0' 0x_a \_A| P"
-"W| '0' 0x_a \_A| '1' 0x_b \_B| ...| P"
-~~~
--->
 # Contribution by
 Kazuki Yamamoto ( <k.yamamoto.08136891@gmail.com> )
 
