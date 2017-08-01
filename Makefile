@@ -1,3 +1,8 @@
+ifeq ($(OS),Windows_NT)
+MAKE= make-4.1_64bit.exe
+else
+MAKE= make
+endif
 MDDIR:= doc
 GUIDESIGNDIR:= gui
 GUIDESIGN:= $(GUIDESIGNDIR)/tinyI2Cgui.py
@@ -17,13 +22,13 @@ $(GUIDESIGN):
 
 html:
 	cd $(MDDIR); \
-	make html
+	$(MAKE) html
 
 pdf:
 	cd $(MDDIR); \
-	make pdf
+	$(MAKE) pdf
 
 clean: $(TARGETDIR)
 	rm -rf $(GUIBUILDDIR)/* $(GUIDISTDIR)/*; \
 	cd $(MDDIR); \
-	make clean
+	$(MAKE) clean
