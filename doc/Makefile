@@ -6,11 +6,13 @@ MISC= $(PANSTYLES)/pandoc_misc
 include $(MISC)/Makefile.in
 
 MDDIR=.
-DATADIR:= data
-TARGETDIR:= Out
-IMAGEDIR:= images
-WAVEDIR:= waves
-BITDIR:= bitfields
+# DATADIR:= data
+# TARGETDIR:= Out
+# IMAGEDIR:= images
+# WAVEDIR:= waves
+# BITDIR:= bitfields
+# BIT16DIR:= bitfield16
+# MFILTDIR:= mermaid-filter
 
 INPUT:= TITLE.md
 TARGET:= TARGET
