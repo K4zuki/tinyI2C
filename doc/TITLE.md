@@ -62,10 +62,14 @@ I^2^Cマスタ機能を _4基_ 搭載しているということから条件が�
 <!-- mbed^TM^ LPC1768 / LPC824 / LPC11U35に移植した話、TinyI2C基板の回路図、
 それぞれのピン配置図ギャラリー、GUI -->
 
-`1.0_tinyI2Cabstract.md`{.include}
-`2.0_Commands.md`{.include}
-`3.0_PythonAPI.md`{.include}
-`9.1_RevHistory.md`{.include}
+<#include "1.0_tinyI2Cabstract.md">
+<#include "2.0_Commands.md">
+<#include "3.0_PythonAPI.md">
+<#include "9.1_RevHistory.md">
+<!-- ``{.include}
+``{.include}
+``{.include}
+``{.include} -->
 <!-- `9.9_tail.md`{.include} -->
 
 <!--  -->
