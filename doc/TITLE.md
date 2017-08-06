@@ -40,7 +40,7 @@ listingTemplate: '---**$$listingTitle$$ $$i$$$$titleDelim$$ $$t$$**---'
 front: images/TinyI2C-PinOut.png
 ---
 
-\newpage
+\\newpage
 # まえがき {.unnumbered}
 このドキュメントは、NXP社のLPCマイクロコントローラ3種でNXPのI^2^CインタフェースIC
 **`SC18IM700`** をエミュレートしつつ拡張もするプログラム群
@@ -66,11 +66,6 @@ I^2^Cマスタ機能を _4基_ 搭載しているということから条件が�
 <#include "2.0_Commands.md">
 <#include "3.0_PythonAPI.md">
 <#include "9.1_RevHistory.md">
-<!-- ``{.include}
-``{.include}
-``{.include}
-``{.include} -->
-<!-- `9.9_tail.md`{.include} -->
 
 <!--  -->
 [^mbed_fest]: 2014年のmbed祭りのいずれかで懇親会のおみやげにサンプルブックを入手したとかだったような
