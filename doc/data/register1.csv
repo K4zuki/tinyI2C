@@ -1,7 +1,11 @@
-bits,![t i t l e l e n g t h c h a n g e s a p p e a r a n c e i n o u t p u t p d f](images/bitfields/register1.png)
-[7\.\.\.0\],When read: behavior changes depend on corresponding bit of GPIO0_CONF register
-,1: reads output setting
-,0: reads input of the pin
-,When write: behavior changes depend on corresponding bit of GPIO0_CONF register
-,1: writes data to the pin
-,0: do nothing
+bits,![](images/bitfields/register1.png)
+[7...0\],"**When read**: behavior changes
+depend on corresponding bit of GPIO0_CONF register
+
+- 1: reads output setting
+- 0: reads input of the pin"
+,"**When write**: behavior changes
+depend on corresponding bit of GPIO0_CONF register
+
+- 1: writes data to the pin
+- 0: do nothing"
