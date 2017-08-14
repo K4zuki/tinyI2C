@@ -9,24 +9,22 @@ comiket: "技術書典２"
 year: "2017"
 publisher: "秋葉原キンコーズで印刷製本予定"
 docrevision: "1.0"
-short-hash: (git short hash)
+# short-hash: (git short hash)
 
 documentclass: book
 printer: true
-# documentclass: bxjsarticle
-# classoption: ja=standard,pandoc
-papersize: b5paper
-mainfont: RictyDiminished-Regular
-sansfont: RictyDiminished-Regular
-monofont: RictyDiminished-Regular
-mainlang: Japanese
-CJKoptions: BoldFont=RictyDiminished-Bold,
-  ItalicFont=RictyDiminished-Oblique,
-  BoldItalicFont=RictyDiminished-BoldOblique
-CJKmainfont: RictyDiminished-Regular
-CJKsansfont: RictyDiminished-Regular
-CJKmonofont: RictyDiminished-Regular
-geometry: top=30truemm,bottom=30truemm,left=20truemm,right=20truemm
+# papersize: b5paper
+# mainfont: RictyDiminished-Regular
+# sansfont: RictyDiminished-Regular
+# monofont: RictyDiminished-Regular
+# mainlang: Japanese
+# CJKoptions: BoldFont=RictyDiminished-Bold,
+#   ItalicFont=RictyDiminished-Oblique,
+#   BoldItalicFont=RictyDiminished-BoldOblique
+# CJKmainfont: RictyDiminished-Regular
+# CJKsansfont: RictyDiminished-Regular
+# CJKmonofont: RictyDiminished-Regular
+# geometry: top=30truemm,bottom=30truemm,left=20truemm,right=20truemm
 keywords: keyword
 secPrefix: Chapter
 linkcolor: black
