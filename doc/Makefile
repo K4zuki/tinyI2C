@@ -15,6 +15,6 @@ MDDIR=.
 # MFILTDIR:= mermaid-filter
 
 INPUT:= TITLE.md
-TARGET:= TARGET
+TARGET:= NXPemulatesNXP
 
 include $(MISC)/Makefile
