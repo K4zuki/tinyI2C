@@ -1,20 +1,45 @@
 signal:
-  - name: "区分"
-    wave: "hl.l..l..l...l...l.h"
-    node: ".a.b..c..d...e...f.g"
-  - name: "コマンド"
-    wave: "x=.=..=..=...=...=.x"
-    data: ["E", "0x?0 ?2", "0x?0 ?2", "0x?D ?E ?A ?D", "0x?B ?E ?A ?F", "P"]
-  - name: "16進数(マスク = 0x30)"
-    wave: "x=.=..=..=...=...=.x"
-    data: ["0x45", "0x30 0x31", "0x30 0x30", "0x3D 0x3E 0x3A 0x3D", "0x3B 0x3E 0x3A 0x3F", "0x50"]
-  - name: "アスキー文字列"
-    wave: "x=.=..=..=...=...=.x"
-    data: ['"E"', '"01"', '"00"', '"=>:="', '";>:?"', '"P"']
+  - name: <tt>区分</tt>
+    wave: "hll.l.l..l..lh"
+    node: ".ab.c.d..e..fg"
+  - name: <tt>コマンド</tt>
+    wave: "x==.=.=..=..=x"
+    data: [
+          <tt>E</tt>,
+          <tt>0x_0 _2</tt>,
+          <tt>0x_0 _2</tt>,
+          <tt>0x_D _E _A _D</tt>,
+          <tt>0x_B _E _A _F</tt>,
+          <tt>P</tt>]
+  - name: <tt>
+          16進数(マスク = 0x30)
+          </tt>
+    wave: "x==.=.=..=..=x"
+    data: [
+          <tt>0x45</tt>,
+          <tt>0x30 0x32</tt>,
+          <tt>0x30 0x32</tt>,
+          <tt>0x3D 0x3E 0x3A 0x3D</tt>,
+          <tt>0x3B 0x3E 0x3A 0x3F</tt>,
+          <tt>0x50</tt>]
+  - name: <tt>
+          アスキー文字列
+          </tt>
+    wave: "x==.=.=..=..=x"
+    data: [
+        <tt>E</tt>,
+        <tt>02</tt>,
+        <tt>02</tt>,
+        "<tt>=>:'</tt>",
+        "<tt>;>:?</tt>",
+        <tt>P</tt>]
 edge:
-  - a<->b head
-  - b<->c data length(W)
-  - c<->d data length(R)
-  - d<->e sending data
-  - e<->f dummy data
-  - f<->g tail
+  - a<->b <tt>head</tt>
+  - b<->c <tt>data length(W)</tt>
+  - c<->d <tt>data length(R)</tt>
+  - d<->e <tt>sending data</tt>
+  - e<->f <tt>dummy data</tt>
+  - f<->g <tt>tail</tt>
+config:
+  hscale: 2
+  font-family: Ricty Diminished
