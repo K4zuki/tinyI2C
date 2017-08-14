@@ -1,11 +1,12 @@
 bits,![](images/bitfields/register4.png)
 ,"**if GPIO1 is not enabled,
 access to this register will be ignored**"
- [7...0] ,"**When Read** : Reads each pin's Input/Output conditions:
+[7...0],"**When Read** : Reads each pin's Input/Output conditions:
 
 - 1: the pin is set to output
-- 0: the pin is set to input with internal pullup"
-,"**When Write** : Sets each pin's Input/Output configurations:
+- 0: the pin is set to input with internal pullup
+
+**When Write** : Sets each pin's Input/Output configurations:
 
 - 1: sets the pin to an Output. output level is set
 by corresponding bit of GPIO1_STAT register
