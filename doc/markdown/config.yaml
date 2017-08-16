@@ -1,0 +1,37 @@
+title: NXPのICでNXPのICをエミュレートさせてみた本
+abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^CインタフェースIC
+    "SC18IM700" をエミュレートさせてみた
+circle: KY技研
+author: "@_K4ZUKI_"
+date: 技術書典２/2017-Apr
+comiket: "技術書典２"
+year: "2017"
+publisher: "秋葉原キンコーズで印刷製本予定"
+docrevision: "1.0"
+# short-hash: (git short hash)
+
+documentclass: book
+printer: true
+# papersize: b5paper
+# mainfont: RictyDiminished-Regular
+# sansfont: RictyDiminished-Regular
+# monofont: RictyDiminished-Regular
+# mainlang: Japanese
+# CJKoptions: BoldFont=RictyDiminished-Bold,
+#   ItalicFont=RictyDiminished-Oblique,
+#   BoldItalicFont=RictyDiminished-BoldOblique
+# CJKmainfont: RictyDiminished-Regular
+# CJKsansfont: RictyDiminished-Regular
+# CJKmonofont: RictyDiminished-Regular
+# geometry: top=30truemm,bottom=30truemm,left=20truemm,right=20truemm
+keywords: keyword
+secPrefix: Chapter
+linkcolor: black
+urlcolor: black
+citecolor: black
+chapter: true
+listings: true
+codeBlockCaptions: true
+listingTitle: 'List'
+listingTemplate: '---**$$listingTitle$$ $$i$$$$titleDelim$$ $$t$$**---'
+front: images/TinyI2C-PinOut.png

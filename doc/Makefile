@@ -5,7 +5,7 @@ PANSTYLES= $(HOME)/.pandoc
 MISC= $(PANSTYLES)/pandoc_misc
 include $(MISC)/Makefile.in
 
-MDDIR=.
+# MDDIR=.
 # DATADIR:= data
 # TARGETDIR:= Out
 # IMAGEDIR:= images
