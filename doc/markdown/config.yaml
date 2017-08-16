@@ -1,3 +1,4 @@
+---
 title: NXPのICでNXPのICをエミュレートさせてみた本
 abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^CインタフェースIC
     "SC18IM700" をエミュレートさせてみた
@@ -35,3 +36,4 @@ codeBlockCaptions: true
 listingTitle: 'List'
 listingTemplate: '---**$$listingTitle$$ $$i$$$$titleDelim$$ $$t$$**---'
 front: images/TinyI2C-PinOut.png
+...
