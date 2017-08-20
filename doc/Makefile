@@ -4,17 +4,19 @@ endif
 PANSTYLES= $(HOME)/.pandoc
 MISC= $(PANSTYLES)/pandoc_misc
 include $(MISC)/Makefile.in
+PROJECT= `pwd`
 
-# MDDIR=.
+## userland: uncomment and replace
+# MDDIR:= markdown
 # DATADIR:= data
 # TARGETDIR:= Out
 # IMAGEDIR:= images
 # WAVEDIR:= waves
 # BITDIR:= bitfields
 # BIT16DIR:= bitfield16
-# MFILTDIR:= mermaid-filter
 
-INPUT:= TITLE.md
+# CONFIG:= config.yaml
+# INPUT:= TITLE.md
 TARGET:= NXPemulatesNXP
-
+##
 include $(MISC)/Makefile
