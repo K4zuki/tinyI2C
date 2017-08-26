@@ -19,3 +19,5 @@ edge:
   - e<->f DATA
   - f<->g ACK
   - g<->h STOP
+config:
+  skin: narrow

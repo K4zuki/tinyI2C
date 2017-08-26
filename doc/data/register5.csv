@@ -1,4 +1,4 @@
-bits,![](images/bitfields/register5.png)
+bits,description
 [7...6],"Read/Write clock configuration of I2C1
 
 **implementation for mbed LPC1768 will also set**

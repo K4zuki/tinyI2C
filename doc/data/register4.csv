@@ -1,4 +1,4 @@
-bits,![](images/bitfields/register4.png)
+bits,description
 ,"**if GPIO1 is not enabled,
 access to this register will be ignored**"
 [7...0],"**When Read** : Reads each pin's Input/Output conditions:

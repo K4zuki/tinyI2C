@@ -1,4 +1,4 @@
-bits,![](images/bitfields/register3.png)
+bits,description
 [7...0],"**When Read** : Reads each pin's Input/Output conditions:
 
 - 1 = the pin is set to output

@@ -1,4 +1,4 @@
-bits,![](images/bitfields/register6.png)
+bits,description
 [7],Not used
 [6...4],"Read/Write clock configuration of SPI
 
