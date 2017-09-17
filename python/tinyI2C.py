@@ -169,7 +169,7 @@ class serial2i2c(object):
         self.raw_write("".join(packet))
 
         time.sleep(self.wait * length * 2)
-        return self.raw_read().decode('utf-8')
+        return self.raw_read()
 
     def write_and_read(self, address, wdata=0, rlength=1):
         """ writes data and then reads from same slave device
@@ -306,6 +306,8 @@ class serial2i2c(object):
         Returns:
             list: converted format in list
         """
+        h = int(h)
+        assert isinstance(h, int)
         chars_in_reverse = []
         chars_in_reverse.append(chr(mask | (h & 0x0F)))
         chars_in_reverse.append(chr(mask | ((h >> 4) & 0x0F)))
