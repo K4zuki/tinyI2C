@@ -9,13 +9,14 @@ from PyQt4 import QtCore, QtGui
 from tinyI2Cgui import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
-#sys.path.append('..\\python')
+
 sys.path.append('../python')
 import tinyI2C
 import time
 import serial
 
-### how to make GUI from ui
+
+# how to make GUI from ui
 #
 class MyWidget(QtGui.QWidget):
 
@@ -30,6 +31,7 @@ class MyWidget(QtGui.QWidget):
     isUI = False
     ports = []
     i2c = None
+
     def __init__(self, parent=None):
         super(MyWidget, self).__init__(parent)
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.CustomizeWindowHint)
@@ -40,7 +42,7 @@ class MyWidget(QtGui.QWidget):
         self.isUI = True
         try:
             if os.name == 'posix':
-                self.i2c = tinyI2C.serial2i2c(port = "/dev/ttyS0")
+                self.i2c = tinyI2C.serial2i2c(port="/dev/ttyS0")
             else:
                 self.i2c = tinyI2C.serial2i2c()
         except:
@@ -50,7 +52,7 @@ class MyWidget(QtGui.QWidget):
         self._list()
 
     def _list(self):
-        _ser = 0
+        bus = 0
         _dummy = [0, 0, 0]
         _ports = []
         _idx = len(self.ports)
@@ -58,18 +60,18 @@ class MyWidget(QtGui.QWidget):
         if(self.isUI):
             self.gui.portList.clear()
             if(self.i2c):
-                self.i2c._ser.close()
+                self.i2c.bus.close()
             for port in serial_comports():
                 _dummy[0], _dummy[1], _dummy[2], = port
 #                print "_list()", _dummy[0]
                 try:
-                    _ser = serial.Serial(port = _dummy[0])
+                    bus = serial.Serial(port=_dummy[0])
                 except:
                     pass
                 else:
-                    _ser.close()
-                    _ports.append( ": ".join(_dummy[:-1]))
-                    self.ports.append( port[0])
+                    bus.close()
+                    _ports.append(": ".join(_dummy[:-1]))
+                    self.ports.append(port[0])
 #                    print "_list()", self.ports
 
             self.ports = self.ports[_idx:]
@@ -77,13 +79,13 @@ class MyWidget(QtGui.QWidget):
             self.gui.portList.addItems(_ports)
             self._setup(0)
 
-    def _setup(self, _port = 0):
+    def _setup(self, _port=0):
         if(self.isUI):
-            if(self.i2c and self.i2c._ser.isOpen()):
-                self.i2c._ser.close()
+            if(self.i2c and self.i2c.bus.isOpen()):
+                self.i2c.bus.close()
 #            print "_setup()", self.ports
             try:
-                self.i2c = tinyI2C.serial2i2c(port = self.ports[_port])
+                self.i2c = tinyI2C.serial2i2c(port=self.ports[_port])
             except:
                 pass
 
@@ -96,7 +98,7 @@ class MyWidget(QtGui.QWidget):
             read = self.i2c.setChannel(_channel)
             read = self.I2CregRead(_slave, _register)
             if read:
-                _dest.setValue(int(read,16))
+                _dest.setValue(int(read, 16))
 
     def writeI2CSlot(self, arg):
         _slave, _channel, _register, _data = arg
@@ -126,7 +128,7 @@ class MyWidget(QtGui.QWidget):
             self.i2c.raw_read()
             read = self.i2c.reg_read(_register).split(",")[0]
             if read:
-                read = int(read,16)
+                read = int(read, 16)
                 _dest.setValue(0)
                 _dest.setValue(1)
                 _dest.setValue(read)
@@ -138,16 +140,16 @@ class MyWidget(QtGui.QWidget):
             read = self.i2c.reg_write([[str(_register), _data]])
             read = self.i2c.reg_read(_register).split(",")[0]
             if read:
-                read = int(read,16)
+                read = int(read, 16)
                 _dest.setValue(0)
                 _dest.setValue(1)
                 _dest.setValue(read)
 
-    def I2CregRead(self, slave = 0x90, reg = 0x00):
+    def I2CregRead(self, slave=0x90, reg=0x00):
         packet = []
-        slave = self.i2c._hex2ascii(slave, mask = 0xa0)
-        reg = self.i2c._hex2ascii(reg, mask = 0xb0)
-        length = self.i2c._hex2ascii(len(reg)/2, mask = 0xd0)
+        slave = self.i2c.hex2ascii(slave, mask=0xa0)
+        reg = self.i2c.hex2ascii(reg, mask=0xb0)
+        length = self.i2c.hex2ascii(len(reg) / 2, mask=0xd0)
 
         slave.reverse()
         length.reverse()
@@ -160,7 +162,7 @@ class MyWidget(QtGui.QWidget):
         packet.append('S')
 
         slave[1] = chr(ord(slave[1]) | 1)
-        length = self.i2c._hex2ascii(1, mask = 0xd0)
+        length = self.i2c.hex2ascii(1, mask=0xd0)
 
         length.reverse()
 
@@ -169,8 +171,8 @@ class MyWidget(QtGui.QWidget):
         packet.append('P')
 
         self.i2c.raw_write("".join(packet))
-        time.sleep(self.i2c._wait * 2)
-        read= self.i2c.raw_read()
+        time.sleep(self.i2c.wait * 2)
+        read = self.i2c.raw_read()
         read = read.split(",")
         # print read
         if len(read) >= 2:
@@ -179,20 +181,20 @@ class MyWidget(QtGui.QWidget):
             # print "Error"
             return ""
 
-    ## writes data to register address in selected slave address
+    # writes data to register address in selected slave address
     # copy and modify from tempcommand/instr_local.serial_i2c
     # @param slave slave address in HEX
     # @param reg register address in HEX
     # @param data data in HEX
     # @return created packet
-    def I2CregWrite(self, slave = 0x90, reg = 0x00, data = 0x00):
-#        print "I2CregWrite()",
+    def I2CregWrite(self, slave=0x90, reg=0x00, data=0x00):
+        #        print "I2CregWrite()",
 
         packet = []
-        slave = self.i2c._hex2ascii(slave, mask = 0xa0)
-        reg = self.i2c._hex2ascii(reg, mask = 0xb0)
-        data = self.i2c._hex2ascii(data, mask = 0xc0)
-        length = self.i2c._hex2ascii(len(reg)/2 + len(data)/2, mask = 0xd0)
+        slave = self.i2c.hex2ascii(slave, mask=0xa0)
+        reg = self.i2c.hex2ascii(reg, mask=0xb0)
+        data = self.i2c.hex2ascii(data, mask=0xc0)
+        length = self.i2c.hex2ascii(len(reg) / 2 + len(data) / 2, mask=0xd0)
 
         slave.reverse()
         length.reverse()
@@ -208,7 +210,7 @@ class MyWidget(QtGui.QWidget):
         packet.append('P')
 
         self.i2c.raw_write("".join(packet))
-        _read= self.i2c.raw_read()
+        _read = self.i2c.raw_read()
         return packet
 
     def I2CreadClick(self):
@@ -300,7 +302,7 @@ class MyWidget(QtGui.QWidget):
         print "GPIOreadClick()",
         _sender = self.sender()
         if(self.i2c):
-            if(_sender == self.gui.writebtn_reg0):# this should not happen
+            if(_sender == self.gui.writebtn_reg0):  # this should not happen
                 _register = self.i2c.CHIP_ID
                 _data = self.gui.write_reg0.value()
                 _dest = self.gui.read_reg0
@@ -336,10 +338,10 @@ class MyWidget(QtGui.QWidget):
 
     def updateI2CspeedTo(self):
         print "updateI2CspeedTo()"
-        _data = (((self.gui.speed_CH1.value() - 2)&0x06)<<5)|\
-                (((self.gui.speed_CH2.value() - 1)&0x03)<<4)|\
-                (((self.gui.speed_CH3.value() - 1)&0x03)<<2)|\
-                (((self.gui.speed_CH4.value() - 1)&0x03)<<0)
+        _data = (((self.gui.speed_CH1.value() - 2) & 0x06) << 5) |\
+                (((self.gui.speed_CH2.value() - 1) & 0x03) << 4) |\
+                (((self.gui.speed_CH3.value() - 1) & 0x03) << 2) |\
+                (((self.gui.speed_CH4.value() - 1) & 0x03) << 0)
         self.gui.write_reg5.setValue(_data)
 
     def updateI2CspeedFrom(self):
@@ -349,10 +351,10 @@ class MyWidget(QtGui.QWidget):
         self.gui.speed_CH2.setUpdatesEnabled(False)
         self.gui.speed_CH3.setUpdatesEnabled(False)
         self.gui.speed_CH4.setUpdatesEnabled(False)
-        self.gui.speed_CH1.setValue((0x06 & (_data>>5)) + 2)
-        self.gui.speed_CH2.setValue((0x03 & (_data>>4)) + 1)
-        self.gui.speed_CH3.setValue((0x03 & (_data>>2)) + 1)
-        self.gui.speed_CH4.setValue((0x03 & (_data>>0)) + 1)
+        self.gui.speed_CH1.setValue((0x06 & (_data >> 5)) + 2)
+        self.gui.speed_CH2.setValue((0x03 & (_data >> 4)) + 1)
+        self.gui.speed_CH3.setValue((0x03 & (_data >> 2)) + 1)
+        self.gui.speed_CH4.setValue((0x03 & (_data >> 0)) + 1)
         self.gui.speed_CH1.setUpdatesEnabled(True)
         self.gui.speed_CH2.setUpdatesEnabled(True)
         self.gui.speed_CH3.setUpdatesEnabled(True)
@@ -360,14 +362,13 @@ class MyWidget(QtGui.QWidget):
 
     def updateSPIspeedTo(self):
         print "updateSPIspeedTo()",
-        _data = (((self.gui.sped_SPI.value() - 1)&0x07)<<4)|\
-                (self.gui.epol_SPI.currentIndex() <<3)|\
-                (self.gui.bits_SPI.currentIndex() <<2)|\
-                (((self.gui.cpol_SPI.value())&0x01)<<1)|\
-                (((self.gui.cpha_SPI.value())&0x01)<<0)
+        _data = (((self.gui.sped_SPI.value() - 1) & 0x07) << 4) |\
+                (self.gui.epol_SPI.currentIndex() << 3) |\
+                (self.gui.bits_SPI.currentIndex() << 2) |\
+                (((self.gui.cpol_SPI.value()) & 0x01) << 1) |\
+                (((self.gui.cpha_SPI.value()) & 0x01) << 0)
         self.gui.write_reg6.setValue(_data)
 #        self.writeGPIO_signal.emit([_register, _data, _dest])
-
 
     def updateSPIspeedFrom(self):
         print "updateSPIspeedFrom()",
@@ -377,11 +378,11 @@ class MyWidget(QtGui.QWidget):
         self.gui.cpha_SPI.setUpdatesEnabled(False)
         self.gui.epol_SPI.setUpdatesEnabled(False)
         self.gui.bits_SPI.setUpdatesEnabled(False)
-        self.gui.sped_SPI.setValue((0x07 & (_data>>4)) + 1)
-        self.gui.epol_SPI.setCurrentIndex(0x01 & (_data>>3))
-        self.gui.bits_SPI.setCurrentIndex(0x01 & (_data>>2))
-        self.gui.cpol_SPI.setValue((0x01 & (_data>>1)))
-        self.gui.cpha_SPI.setValue((0x01 & (_data>>0)))
+        self.gui.sped_SPI.setValue((0x07 & (_data >> 4)) + 1)
+        self.gui.epol_SPI.setCurrentIndex(0x01 & (_data >> 3))
+        self.gui.bits_SPI.setCurrentIndex(0x01 & (_data >> 2))
+        self.gui.cpol_SPI.setValue((0x01 & (_data >> 1)))
+        self.gui.cpha_SPI.setValue((0x01 & (_data >> 0)))
         self.gui.sped_SPI.setUpdatesEnabled(True)
         self.gui.cpol_SPI.setUpdatesEnabled(True)
         self.gui.cpha_SPI.setUpdatesEnabled(True)
@@ -393,86 +394,86 @@ class MyWidget(QtGui.QWidget):
         _sender = self.sender()
         _data = _sender.value()
         if(_sender == self.gui.read_reg0):
-            _dest = [   self.gui.reg00,
-                        self.gui.reg01,
-                        self.gui.reg02,
-                        self.gui.reg03,
-                        self.gui.reg04,
-                        self.gui.reg05,
-                        self.gui.reg06,
-                        self.gui.reg07,
-                    ]
+            _dest = [self.gui.reg00,
+                     self.gui.reg01,
+                     self.gui.reg02,
+                     self.gui.reg03,
+                     self.gui.reg04,
+                     self.gui.reg05,
+                     self.gui.reg06,
+                     self.gui.reg07,
+                     ]
         elif(_sender == self.gui.read_reg1):
-            _dest = [   self.gui.reg10,
-                        self.gui.reg11,
-                        self.gui.reg12,
-                        self.gui.reg13,
-                        self.gui.reg14,
-                        self.gui.reg15,
-                        self.gui.reg16,
-                        self.gui.reg17,
-                    ]
+            _dest = [self.gui.reg10,
+                     self.gui.reg11,
+                     self.gui.reg12,
+                     self.gui.reg13,
+                     self.gui.reg14,
+                     self.gui.reg15,
+                     self.gui.reg16,
+                     self.gui.reg17,
+                     ]
         elif(_sender == self.gui.read_reg2):
-            _dest = [   self.gui.reg20,
-                        self.gui.reg21,
-                        self.gui.reg22,
-                        self.gui.reg23,
-                        self.gui.reg24,
-                        self.gui.reg25,
-                        self.gui.reg26,
-                        self.gui.reg27,
-                    ]
+            _dest = [self.gui.reg20,
+                     self.gui.reg21,
+                     self.gui.reg22,
+                     self.gui.reg23,
+                     self.gui.reg24,
+                     self.gui.reg25,
+                     self.gui.reg26,
+                     self.gui.reg27,
+                     ]
         elif(_sender == self.gui.read_reg3):
-            _dest = [   self.gui.reg30,
-                        self.gui.reg31,
-                        self.gui.reg32,
-                        self.gui.reg33,
-                        self.gui.reg34,
-                        self.gui.reg35,
-                        self.gui.reg36,
-                        self.gui.reg37,
-                    ]
+            _dest = [self.gui.reg30,
+                     self.gui.reg31,
+                     self.gui.reg32,
+                     self.gui.reg33,
+                     self.gui.reg34,
+                     self.gui.reg35,
+                     self.gui.reg36,
+                     self.gui.reg37,
+                     ]
         elif(_sender == self.gui.read_reg4):
-            _dest = [   self.gui.reg40,
-                        self.gui.reg41,
-                        self.gui.reg42,
-                        self.gui.reg43,
-                        self.gui.reg44,
-                        self.gui.reg45,
-                        self.gui.reg46,
-                        self.gui.reg47,
-                    ]
+            _dest = [self.gui.reg40,
+                     self.gui.reg41,
+                     self.gui.reg42,
+                     self.gui.reg43,
+                     self.gui.reg44,
+                     self.gui.reg45,
+                     self.gui.reg46,
+                     self.gui.reg47,
+                     ]
         elif(_sender == self.gui.read_reg5):
-            _dest = [   self.gui.reg50,
-                        self.gui.reg51,
-                        self.gui.reg52,
-                        self.gui.reg53,
-                        self.gui.reg54,
-                        self.gui.reg55,
-                        self.gui.reg56,
-                        self.gui.reg57,
-                    ]
+            _dest = [self.gui.reg50,
+                     self.gui.reg51,
+                     self.gui.reg52,
+                     self.gui.reg53,
+                     self.gui.reg54,
+                     self.gui.reg55,
+                     self.gui.reg56,
+                     self.gui.reg57,
+                     ]
         elif(_sender == self.gui.read_reg6):
-            _dest = [   self.gui.reg60,
-                        self.gui.reg61,
-                        self.gui.reg62,
-                        self.gui.reg63,
-                        self.gui.reg64,
-                        self.gui.reg65,
-                        self.gui.reg66,
-                        self.gui.reg67,
-                    ]
+            _dest = [self.gui.reg60,
+                     self.gui.reg61,
+                     self.gui.reg62,
+                     self.gui.reg63,
+                     self.gui.reg64,
+                     self.gui.reg65,
+                     self.gui.reg66,
+                     self.gui.reg67,
+                     ]
 #        elif(_sender == self.gui.readbtn_reg7):
 #            pass
         else:
             pass
         for _bit in range(8):
-            if (_data&(1<<_bit)):
-                _dest[_bit].setChecked( True )
-                _dest[_bit].setText( "1" )
+            if (_data & (1 << _bit)):
+                _dest[_bit].setChecked(True)
+                _dest[_bit].setText("1")
             else:
-                _dest[_bit].setChecked( False )
-                _dest[_bit].setText( "0" )
+                _dest[_bit].setChecked(False)
+                _dest[_bit].setText("0")
 
     def checkClick(self):
         print "checkClick()"
@@ -582,22 +583,22 @@ class MyWidget(QtGui.QWidget):
 
         _data = _dest.value()
         if(_sender.isChecked()):
-            _sender.setText( "1" )
-            _data |= 1<<_shift
+            _sender.setText("1")
+            _data |= 1 << _shift
         else:
-            _sender.setText( "0" )
-            _data &= ~(1<<_shift)
+            _sender.setText("0")
+            _data &= ~(1 << _shift)
 
         _dest.setValue(_data)
 
     def bitClickedSlot(self):
         pass
 
-if __name__=='__main__':
+if __name__ == '__main__':
 
-    app=QtGui.QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     window = MyWidget()
-    ui=Ui_Form()
+    ui = Ui_Form()
     ui.setupUi(window)
     window.getUI(ui)
 
@@ -696,7 +697,6 @@ if __name__=='__main__':
     window.writeI2C_signal.connect(window.writeI2CSlot)
     window.readGPIO_signal.connect(window.readGPIOSlot)
     window.writeGPIO_signal.connect(window.writeGPIOSlot)
-
 
     window.show()
     sys.exit(app.exec_())
