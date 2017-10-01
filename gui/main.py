@@ -11,7 +11,7 @@ from tinyI2Cgui import Ui_Form, _fromUtf8
 from serial.tools.list_ports import comports as serial_comports
 
 sys.path.append('../python')
-import tinyI2C
+import TinyI2c
 import time
 import serial
 
@@ -42,9 +42,9 @@ class MyWidget(QtWidgets.QWidget):
         self.isUI = True
         try:
             if os.name == 'posix':
-                self.i2c = tinyI2C.serial2i2c(port="/dev/ttyS0")
+                self.i2c = TinyI2c.TinyI2c(port="/dev/ttyS0")
             else:
-                self.i2c = tinyI2C.serial2i2c()
+                self.i2c = TinyI2c.TinyI2c()
         except:
             pass
 
@@ -85,7 +85,7 @@ class MyWidget(QtWidgets.QWidget):
                 self.i2c.bus.close()
 #            print ("_setup()", self.ports)
             try:
-                self.i2c = tinyI2C.serial2i2c(port=self.ports[_port])
+                self.i2c = TinyI2c.TinyI2c(port=self.ports[_port])
             except:
                 pass
 

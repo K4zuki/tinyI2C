@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 import binascii
-from tinyI2C import serial2i2c
+from TinyI2c import TinyI2c
 from colorama import init
 from colorama import Fore, Back, Style
 init()
