@@ -151,9 +151,9 @@ class MyWidget(QtWidgets.QWidget):
             slave = int(slave)
         if not isinstance(reg, int):
             reg = int(reg)
-        slave = self.i2c.hex2ascii(slave, mask=0xa0)
-        reg = self.i2c.hex2ascii(reg, mask=0xb0)
-        length = self.i2c.hex2ascii(len(reg) / 2, mask=0xd0)
+        slave = self.i2c.hex2ascii(slave, mask=0x30)
+        reg = self.i2c.hex2ascii(reg, mask=0x30)
+        length = self.i2c.hex2ascii(len(reg) / 2, mask=0x30)
 
         slave.reverse()
         length.reverse()
@@ -166,7 +166,7 @@ class MyWidget(QtWidgets.QWidget):
         packet.append('S')
 
         slave[1] = chr(ord(slave[1]) | 1)
-        length = self.i2c.hex2ascii(1, mask=0xd0)
+        length = self.i2c.hex2ascii(1, mask=0x30)
 
         length.reverse()
 
@@ -201,10 +201,10 @@ class MyWidget(QtWidgets.QWidget):
             reg = int(reg)
         if not isinstance(data, int):
             data = int(data)
-        slave = self.i2c.hex2ascii(slave, mask=0xa0)
-        reg = self.i2c.hex2ascii(reg, mask=0xb0)
-        data = self.i2c.hex2ascii(data, mask=0xc0)
-        length = self.i2c.hex2ascii(len(reg) / 2 + len(data) / 2, mask=0xd0)
+        slave = self.i2c.hex2ascii(slave, mask=0x30)
+        reg = self.i2c.hex2ascii(reg, mask=0x30)
+        data = self.i2c.hex2ascii(data, mask=0x30)
+        length = self.i2c.hex2ascii(len(reg) / 2 + len(data) / 2, mask=0x30)
 
         slave.reverse()
         length.reverse()
