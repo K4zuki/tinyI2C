@@ -3,7 +3,7 @@
 
 import sys
 import os
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 #from tinyI2Cgen import Ui_Form, _fromUtf8
 from tinyI2Cgui import Ui_Form, _fromUtf8
@@ -18,7 +18,7 @@ import serial
 
 # how to make GUI from ui
 #
-class MyWidget(QtGui.QWidget):
+class MyWidget(QtWidgets.QWidget):
 
     # SIGNAL definition
     readI2C_signal = QtCore.pyqtSignal(object)
@@ -121,7 +121,7 @@ class MyWidget(QtGui.QWidget):
 #    def reg_read(self, registers = "012"):
 
     def readGPIOSlot(self, arg):
-        print "readGPIOslot()"
+        print("readGPIOslot()")
         _sender = self.sender()
         _register, _dest = arg
         if(self.i2c):
@@ -134,7 +134,7 @@ class MyWidget(QtGui.QWidget):
                 _dest.setValue(read)
 
     def writeGPIOSlot(self, arg):
-        print "writeGPIOslot()"
+        print("writeGPIOslot()")
         _register, _data, _dest = arg
         if(self.i2c):
             read = self.i2c.reg_write([[str(_register), _data]])
@@ -147,6 +147,10 @@ class MyWidget(QtGui.QWidget):
 
     def I2CregRead(self, slave=0x90, reg=0x00):
         packet = []
+        if not isinstance(slave, int):
+            slave = int(slave)
+        if not isinstance(reg, int):
+            reg = int(reg)
         slave = self.i2c.hex2ascii(slave, mask=0xa0)
         reg = self.i2c.hex2ascii(reg, mask=0xb0)
         length = self.i2c.hex2ascii(len(reg) / 2, mask=0xd0)
@@ -191,6 +195,12 @@ class MyWidget(QtGui.QWidget):
         #        print "I2CregWrite()",
 
         packet = []
+        if not isinstance(slave, int):
+            slave = int(slave)
+        if not isinstance(reg, int):
+            reg = int(reg)
+        if not isinstance(data, int):
+            data = int(data)
         slave = self.i2c.hex2ascii(slave, mask=0xa0)
         reg = self.i2c.hex2ascii(reg, mask=0xb0)
         data = self.i2c.hex2ascii(data, mask=0xc0)
@@ -268,7 +278,7 @@ class MyWidget(QtGui.QWidget):
         self.writeI2C_signal.emit([_slave, _channel, _register, _data])
 
     def GPIOreadClick(self):
-        print "GPIOreadClick()",
+        print ("GPIOreadClick()", end="")
         _sender = self.sender()
         if(self.i2c):
             if(_sender == self.gui.readbtn_reg0):
@@ -299,7 +309,7 @@ class MyWidget(QtGui.QWidget):
             self.readGPIO_signal.emit([_register, _dest])
 
     def GPIOwriteClick(self):
-        print "GPIOreadClick()",
+        print ("GPIOreadClick()", end="")
         _sender = self.sender()
         if(self.i2c):
             if(_sender == self.gui.writebtn_reg0):  # this should not happen
@@ -337,7 +347,7 @@ class MyWidget(QtGui.QWidget):
             self.writeGPIO_signal.emit([_register, _data, _dest])
 
     def updateI2CspeedTo(self):
-        print "updateI2CspeedTo()"
+        print ("updateI2CspeedTo()")
         _data = (((self.gui.speed_CH1.value() - 2) & 0x06) << 5) |\
                 (((self.gui.speed_CH2.value() - 1) & 0x03) << 4) |\
                 (((self.gui.speed_CH3.value() - 1) & 0x03) << 2) |\
@@ -345,7 +355,7 @@ class MyWidget(QtGui.QWidget):
         self.gui.write_reg5.setValue(_data)
 
     def updateI2CspeedFrom(self):
-        print "updateI2CspeedFrom()"
+        print ("updateI2CspeedFrom()")
         _data = self.gui.read_reg5.value()
         self.gui.speed_CH1.setUpdatesEnabled(False)
         self.gui.speed_CH2.setUpdatesEnabled(False)
@@ -361,7 +371,7 @@ class MyWidget(QtGui.QWidget):
         self.gui.speed_CH4.setUpdatesEnabled(True)
 
     def updateSPIspeedTo(self):
-        print "updateSPIspeedTo()",
+        print ("updateSPIspeedTo()", end="")
         _data = (((self.gui.sped_SPI.value() - 1) & 0x07) << 4) |\
                 (self.gui.epol_SPI.currentIndex() << 3) |\
                 (self.gui.bits_SPI.currentIndex() << 2) |\
@@ -371,7 +381,7 @@ class MyWidget(QtGui.QWidget):
 #        self.writeGPIO_signal.emit([_register, _data, _dest])
 
     def updateSPIspeedFrom(self):
-        print "updateSPIspeedFrom()",
+        print ("updateSPIspeedFrom()", end="")
         _data = self.gui.read_reg6.value()
         self.gui.sped_SPI.setUpdatesEnabled(False)
         self.gui.cpol_SPI.setUpdatesEnabled(False)
@@ -390,7 +400,7 @@ class MyWidget(QtGui.QWidget):
         self.gui.bits_SPI.setUpdatesEnabled(True)
 
     def updateCheckbox(self):
-        print "updateCheckbox()"
+        print("updateCheckbox()")
         _sender = self.sender()
         _data = _sender.value()
         if(_sender == self.gui.read_reg0):
@@ -476,7 +486,7 @@ class MyWidget(QtGui.QWidget):
                 _dest[_bit].setText("0")
 
     def checkClick(self):
-        print "checkClick()"
+        print("checkClick()")
         _sender = self.sender()
         if (_sender == self.gui.reg17):
             _dest = self.gui.write_reg1
@@ -596,7 +606,7 @@ class MyWidget(QtGui.QWidget):
 
 if __name__ == '__main__':
 
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MyWidget()
     ui = Ui_Form()
     ui.setupUi(window)
