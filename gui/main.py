@@ -1,11 +1,11 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#!/usr/bin/python
 
 import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-#from tinyI2Cgen import Ui_Form, _fromUtf8
+# from tinyI2Cgen import Ui_Form, _fromUtf8
 from tinyI2Cgui import Ui_Form, _fromUtf8
 
 from serial.tools.list_ports import comports as serial_comports
@@ -83,7 +83,7 @@ class MyWidget(QtWidgets.QWidget):
         if(self.isUI):
             if(self.i2c and self.i2c.bus.isOpen()):
                 self.i2c.bus.close()
-#            print "_setup()", self.ports
+#            print ("_setup()", self.ports)
             try:
                 self.i2c = tinyI2C.serial2i2c(port=self.ports[_port])
             except:
@@ -116,8 +116,8 @@ class MyWidget(QtWidgets.QWidget):
 #        REG7,
 #        REG8,
 #        REG9,
-#"R| '0'| P"
-#"R| '0'| '1'| ...| P"
+# "R| '0'| P"
+# "R| '0'| '1'| ...| P"
 #    def reg_read(self, registers = "012"):
 
     def readGPIOSlot(self, arg):
