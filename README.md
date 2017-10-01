@@ -12,12 +12,12 @@ configurable pull-up/pull-down modes.
 - up to 2 x 8bit, General Purpose IO ports
 
 ```
-tinyI2C/         <-- root
-├── doc/      <-- document source
-├── gui/      <-- PyQt4 based GUI source codes
-├── mbed/     <-- mbed source codes
-├── pcb/      <-- PCB design files for eagle
-└── python/   <-- python module code with standalone test program
+TinyI2C/         <-- root
+├── doc/      <-- document source
+├── gui/      <-- PyQt4 based GUI source codes
+├── mbed/     <-- mbed source codes
+├── pcb/      <-- PCB design files for eagle
+└── python/   <-- python module code with standalone test program
 ```
 
 # Requirement
