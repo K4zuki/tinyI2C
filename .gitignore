@@ -103,3 +103,9 @@ $RECYCLE.BIN/
 
 *.pdf
 pcb/tinyI2C_P.top.png
+
+doc/images/bitfields/
+doc/images/waves/
+doc/svg/
+gui/__pycache__/
+python/__pycache__/
