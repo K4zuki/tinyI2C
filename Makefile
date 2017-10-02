@@ -18,7 +18,7 @@ $(GUIBINARY): $(GUIDESIGN)
 	pyinstaller --noconsole -p python/ gui/main.py --onefile --clean --name TinyI2C
 
 $(GUIDESIGN):
-	pyuic4 tinyI2C.ui -o $(GUIDESIGN)
+	pyuic5 tinyI2C.ui -o $(GUIDESIGN)
 
 html:
 	cd $(MDDIR); \
