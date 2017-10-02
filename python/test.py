@@ -28,7 +28,7 @@ class MyParser(object):
 def main(parser):
     port = parser.args.port
     baud = parser.args.baud
-    dev = serial2i2c(port, baud)
+    dev = TinyI2c(port, baud)
 
     input("I2C: use channel 0")
     print(Fore.CYAN + Style.BRIGHT + "\tdev.setChannel(0)" + Style.RESET_ALL +
