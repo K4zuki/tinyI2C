@@ -10,10 +10,11 @@
 # the GNU General Public License for more details.
 
 import sys
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
-# Regex adapted from Mark Pilgrim's "Dive Into Python" book
-class HexSpinBox(QtGui.QSpinBox):
+
+class HexSpinBox(QtWidgets.QSpinBox):
+    # Regex adapted from Mark Pilgrim's "Dive Into Python" book
 
     def __init__(self, parent=None):
         super(HexSpinBox, self).__init__(parent)
@@ -21,8 +22,7 @@ class HexSpinBox(QtGui.QSpinBox):
         regex = QtCore.QRegExp(r"(^[ ]*[0-9A-Fa-f][0-9A-Fa-f])|(^[ ]*-?[0-9][0-9])")
         self.validator = QtGui.QRegExpValidator(regex, self)
         self.setMaximum(255)
-        self.connect(self.lineEdit(), QtCore.SIGNAL("textEdited(QString)"),
-                     self.fixCase)
+        self.lineEdit()
 
     def validate(self, text, pos):
         return self.validator.validate(text, pos)
@@ -34,40 +34,40 @@ class HexSpinBox(QtGui.QSpinBox):
         text = unicode(text.toLower())
         chars = text.split()
         text = "".join(chars[:1])
-        return int(unicode(text),16)
+        return int(unicode(text), 16)
 
     def textFromValue(self, value):
         return self._hex2ascii(value)
 
-    def _hex2ascii(self, h, mask = 0xa0):
+    def _hex2ascii(self, h, mask=0xa0):
         chars_in_reverse = []
-        chars_in_reverse.append("%X"%( (h & 0x0F)))
-        chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+        chars_in_reverse.append("%X" % ((h & 0x0F)))
+        chars_in_reverse.append("%X" % (((h >> 4) & 0x0F)))
         h = h >> 8
         while h != 0x0:
-            chars_in_reverse.append("%X"%( (h & 0x0F)))
-            chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+            chars_in_reverse.append("%X" % ((h & 0x0F)))
+            chars_in_reverse.append("%X" % (((h >> 4) & 0x0F)))
             h = h >> 8
 
         chars_in_reverse.reverse()
         return "".join(chars_in_reverse)
 
 if __name__ == "__main__":
-    def _hex2ascii(h, mask = 0xa0):
+    def _hex2ascii(h, mask=0xa0):
         chars_in_reverse = []
-        chars_in_reverse.append("%X"%( (h & 0x0F)))
-        chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+        chars_in_reverse.append("%X" % ((h & 0x0F)))
+        chars_in_reverse.append("%X" % (((h >> 4) & 0x0F)))
         h = h >> 8
         while h != 0x0:
-            chars_in_reverse.append("%X"%( (h & 0x0F)))
-            chars_in_reverse.append("%X"%( ((h >> 4) & 0x0F)))
+            chars_in_reverse.append("%X" % ((h & 0x0F)))
+            chars_in_reverse.append("%X" % (((h >> 4) & 0x0F)))
             h = h >> 8
 
         chars_in_reverse.reverse()
         return "".join(chars_in_reverse)
 
     def report(value):
-        print "%4d %s" % (value, _hex2ascii(value))
+        print ("%4d %s" % (value, _hex2ascii(value)))
 
     app = QtGui.QApplication(sys.argv)
     spinbox = HexSpinBox()

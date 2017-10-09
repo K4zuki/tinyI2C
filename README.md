@@ -11,22 +11,25 @@ configurable pull-up/pull-down modes.
 - one SPI port with 8/16 bits word, also selectable speed
 - up to 2 x 8bit, General Purpose IO ports
 
-- tinyI2C       <-- root
-    - gui       <-- PyQt4 based GUI source codes
-    - mbed      <-- mbed source codes
-    - pcb       <-- PCB design files for eagle
-    - python    <-- python module code with standalone test program
+```
+TinyI2C/         <-- root
+├── doc/      <-- document source
+├── gui/      <-- PyQt4 based GUI source codes
+├── mbed/     <-- mbed source codes
+├── pcb/      <-- PCB design files for eagle
+└── python/   <-- python module code with standalone test program
+```
 
 # Requirement
-- Python 2.7
-  `apt-get install python`
+- Python 3
+  `apt-get install python3`
 - PySerial
-  `pip install pyserial`
+  `pip3 install pyserial`
 * mbed microcontrollers using LPC824(recommended)/LPC1768/LPC11U24/LPC11U35
   see [mbed.org](developer.mbed.org)
 
 # Install
-1. install python 2.7 on your PC
+1. install python 3.3+ on your PC
 2. install PySerial
 3. (Windows only) if you use LpcXpresso 824 then install [mbed Serial port driver](http://developer.mbed.org/handbook/Windows-serial-configuration)
 
@@ -46,8 +49,13 @@ GUI source codes placed in `gui/` which requires compilation
  (for now, _do it yourself_ basis).
 
 GUI setup requires:
-- PyQT4
+
+- PyQt5
 - pyinstaller
+
+```
+$ pip3 install pyqt5 pyinstaller
+```
 
 ### Compile GUI
 On project root,

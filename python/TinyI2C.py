@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # MIT License (c) K4ZUKI <https://github.com/K4zuki>
 
@@ -31,7 +31,8 @@ import time
 # "I| '0'| P"
 # "O| '0'| 0x_a _a| P"
 
-class serial2i2c(object):
+
+class TinyI2C(object):
     """ RS232C to I2C converter using mbed
     Example:
        dev = serial2i2c(port = 'com8', baud = '115200')
@@ -45,9 +46,9 @@ class serial2i2c(object):
         baud (str): baudrate
 
     """
-    _ser = 0
-    _channel = 0
-    _wait = 1e-3
+    bus = None
+    channel = 0
+    wait = 1e-3
 
     CHIP_ID = '0'
     """ Register 0
@@ -94,7 +95,7 @@ class serial2i2c(object):
 
     def __init__(self, port='com1', baud='115200'):
         try:
-            self._ser = serial.Serial(port, baudrate=baud, timeout=0.1)
+            self.bus = serial.Serial(port, baudrate=baud, timeout=0.1)
         except:
             raise
 
@@ -107,9 +108,13 @@ class serial2i2c(object):
         Returns:
             str: response from module
         """
-        self._channel = channel
-        self.raw_write("C" + str(self._channel) + "P")
-        time.sleep(self._wait)
+        assert(isinstance(channel, int))
+        self.channel = channel
+        packet = ["C",
+                  str(self.channel),
+                  "P"]
+        self.raw_write("".join(packet))
+        time.sleep(self.wait)
         return self.raw_read()
 
     def read(self, address, length=1):
@@ -125,18 +130,18 @@ class serial2i2c(object):
 
         packet = ['S', 'P']
 
-        address = self._hex2ascii(address, 0x30)
+        address = self.hex2ascii(address, 0x30)
         alength = len(address) / 2
         packet.insert(1, chr(ord(address[0]) | 1))
         packet.insert(1, address[1])
 
-        for _l in self._hex2ascii(length, 0x30):
-            packet.insert(3, _l)
+        for l in self.hex2ascii(length, 0x30):
+            packet.insert(3, l)
 
-        self.raw_write("".join(packet))
+        self.raw_write("".join(packet).encode(ascii))
 
-        time.sleep(self._wait * length * 2)
-        return self.raw_read()
+        time.sleep(self.wait * length * 2)
+        return self.raw_read().decode('utf-8')
 
     def write(self, address, data=0):
         """ writes multi byte data
@@ -150,23 +155,20 @@ class serial2i2c(object):
         """
         packet = ['S', 'P']
 
-        address = self._hex2ascii(address, 0x30)
+        address = self.hex2ascii(address, 0x30)
         alength = len(address) / 2
-        for _a in address:
-            packet.insert(1, _a)
+        [packet.insert(1, addr) for addr in address]
 
-        data = self._hex2ascii(data, 0x30)
+        data = self.hex2ascii(data, 0x30)
         length = len(data) / 2
 
-        for _l in self._hex2ascii(length, 0x30):
-            packet.insert(3, _l)
+        [packet.insert(3, l) for l in self.hex2ascii(length, 0x30)]
 
-        for _d in data:
-            packet.insert(5, _d)
+        [packet.insert(5, d) for d in data]
 
         self.raw_write("".join(packet))
 
-        time.sleep(self._wait * length * 2)
+        time.sleep(self.wait * length * 2)
         return self.raw_read()
 
     def write_and_read(self, address, wdata=0, rlength=1):
@@ -182,30 +184,27 @@ class serial2i2c(object):
         """
         packet = ['S', 'S', 'P']
 
-        address = self._hex2ascii(address, 0x30)
+        address = self.hex2ascii(address, 0x30)
         alength = len(address) / 2
-        for _a in address:
-            packet.insert(1, _a)
+        [packet.insert(1, addr) for addr in address]
 
-        wdata = self._hex2ascii(wdata, 0x30)
+        wdata = self.hex2ascii(wdata, 0x30)
         wlength = len(wdata) / 2
 
-        for _wl in self._hex2ascii(wlength, 0x30):
-            packet.insert(3, _wl)
+        [packet.insert(3, wlen) for wlen in self.hex2ascii(wlength, 0x30)]
 
-        for _wd in wdata:
-            packet.insert(5, _wd)
+        [packet.insert(5, wd) for wd in wdata]
 
         packet.insert(6 + wlength * 2, chr(ord(address[0]) | 1))
         packet.insert(6 + wlength * 2, address[1])
 
-        for _rl in self._hex2ascii(rlength, 0x30):
-            packet.insert(8 + wlength * 2, _rl)
+        for rlen in self.hex2ascii(rlength, 0x30):
+            packet.insert(8 + wlength * 2, rlen)
 
         self.raw_write("".join(packet))
 
-        time.sleep(self._wait * rlength * 2)
-        return self.raw_read()
+        time.sleep(self.wait * rlength * 2)
+        return self.raw_read().decode('utf-8')
 
     def write_and_read_SPI(self, wlength=1, rlength=0, data=0xC4FEE0CA):
         """ writes data and then reads from same SPI device
@@ -219,9 +218,9 @@ class serial2i2c(object):
             str: ACK/NAK + response string from device
         """
 
-        _wlength = self._hex2ascii(wlength, 0x30)
-        _rlength = self._hex2ascii(rlength, 0x30)
-        _data = self._hex2ascii(data, 0x30)
+        _wlength = self.hex2ascii(wlength, 0x30)
+        _rlength = self.hex2ascii(rlength, 0x30)
+        _data = self.hex2ascii(data, 0x30)
 
         _wlength.reverse()
         _rlength.reverse()
@@ -235,25 +234,25 @@ class serial2i2c(object):
         packet.append('P')
         self.raw_write("".join(packet))
 
-        time.sleep(self._wait * rlength * 2)
+        time.sleep(self.wait * rlength * 2)
         return self.raw_read()
 
     def raw_write(self, data="C4FEE0CA"):
         # sends raw data on serial port
-        self._ser.write(data)
+        self.bus.write(data.encode('ascii'))
 
     def raw_read(self):
         # reads raw data from serial port
-        return (self._ser.readline().strip())
+        return (self.bus.readline().strip().decode('utf-8'))
 
     def start(self):
         # sends 'S' command packet to make start condition
-        self._ser.write("S")
+        self.bus.write("S")
 
     def stop(self):
         # sends 'P' command packet to make stop condition
-        self._ser.write("P")
-        time.sleep(self._wait)
+        self.bus.write("P")
+        time.sleep(self.wait)
 
     def reg_read(self, registers="012"):
         """ reads data from device's own register
@@ -264,11 +263,11 @@ class serial2i2c(object):
         Returns:
             str: response string from device
         """
-        packet = ['R', 'P']
+        packet = "".join(["R",
+                          registers,
+                          "P"])
 
-        packet.insert(1, registers)
-
-        self.raw_write("".join(packet))
+        self.raw_write(packet)
         return self.raw_read()
 
     def reg_write(self, pair=[('1', 0xFF), ]):
@@ -284,7 +283,7 @@ class serial2i2c(object):
 
         for _p in pair:
             reg, data = _p
-            data = self._hex2ascii(data, 0x30)
+            data = self.hex2ascii(data, 0x30)
             data.reverse()
 
             packet.insert(1, reg)
@@ -294,11 +293,11 @@ class serial2i2c(object):
         # print "".join(packet)
         self.raw_write("".join(packet))
 
-        time.sleep(self._wait * length)
+        time.sleep(self.wait * length)
 
         return self.raw_read()
 
-    def _hex2ascii(self, h, mask=0x30):
+    def hex2ascii(self, h, mask=0x30):
         """ converts hex data to string
         Args:
             h(int): data in HEX
@@ -307,6 +306,8 @@ class serial2i2c(object):
         Returns:
             list: converted format in list
         """
+        h = int(h)
+        assert isinstance(h, int)
         chars_in_reverse = []
         chars_in_reverse.append(chr(mask | (h & 0x0F)))
         chars_in_reverse.append(chr(mask | ((h >> 4) & 0x0F)))
@@ -318,5 +319,6 @@ class serial2i2c(object):
 
         return (chars_in_reverse)
 
+
 if __name__ == "__main__":
-    print "please try test.py"
+    print ("please try test.py")
