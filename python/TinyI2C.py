@@ -32,7 +32,7 @@ import time
 # "O| '0'| 0x_a _a| P"
 
 
-class TinyI2c(object):
+class TinyI2C(object):
     """ RS232C to I2C converter using mbed
     Example:
        dev = serial2i2c(port = 'com8', baud = '115200')
