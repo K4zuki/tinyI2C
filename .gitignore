@@ -109,3 +109,4 @@ doc/images/waves/
 doc/svg/
 gui/__pycache__/
 python/__pycache__/
+python/docs/_build/
