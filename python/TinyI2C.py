@@ -96,7 +96,7 @@ class TinyI2C(object):
     def __init__(self, port='com1', baud='115200'):
         try:
             self.bus = serial.Serial(port, baudrate=baud, timeout=0.1)
-        except:
+        except SerialException:
             raise
 
     def setChannel(self, channel=0):

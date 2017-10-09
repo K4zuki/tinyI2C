@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 import binascii
-from TinyI2c import TinyI2c
+from TinyI2C import TinyI2C
 from colorama import init
 from colorama import Fore, Back, Style
 init()
@@ -28,7 +28,7 @@ class MyParser(object):
 def main(parser):
     port = parser.args.port
     baud = parser.args.baud
-    dev = TinyI2c(port, baud)
+    dev = TinyI2C(port, baud)
 
     input("I2C: use channel 0")
     print(Fore.CYAN + Style.BRIGHT + "\tdev.setChannel(0)" + Style.RESET_ALL +
