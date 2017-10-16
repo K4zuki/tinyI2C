@@ -4,10 +4,10 @@ signal:
     node: ".a.b.......c.d.e...........f.g.h"
   - name: sck
     # phase: 0.5
-    wave: "1.0.u0u0|u0u0u0.u0u0|u0u0u0u01."
+    wave: "1.0.u0u0|.u0u0u0.u0u0|u0u0u0u01."
   - name: sda
     phase: 0.5
-    wave: "1.0.1.0.|....0..1...|......0.01."
+    wave: "1.0.1.0.|.....0.1...|......0.01."
   - name: state
     data: [Start, "address = 0x40", "W(0)", "ACK", "data", "ACK", Stop]
     wave: "x=.=.......=.=.=...........=.=."
