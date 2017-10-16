@@ -1,7 +1,7 @@
-bits,description
+"bits","description"
 ,"**if GPIO1 is not enabled,
 access to this register will be ignored**"
-[7...0],"**When Read** : Reads each pin's Input/Output conditions:
+"[7...0]","**When Read** : Reads each pin's Input/Output conditions:
 
 - 1: the pin is set to output
 - 0: the pin is set to input with internal pullup

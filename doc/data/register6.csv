@@ -1,6 +1,6 @@
-bits,description
-[7],Not used
-[6...4],"Read/Write clock configuration of SPI
+"bits","description"
+"[7]","Not used"
+"[6...4]","Read/Write clock configuration of SPI
 
 - 111: SPI is set to operate in 8MHz clock
 - 110: SPI is set to operate in 7MHz clock
@@ -9,15 +9,15 @@ bits,description
 
 - 001: SPI is set to operate in 2MHz clock
 - 000: SPI is set to operate in 1MHz clock"
-[3],"Reads/Wreite polarity of CE pin
+"[3]","Reads/Wreite polarity of CE pin
 
 - 1: CE is set to HIGH-active
 - 0: CE is set to LOW-active"
-[2],"Read/Write word size setting of SPI
+"[2]","Read/Write word size setting of SPI
 
 - 1: 16 bit word
 - 0: 8 bit word"
-[1...0],"Read/Write SPI mode
+"[1...0]","Read/Write SPI mode
 
 - 11: SPI is set to operate in clock mode 3
 - 10: SPI is set to operate in clock mode 2

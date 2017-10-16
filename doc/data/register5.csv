@@ -1,5 +1,5 @@
-bits,description
-[7...6],"Read/Write clock configuration of I2C1
+"bits","description"
+"[7...6]","Read/Write clock configuration of I2C1
 
 **implementation for mbed LPC1768 will also set**
 
@@ -9,7 +9,7 @@ bits,description
 - 10: I2C1 is set to operate in 600kHz clock
 - 01: I2C1 is set to operate in 400kHz clock
 - 00: I2C1 is set to operate in 200kHz clock"
-[5...4],"Read/Write clock configuration of I2C2
+"[5...4]","Read/Write clock configuration of I2C2
 
 **if I2C2 is not enabled, access to this bitfield will be ignored**
 
@@ -17,7 +17,7 @@ bits,description
 - 10: I2C2 is set to operate in 300kHz clock
 - 01: I2C2 is set to operate in 200kHz clock
 - 00: I2C2 is set to operate in 100kHz clock"
-[3...2],"Read/Write clock configuration of I2C3
+"[3...2]","Read/Write clock configuration of I2C3
 
 **if I2C3 is not enabled, access to this bitfield will be ignored**
 
@@ -25,7 +25,7 @@ bits,description
 - 10: I2C3 is set to operate in 300kHz clock
 - 01: I2C3 is set to operate in 200kHz clock
 - 00: I2C3 is set to operate in 100kHz clock"
-[1...0],"Read/Write clock configuration of I2C4
+"[1...0]","Read/Write clock configuration of I2C4
 
 **if I2C4 is not enabled, access to this bitfield will be ignored**
 

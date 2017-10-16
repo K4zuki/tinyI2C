@@ -1,5 +1,5 @@
-bits,description
-[7...0],"returns chip ID character:
+"bits","description"
+"[7...0]","returns chip ID character:
 
 - '0'(`0x30`) - LPC824
 - '1'(`0x31`) - LPC1768

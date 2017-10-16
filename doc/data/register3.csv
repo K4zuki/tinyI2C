@@ -1,5 +1,5 @@
-bits,description
-[7...0],"**When Read** : Reads each pin's Input/Output conditions:
+"bits","description"
+"[7...0]","**When Read** : Reads each pin's Input/Output conditions:
 
 - 1 = the pin is set to output
 - 0 = the pin is set to input with internal pullup

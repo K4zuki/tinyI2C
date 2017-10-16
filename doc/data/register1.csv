@@ -1,5 +1,5 @@
-bits,description
-[7...0],"**When read**: behavior changes
+"bits","description"
+"[7...0]","**When read**: behavior changes
 depend on corresponding bit of GPIO0_CONF register
 
 - 1: reads output setting

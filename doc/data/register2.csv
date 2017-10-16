@@ -1,7 +1,7 @@
-bits,description
+"bits","description"
 ,"**if GPIO1 is not enabled,
 access to this register will be ignored**"
-[7...0],"**When read** : behavior changes
+"[7...0]","**When read** : behavior changes
 depend on corresponding bit of GPIO1_CONF register
 
 - 1: reads output setting
