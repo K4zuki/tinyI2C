@@ -4,9 +4,9 @@ abstract: NXP社のLPCマイクロコントローラ3種でNXPのI^2^Cインタ�
     "SC18IM700" をエミュレートさせてみた
 circle: KY技研
 author: "@_K4ZUKI_"
-comiket: "技術書典２"
+comiket: "技術書典３"
 year: "2017"
-publisher: "秋葉原キンコーズで印刷製本予定"
+publisher: "秋葉原キンコーズで印刷製本"
 docrevision: "1.0"
 front: images/TinyI2C-PinOut.png
 ...
